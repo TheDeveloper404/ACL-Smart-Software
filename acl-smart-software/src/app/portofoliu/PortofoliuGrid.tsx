@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Case } from '@/types';
 
 interface Props { cases: Case[]; }
@@ -10,7 +11,9 @@ export default function PortofoliuGrid({ cases }: Props) {
           {cases.map((c) => (
             <article key={c.slug} className="case" data-slug={c.slug}>
               <div className="case-img">
-                <CaseVisual slug={c.slug} />
+                {c.image
+                  ? <Image src={c.image} alt={c.title} fill sizes="(max-width: 800px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: 'top center' }} />
+                  : <CaseVisual slug={c.slug} />}
                 <span className="case-done-badge">✓ Realizat</span>
               </div>
               <div className="case-body">

@@ -22,6 +22,7 @@ export interface Case {
   desc: string;
   services: string[];
   results: { n: string; l: string }[];
+  image?: string;
 }
 
 export interface TeamMember {
