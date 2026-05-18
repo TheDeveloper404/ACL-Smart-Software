@@ -1,26 +1,31 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter_Tight, JetBrains_Mono, Instrument_Serif } from 'next/font/google';
+import dynamic from 'next/dynamic';
 import './globals.css';
 import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
-import ThemePanel from '@/components/layout/ThemePanel';
-import CookieBanner from '@/components/layout/CookieBanner';
 import ScrollReset from '@/components/ui/ScrollReset';
 import { Analytics } from '@vercel/analytics/next';
 
+const ThemePanel = dynamic(() => import('@/components/layout/ThemePanel'), { ssr: false });
+const CookieBanner = dynamic(() => import('@/components/layout/CookieBanner'), { ssr: false });
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
 const interTight = Inter_Tight({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
+  weight: ['400', '500'],
   display: 'swap',
 });
 
