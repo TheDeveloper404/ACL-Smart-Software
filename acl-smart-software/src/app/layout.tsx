@@ -1,15 +1,12 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter_Tight, JetBrains_Mono, Instrument_Serif } from 'next/font/google';
-import dynamic from 'next/dynamic';
 import './globals.css';
 import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
+import ClientOnly from '@/components/layout/ClientOnly';
 import ScrollReset from '@/components/ui/ScrollReset';
 import { Analytics } from '@vercel/analytics/next';
-
-const ThemePanel = dynamic(() => import('@/components/layout/ThemePanel'), { ssr: false });
-const CookieBanner = dynamic(() => import('@/components/layout/CookieBanner'), { ssr: false });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -83,8 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </main>
           <Footer />
-          <ThemePanel />
-          <CookieBanner />
+          <ClientOnly />
           <Analytics />
         </ThemeProvider>
       </body>
