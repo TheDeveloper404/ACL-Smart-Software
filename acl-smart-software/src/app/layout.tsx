@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import ThemePanel from '@/components/layout/ThemePanel';
 import CookieBanner from '@/components/layout/CookieBanner';
 import ScrollReset from '@/components/ui/ScrollReset';
+import { Analytics } from '@vercel/analytics/next';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <ThemePanel />
           <CookieBanner />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
