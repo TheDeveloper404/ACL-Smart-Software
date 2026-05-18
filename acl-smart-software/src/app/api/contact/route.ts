@@ -125,7 +125,7 @@ export async function POST(request: Request) {
     }
 
     await resend.emails.send({
-      from: 'ACL Smart Software <onboarding@resend.dev>',
+      from: 'ACL Smart Software <office@acl-smartsoftware.ro>',
       to: 'office@acl-smartsoftware.ro',
       replyTo: email,
       subject: `[Contact] ${name}${company ? ` — ${company}` : ''}${budget ? ` · ${budget}` : ''}`,
