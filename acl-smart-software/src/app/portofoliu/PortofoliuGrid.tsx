@@ -43,6 +43,45 @@ function CaseVisual({ slug }: { slug: string }) {
 
   const visuals: Record<string, React.ReactNode> = {
 
+    'flotapro': (
+      <svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="case-svg">
+        {/* spreadsheet grid */}
+        <rect x="60" y="30" width="360" height="220" rx="6" fill="currentColor" opacity="0.04" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.15"/>
+        {/* header row */}
+        <rect x="60" y="30" width="360" height="28" rx="6" fill="currentColor" opacity="0.07"/>
+        <rect x="60" y="52" width="360" height="6" rx="0" fill="currentColor" opacity="0.07"/>
+        {/* header cells */}
+        {[0,1,2,3,4].map(i => (
+          <rect key={`h${i}`} x={72 + i*70} y="40" width={[50,60,55,50,45][i]} height="8" rx="2" fill="currentColor" opacity="0.25"/>
+        ))}
+        {/* column dividers */}
+        {[1,2,3,4].map(i => (
+          <line key={`d${i}`} x1={60 + i*72} y1="30" x2={60 + i*72} y2="250" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.1"/>
+        ))}
+        {/* data rows */}
+        {[0,1,2,3,4].map(row => (
+          <g key={`r${row}`}>
+            <line x1="60" y1={68 + row*36} x2="420" y2={68 + row*36} stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.08"/>
+            {[0,1,2,3,4].map(col => (
+              <rect key={`c${col}`} x={72 + col*72} y={74 + row*36} width={[45,55,40,48,36][col]} height="6" rx="2"
+                fill={row === 1 && col === 4 ? a : 'currentColor'}
+                opacity={row === 1 && col === 4 ? 0.6 : 0.1}
+              />
+            ))}
+          </g>
+        ))}
+        {/* accent highlight row */}
+        <rect x="60" y="106" width="360" height="34" fill={a} opacity="0.06"/>
+        <rect x="60" y="106" width="4" height="34" fill={a} opacity="0.7"/>
+        {/* download arrow top right */}
+        <g opacity="0.5">
+          <rect x="380" y="262" width="36" height="14" rx="3" fill={a} opacity="0.8"/>
+          <text x="384" y="273" fontFamily="monospace" fontSize="8" fill="#000" fontWeight="700">XLS ↓</text>
+        </g>
+        <text x="40" y="274" fontFamily="monospace" fontSize="9" fill="currentColor" opacity="0.3" letterSpacing="2">FLEET INVOICING SAAS</text>
+      </svg>
+    ),
+
     'dispatch-os': (
       <svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="case-svg">
         {/* grid */}

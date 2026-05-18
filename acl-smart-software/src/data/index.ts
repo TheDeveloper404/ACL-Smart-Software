@@ -264,6 +264,16 @@ export const SERVICE_BY_SLUG = Object.fromEntries(SERVICES.map(s => [s.slug, s])
 
 export const CASES: Case[] = [
   {
+    slug: 'flotapro',
+    tag: 'Transport & SaaS',
+    year: '2025',
+    label: 'FLOTAPRO',
+    title: 'Platformă SaaS pentru gestionarea facturilor Uber Fleet',
+    desc: 'Aplicație multi-tenant pentru Uber Fleet Partners: import CSV din rapoartele Uber, generare facturi în format CSV/XLS, abonamente cu plăți online prin EuPlatesc și securitate avansată cu audit logging.',
+    services: ['software-custom', 'aplicatii-web', 'integrari-api'],
+    results: [{ n: 'Multi-tenant', l: 'Flote izolate' }, { n: 'CSV/XLS', l: 'Facturi auto-generate' }, { n: 'EuPlatesc', l: 'Plăți integrate' }],
+  },
+  {
     slug: 'dispatch-os',
     tag: 'Logistică',
     year: '2026',

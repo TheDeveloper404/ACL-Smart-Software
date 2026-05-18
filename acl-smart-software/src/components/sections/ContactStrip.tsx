@@ -7,7 +7,7 @@ export default function ContactStrip() {
         <div>
           <div className="eyebrow">Hai să vorbim</div>
           <h2>
-            Ai un proiect <em>în cap</em>?<br />
+            Ai un proiect <em>în minte</em>?<br />
             Răspundem în 24h.
           </h2>
         </div>
