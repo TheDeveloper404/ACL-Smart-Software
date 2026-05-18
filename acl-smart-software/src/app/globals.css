@@ -1026,7 +1026,7 @@ section { position: relative; }
 .field label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg-muted); }
 .field input, .field textarea, .field select {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 16px;
   background: transparent;
   color: var(--fg);
   border: 0;
