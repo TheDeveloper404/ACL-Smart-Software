@@ -50,7 +50,7 @@ export default function EchipaPage() {
             </div>
 
             <div className="ceo-content-col">
-              <h2 className="ceo-heading">Software-ul <em>smart</em> începe<br />cu oameni <span className="brand-acl">smarter</span>.</h2>
+              <h2 className="ceo-heading">Software-ul smart începe<br />cu oameni <span className="brand-acl">smarter</span>.</h2>
               <p className="ceo-intro">
                 Am fondat <strong className="brand-acl">ACL</strong> Smart Software pentru că am văzut prea multe proiecte livrate „pe hârtie", dar care nu au rezolvat nicio problemă reală. Voiam altceva — o companie care se implică, care înțelege businessul clientului și care rămâne alături după go-live.
               </p>
