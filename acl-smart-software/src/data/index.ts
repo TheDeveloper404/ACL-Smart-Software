@@ -326,13 +326,14 @@ export const CASES: Case[] = [
 ];
 
 export const TEAM: TeamMember[] = [
-  { name: 'Liviu Băncilă', role: 'CEO & Fondator', initials: 'LB', bio: 'Viziunea din spatele ACL Smart Software. Experiență în livrarea de proiecte software complexe pentru companii din România și Europa. Crede că software-ul bun se construiește cu onestitate, nu cu pitch-uri frumoase.' },
+  { name: 'Liviu Băncilă', role: 'CEO & Fondator', initials: 'LB', bio: 'Software-ul pe care îl construim trebuie să fie mai smart decât problema pe care o rezolvă. Experiență în livrarea de proiecte complexe pentru companii din România și Europa.' },
   { name: 'Cristina Băncilă', role: 'Tech Lead', initials: 'CB', bio: 'Conduce direcția tehnică a proiectelor — de la arhitectură la code review. 5 ani de experiență în full-stack, cu accent pe calitatea codului și decizii care rezistă în timp.' },
   { name: 'Ovidiu Băncilă', role: 'Senior Full Stack Engineer', initials: 'OB', bio: 'End-to-end pe proiecte complexe: backend solid, frontend curat, integrări fără surprize. 6 ani de experiență cu TypeScript, Node.js și React în producție.' },
   { name: 'Daiana Băncilă', role: 'HR / Recruiter', initials: 'DB', bio: 'Găsește oamenii potriviți și îi ține aproape. 4 ani de experiență în recrutare tech — știe să identifice caracterul dincolo de CV.' },
   { name: 'Miriam Băncilă', role: 'UI/UX & Frontend', initials: 'MB', bio: 'Design care pornește de la utilizator și se termină cu cod. 5 ani de experiență în Figma, design systems și implementare frontend care arată exact ca în mockup.' },
   { name: 'David Băncilă', role: 'DevOps & Cloud', initials: 'DB', bio: 'Infrastructură ca cod, pipelines CI/CD și costuri cloud sub control. 4 ani de experiență pe AWS și Kubernetes — deployuri fără emoții.' },
   { name: 'Daria Băncilă', role: 'Business Analyst', initials: 'DB', bio: 'Traduce cerințele de business în specificații clare pentru echipă. 3 ani de experiență în analiza proceselor, documentare și comunicarea cu clienții.' },
+  { name: 'Naidin Balint', role: 'Project Manager', initials: 'NB', bio: 'Ține proiectele pe traiectorie — termene respectate, comunicare clară, zero surprize. 5 ani de experiență în coordonarea echipelor tehnice și livrarea la timp.' },
 ];
 
 export const POSTS: Post[] = [
