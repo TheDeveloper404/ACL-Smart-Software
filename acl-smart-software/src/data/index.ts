@@ -1,0 +1,372 @@
+import type { Service, Case, TeamMember, Post, Role, ProcessStep, TechCategory } from '@/types';
+
+export const SERVICES: Service[] = [
+  {
+    slug: 'software-custom',
+    title: 'Dezvoltare Software la comandă',
+    short: 'Sisteme construite pe măsură pentru fluxul tău de business — de la ERP intern la platforme SaaS.',
+    tags: ['Node.js', 'TypeScript', 'Java', 'ERP / SaaS', 'PostgreSQL'],
+    tagline: 'Sisteme care fac exact ce ai nevoie. Nimic mai mult, nimic mai puțin.',
+    longDesc: 'Pornim de la procesul tău real, nu de la un template. Proiectăm arhitectura, alegem stack-ul potrivit pentru context, construim incremental cu demo bi-săptămânal. Codul rămâne 100% al tău — predăm tot, inclusiv documentația.',
+    whatWeBuild: [
+      { title: 'ERP-uri & sisteme interne', desc: 'Înlocuim foi de Excel și aplicații învechite cu instrumente moderne care chiar reduc timpul de lucru.' },
+      { title: 'Platforme SaaS multi-tenant', desc: 'Auth, billing, roluri, audit log, white-label — fundația pentru produsele care se vând lunar.' },
+      { title: 'Workflow & automatizări', desc: 'Sisteme care orchestrează aprobări, procese inter-departamentale și integrări cu terți.' },
+      { title: 'Portaluri B2B / B2C', desc: 'Self-service pentru clienții sau partenerii tăi — cu performanță reală.' },
+    ],
+    audience: [
+      { title: 'Companii cu procese complexe', desc: 'Când Excel + email nu mai țin, dar nici un soft standard nu se potrivește.' },
+      { title: 'Startup-uri post-validation', desc: 'Ai validat ideea, ai users — acum vrei un produs serios, nu un prototip lipit.' },
+      { title: 'Echipe care moștenesc legacy', desc: 'Sistem vechi care funcționează, dar costă scump. Îl modernizăm fără să-l oprim.' },
+    ],
+    technologies: [
+      { cat: 'Backend', items: ['.NET 8', 'Node.js', 'Python (FastAPI / Django)', 'Go', 'Java Spring'] },
+      { cat: 'Frontend', items: ['React', 'Next.js', 'Vue 3', 'TypeScript'] },
+      { cat: 'Date', items: ['PostgreSQL', 'SQL Server', 'Redis', 'Elasticsearch'] },
+      { cat: 'Infrastructură', items: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'Terraform'] },
+    ],
+    pricing: { from: '€1.500', duration: 'MVP în 4–6 săptămâni', model: 'Fixed-scope sau retainer lunar' },
+    timeline: '4–24 săptămâni',
+    faq: [
+      { q: 'Codul rămâne al meu?', a: 'Da. 100%. Repository pe GitHub în contul tău, predăm și documentația arhitecturală.' },
+      { q: 'Ce se întâmplă după go-live?', a: 'Putem continua cu SLA dedicat, putem preda complet către echipa ta, sau hibrid. Decizi tu.' },
+      { q: 'Pot vedea progresul în timp real?', a: 'Da. Staging permanent, demo bi-săptămânal, board public cu toate task-urile.' },
+      { q: 'Ce primesc la final?', a: 'Cod sursă, documentație tehnică, infrastructură ca cod, manual de operare, sesiune de handover.' },
+    ],
+  },
+  {
+    slug: 'aplicatii-web',
+    title: 'Aplicații Web și Creare website-uri',
+    short: 'Dashboard-uri, portaluri, marketplace-uri. Performanță, accesibilitate și UX care convertesc.',
+    tags: ['React', 'Next.js', 'PHP', 'TypeScript', 'Tailwind'],
+    tagline: 'Aplicații web pe care utilizatorii vor să le folosească.',
+    longDesc: 'Construim aplicații web cu performanță reală (Lighthouse 95+), accesibilitate WCAG AA, SEO solid și UX testat. Nu „arătoase și gata" — funcționale, rapide și ușor de întreținut.',
+    whatWeBuild: [
+      { title: 'Dashboard-uri & analytics', desc: 'Vizualizări de date care răspund instant, filtre care chiar funcționează, export în formate utile.' },
+      { title: 'Marketplace-uri & e-commerce', desc: 'Cataloage mari, checkout cu conversii bune, integrare plăți și livrări.' },
+      { title: 'Portaluri pentru clienți', desc: 'Self-service care reduce ticketele la suport: facturi, comenzi, contracte, documente.' },
+      { title: 'Aplicații SPA cu state complex', desc: 'Editore vizuali, configuratoare de produs, simulatoare — UX-uri non-triviale care merg.' },
+    ],
+    audience: [
+      { title: 'Distribuitori & retaileri', desc: 'Vrei să muți comenzile din telefon și WhatsApp într-un portal pe care îl folosesc clienții singuri.' },
+      { title: 'Echipe de date', desc: 'Ai date, dar lipsește instrumentul. Construim dashboard-ul potrivit pentru utilizatorul potrivit.' },
+      { title: 'Servicii cu utilizatori finali', desc: 'Asigurări, utilități, real estate — fluxuri cu mulți pași care trebuie să funcționeze impecabil.' },
+    ],
+    technologies: [
+      { cat: 'Frontend', items: ['React 18', 'Next.js 15', 'Vue 3', 'TypeScript', 'Tailwind', 'Astro'] },
+      { cat: 'Backend & API', items: ['Node.js', 'tRPC', 'GraphQL', 'REST'] },
+      { cat: 'Date', items: ['PostgreSQL', 'Supabase', 'Prisma', 'Drizzle'] },
+      { cat: 'Performance', items: ['Edge functions', 'CDN', 'Image optimisation', 'Lighthouse audits'] },
+    ],
+    pricing: { from: '€1.000', duration: 'Lansare în 3–8 săptămâni', model: 'Fixed-scope sau retainer' },
+    timeline: '3–16 săptămâni',
+    faq: [
+      { q: 'Faceți și design-ul, sau doar implementați?', a: 'Putem face și design-ul de la zero, putem porni de la Figma-ul vostru, sau ne adaptăm la design system-ul existent.' },
+      { q: 'Ce înseamnă „accesibil"?', a: 'WCAG 2.2 AA — keyboard nav, screen reader, contrast, focus states. Cerem audit extern pentru proiecte mari.' },
+      { q: 'Suportăm trafic mare?', a: 'Da. Avem proiecte cu 100k+ utilizatori activi lunar. Stack-ul se alege exact pentru profilul tău de trafic.' },
+    ],
+  },
+  {
+    slug: 'aplicatii-mobile',
+    title: 'Aplicații Mobile',
+    short: 'iOS și Android din același codebase. Native când contează, cross-platform când are sens.',
+    tags: ['React Native', 'Swift', 'Kotlin', 'Expo', 'Firebase'],
+    tagline: 'O echipă. Două platforme. Un singur produs care merge.',
+    longDesc: 'Pornim de la întrebarea „chiar ai nevoie de mobile?". Dacă da — alegem împreună între React Native, Flutter sau native pur. Livrăm în AppStore & Play Store, inclusiv submitere.',
+    whatWeBuild: [
+      { title: 'Aplicații consumer (B2C)', desc: 'Aplicații pe care clienții tăi le instalează — onboarding scurt, push relevant, retention real.' },
+      { title: 'Aplicații pentru forța de teren', desc: 'Pentru echipe care nu stau la birou: livratori, tehnicieni, agenți. Offline-first, sync inteligent.' },
+      { title: 'Companion app pentru web', desc: 'Extinzi platforma ta web cu un app mobile care folosește același backend.' },
+      { title: 'MVP-uri pentru startup-uri', desc: 'Ajungi pe magazine în 6–10 săptămâni cu un produs care chiar e prezentabil la investitori.' },
+    ],
+    audience: [
+      { title: 'Companii de servicii', desc: 'Echipe pe teren care au nevoie de un app, nu de o aplicație web prinsă într-un browser.' },
+      { title: 'Retaileri & marketplace-uri', desc: 'Vrei un app cu push, scan QR, geo-fencing — funcționalități care nu există în web.' },
+      { title: 'Startup-uri mobile-first', desc: 'Produsul tău are sens doar ca app. Construim astfel încât să poți crește rapid post-launch.' },
+    ],
+    technologies: [
+      { cat: 'Cross-platform', items: ['React Native (Expo)', 'Flutter', 'TypeScript'] },
+      { cat: 'Native iOS', items: ['Swift', 'SwiftUI', 'Combine'] },
+      { cat: 'Native Android', items: ['Kotlin', 'Jetpack Compose', 'Coroutines'] },
+      { cat: 'Servicii', items: ['Push (FCM, APNs)', 'Auth (Firebase, Auth0)', 'Analytics', 'Crashlytics'] },
+    ],
+    pricing: { from: '€1.200', duration: 'App pe magazine în 6–10 săptămâni', model: 'Fixed-scope sau retainer' },
+    timeline: '6–20 săptămâni',
+    faq: [
+      { q: 'Submitterea în AppStore o faceți voi?', a: 'Da. Pregătire metadata, screenshots, App Privacy, review responses — toate.' },
+      { q: 'Ce alegere fac: native sau cross-platform?', a: 'Răspundem după ce înțelegem produsul. Pentru 80% din cazuri React Native e răspunsul corect.' },
+      { q: 'Continuați mentenanța?', a: 'Da. Update-uri SDK, fix-uri post-OS-update, feature-uri noi — retainer dedicat.' },
+    ],
+  },
+  {
+    slug: 'ai-ml',
+    title: 'AI / Machine Learning',
+    short: 'LLM-uri integrate în produs, RAG pe documentele tale, agenți care automatizează procese reale.',
+    tags: ['LLM / RAG', 'LangChain', 'pgvector', 'Claude & GPT-4o'],
+    tagline: 'AI care livrează valoare, nu doar demo-uri.',
+    longDesc: 'Construim integrări AI pragmatice: copilots interni care chiar accelerează echipa, RAG peste documentele firmei, agenți care fac munca repetitivă. Începem cu un PoC în 2 săptămâni.',
+    whatWeBuild: [
+      { title: 'Copilot intern pe documentele tale', desc: 'Search semantic + Q&A peste manuale, contracte, knowledge base. Cu citări și control acces.' },
+      { title: 'Agenți pentru procese repetitive', desc: 'Triere de email-uri, completare formulare, sumarizare lunară — agenți care chiar termină task-uri.' },
+      { title: 'Generare de conținut controlată', desc: 'Rapoarte, descrieri de produs, draft-uri de email — cu tone of voice și brand guidelines respectate.' },
+      { title: 'Clasificare & extragere date', desc: 'Scoatem date structurate din PDF-uri, facturi, contracte — cu accuracy măsurată și fallback la om.' },
+    ],
+    audience: [
+      { title: 'Companii cu mult conținut text', desc: 'Knowledge base, documentație, contracte — orice unde căutarea clasică nu mai e suficientă.' },
+      { title: 'Echipe care procesează documente', desc: 'Facturi, contracte, formulare — automatizezi 70-90% din volum cu validare umană pe restul.' },
+      { title: 'Produse cu cazuri repetitive', desc: 'Triere tickete suport, sortare lead-uri, prioritizare task-uri — locuri cu volum mare și reguli neclare.' },
+    ],
+    technologies: [
+      { cat: 'Modele', items: ['OpenAI GPT-4o', 'Anthropic Claude', 'Llama 3', 'Mistral', 'Local fine-tunes'] },
+      { cat: 'Orchestrare', items: ['LangChain', 'LlamaIndex', 'Vercel AI SDK', 'DSPy'] },
+      { cat: 'Date & vectori', items: ['pgvector', 'Pinecone', 'Qdrant', 'Weaviate'] },
+      { cat: 'Producție', items: ['Eval pipelines', 'Cost tracking', 'Guardrails', 'Caching'] },
+    ],
+    pricing: { from: '€1.500', duration: 'PoC în 2 săptămâni · production în 4–10 săptămâni', model: 'PoC + retainer' },
+    timeline: '2–12 săptămâni',
+    faq: [
+      { q: 'Ce e RAG?', a: 'Retrieval-Augmented Generation. AI-ul citește din documentele tale înainte să răspundă — astfel nu inventează.' },
+      { q: 'Datele mele stau pe serverele OpenAI?', a: 'Depinde. Avem variante on-premise (Llama, Mistral) sau cu provideri care nu folosesc datele tale pentru training.' },
+      { q: 'Cum măsurăm că funcționează?', a: 'Eval set definit de la început, metrici clare (accuracy, recall, cost / query), monitoring în producție.' },
+    ],
+  },
+  {
+    slug: 'cloud-devops',
+    title: 'Cloud & DevOps',
+    short: 'Infrastructură ca cod, CI/CD, monitoring 24/7. Scalezi fără surprize și fără facturi neașteptate.',
+    tags: ['AWS / Azure', 'Kubernetes', 'Terraform', 'CI/CD & FinOps'],
+    tagline: 'Infrastructură care nu te trezește la 3 dimineața.',
+    longDesc: 'Construim platforme cloud care chiar scalează — și pe care echipa ta le înțelege. Infrastructure as Code, CI/CD din ziua 1, observability completă, FinOps pentru a ține factura sub control.',
+    whatWeBuild: [
+      { title: 'Migrări către cloud', desc: 'De la on-premise / VPS la AWS / Azure / GCP — fără downtime, cu plan de rollback.' },
+      { title: 'Platforme Kubernetes', desc: 'Cluster-e production-ready: GitOps, autoscaling, secrets management, service mesh după nevoie.' },
+      { title: 'CI/CD pipelines', desc: 'Push pe main → producție în siguranță. Tests, lint, security scan, deploy automat cu rollback.' },
+      { title: 'Monitoring & alerting', desc: 'Logs, metrics, traces, on-call rotation, dashboards care chiar se uită cineva la ele.' },
+    ],
+    audience: [
+      { title: 'Echipe fără SRE dedicat', desc: 'Ai 5-20 developeri și niciun expert în ops. Construim, predăm, antrenăm.' },
+      { title: 'Companii cu facturi cloud mari', desc: 'Plătiți €15k+ / lună pe cloud și nu știți unde. FinOps audit + optimizare ne taie 30-50%.' },
+      { title: 'Produse care cresc rapid', desc: 'Aveți spike-uri de trafic neașteptate. Construim astfel încât să nu vă căutați un SRE la 2 dimineața.' },
+    ],
+    technologies: [
+      { cat: 'Cloud', items: ['AWS', 'Azure', 'Google Cloud', 'DigitalOcean', 'Hetzner'] },
+      { cat: 'IaC', items: ['Terraform', 'Pulumi', 'Ansible', 'Crossplane'] },
+      { cat: 'Container', items: ['Docker', 'Kubernetes', 'Helm', 'ArgoCD', 'Cilium'] },
+      { cat: 'Observ.', items: ['Datadog', 'Grafana', 'Prometheus', 'Loki', 'Sentry'] },
+    ],
+    pricing: { from: '€800', duration: 'Audit + plan în 2 săptămâni', model: 'Audit + retainer DevOps' },
+    timeline: '2–12 săptămâni · retainer continuu',
+    faq: [
+      { q: 'Vă ocupați și de on-call?', a: 'Da. SLA cu răspuns de la 15 min la 4 ore, în funcție de severitate. Rotație de 3 oameni minim.' },
+      { q: 'Lucrați cu cloud provider-ul nostru actual?', a: 'Da. Suntem certificați pe AWS și Azure, lucrăm constant cu GCP, Hetzner, DigitalOcean și alți provideri.' },
+      { q: 'Cât economisesc cu FinOps?', a: 'Mediana clienților noștri: 32% în primele 3 luni. Lucrăm pe rezultate — fee proporțional cu economia, dacă vrei.' },
+    ],
+  },
+  {
+    slug: 'integrari-api',
+    title: 'Integrări & API-uri',
+    short: 'Conectăm sisteme care nu vorbesc între ele. ERP, CRM, plăți, livrări — toate aliniate.',
+    tags: ['REST / GraphQL', 'SAP & ERP', 'Webhook', 'ETL & Kafka'],
+    tagline: 'Sistemele tale, în sfârșit, pe aceeași pagină.',
+    longDesc: 'Construim integrări durabile: API-uri proprii, conectare la furnizori, webhook-uri securizate, ETL pentru sincronizări mari, middleware când avem nevoie. Cu monitoring, retry logic și fără pierderi de date.',
+    whatWeBuild: [
+      { title: 'Integrări ERP / CRM', desc: 'SAP, Microsoft Dynamics, Salesforce, HubSpot, Pipedrive — bidirectional, real-time sau batch.' },
+      { title: 'Plăți, facturare & contabilitate', desc: 'Stripe, MobilPay, Netopia, SmartBill, SAGA, Oblio — cu reconciliere automată.' },
+      { title: 'Livrări & logistică', desc: 'Fan Courier, Sameday, DPD, GLS — etichete, tracking, status sync, cost calculation.' },
+      { title: 'API-uri publice & B2B', desc: 'Construim API-ul tău pentru parteneri: auth, rate limiting, versioning, docs auto-generate.' },
+    ],
+    audience: [
+      { title: 'Companii cu multiple sisteme', desc: '5+ instrumente care nu vorbesc între ele. Te scapă de munca dublă și de erorile umane.' },
+      { title: 'Produse digitale care cresc', desc: 'Vinzi prin canale multiple și ai nevoie ca stocul să fie unul singur.' },
+      { title: 'Platforme B2B', desc: 'Clienții îți cer API. Construim unul care să nu te coste suport infinit.' },
+    ],
+    technologies: [
+      { cat: 'Protocoale', items: ['REST', 'GraphQL', 'gRPC', 'Webhooks', 'SOAP (când n-avem încotro)'] },
+      { cat: 'Mesagerie', items: ['RabbitMQ', 'Kafka', 'AWS SQS', 'Redis Streams'] },
+      { cat: 'ETL', items: ['Airbyte', 'dbt', 'Pentaho', 'Custom workers'] },
+      { cat: 'Operare', items: ['Retry & DLQ', 'Idempotency', 'Audit log', 'Schema versioning'] },
+    ],
+    pricing: { from: '€1.000', duration: 'O integrare simplă în 1–2 săptămâni', model: 'Per integrare sau retainer' },
+    timeline: '1–8 săptămâni',
+    faq: [
+      { q: 'Ce se întâmplă dacă API-ul furnizorului se schimbă?', a: 'Monitoring continuu, versioning, alert imediat. Reparăm în 24-48h, gratuit dacă suntem pe retainer.' },
+      { q: 'Garantați că nu se pierd date?', a: 'Da. Idempotency keys, dead-letter queue, audit trail complet — orice eveniment poate fi rejucat.' },
+      { q: 'Faceți și integrări cu sisteme legacy fără API?', a: 'Da. Web scraping, RPA, fișiere SFTP, citire din DB — orice e nevoie pentru a conecta vechi cu nou.' },
+    ],
+  },
+  {
+    slug: 'consultanta-it',
+    title: 'Consultanță IT',
+    short: 'Audit tehnic, alegere de stack, planificare arhitecturală. Te ajutăm să iei deciziile care contează.',
+    tags: ['Audit tehnic', 'C4 Model', 'Tech Due-Diligence', 'Discovery'],
+    tagline: 'A doua opinie tehnică pe care nu o regreți.',
+    longDesc: 'Audit obiectiv pe arhitectură, cod, infrastructură sau echipă. Recomandări scrise, prioritizate pe impact și cost. Tech due-diligence pentru achiziții și investiții. Discovery sprint-uri pentru proiecte noi.',
+    whatWeBuild: [
+      { title: 'Audit tehnic', desc: 'Cod, arhitectură, infrastructură, securitate, observability — raport scris cu recomandări concrete.' },
+      { title: 'Tech due-diligence', desc: 'Pentru investitori sau achiziții — evaluăm riscurile tehnice ale unei companii înainte de tranzacție.' },
+      { title: 'Discovery sprint', desc: '1 săptămână pentru a defini scope, stack, estimare, riscuri pentru un proiect nou.' },
+      { title: 'Architecture review', desc: 'Ai o decizie mare de luat. Te ajutăm cu un al doilea ochi obiectiv.' },
+    ],
+    audience: [
+      { title: 'CTO-i în primul an', desc: 'Moștenești o echipă și un sistem. Avem nevoie de claritate înainte de orice mișcare.' },
+      { title: 'Investitori & corporate dev', desc: 'Evaluezi o companie tehnologică. Îți spunem ce nu se vede în pitch deck.' },
+      { title: 'Founderi non-tehnici', desc: 'Ai un produs construit de altcineva și vrei să știi dacă e bine. Vorbim onest.' },
+    ],
+    technologies: [
+      { cat: 'Framework-uri', items: ['ATAM', 'ADR', 'C4 model', 'Wardley maps'] },
+      { cat: 'Acoperire', items: ['Cloud', 'On-premise', 'Mobile', 'Web', 'AI / ML'] },
+      { cat: 'Livrabile', items: ['Raport scris', 'Workshop', 'Roadmap', 'Estimare cost & timeline'] },
+      { cat: 'Format', items: ['Remote', 'On-site', '1 zi → 4 săptămâni'] },
+    ],
+    pricing: { from: '€1.500', duration: 'Audit de 1 zi · Discovery de 1 săptămână', model: 'Fixed-price pe livrabil' },
+    timeline: '1 zi – 4 săptămâni',
+    faq: [
+      { q: 'Semnați NDA?', a: 'Da, standard. Putem semna și NDA-ul vostru dacă e cerut.' },
+      { q: 'Cui rămâne raportul?', a: 'Doar voi. Nu îl folosim ca material de marketing, nu îl arătăm altcuiva.' },
+      { q: 'Continuați și după consultanță?', a: 'Doar dacă vrei. Putem termina raportul și gata, putem continua cu execuție — depinde de tine.' },
+    ],
+  },
+  {
+    slug: 'mentenanta-suport',
+    title: 'Mentenanță & suport',
+    short: 'SLA-uri reale, oameni reali. Nu lăsăm produsul după go-live — îl ținem viu, rapid și sigur.',
+    tags: ['SLA 24/7', 'PagerDuty', 'Grafana', 'On-call', 'Sentry'],
+    tagline: 'După go-live începe partea grea. Suntem acolo.',
+    longDesc: 'Retainer lunar pentru sisteme deja construite — fie de noi, fie moștenite. SLA contractuale (răspuns 15 min – 4h), on-call rotation, hotfix-uri, security patches, update-uri, monitoring activ, raport lunar transparent.',
+    whatWeBuild: [
+      { title: 'SLA contractual', desc: 'Răspuns garantat 15 min – 4h, în funcție de severitate. Penalty clauses dacă nu respectăm.' },
+      { title: 'On-call rotation', desc: 'Minim 3 oameni în rotație, pager-duty integrat, escalare clară. Niciodată o singură persoană SPOF.' },
+      { title: 'Update-uri & patches', desc: 'Security updates în 48h, dependency upgrades lunare, OS / runtime upgrades planificate.' },
+      { title: 'Backlog de îmbunătățiri', desc: 'Buget lunar de ore pentru feature-uri mici și optimizări. Sub controlul tău total.' },
+    ],
+    audience: [
+      { title: 'Produse fără echipă tehnică', desc: 'Ai un produs important pentru business, dar nu un dev intern. Devenim noi echipa ta.' },
+      { title: 'Sisteme moștenite', desc: 'Soft făcut de altcineva, dezvoltatorul inițial e plecat. Îl preluăm, învățăm, ținem viu.' },
+      { title: 'Companii cu volum mic de schimbări', desc: 'Nu îți permiți un dev full-time, dar ai nevoie de cineva care răspunde rapid când e ceva.' },
+    ],
+    technologies: [
+      { cat: 'Tooling', items: ['PagerDuty', 'Sentry', 'Datadog', 'Grafana', 'GitHub / GitLab'] },
+      { cat: 'Acoperire', items: ['24/7', 'Business hours', 'On-call cu escalare'] },
+      { cat: 'Livrabile', items: ['Raport lunar', 'SLA tracking', 'Roadmap continuu'] },
+      { cat: 'Garanții', items: ['Penalty clauses', 'Audit log accesibil', 'Code ownership 100% al tău'] },
+    ],
+    pricing: { from: '€500 / lună', duration: 'Onboarding în 1 săptămână', model: 'Retainer lunar · ore reportabile' },
+    timeline: 'Continuu · minim 6 luni',
+    faq: [
+      { q: 'Cât costă on-call 24/7?', a: 'Pornește de la €1.800 / lună pentru 8h support + on-call cu răspuns 4h. 24/7 cu răspuns 15 min e separat.' },
+      { q: 'Ce dacă produsul e construit pe stack vechi?', a: 'Putem prelua sisteme PHP, Java, .NET Framework, Ruby, Python 2. Trecere graduală spre stack modern dacă e cazul.' },
+      { q: 'Pot termina contractul când vreau?', a: 'Da, cu 30 zile notice după primele 6 luni. Predăm tot accesul și documentația, fără pile.' },
+    ],
+  },
+];
+
+export const SERVICE_BY_SLUG = Object.fromEntries(SERVICES.map(s => [s.slug, s]));
+
+export const CASES: Case[] = [
+  {
+    slug: 'dispatch-os',
+    tag: 'Logistică',
+    year: '2026',
+    label: 'DISPATCH OS',
+    title: 'Platformă de dispecerat cu rutare AI',
+    desc: 'Sistem de dispatching pentru un operator de transport cu 200+ vehicule. Optimizare rute în timp real, predicție timpi de livrare.',
+    services: ['software-custom', 'ai-ml', 'cloud-devops'],
+    results: [{ n: '−34%', l: 'Km goi' }, { n: '+18%', l: 'Livrări / zi' }, { n: '4 luni', l: 'Time-to-market' }],
+  },
+  {
+    slug: 'retail-hub',
+    tag: 'E-commerce',
+    year: '2025',
+    label: 'RETAIL HUB',
+    title: 'Marketplace B2B cu integrare ERP',
+    desc: 'Marketplace pentru un distribuitor regional. Integrare bidirecțională cu SAP, catalog cu 80k SKU, comenzi recurente automate.',
+    services: ['aplicatii-web', 'integrari-api'],
+    results: [{ n: '80k', l: 'SKU sincronizate' }, { n: '3x', l: 'Comenzi online' }, { n: '99.95%', l: 'Uptime' }],
+  },
+  {
+    slug: 'edu-platform',
+    tag: 'Educație',
+    year: '2025',
+    label: 'EDU PLATFORM',
+    title: 'LMS cu asistent AI pentru profesori',
+    desc: 'Platformă pentru o rețea de școli private. Asistent AI care generează planuri de lecție, feedback automat la teme.',
+    services: ['aplicatii-web', 'ai-ml'],
+    results: [{ n: '12', l: 'Școli active' }, { n: '4.8/5', l: 'Satisfacție' }, { n: '−60%', l: 'Timp planificare' }],
+  },
+  {
+    slug: 'internal-tools',
+    tag: 'Corporate',
+    year: '2024',
+    label: 'INTERNAL TOOLS',
+    title: 'Suită de instrumente interne pentru un grup industrial',
+    desc: 'Migrare de pe sisteme legacy: HR, ticketing, document management. Single sign-on, mobile-first, audit trail complet.',
+    services: ['software-custom', 'integrari-api', 'cloud-devops'],
+    results: [{ n: '1.2k', l: 'Utilizatori activi' }, { n: '−45%', l: 'Timp procese' }, { n: '6', l: 'Sisteme integrate' }],
+  },
+  {
+    slug: 'field-ops',
+    tag: 'Servicii',
+    year: '2024',
+    label: 'FIELD OPS',
+    title: 'App mobile offline-first pentru tehnicieni',
+    desc: 'Aplicație mobilă pentru o rețea de tehnicieni de teren. Funcționează offline, sync inteligent, semnătură digitală a clientului.',
+    services: ['aplicatii-mobile', 'integrari-api'],
+    results: [{ n: '320', l: 'Tehnicieni' }, { n: '−52%', l: 'Timp raportare' }, { n: '100%', l: 'Offline-capable' }],
+  },
+  {
+    slug: 'doc-copilot',
+    tag: 'Legal',
+    year: '2026',
+    label: 'DOC COPILOT',
+    title: 'Asistent AI pentru contracte și documente legale',
+    desc: 'Copilot intern pentru o casă de avocatură. RAG peste 12.000 contracte, sumarizare, găsire clauze, comparații între versiuni.',
+    services: ['ai-ml', 'software-custom'],
+    results: [{ n: '12k', l: 'Documente indexate' }, { n: '−70%', l: 'Timp căutare' }, { n: '94%', l: 'Acuratețe extract' }],
+  },
+];
+
+export const TEAM: TeamMember[] = [
+  { name: 'Liviu Băncilă', role: 'CEO & Fondator', initials: 'LB', bio: 'Viziunea din spatele ACL Smart Software. Experiență în livrarea de proiecte software complexe pentru companii din România și Europa. Crede că software-ul bun se construiește cu onestitate, nu cu pitch-uri frumoase.' },
+  { name: 'Alexandru Dănilă', role: 'Tech Lead', initials: 'AD', bio: 'Arhitectură, code review, decizii tehnice. Full-stack cu 10+ ani în .NET, Node și React. Ține nivelul ridicat la fiecare linie de cod.' },
+  { name: 'Mădălina Rusu', role: 'Senior Full-stack Engineer', initials: 'MR', bio: 'TypeScript end-to-end, cu focus pe aplicații web performante și experiențe UI care chiar funcționează pe orice dispozitiv.' },
+  { name: 'Bogdan Ionescu', role: 'Cloud & DevOps', initials: 'BI', bio: 'Infrastructură ca cod, CI/CD, costuri AWS sub control. A migrat sisteme critice fără downtime și fără surprize la factură.' },
+];
+
+export const POSTS: Post[] = [
+  { slug: 'llm-overhead', date: '04 MAI 2026', cat: 'AI & PRODUCT', title: 'Când să integrezi un LLM în produs — și când e doar overhead', read: '8 min' },
+  { slug: 'event-driven-2026', date: '21 APR 2026', cat: 'ARHITECTURĂ', title: 'De ce trecem clienții pe event-driven în 2026', read: '12 min' },
+  { slug: 'finops-aws-40', date: '08 APR 2026', cat: 'DEVOPS', title: 'Cost FinOps pe AWS: cum am tăiat 40% dintr-o factură fără să sacrificăm performanță', read: '15 min' },
+  { slug: 'rn-vs-native', date: '17 MAR 2026', cat: 'MOBILE', title: 'React Native sau native? Trei criterii care decid în mod real', read: '9 min' },
+  { slug: 'discovery-sprint', date: '02 MAR 2026', cat: 'PROCES', title: 'Discovery sprint: cum salvăm 3 luni cu o săptămână de pregătire', read: '11 min' },
+  { slug: 'vector-db-choice', date: '18 FEB 2026', cat: 'AI & PRODUCT', title: 'Care vector DB? Comparație pgvector, Pinecone, Qdrant pe trei use case-uri reale', read: '14 min' },
+  { slug: 'monorepo-2026', date: '04 FEB 2026', cat: 'ARHITECTURĂ', title: 'Monorepo în 2026: când are sens și când e overengineering pur', read: '10 min' },
+  { slug: 'playwright-strategy', date: '20 IAN 2026', cat: 'QA', title: 'Strategia noastră de teste E2E: Playwright + sharding + visual regression', read: '7 min' },
+];
+
+export const ROLES: Role[] = [
+  { slug: 'senior-fullstack', title: 'Senior Full-stack Engineer', meta: 'Remote · RO · Full-time', salary: '€3.500 – €5.500 net / lună', stack: ['TypeScript', 'React', '.NET / Node', 'PostgreSQL'], desc: 'Vei lucra cu echipa pe proiecte enterprise. Arhitectură, decizii tehnice, mentoring pentru juniori.' },
+  { slug: 'mobile-rn', title: 'Mobile Engineer (React Native)', meta: 'Hybrid · Petroșani · Full-time', salary: '€2.800 – €4.500 net / lună', stack: ['React Native', 'TypeScript', 'iOS / Android'], desc: 'Aplicații mobile end-to-end. Submission pe magazine, performanță, offline-first.' },
+  { slug: 'ai-ml-eng', title: 'AI / ML Engineer', meta: 'Remote · EU · Full-time', salary: '€3.000 – €5.500 net / lună', stack: ['Python', 'LangChain', 'LLM-uri', 'Vector DBs'], desc: 'Construiești integrări AI care chiar livrează valoare — cu eval, guardrails, monitoring în producție.' },
+  { slug: 'product-designer', title: 'Product Designer', meta: 'Hybrid · Petroșani · Full-time', salary: '€2.500 – €4.000 net / lună', stack: ['Figma', 'Design systems', 'Frontend basics'], desc: 'Design pentru produse complexe. De la discovery la design system, cu utilizatori reali în mijloc.' },
+  { slug: 'intern-fullstack', title: 'Internship Full-stack', meta: 'On-site · Petroșani · 6 luni', salary: '€800 – €1.200 net / lună', stack: ['TypeScript', 'React', 'Node sau .NET'], desc: 'Program de 6 luni cu mentor dedicat. La final — ofertă de full-time pentru cei care vor.' },
+];
+
+export const STEPS: ProcessStep[] = [
+  { n: '01', title: 'Descoperire', desc: 'Înțelegem problema înainte de soluție. Workshop, audit tehnic, validare cu utilizatori reali. Nu sărim peste asta — niciodată.', deliver: ['Scurtă tehnică', 'Foaie de drum', 'Estimare onestă'] },
+  { n: '02', title: 'Design & Arhitectură', desc: 'Stack-ul, fluxurile, modelul de date, UI-ul. Tot ce contează e decis înainte să se scrie linia 1 de cod.', deliver: ['Prototipuri & UI', 'Schemă bază de date', 'Arhitectură cloud'] },
+  { n: '03', title: 'Construcție', desc: 'Sprint-uri de 2 săptămâni, demo la final, feedback rapid. Integrare continuă din ziua 1. Tu vezi progresul în timp real.', deliver: ['Demo bi-săptămânal', 'Mediu de testare', 'Revizuire cod'] },
+  { n: '04', title: 'Lansare', desc: 'Punere în producție cu plan de rollback, monitorizare activă și suport intens. Primele 30 de zile suntem la o tastă distanță.', deliver: ['Lansare în producție', 'Monitorizare & alerte', 'Documentație live'] },
+  { n: '05', title: 'Creștere', desc: 'Mentenanță, optimizări, funcționalități noi. Produsul tău crește — și noi creștem cu el. SLA-uri clare, fără surprize.', deliver: ['SLA dedicat', 'Foaie de drum continuă', 'Audit tehnic anual'] },
+];
+
+export const TECH_ITEMS: string[] = [
+  'TypeScript', 'React', 'Next.js', 'Node.js', 'Java', 'PostgreSQL', 'PHP',
+  'React Native', 'Docker', 'AWS', 'Kubernetes', 'Spring Boot', 'Tailwind', 'GraphQL', 'Redis',
+];
+
+export const TECH_CATEGORIES: TechCategory[] = [
+  { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'HTML / CSS'] },
+  { name: 'Backend', items: ['Node.js', 'Java (Spring)', 'PHP (Laravel)', 'GraphQL', 'REST'] },
+  { name: 'Mobile', items: ['React Native', 'TypeScript', 'Expo'] },
+  { name: 'Cloud & DevOps', items: ['Docker', 'AWS', 'Kubernetes', 'PostgreSQL', 'Redis'] },
+];
