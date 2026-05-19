@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { POSTS } from '@/data';
+import type { PostBlock } from '@/types';
 import ContactStrip from '@/components/sections/ContactStrip';
 import type { Metadata } from 'next';
 
@@ -19,16 +20,43 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `https://acl-smartsoftware.ro/insights/${slug}`;
   return {
     title: post.title,
-    description: `${post.title} — articol din categoria ${post.cat} de la ACL Smart Software. Timp de citire: ${post.read}.`,
+    description: post.excerpt,
     alternates: { canonical: url },
     openGraph: {
       title: post.title,
-      description: `Articol din categoria ${post.cat}. Timp de citire: ${post.read}.`,
+      description: post.excerpt,
       url,
       type: 'article',
-      publishedTime: post.date,
     },
   };
+}
+
+function renderBlock(block: PostBlock, i: number) {
+  switch (block.type) {
+    case 'h2':
+      return <h2 key={i} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 2.2vw, 28px)', fontWeight: 500, letterSpacing: '-0.02em', margin: '48px 0 16px' }}>{block.text}</h2>;
+    case 'p':
+      return <p key={i} style={{ fontSize: 17, lineHeight: 1.75, color: 'var(--fg)', margin: '0 0 20px' }}>{block.text}</p>;
+    case 'ul':
+      return (
+        <ul key={i} style={{ margin: '0 0 24px', paddingLeft: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {block.items?.map((item, j) => (
+            <li key={j} style={{ display: 'flex', gap: 12, fontSize: 16, lineHeight: 1.7, color: 'var(--fg)' }}>
+              <span style={{ color: 'var(--accent)', fontWeight: 700, flexShrink: 0, marginTop: 2 }}>—</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    case 'blockquote':
+      return (
+        <blockquote key={i} style={{ margin: '32px 0', padding: '20px 24px', borderLeft: '3px solid var(--accent)', background: 'var(--bg-soft)', borderRadius: '0 8px 8px 0' }}>
+          <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: 'var(--fg)', fontStyle: 'italic' }}>{block.text}</p>
+        </blockquote>
+      );
+    default:
+      return null;
+  }
 }
 
 export default async function InsightDetailPage({ params }: Props) {
@@ -39,7 +67,7 @@ export default async function InsightDetailPage({ params }: Props) {
   return (
     <>
       <article>
-        <header style={{ borderBottom: '1px solid var(--hairline)', paddingBottom: 0 }}>
+        <header style={{ borderBottom: '1px solid var(--hairline)' }}>
           <div className="wrap" style={{ paddingTop: 80, paddingBottom: 64 }}>
             <Link href="/insights" style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-muted)', letterSpacing: '0.04em', display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 40 }}>
               ← Perspective
@@ -51,29 +79,18 @@ export default async function InsightDetailPage({ params }: Props) {
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)', letterSpacing: '0.04em' }}>{post.date}</span>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)', letterSpacing: '0.04em' }}>{post.read} citire</span>
             </div>
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 5vw, 60px)', fontWeight: 500, letterSpacing: '-0.03em', lineHeight: 1.1, maxWidth: '20ch' }}>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 5vw, 60px)', fontWeight: 500, letterSpacing: '-0.03em', lineHeight: 1.1, maxWidth: '22ch', margin: '0 0 24px' }}>
               {post.title}
             </h1>
+            <p style={{ fontSize: 'clamp(17px, 1.4vw, 20px)', color: 'var(--fg-muted)', maxWidth: '60ch', lineHeight: 1.6, margin: 0 }}>
+              {post.excerpt}
+            </p>
           </div>
         </header>
 
-        <div className="wrap" style={{ paddingTop: 64, paddingBottom: 80 }}>
+        <div className="wrap" style={{ paddingTop: 64, paddingBottom: 96 }}>
           <div style={{ maxWidth: '68ch', margin: '0 auto' }}>
-            <div style={{
-              padding: '32px 36px',
-              border: '1px solid var(--hairline)',
-              borderRadius: 12,
-              background: 'var(--bg-soft)',
-              textAlign: 'center',
-            }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 16 }}>
-                Articol în pregătire
-              </div>
-              <p style={{ color: 'var(--fg-muted)', fontSize: 16, lineHeight: 1.6 }}>
-                Conținutul complet al acestui articol va fi disponibil în curând.<br />
-                Înscrie-te la newsletter sau revino pe <Link href="/insights" style={{ color: 'var(--accent)' }}>pagina Perspective</Link>.
-              </p>
-            </div>
+            {post.body.map((block, i) => renderBlock(block, i))}
           </div>
         </div>
       </article>

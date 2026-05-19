@@ -25,20 +25,8 @@ const BENEFITS = [
     desc: 'Birou modern în Petroșani când vrei contact uman. Remote când vrei să te concentrezi.',
   },
   {
-    title: 'Buget de învățare',
-    desc: '€1.500 / an pentru cursuri, conferințe, cărți. Plus o zi / lună de „learning sprint".',
-  },
-  {
-    title: 'Asigurare medicală',
-    desc: 'Regina Maria sau Medicover, abonament premium pentru tine și familie.',
-  },
-  {
     title: '25 zile concediu',
     desc: 'Plus 5 zile „bug days" (zile libere când n-ai chef). Plus sărbătorile legale.',
-  },
-  {
-    title: 'Hardware ales de tine',
-    desc: 'Laptop, monitor, scaun, periferice — alegi tu, plătim noi. Reînnoit la 3 ani.',
   },
 ];
 

@@ -32,12 +32,20 @@ export interface TeamMember {
   bio: string;
 }
 
+export interface PostBlock {
+  type: 'p' | 'h2' | 'ul' | 'blockquote';
+  text?: string;
+  items?: string[];
+}
+
 export interface Post {
   slug: string;
   date: string;
   cat: string;
   title: string;
   read: string;
+  excerpt: string;
+  body: PostBlock[];
 }
 
 export interface Role {
