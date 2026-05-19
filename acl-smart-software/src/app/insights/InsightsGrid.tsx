@@ -22,28 +22,22 @@ export default function InsightsGrid({ posts }: Props) {
           <Link
             href={`/insights/${featured.slug}`}
             className="insight-card insight-card--featured"
+            style={{ display: 'block' }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <div className="meta">
-                <span>Featured</span>
-                <span className="dot" />
-                <span>{featured.date}</span>
-                <span className="dot" />
-                <span>{featured.read}</span>
-              </div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3.4vw, 42px)', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.05, margin: 0 }}>
-                {featured.title}
-              </h2>
-              <p style={{ color: 'var(--fg-muted)', fontSize: 16 }}>
-                De când LLM-urile au devenit accesibile, e tentant să le bagi peste tot. Iată trei semnale clare că adăugarea unui LLM e value real — și trei contraindicații.
-              </p>
-              <span className="read-more" style={{ marginTop: 8 }}>Citește articolul →</span>
+            <div className="meta">
+              <span>Featured</span>
+              <span className="dot" />
+              <span>{featured.date}</span>
+              <span className="dot" />
+              <span>{featured.read}</span>
             </div>
-            <div style={{ borderRadius: 12, position: 'relative', minHeight: 240, overflow: 'hidden', background: 'var(--bg-soft)', border: '1px solid var(--hairline)', display: 'flex', alignItems: 'flex-end', padding: 20 }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                {featured.cat} · {featured.read}
-              </div>
-            </div>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3.4vw, 42px)', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.05, margin: '14px 0' }}>
+              {featured.title}
+            </h2>
+            <p style={{ color: 'var(--fg-muted)', fontSize: 16, maxWidth: '70ch', margin: 0 }}>
+              {featured.excerpt}
+            </p>
+            <span className="read-more" style={{ marginTop: 20, display: 'inline-block' }}>Citește articolul →</span>
           </Link>
         )}
 
