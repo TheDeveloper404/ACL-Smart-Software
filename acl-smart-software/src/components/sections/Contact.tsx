@@ -8,9 +8,10 @@ type FormData = {
   company: string;
   message: string;
   budget: string;
+  _hp: string;
 };
 
-const EMPTY: FormData = { name: '', email: '', company: '', message: '', budget: '' };
+const EMPTY: FormData = { name: '', email: '', company: '', message: '', budget: '', _hp: '' };
 const BUDGETS = ['< 10k €', '10–30k €', '30–80k €', '80k+ €', 'Discutăm'];
 
 export default function Contact() {
@@ -59,6 +60,8 @@ export default function Contact() {
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit} noValidate>
+                {/* Honeypot — ascuns de utilizatori, completat doar de boți */}
+                <input type="text" name="_hp" value={form._hp} onChange={(e) => setForm({ ...form, _hp: e.target.value })} style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
             {sent ? (
               <div className="form-success">
                 <div className="check">✓</div>

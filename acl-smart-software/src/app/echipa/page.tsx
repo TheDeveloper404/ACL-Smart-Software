@@ -65,18 +65,18 @@ export default function EchipaPage() {
             </div>
           </div>
 
-          {/* Rest of team — text list */}
-          <div className="team-list">
-            <div className="team-list-header">
-              <span>Echipă</span>
-              <span>Rol</span>
-              <span>Background</span>
-            </div>
-            {rest.map((m) => (
-              <div key={m.name} className="team-list-row">
-                <div className="team-list-name">{m.name}</div>
-                <div className="team-list-role">{m.role}</div>
-                <div className="team-list-bio">{m.bio}</div>
+          {/* Valori echipă */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24, marginTop: 80 }}>
+            {[
+              { n: '01', title: 'Zero outsourcing', desc: 'Echipa care discută cu tine e echipa care scrie codul. Fără subcontractori, fără surprize după semnare.' },
+              { n: '02', title: 'Cod 100% al tău', desc: 'Repository în contul tău din prima zi. Predăm tot — sursă, documentație, infrastructură ca cod.' },
+              { n: '03', title: 'Onestitate față de termene', desc: 'Dacă ceva ia mai mult, îți spunem înainte, nu după. Estimările noastre includ buffer real, nu optimism.' },
+              { n: '04', title: 'Parteneri, nu furnizori', desc: 'Nu livrăm și plecăm. Rămânem alături după go-live — SLA clar, evoluție continuă, fără costuri ascunse.' },
+            ].map((v) => (
+              <div key={v.n} style={{ padding: '32px 28px', border: '1px solid var(--hairline)', borderRadius: 12, background: 'var(--bg-card)' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', color: 'var(--accent)', marginBottom: 16 }}>{v.n}</div>
+                <h3 style={{ fontSize: 20, fontWeight: 500, letterSpacing: '-0.02em', margin: '0 0 12px' }}>{v.title}</h3>
+                <p style={{ fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.6, margin: 0 }}>{v.desc}</p>
               </div>
             ))}
           </div>

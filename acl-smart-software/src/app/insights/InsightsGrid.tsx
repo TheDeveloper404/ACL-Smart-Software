@@ -39,10 +39,9 @@ export default function InsightsGrid({ posts }: Props) {
               </p>
               <span className="read-more" style={{ marginTop: 8 }}>Citește articolul →</span>
             </div>
-            <div style={{ background: 'linear-gradient(135deg, var(--accent) 0%, var(--bg-soft) 100%)', borderRadius: 12, position: 'relative', minHeight: 240, overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(45deg, rgba(0,0,0,0.06) 0 2px, transparent 2px 22px)' }} />
-              <div style={{ position: 'absolute', bottom: 16, left: 16, fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(11,11,12,0.7)', background: 'rgba(255,255,255,0.65)', padding: '4px 10px', borderRadius: 4, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-                {featured.cat}
+            <div style={{ borderRadius: 12, position: 'relative', minHeight: 240, overflow: 'hidden', background: 'var(--bg-soft)', border: '1px solid var(--hairline)', display: 'flex', alignItems: 'flex-end', padding: 20 }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                {featured.cat} · {featured.read}
               </div>
             </div>
           </Link>

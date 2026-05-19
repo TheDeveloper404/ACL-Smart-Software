@@ -44,8 +44,8 @@ export default function Hero() {
             <div className="label">Industrii deservite</div>
           </div>
           <div className="hero-meta-item">
-            <div className="num">4</div>
-            <div className="label">Specialiști în echipă</div>
+            <div className="num">5<span className="plus">+</span></div>
+            <div className="label">Ani experiență medie</div>
           </div>
           <div className="hero-meta-item">
             <div className="num">24<span className="plus">h</span></div>

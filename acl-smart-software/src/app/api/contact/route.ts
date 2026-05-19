@@ -3,6 +3,31 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Simple in-memory rate limit: max 5 requests per 10 minutes per IP
+const rateMap = new Map<string, { count: number; reset: number }>();
+const LIMIT = 5;
+const WINDOW_MS = 10 * 60 * 1000;
+
+function checkRate(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateMap.get(ip);
+  if (!entry || now > entry.reset) {
+    rateMap.set(ip, { count: 1, reset: now + WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= LIMIT) return false;
+  entry.count++;
+  return true;
+}
+
+function getIp(req: Request): string {
+  const cf = req.headers.get('cf-connecting-ip');
+  if (cf) return cf;
+  const xff = req.headers.get('x-forwarded-for');
+  if (xff) return xff.split(',')[0].trim();
+  return 'unknown';
+}
+
 function emailTemplate({
   name,
   email,
@@ -117,11 +142,27 @@ function emailTemplate({
 
 export async function POST(request: Request) {
   try {
+    const ip = getIp(request);
+
+    if (!checkRate(ip)) {
+      return NextResponse.json({ error: 'Prea multe cereri. Încearcă din nou în câteva minute.' }, { status: 429 });
+    }
+
     const body = await request.json();
-    const { name, email, company, message, budget } = body;
+    const { name, email, company, message, budget, _hp } = body;
+
+    // Honeypot — boții completează câmpuri ascunse
+    if (_hp) {
+      return NextResponse.json({ ok: true });
+    }
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Câmpuri obligatorii lipsă.' }, { status: 400 });
+    }
+
+    // Sanitize basic limits
+    if (name.length > 100 || email.length > 200 || message.length > 5000) {
+      return NextResponse.json({ error: 'Date invalide.' }, { status: 400 });
     }
 
     await resend.emails.send({

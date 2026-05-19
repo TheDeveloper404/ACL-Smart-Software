@@ -332,11 +332,10 @@ export const POSTS: Post[] = [
 ];
 
 export const ROLES: Role[] = [
-  { slug: 'senior-fullstack', title: 'Senior Full-stack Engineer', meta: 'Remote · RO · Full-time', salary: '€3.500 – €5.500 net / lună', stack: ['TypeScript', 'React', '.NET / Node', 'PostgreSQL'], desc: 'Vei lucra cu echipa pe proiecte enterprise. Arhitectură, decizii tehnice, mentoring pentru juniori.' },
-  { slug: 'mobile-rn', title: 'Mobile Engineer (React Native)', meta: 'Hybrid · Petroșani · Full-time', salary: '€2.800 – €4.500 net / lună', stack: ['React Native', 'TypeScript', 'iOS / Android'], desc: 'Aplicații mobile end-to-end. Submission pe magazine, performanță, offline-first.' },
-  { slug: 'ai-ml-eng', title: 'AI / ML Engineer', meta: 'Remote · EU · Full-time', salary: '€3.000 – €5.500 net / lună', stack: ['Python', 'LangChain', 'LLM-uri', 'Vector DBs'], desc: 'Construiești integrări AI care chiar livrează valoare — cu eval, guardrails, monitoring în producție.' },
-  { slug: 'product-designer', title: 'Product Designer', meta: 'Hybrid · Petroșani · Full-time', salary: '€2.500 – €4.000 net / lună', stack: ['Figma', 'Design systems', 'Frontend basics'], desc: 'Design pentru produse complexe. De la discovery la design system, cu utilizatori reali în mijloc.' },
-  { slug: 'intern-fullstack', title: 'Internship Full-stack', meta: 'On-site · Petroșani · 6 luni', salary: '€800 – €1.200 net / lună', stack: ['TypeScript', 'React', 'Node sau .NET'], desc: 'Program de 6 luni cu mentor dedicat. La final — ofertă de full-time pentru cei care vor.' },
+  { slug: 'senior-fullstack', title: 'Senior Full-stack Engineer', meta: 'Remote · CIM / B2B', salary: '', stack: ['TypeScript', 'React', '.NET / Node', 'PostgreSQL'], desc: 'Vei lucra cu echipa pe proiecte enterprise. Arhitectură, decizii tehnice, mentoring pentru juniori.' },
+  { slug: 'mobile-rn', title: 'Mobile Engineer (React Native)', meta: 'Remote · CIM / B2B', salary: '', stack: ['React Native', 'TypeScript', 'iOS / Android'], desc: 'Aplicații mobile end-to-end. Submission pe magazine, performanță, offline-first.' },
+  { slug: 'ai-ml-eng', title: 'AI / ML Engineer', meta: 'Remote · CIM / B2B', salary: '', stack: ['Python', 'LangChain', 'LLM-uri', 'Vector DBs'], desc: 'Construiești integrări AI care chiar livrează valoare — cu eval, guardrails, monitoring în producție.' },
+  { slug: 'product-designer', title: 'Product Designer', meta: 'Remote · CIM / B2B', salary: '', stack: ['Figma', 'Design systems', 'Frontend basics'], desc: 'Design pentru produse complexe. De la discovery la design system, cu utilizatori reali în mijloc.' },
 ];
 
 export const STEPS: ProcessStep[] = [

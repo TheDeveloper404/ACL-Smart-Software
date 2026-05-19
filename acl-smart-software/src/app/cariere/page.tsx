@@ -4,8 +4,8 @@ import ContactStrip from '@/components/sections/ContactStrip';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cariere — Joburi Software în Petroșani | ACL Smart Software',
-  description: 'Joburi în software la Petroșani și remote. Salarii transparente, 25 zile concediu, buget €1.500/an pentru învățare. Fără bullshit corporate.',
+  title: 'Cariere — Joburi Software Remote | ACL Smart Software',
+  description: 'Joburi în software 100% remote. CIM sau B2B, 25 zile concediu, buget €1.500/an pentru învățare. Fără bullshit corporate.',
   alternates: { canonical: 'https://acl-smartsoftware.ro/cariere' },
   openGraph: {
     title: 'Cariere — Joburi Software Petroșani & Remote',
@@ -77,7 +77,7 @@ export default function CarierePage() {
               <div className="eyebrow">{ROLES.length} poziții deschise</div>
             </div>
             <h2 style={{ fontSize: 'clamp(28px, 3.4vw, 44px)' }}>
-              Salariile sunt în descriere. <em>Nimic ascuns</em>.
+              100% remote. <em>CIM sau B2B</em>.
             </h2>
           </div>
 
@@ -93,7 +93,6 @@ export default function CarierePage() {
                   <div className="r-desc">{r.desc}</div>
                 </div>
                 <div className="r-meta-col">{r.meta}</div>
-                <div className="r-salary">{r.salary}</div>
                 <div className="r-arrow">→</div>
               </a>
             ))}

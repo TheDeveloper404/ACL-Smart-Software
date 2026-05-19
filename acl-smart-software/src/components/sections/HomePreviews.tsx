@@ -25,14 +25,14 @@ export default function HomePreviews() {
             <span className="more">Cunoaște echipa <span>→</span></span>
           </Link>
           <Link href="/insights" className="home-preview-card">
-            <div className="num">/ INSIGHTS</div>
+            <div className="num">/ PERSPECTIVE</div>
             <h3>Articole pentru oameni tehnici și cei care îi conduc.</h3>
             <p>Lecții reale din proiecte reale. Fără content marketing, doar lucruri pe care le-am învățat la prețul greu.</p>
-            <span className="more">Citește insights <span>→</span></span>
+            <span className="more">Citește perspectivele <span>→</span></span>
           </Link>
           <Link href="/cariere" className="home-preview-card">
             <div className="num">/ CARIERE</div>
-            <h3>Roluri deschise. Salarii transparente.</h3>
+            <h3>Roluri deschise. 100% remote.</h3>
             <p>Lucrăm puțin, dar serios. Fără standup-uri inutile, fără ședințe care puteau fi un email.</p>
             <span className="more">Vezi rolurile <span>→</span></span>
           </Link>
