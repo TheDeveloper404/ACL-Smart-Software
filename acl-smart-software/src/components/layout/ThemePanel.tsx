@@ -186,9 +186,9 @@ export default function ThemePanel() {
       <style jsx>{`
         .wa-btn {
           position: fixed;
-          bottom: 78px; right: 24px;
+          bottom: 90px; right: 24px;
           z-index: 200;
-          width: 44px; height: 44px;
+          width: 54px; height: 54px;
           border-radius: 50%;
           background: #25D366;
           color: #fff;
@@ -230,14 +230,14 @@ export default function ThemePanel() {
 
         .theme-panel-toggle {
           position: fixed;
-          bottom: 24px; left: 24px;
+          bottom: 24px; right: 24px;
           z-index: 200;
-          width: 44px; height: 44px;
+          width: 54px; height: 54px;
           border-radius: 50%;
           background: var(--bg-card);
           border: 1px solid var(--hairline-strong);
           display: grid; place-items: center;
-          font-size: 18px;
+          font-size: 22px;
           cursor: pointer;
           transition: transform 0.15s, border-color 0.15s;
           box-shadow: 0 4px 16px rgba(0,0,0,0.2);
@@ -246,7 +246,7 @@ export default function ThemePanel() {
 
         .theme-panel {
           position: fixed;
-          bottom: 80px; left: 24px;
+          bottom: 90px; right: 24px;
           z-index: 200;
           background: var(--bg-card);
           border: 1px solid var(--hairline-strong);
