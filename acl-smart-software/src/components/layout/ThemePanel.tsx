@@ -230,7 +230,7 @@ export default function ThemePanel() {
 
         .theme-panel-toggle {
           position: fixed;
-          bottom: 24px; right: 24px;
+          bottom: 24px; left: 24px;
           z-index: 200;
           width: 44px; height: 44px;
           border-radius: 50%;
@@ -246,7 +246,7 @@ export default function ThemePanel() {
 
         .theme-panel {
           position: fixed;
-          bottom: 80px; right: 24px;
+          bottom: 80px; left: 24px;
           z-index: 200;
           background: var(--bg-card);
           border: 1px solid var(--hairline-strong);
