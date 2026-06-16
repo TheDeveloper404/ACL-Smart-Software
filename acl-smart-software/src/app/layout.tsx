@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import ClientOnly from '@/components/layout/ClientOnly';
 import ScrollReset from '@/components/ui/ScrollReset';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <ClientOnly />
           <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
