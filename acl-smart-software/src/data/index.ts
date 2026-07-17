@@ -58,7 +58,7 @@ export const SERVICES: Service[] = [
       { cat: 'Date', items: ['PostgreSQL', 'Supabase', 'Prisma', 'Drizzle'] },
       { cat: 'Performance', items: ['Edge functions', 'CDN', 'Image optimisation', 'Lighthouse audits'] },
     ],
-    pricing: { from: '€1.000', duration: 'Lansare în 3–8 săptămâni', model: 'Fixed-scope sau retainer' },
+    pricing: { from: '€700', duration: 'Lansare în 3–8 săptămâni', model: 'Fixed-scope sau retainer' },
     timeline: '3–16 săptămâni',
     faq: [
       { q: 'Faceți și design-ul, sau doar implementați?', a: 'Putem face și design-ul de la zero, putem porni de la Figma-ul vostru, sau ne adaptăm la design system-ul existent.' },
@@ -264,6 +264,30 @@ export const SERVICE_BY_SLUG = Object.fromEntries(SERVICES.map(s => [s.slug, s])
 
 export const CASES: Case[] = [
   {
+    slug: 'detalia',
+    tag: 'Comunitate & Arhitectură',
+    year: '2026',
+    label: 'DETALIA',
+    title: 'Platformă comunitară pentru detalii de execuție în construcții',
+    desc: 'Comunitate profesională unde arhitecți, constructori și beneficiari dezbat detalii de execuție pe roluri — publici un detaliu, alți profesioniști propun soluții direct peste el, iar comunitatea validează deschis.',
+    services: ['aplicatii-web', 'software-custom'],
+    results: [{ n: 'Pe roluri', l: 'Arhitect / constructor / beneficiar' }, { n: 'Validare', l: 'Deschisă, cu nume' }, { n: 'Comunitate', l: 'Profesională' }],
+    image: '/detalia-preview.png',
+    link: 'https://detalia.ro/',
+  },
+  {
+    slug: 'seminarul-teologic-filadelfia',
+    tag: 'Educație & Instituțional',
+    year: '2026',
+    label: 'SEMINARUL TEOLOGIC FILADELFIA',
+    title: 'Site instituțional — Seminarul Teologic Penticostal Filadelfia',
+    desc: 'Prezență online completă pentru o instituție de învățământ teologic: admitere, programă educațională, profesori, studenți, absolvenți și arhivă foto/video — totul structurat și ușor de navigat.',
+    services: ['aplicatii-web'],
+    results: [{ n: 'Multi-secțiune', l: 'Admitere, programă, absolvenți' }, { n: 'Mobile-first', l: 'Design responsive' }, { n: 'SEO', l: 'Optimizat' }],
+    image: '/seminarul-teologic-preview.png',
+    link: 'https://seminarulteologicfiladelfia.ro/',
+  },
+  {
     slug: 'filadelfia',
     tag: 'Non-profit & Religie',
     year: '2025',
@@ -273,6 +297,7 @@ export const CASES: Case[] = [
     services: ['aplicatii-web'],
     results: [{ n: 'Mobile-first', l: 'Design responsive' }, { n: 'SEO', l: 'Optimizat local' }, { n: 'Performanță', l: 'Lighthouse 95+' }],
     image: '/filadelfia-preview.png',
+    link: 'https://www.filadelfia-petrosani.ro/',
   },
   {
     slug: 'flotapro',
@@ -284,6 +309,7 @@ export const CASES: Case[] = [
     services: ['software-custom', 'aplicatii-web', 'integrari-api'],
     results: [{ n: 'Multi-tenant', l: 'Flote izolate' }, { n: 'CSV/XLS', l: 'Facturi auto-generate' }, { n: 'EuPlatesc', l: 'Plăți integrate' }],
     image: '/flotapro-preview.png',
+    link: 'https://flotapro.ro/',
   },
   {
     slug: 'itcustom',
@@ -295,6 +321,7 @@ export const CASES: Case[] = [
     services: ['aplicatii-web', 'integrari-api', 'software-custom'],
     results: [{ n: 'E-commerce', l: 'Magazine online' }, { n: 'XML feeds', l: 'Integrări furnizori' }, { n: 'Automatizări', l: 'Procese digitalizate' }],
     image: '/itcustom-preview.png',
+    link: 'https://itcustom.ro/',
   },
   {
     slug: 'ebike',
@@ -321,6 +348,35 @@ export const TEAM: TeamMember[] = [
 ];
 
 export const POSTS: Post[] = [
+  {
+    slug: 'agenti-ai-productie-2026',
+    date: '15 IUL 2026',
+    cat: 'AI & PRODUCT',
+    title: 'Agenți AI în producție: ce s-a schimbat față de acum un an',
+    read: '10 min',
+    excerpt: 'Am trecut de la „copilot care sugerează" la agenți care execută task-uri complete, fără supraveghere pas-cu-pas. Iată ce am învățat livrând agenți reali la clienți în 2026.',
+    body: [
+      { type: 'p', text: 'Acum un an, majoritatea integrărilor AI pe care le construiam erau asistive: modelul sugera, omul aproba. În 2026, un procent tot mai mare din munca pe care o automatizăm e agentică — modelul primește un obiectiv, decide singur pașii, folosește unelte, și raportează rezultatul. Diferența nu e cosmetică. Schimbă complet cum proiectăm, testăm și monitorizăm sistemele.' },
+      { type: 'h2', text: 'Ce a permis saltul' },
+      { type: 'ul', items: [
+        'Modele cu context mult mai mare și raționament mai stabil pe orizonturi lungi de task — agentul nu mai „uită" obiectivul la al cincilea pas.',
+        'MCP (Model Context Protocol) a devenit standardul de facto pentru conectarea modelelor la unelte și surse de date — nu mai scriem integrări custom pentru fiecare API, ci expunem un server MCP o singură dată și îl refolosim în orice agent.',
+        'Orchestrare multi-agent matură: un agent „planificator" descompune task-ul, agenți specializați execută subtask-uri în paralel, iar un agent „verificator" validează rezultatul înainte de a-l considera gata.',
+        'Cost per task a scăzut suficient încât agenții pot itera și verifica singuri (self-check, re-încercare) fără ca factura să explodeze — lucru imposibil de justificat economic acum doi ani.',
+      ]},
+      { type: 'h2', text: 'Ce nu s-a schimbat: nevoia de guardrails' },
+      { type: 'p', text: 'Cu cât agentul are mai multă autonomie, cu atât crește nevoia de limite explicite. La fiecare agent pus în producție, definim: ce unelte are voie să folosească, ce acțiuni cer confirmare umană (orice e ireversibil — ștergere, plată, trimitere publică), și un buget maxim de pași/cost per rulare. Fără astea, un agent care „încearcă să rezolve problema" poate lua decizii scumpe sau ireversibile.' },
+      { type: 'h2', text: 'Cazuri reale unde am livrat agenți în 2026' },
+      { type: 'ul', items: [
+        'Triere și rezolvare automată a ticketelor de suport de nivel 1 — agentul citește ticketul, caută în documentație și în istoricul de conversații similare, propune un răspuns și îl trimite direct pentru categoriile cu risc scăzut.',
+        'Agent de reconciliere financiară — compară facturi, extrase bancare și comenzi, semnalează discrepanțele și completează automat cazurile clare, lăsând omul doar pe excepții.',
+        'Code review assistant intern — rulează pe fiecare PR, verifică respectarea convențiilor și a pattern-urilor de securitate ale echipei, lasă comentarii inline. Nu aprobă niciodată singur — doar accelerează reviewerul uman.',
+      ]},
+      { type: 'h2', text: 'Ce evaluăm înainte să construim un agent' },
+      { type: 'p', text: 'Un agent nu e răspunsul implicit. Întrebăm: task-ul are pași clari care pot fi verificați automat? Costul unei greșeli e acceptabil sau necesită aprobare umană la fiecare pas? Avem date suficiente pentru un eval set înainte de lansare? Dacă răspunsul la oricare e nesigur, construim mai întâi un copilot asistiv și trecem la agent complet doar după ce avem încredere măsurată, nu presupusă.' },
+      { type: 'blockquote', text: 'Un agent care greșește rapid și des e mai rău decât niciun agent. Măsurăm rata de succes pe eval set înainte de fiecare extindere de autonomie — nu ghicim, verificăm.' },
+    ],
+  },
   {
     slug: 'llm-overhead',
     date: '04 MAI 2026',

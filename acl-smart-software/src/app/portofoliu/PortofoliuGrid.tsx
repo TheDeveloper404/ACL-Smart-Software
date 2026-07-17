@@ -32,6 +32,11 @@ export default function PortofoliuGrid({ cases }: Props) {
                     </div>
                   ))}
                 </div>
+                {c.link && (
+                  <a href={c.link} target="_blank" rel="noopener noreferrer" className="read-more" style={{ marginTop: 16, display: 'inline-block' }}>
+                    Vezi site-ul live →
+                  </a>
+                )}
               </div>
             </article>
           ))}
