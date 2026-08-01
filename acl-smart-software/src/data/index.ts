@@ -1,4 +1,4 @@
-import type { Service, Case, TeamMember, Post, Role, ProcessStep, TechCategory } from '@/types';
+import type { Service, Case, Post, ProcessStep, TechCategory } from '@/types';
 
 export const SERVICES: Service[] = [
   {
@@ -336,17 +336,6 @@ export const CASES: Case[] = [
   },
 ];
 
-export const TEAM: TeamMember[] = [
-  { name: 'Liviu Băncilă', role: 'CEO & Fondator', initials: 'LB', bio: 'Software-ul pe care îl construim trebuie să fie mai smart decât problema pe care o rezolvă. Experiență în livrarea de proiecte complexe pentru companii din România și Europa.' },
-  { name: 'Cristina Băncilă', role: 'Tech Lead', initials: 'CB', bio: 'Conduce direcția tehnică a proiectelor — de la arhitectură la code review. 5 ani de experiență în full-stack, cu accent pe calitatea codului și decizii care rezistă în timp.' },
-  { name: 'Ovidiu Băncilă', role: 'Senior Full Stack Engineer', initials: 'OB', bio: 'End-to-end pe proiecte complexe: backend solid, frontend curat, integrări fără surprize. 6 ani de experiență cu TypeScript, Node.js și React în producție.' },
-  { name: 'Daiana Băncilă', role: 'HR / Recruiter', initials: 'DB', bio: 'Găsește oamenii potriviți și îi ține aproape. 4 ani de experiență în recrutare tech — știe să identifice caracterul dincolo de CV.' },
-  { name: 'Miriam Băncilă', role: 'UI/UX & Frontend', initials: 'MB', bio: 'Design care pornește de la utilizator și se termină cu cod. 5 ani de experiență în Figma, design systems și implementare frontend care arată exact ca în mockup.' },
-  { name: 'David Băncilă', role: 'DevOps & Cloud', initials: 'DB', bio: 'Infrastructură ca cod, pipelines CI/CD și costuri cloud sub control. 4 ani de experiență pe AWS și Kubernetes — deployuri fără emoții.' },
-  { name: 'Daria Băncilă', role: 'Business Analyst', initials: 'DB', bio: 'Traduce cerințele de business în specificații clare pentru echipă. 3 ani de experiență în analiza proceselor, documentare și comunicarea cu clienții.' },
-  { name: 'Naidin Balint', role: 'Project Manager', initials: 'NB', bio: 'Ține proiectele pe traiectorie — termene respectate, comunicare clară, zero surprize. 5 ani de experiență în coordonarea echipelor tehnice și livrarea la timp.' },
-];
-
 export const POSTS: Post[] = [
   {
     slug: 'agenti-ai-productie-2026',
@@ -567,13 +556,6 @@ export const POSTS: Post[] = [
       { type: 'blockquote', text: '3 teste E2E care acoperă fluxurile critice valorează mai mult decât 300 de teste care verifică că fiecare buton există pe pagină.' },
     ],
   },
-];
-
-export const ROLES: Role[] = [
-  { slug: 'senior-fullstack', title: 'Senior Full-stack Engineer', meta: 'Remote · CIM / B2B', salary: '', stack: ['TypeScript', 'React', '.NET / Node', 'PostgreSQL'], desc: 'Vei lucra cu echipa pe proiecte enterprise. Arhitectură, decizii tehnice, mentoring pentru juniori.' },
-  { slug: 'mobile-rn', title: 'Mobile Engineer (React Native)', meta: 'Remote · CIM / B2B', salary: '', stack: ['React Native', 'TypeScript', 'iOS / Android'], desc: 'Aplicații mobile end-to-end. Submission pe magazine, performanță, offline-first.' },
-  { slug: 'ai-ml-eng', title: 'AI / ML Engineer', meta: 'Remote · CIM / B2B', salary: '', stack: ['Python', 'LangChain', 'LLM-uri', 'Vector DBs'], desc: 'Construiești integrări AI care chiar livrează valoare — cu eval, guardrails, monitoring în producție.' },
-  { slug: 'product-designer', title: 'Product Designer', meta: 'Remote · CIM / B2B', salary: '', stack: ['Figma', 'Design systems', 'Frontend basics'], desc: 'Design pentru produse complexe. De la discovery la design system, cu utilizatori reali în mijloc.' },
 ];
 
 export const STEPS: ProcessStep[] = [

@@ -165,13 +165,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Date invalide.' }, { status: 400 });
     }
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'ACL Smart Software <office@acl-smartsoftware.ro>',
       to: 'office@acl-smartsoftware.ro',
       replyTo: email,
       subject: `[Contact] ${name}${company ? ` — ${company}` : ''}${budget ? ` · ${budget}` : ''}`,
       html: emailTemplate({ name, email, company, budget, message }),
     });
+
+    // Resend nu aruncă la eroare — o întoarce în `error`. Fără verificarea asta,
+    // un mesaj respins (ex. destinatar pe suppression list) trecea drept trimis.
+    if (error) {
+      console.error('Resend send failed:', error);
+      return NextResponse.json({ error: 'Mesajul nu a putut fi trimis.' }, { status: 502 });
+    }
+
+    console.log('Contact email sent:', data?.id);
 
     return NextResponse.json({ ok: true });
   } catch (err) {

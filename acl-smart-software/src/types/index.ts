@@ -26,13 +26,6 @@ export interface Case {
   link?: string;
 }
 
-export interface TeamMember {
-  name: string;
-  role: string;
-  initials: string;
-  bio: string;
-}
-
 export interface PostBlock {
   type: 'p' | 'h2' | 'ul' | 'blockquote';
   text?: string;
@@ -47,15 +40,6 @@ export interface Post {
   read: string;
   excerpt: string;
   body: PostBlock[];
-}
-
-export interface Role {
-  slug: string;
-  title: string;
-  meta: string;
-  salary: string;
-  stack: string[];
-  desc: string;
 }
 
 export interface ProcessStep {

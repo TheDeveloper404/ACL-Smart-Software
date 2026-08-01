@@ -9,7 +9,7 @@ export default function HomePreviews() {
             <div className="idx">04 / EXPLOREAZĂ</div>
             <div className="eyebrow">Vezi mai mult</div>
           </div>
-          <h2>Patru pagini, <em>o singură poveste</em>.</h2>
+          <h2>Trei pagini, <em>o singură poveste</em>.</h2>
         </div>
         <div className="home-preview-grid">
           <Link href="/portofoliu" className="home-preview-card">
@@ -17,12 +17,6 @@ export default function HomePreviews() {
             <h3>Studii de caz reale. Rezultate măsurate, nu vagi.</h3>
             <p>De la platforme de dispatching la copilot-i AI pentru avocați — cu metrici concrete și stack-uri vizibile.</p>
             <span className="more">Vezi portofoliul <span>→</span></span>
-          </Link>
-          <Link href="/echipa" className="home-preview-card">
-            <div className="num">/ ECHIPĂ</div>
-            <h3>O echipă mică. Zero outsourcing pe ascuns.</h3>
-            <p>Cine suntem, ce facem, cum gândim. Tot ce contează despre oamenii care îți vor scrie codul.</p>
-            <span className="more">Cunoaște echipa <span>→</span></span>
           </Link>
           <Link href="/insights" className="home-preview-card">
             <div className="num">/ PERSPECTIVE</div>
@@ -32,9 +26,9 @@ export default function HomePreviews() {
           </Link>
           <Link href="/cariere" className="home-preview-card">
             <div className="num">/ CARIERE</div>
-            <h3>Roluri deschise. 100% remote.</h3>
+            <h3>Cum lucrăm. Și cum ne scrii.</h3>
             <p>Lucrăm puțin, dar serios. Fără standup-uri inutile, fără ședințe care puteau fi un email.</p>
-            <span className="more">Vezi rolurile <span>→</span></span>
+            <span className="more">Vezi cum aplici <span>→</span></span>
           </Link>
         </div>
       </div>

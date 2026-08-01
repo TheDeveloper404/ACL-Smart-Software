@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/portofoliu`,                    lastModified: SITE_LAUNCH, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/insights`,                      lastModified: SITE_LAUNCH, changeFrequency: 'weekly',  priority: 0.8 },
     { url: `${BASE}/cariere`,                       lastModified: SITE_LAUNCH, changeFrequency: 'weekly',  priority: 0.7 },
-    { url: `${BASE}/echipa`,                        lastModified: SITE_LAUNCH, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/politica-confidentialitate`,    lastModified: SITE_LAUNCH, changeFrequency: 'yearly',  priority: 0.2 },
     { url: `${BASE}/termeni`,                       lastModified: SITE_LAUNCH, changeFrequency: 'yearly',  priority: 0.2 },
     { url: `${BASE}/cookies`,                       lastModified: SITE_LAUNCH, changeFrequency: 'yearly',  priority: 0.2 },

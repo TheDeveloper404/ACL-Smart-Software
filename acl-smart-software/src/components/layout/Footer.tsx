@@ -118,7 +118,6 @@ export default function Footer() {
               <ul>
                 <li><Link href="/servicii">Servicii</Link></li>
                 <li><Link href="/portofoliu">Portofoliu</Link></li>
-                <li><Link href="/echipa">Echipă</Link></li>
                 <li><Link href="/insights">Perspective</Link></li>
                 <li><Link href="/cariere">Cariere</Link></li>
               </ul>

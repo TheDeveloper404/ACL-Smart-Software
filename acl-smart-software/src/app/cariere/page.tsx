@@ -1,4 +1,3 @@
-import { ROLES } from '@/data';
 import PageHero from '@/components/sections/PageHero';
 import ContactStrip from '@/components/sections/ContactStrip';
 import type { Metadata } from 'next';
@@ -43,8 +42,8 @@ const INTERVIEW_STEPS = [
   },
   {
     step: 'STEP 03',
-    title: 'Cunoaște echipa',
-    desc: 'O zi cu echipa, conversații libere, prânz împreună. Tu decizi dacă te potrivești la fel ca noi.',
+    title: 'Discuție finală',
+    desc: 'Vorbim deschis despre proiecte, așteptări și condiții. Tu decizi dacă te potrivești la fel ca noi.',
   },
 ];
 
@@ -61,29 +60,40 @@ export default function CarierePage() {
         <div className="wrap">
           <div className="section-head" style={{ marginBottom: 24 }}>
             <div className="label-col">
-              <div className="idx">/ ROLURI DESCHISE</div>
-              <div className="eyebrow">{ROLES.length} poziții deschise</div>
+              <div className="idx">/ CANDIDATURĂ SPONTANĂ</div>
+              <div className="eyebrow">Fără rol deschis acum</div>
             </div>
             <h2 style={{ fontSize: 'clamp(28px, 3.4vw, 44px)' }}>
               100% remote. <em>CIM sau B2B</em>.
             </h2>
           </div>
 
-          <div className="roles-list">
-            {ROLES.map((r) => (
-              <a
-                key={r.slug}
-                href={`mailto:office@acl-smartsoftware.ro?subject=Aplicare ${encodeURIComponent(r.title)}`}
-                className="role-row"
-              >
-                <div>
-                  <div className="r-title">{r.title}</div>
-                  <div className="r-desc">{r.desc}</div>
-                </div>
-                <div className="r-meta-col">{r.meta}</div>
-                <div className="r-arrow">→</div>
-              </a>
-            ))}
+          <div
+            style={{
+              padding: '48px 40px',
+              border: '1px solid var(--hairline)',
+              borderRadius: 16,
+              background: 'var(--bg-card)',
+            }}
+          >
+            <p style={{ fontSize: 18, lineHeight: 1.7, margin: 0, maxWidth: '64ch' }}>
+              Momentan nu avem un rol deschis anunțat public — dar asta nu înseamnă că nu ne
+              interesează oamenii buni. Dacă scrii cod care ajunge în producție și te regăsești
+              în felul în care lucrăm, scrie-ne. Citim fiecare mesaj și răspundem, chiar și
+              atunci când răspunsul e &bdquo;nu acum&rdquo;.
+            </p>
+            <p style={{ fontSize: 15, color: 'var(--fg-muted)', lineHeight: 1.7, marginTop: 20, maxWidth: '64ch' }}>
+              Spune-ne pe scurt ce ai construit, cu ce tehnologii lucrezi și ce fel de proiecte
+              te interesează. Un link către GitHub sau ceva ce ai livrat spune mai mult decât
+              un CV de trei pagini.
+            </p>
+            <a
+              href="mailto:office@acl-smartsoftware.ro?subject=Candidatur%C4%83%20spontan%C4%83"
+              className="btn btn-primary"
+              style={{ marginTop: 32, display: 'inline-flex' }}
+            >
+              Trimite-ne un mesaj <span className="arrow">→</span>
+            </a>
           </div>
 
           <div className="benefits-grid">

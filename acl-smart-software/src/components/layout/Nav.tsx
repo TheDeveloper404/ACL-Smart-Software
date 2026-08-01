@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 const NAV_ITEMS = [
   { id: 'servicii', label: 'Servicii', href: '/servicii' },
   { id: 'portofoliu', label: 'Portofoliu', href: '/portofoliu' },
-  { id: 'echipa', label: 'Echipă', href: '/echipa' },
   { id: 'insights', label: 'Perspective', href: '/insights' },
   { id: 'cariere', label: 'Cariere', href: '/cariere' },
 ];
@@ -22,11 +21,6 @@ export default function Nav() {
     window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
   }, []);
-
-  // Close menu after navigation completes (pathname change = new page loaded)
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -82,6 +76,7 @@ export default function Nav() {
               key={item.id}
               href={item.href}
               className={isActive(item.href) ? 'is-active' : ''}
+              onClick={() => setMenuOpen(false)}
             >
               {item.label}
             </Link>

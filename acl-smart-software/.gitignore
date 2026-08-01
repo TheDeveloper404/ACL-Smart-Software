@@ -40,6 +40,7 @@ Thumbs.db
 CLAUDE.md
 AGENTS.md
 /Claude_Development_Rules
+.claude/.hook-state/
 
 # debug
 npm-debug.log*
