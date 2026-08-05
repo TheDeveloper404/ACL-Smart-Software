@@ -574,11 +574,12 @@ export const POSTS: Post[] = [
 ];
 
 export const STEPS: ProcessStep[] = [
-  { n: '01', title: 'Descoperire', desc: 'Înțelegem problema înainte de soluție. Workshop, audit tehnic, validare cu utilizatori reali. Nu sărim peste asta — niciodată.', deliver: ['Scurtă tehnică', 'Foaie de drum', 'Estimare onestă'] },
-  { n: '02', title: 'Design & Arhitectură', desc: 'Stack-ul, fluxurile, modelul de date, UI-ul. Tot ce contează e decis înainte să se scrie linia 1 de cod.', deliver: ['Prototipuri & UI', 'Schemă bază de date', 'Arhitectură cloud'] },
-  { n: '03', title: 'Construcție', desc: 'Sprint-uri de 2 săptămâni, demo la final, feedback rapid. Integrare continuă din ziua 1. Tu vezi progresul în timp real.', deliver: ['Demo bi-săptămânal', 'Mediu de testare', 'Revizuire cod'] },
-  { n: '04', title: 'Lansare', desc: 'Punere în producție cu plan de rollback, monitorizare activă și suport intens. Primele 30 de zile suntem la o tastă distanță.', deliver: ['Lansare în producție', 'Monitorizare & alerte', 'Documentație live'] },
-  { n: '05', title: 'Creștere', desc: 'Mentenanță, optimizări, funcționalități noi. Produsul tău crește — și noi creștem cu el. SLA-uri clare, fără surprize.', deliver: ['SLA dedicat', 'Foaie de drum continuă', 'Audit tehnic anual'] },
+  { n: '01', title: 'Consultanță', desc: 'Înțelegem problema înainte de soluție. Audit tehnic, discovery sprint, validare cu utilizatori reali. Nu sărim peste asta — niciodată.', deliver: ['Audit tehnic', 'Foaie de drum', 'Estimare onestă'] },
+  { n: '02', title: 'Arhitectură', desc: 'Stack-ul, fluxurile, modelul de date, UI-ul. Tot ce contează e decis înainte să se scrie linia 1 de cod.', deliver: ['Prototipuri & UI', 'Schemă bază de date', 'Arhitectură cloud'] },
+  { n: '03', title: 'Dezvoltare', desc: 'Sprint-uri de 2 săptămâni, demo la final, feedback rapid. Integrare continuă din ziua 1. Tu vezi progresul în timp real.', deliver: ['Demo bi-săptămânal', 'Mediu de testare', 'Revizuire cod'] },
+  { n: '04', title: 'Testare', desc: 'QA dedicat înainte de orice lansare: teste unitare, integrare, end-to-end și un audit de securitate. Nimic nu ajunge în producție netestat.', deliver: ['Teste automate', 'Audit securitate', 'Raport de calitate'] },
+  { n: '05', title: 'Lansare', desc: 'Punere în producție cu plan de rollback, monitorizare activă și suport intens. Primele 30 de zile suntem la o tastă distanță.', deliver: ['Lansare în producție', 'Monitorizare & alerte', 'Documentație live'] },
+  { n: '06', title: 'Mentenanță', desc: 'Optimizări, funcționalități noi, actualizări de securitate. Produsul tău crește — și noi creștem cu el. SLA-uri clare, fără surprize.', deliver: ['SLA dedicat', 'Foaie de drum continuă', 'Audit tehnic anual'] },
 ];
 
 export const TECH_ITEMS: string[] = [

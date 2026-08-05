@@ -2,16 +2,17 @@ import { getLocale } from 'next-intl/server';
 import { STEPS } from '@/data';
 
 const STEPS_EN = [
-  { n: '01', title: 'Discovery', desc: 'We understand the problem before the solution. Workshop, technical audit, validation with real users. We never skip this.', deliver: ['Technical brief', 'Roadmap', 'Honest estimate'] },
-  { n: '02', title: 'Design & Architecture', desc: 'Stack, flows, data model, UI. Everything that matters gets decided before line 1 of code is written.', deliver: ['Prototypes & UI', 'Database schema', 'Cloud architecture'] },
-  { n: '03', title: 'Build', desc: '2-week sprints, a demo at the end of each, fast feedback. Continuous integration from day one. You see progress in real time.', deliver: ['Bi-weekly demo', 'Staging environment', 'Code review'] },
-  { n: '04', title: 'Launch', desc: 'Going live with a rollback plan, active monitoring, and hands-on support. We’re one message away for the first 30 days.', deliver: ['Production launch', 'Monitoring & alerts', 'Live documentation'] },
-  { n: '05', title: 'Growth', desc: 'Maintenance, optimizations, new features. Your product grows — and we grow with it. Clear SLAs, no surprises.', deliver: ['Dedicated SLA', 'Ongoing roadmap', 'Annual technical audit'] },
+  { n: '01', title: 'Consulting', desc: 'We understand the problem before the solution. Technical audit, discovery sprint, validation with real users. We never skip this.', deliver: ['Technical audit', 'Roadmap', 'Honest estimate'] },
+  { n: '02', title: 'Architecture', desc: 'Stack, flows, data model, UI. Everything that matters gets decided before line 1 of code is written.', deliver: ['Prototypes & UI', 'Database schema', 'Cloud architecture'] },
+  { n: '03', title: 'Development', desc: '2-week sprints, a demo at the end of each, fast feedback. Continuous integration from day one. You see progress in real time.', deliver: ['Bi-weekly demo', 'Staging environment', 'Code review'] },
+  { n: '04', title: 'Testing', desc: 'Dedicated QA before every launch: unit, integration, end-to-end tests and a security audit. Nothing reaches production untested.', deliver: ['Automated tests', 'Security audit', 'Quality report'] },
+  { n: '05', title: 'Launch', desc: 'Going live with a rollback plan, active monitoring, and hands-on support. We’re one message away for the first 30 days.', deliver: ['Production launch', 'Monitoring & alerts', 'Live documentation'] },
+  { n: '06', title: 'Maintenance', desc: 'Optimizations, new features, security updates. Your product grows — and we grow with it. Clear SLAs, no surprises.', deliver: ['Dedicated SLA', 'Ongoing roadmap', 'Annual technical audit'] },
 ];
 
 const COPY = {
-  ro: { idx: '03 / PROCES', eyebrow: 'Cum lucrăm', h2: <>Cinci pași. <em>Zero magie</em>. Doar disciplină.</>, steps: STEPS },
-  en: { idx: '03 / PROCESS', eyebrow: 'How we work', h2: <>Five steps. <em>Zero magic</em>. Just discipline.</>, steps: STEPS_EN },
+  ro: { idx: '03 / PROCES', eyebrow: 'Cum lucrăm', h2: <>Consultanță, arhitectură, dezvoltare, testare, lansare, mentenanță. <em>Zero magie</em>.</>, steps: STEPS },
+  en: { idx: '03 / PROCESS', eyebrow: 'How we work', h2: <>Consulting, architecture, development, testing, launch, maintenance. <em>Zero magic</em>.</>, steps: STEPS_EN },
 };
 
 export default async function Process() {

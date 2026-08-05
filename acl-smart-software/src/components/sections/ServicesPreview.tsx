@@ -11,13 +11,13 @@ const COPY = {
   ro: {
     idx: '02 / SERVICII',
     eyebrow: 'Ce facem',
-    h2: <>Acoperim tot ciclul de dezvoltare: <em>consultanță, arhitectură, dezvoltare, testare, lansare și mentenanță</em>.</>,
+    h2: <>Software construit pentru <em>business-ul tău</em>.</>,
     all: 'Toate serviciile, în detaliu',
   },
   en: {
     idx: '02 / SERVICES',
     eyebrow: 'What we do',
-    h2: <>We cover the full development lifecycle: <em>consulting, architecture, development, testing, launch, and maintenance</em>.</>,
+    h2: <>Software built for <em>your business</em>.</>,
     all: 'All services, in detail',
   },
 };

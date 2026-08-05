@@ -4,7 +4,10 @@ import { Link, usePathname } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 import { useState, useEffect } from 'react';
 
-const NAV_ITEMS = {
+// `insights` rămâne doar în română (vezi app/[locale]/insights/page.tsx) — marcat `raw`,
+// randat ca ancoră simplă spre `/insights` neprefixat, nu ca `Link` din i18n/navigation,
+// altfel sub locale `en` ar duce la `/en/insights`, care dă notFound().
+const NAV_ITEMS: Record<'ro' | 'en', { id: string; label: string; href: string; raw?: boolean }[]> = {
   ro: [
     { id: 'servicii', label: 'Servicii', href: '/servicii' },
     { id: 'portofoliu', label: 'Portofoliu', href: '/portofoliu' },
@@ -13,7 +16,7 @@ const NAV_ITEMS = {
   en: [
     { id: 'servicii', label: 'Services', href: '/servicii' },
     { id: 'portofoliu', label: 'Portfolio', href: '/portofoliu' },
-    { id: 'insights', label: 'Insights', href: '/insights' },
+    { id: 'insights', label: 'Insights', href: '/insights', raw: true },
   ],
 };
 
@@ -52,7 +55,15 @@ export default function Nav() {
           </Link>
 
           <div className="nav-links">
-            {items.map(item => (
+            {items.map(item => item.raw ? (
+              <a
+                key={item.id}
+                href={item.href}
+                className={isActive(item.href) ? 'is-active' : ''}
+              >
+                {item.label}
+              </a>
+            ) : (
               <Link
                 key={item.id}
                 href={item.href}
@@ -89,7 +100,16 @@ export default function Nav() {
         aria-hidden={!menuOpen}
       >
         <div className="mobile-menu-inner">
-          {items.map(item => (
+          {items.map(item => item.raw ? (
+            <a
+              key={item.id}
+              href={item.href}
+              className={isActive(item.href) ? 'is-active' : ''}
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.label}
+            </a>
+          ) : (
             <Link
               key={item.id}
               href={item.href}

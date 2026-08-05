@@ -88,7 +88,7 @@ const COPY = {
     company: [
       { href: '/servicii', label: 'Servicii' },
       { href: '/portofoliu', label: 'Portofoliu' },
-      { href: '/insights', label: 'Perspective' },
+      { href: '/insights', label: 'Perspective', raw: false },
     ],
     contactHead: 'Contact',
     email: 'Email',
@@ -113,11 +113,13 @@ const COPY = {
       { href: '/servicii/cloud-devops', label: 'Cloud & DevOps' },
     ],
     allServices: 'All services →',
+    // `insights` rămâne doar în română — link `raw`, randat ca ancoră spre `/insights`
+    // neprefixat, nu ca `Link` din i18n/navigation (care ar duce la `/en/insights`, 404).
     companyHead: 'Company',
     company: [
       { href: '/servicii', label: 'Services' },
       { href: '/portofoliu', label: 'Portfolio' },
-      { href: '/insights', label: 'Insights' },
+      { href: '/insights', label: 'Insights', raw: true },
     ],
     contactHead: 'Contact',
     email: 'Email',
@@ -179,7 +181,7 @@ export default function Footer() {
               <h5>{t.companyHead}</h5>
               <ul>
                 {t.company.map((c) => (
-                  <li key={c.href}><Link href={c.href}>{c.label}</Link></li>
+                  <li key={c.href}>{c.raw ? <a href={c.href}>{c.label}</a> : <Link href={c.href}>{c.label}</Link>}</li>
                 ))}
               </ul>
             </div>
