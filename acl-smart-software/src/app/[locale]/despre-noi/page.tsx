@@ -28,6 +28,18 @@ const REVIEWS: Record<'ro' | 'en', Review[]> = {
       role: 'Fondator, Detalia.ro',
       initials: 'E',
     },
+    {
+      quote: 'O experiență foarte bună de la început până la final. Site-ul este modern, rapid și bine structurat, iar atenția la detalii se vede în fiecare aspect. Comunicarea a fost promptă, iar cerințele au fost înțelese și implementate exact cum am dorit. Recomand pentru oricine caută servicii de dezvoltare web de calitate.',
+      name: 'Biserica Filadelfia Petroșani',
+      role: 'Client',
+      initials: 'BF',
+    },
+    {
+      quote: 'Sunt foarte mulțumit de colaborare. Tot procesul a decurs fără probleme, iar rezultatul a fost peste așteptări. Site-ul arată excelent, se mișcă foarte bine și este ușor de administrat. Recomand cu încredere!',
+      name: 'Dani N.',
+      role: 'Fondator, IT Custom',
+      initials: 'D',
+    },
   ],
   en: [
     {
@@ -35,6 +47,18 @@ const REVIEWS: Record<'ro' | 'en', Review[]> = {
       name: 'Eduard N.',
       role: 'Founder, Detalia.ro',
       initials: 'E',
+    },
+    {
+      quote: 'A very good experience from start to finish. The website is modern, fast, and well structured, and the attention to detail shows in every aspect. Communication was prompt, and our requirements were understood and implemented exactly as we wanted. I recommend this for anyone looking for quality web development services.',
+      name: 'Biserica Filadelfia Petroșani',
+      role: 'Client',
+      initials: 'BF',
+    },
+    {
+      quote: 'I’m very happy with the collaboration. The whole process went smoothly, and the result exceeded expectations. The website looks excellent, runs very well, and is easy to manage. I recommend it with confidence!',
+      name: 'Dani N.',
+      role: 'Founder, IT Custom',
+      initials: 'D',
     },
   ],
 };
