@@ -309,10 +309,15 @@ p { margin: 0; text-wrap: pretty; }
 /* Hero layout */
 .hero-head-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
+  /* `minmax(0, 1fr)` (nu `1fr`) + lățime fixă pe terminal: altfel coloana titlului își ia
+     lățimea din `min-content`, adică din lungimea primei linii de h1 — care diferă de la o
+     limbă la alta. Efectul era că EN primea o coloană de ~1102px și încăpea pe 3 rânduri,
+     iar RO doar ~886px, se rupea pe 4, și tot conținutul de sub hero cobora cu ~100px.
+     Tot de aici venea și depășirea containerului (terminalul se suprapunea peste titlu). */
+  grid-template-columns: minmax(0, 1fr) 300px;
   gap: 48px;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1480px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -334,12 +339,25 @@ p { margin: 0; text-wrap: pretty; }
 }
 .hero-eyebrow { margin-bottom: 28px; }
 .hero h1 {
-  font-size: clamp(32px, 9vw, 109px);
+  /* Coeficientul vw e calibrat (nu 9vw, cât era) ca linia cea mai lungă — „We don’t just write
+     code.", cea mai lată dintre cele două limbi — să încapă pe UN rând și la 1280–1440px, unde
+     coloana scade la ~800–960px. Cu 9vw fontul rămânea blocat pe 109px până jos și EN se rupea
+     pe 4 rânduri în timp ce RO stătea pe 3. La 1920px valoarea e oricum plafonată la 109px,
+     deci aspectul pe ecrane late rămâne neschimbat. */
+  font-size: clamp(32px, 5.8vw, 109px);
   font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 0.94;
   text-wrap: unset;
   overflow: visible;
+}
+/* Sub 760px hero-ul trece pe o singură coloană și terminalul dispare, deci titlul are toată
+   lățimea la dispoziție. Coeficientul redus de mai sus (calibrat pentru layout-ul în două
+   coloane) ar micșora inutil titlul pe mobil — aici revenim la cel original.
+   Regula vine DUPĂ cea de bază: media query-ul de mai sus nu setează font-size, iar la
+   specificitate egală câștigă ultima declarație din sursă. */
+@media (max-width: 760px) {
+  .hero h1 { font-size: clamp(32px, 9vw, 109px); }
 }
 .h1-line { display: block; }
 .hero h1 .accent-word {
@@ -1426,6 +1444,138 @@ section { position: relative; }
   .audience-item { grid-template-columns: 1fr; gap: 8px; }
 }
 
+/* =========================================================
+   Valori (pagina Despre noi) — carduri cu accent vizual,
+   nu simplă listă: valorile sunt argumentul principal al paginii.
+   ========================================================= */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.value-card {
+  position: relative;
+  background: var(--bg);
+  padding: 44px 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background .25s ease;
+}
+/* Bara de accent din capul cardului: vizibilă discret mereu, plină la hover. */
+.value-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0.12);
+  transform-origin: left;
+  transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+}
+.value-card:hover { background: var(--bg-soft); }
+.value-card:hover::before { transform: scaleX(1); }
+.value-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+.value-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(21px, 1.7vw, 27px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.value-card p {
+  font-size: 15px;
+  line-height: 1.68;
+  color: var(--fg-muted);
+}
+/* Dovada concretă din spatele principiului — ancorată jos, ca să se alinieze între carduri. */
+.value-proof {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  color: var(--fg-faint);
+}
+@media (max-width: 900px) {
+  .values-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   Recenzii clienți (pagina Despre noi)
+   ========================================================= */
+.reviews-grid {
+  display: grid;
+  /* Limita superioară de 460px (nu `1fr`) + centrare: cu o singură recenzie publicată, un
+     `1fr` ar întinde cardul pe toată lățimea secțiunii și ar arăta rupt. Așa, lista arată
+     corect de la 1 la 3 recenzii, fără reguli condiționate de număr. */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 460px));
+  justify-content: center;
+  gap: 20px;
+}
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 32px;
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  background: var(--bg);
+  transition: border-color .25s ease, background .25s ease;
+}
+.review-card:hover { border-color: var(--fg-faint); background: var(--bg-soft); }
+.review-card blockquote {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+.review-card blockquote::before {
+  content: '"';
+  display: block;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 44px;
+  line-height: 0.6;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.review-author {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.review-avatar {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+.review-name, .review-role { display: block; }
+.review-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+.review-role { font-size: 12px; color: var(--fg-faint); margin-top: 2px; }
+
 /* Tech pills sub titlu serviciu */
 .svc-tech-pills {
   display: flex;
@@ -2099,7 +2249,9 @@ body:not([data-mode="light"]) .hero-terminal-out { color: rgba(0,0,0,0.45); }
 }
 .h1-line { display: block; }
 .h2-line { display: block; }
-.h1-line:first-child { white-space: nowrap; }
+/* `white-space: nowrap` pe prima linie a fost eliminat intenționat: forța `min-content`-ul
+   coloanei de grid la lungimea acelei linii, făcând lățimea coloanei dependentă de limbă
+   (vezi comentariul de la `.hero-head-grid`). Lățimea e acum pur geometrică. */
 
 /* =========================================================
    Accesibilitate

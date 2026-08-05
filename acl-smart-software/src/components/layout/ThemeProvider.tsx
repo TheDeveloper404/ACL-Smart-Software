@@ -1,7 +1,15 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useState, useCallback } from 'react';
 import type { Theme, Palette, Mode, FontPair, Density } from '@/types';
+
+/**
+ * `useLayoutEffect` pe client, `useEffect` la SSR (unde layout effects nu rulează și React ar
+ * emite un warning). Tema TREBUIE aplicată sincron, înainte de paint — vezi comentariul din
+ * `app/[locale]/layout.tsx`: React reaplică atributele implicite de pe <body> la fiecare
+ * schimbare de limbă, iar un efect pasiv ar lăsa un flash vizibil până la corectare.
+ */
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 const DEFAULT_THEME: Theme = {
   palette: 'lime',
@@ -26,7 +34,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(DEFAULT_THEME);
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
+  // Citirea inițială din localStorage — sistem extern, indisponibil la SSR, deci nu poate fi
+  // făcută în initializer-ul de state fără mismatch de hidratare. `useLayoutEffect` (nu
+  // `useEffect`) ca setarea temei să se încheie înainte de primul paint după remontare.
+  useIsomorphicLayoutEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
@@ -37,7 +48,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!mounted) return;
     const body = document.body;
     body.dataset.palette = theme.palette;

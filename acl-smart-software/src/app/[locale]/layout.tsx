@@ -114,6 +114,12 @@ export default async function RootLayout({ children, params }: { children: React
       lang={locale}
       className={`${spaceGrotesk.className} ${interTight.className} ${jetbrainsMono.className} ${instrumentSerif.className}`}
     >
+      {/* Atributele de temă rămân aici ca valori implicite corecte pentru SSR / primul paint.
+          ATENȚIE: fiind randate de React pe <body>, ele sunt REAPLICATE la orice re-randare de
+          layout — inclusiv la schimbarea de limbă, care schimbă segmentul `[locale]`. De aceea
+          ThemeProvider le restaurează într-un `useLayoutEffect` (sincron, înainte de paint) și
+          nu într-un `useEffect` pasiv: altfel un utilizator pe tema dark vedea un flash alb de
+          ~25ms la fiecare switch RO↔EN. */}
       <body suppressHydrationWarning data-palette="lime" data-mode="light" data-font="grotesk" data-density="comfortable">
         {/* Blocking script — runs before first paint, eliminates theme flash + fixes scroll restoration */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{history.scrollRestoration='manual';if(!window.location.hash)window.scrollTo(0,0);}catch(e){}try{var s=localStorage.getItem('acl-tweaks-v2');if(!s)return;var t=JSON.parse(s);var b=document.body;if(t.palette)b.dataset.palette=t.palette;if(t.mode)b.dataset.mode=t.mode;if(t.fontPair)b.dataset.font=t.fontPair;if(t.density)b.dataset.density=t.density;}catch(e){}})();` }} />

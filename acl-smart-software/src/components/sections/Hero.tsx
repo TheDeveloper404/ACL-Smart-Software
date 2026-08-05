@@ -4,7 +4,11 @@ import HeroTerminal from '@/components/ui/HeroTerminal';
 
 const COPY = {
   ro: {
-    h1: ['Nu scriem doar ', 'cod', '.', 'Construim produse care', 'cresc ', 'business-uri', '.'],
+    // Împărțirea pe cele 3 linii e calibrată pe lățimea reală a coloanei h1 (~1100px la
+    // desktop): „Construim produse care" măsura 1154px și se rupea într-un al 4-lea rând,
+    // împingând tot conținutul de sub hero cu ~100px față de EN. Varianta curentă ține
+    // ambele limbi pe exact 3 rânduri.
+    h1: ['Nu scriem doar ', 'cod', '.', 'Construim produse', 'ce cresc ', 'business-uri', '.'],
     sub: 'Consultanță IT, software la comandă, aplicații web și mobile — de la idee la producție.',
     ctaPrimary: 'Începe un proiect',
     ctaGhost: 'Vezi ce am construit',
