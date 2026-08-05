@@ -1,13 +1,23 @@
 import PageHero from '@/components/sections/PageHero';
 import ContactStrip from '@/components/sections/ContactStrip';
 import type { Metadata } from 'next';
+import { localeAlternates } from '@/lib/seo';
+import { setRequestLocale } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Termeni și condiții — ACL Smart Software',
-  description: 'Termenii și condițiile de utilizare a site-ului ACL Smart Software.',
-};
+// Pagină legală, doar RO — canonical indică mereu spre /termeni, ca să evităm conținut
+// duplicat între /termeni și /en/termeni (identice).
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: 'Termeni și condiții — ACL Smart Software',
+    description: 'Termenii și condițiile de utilizare a site-ului ACL Smart Software.',
+    alternates: localeAlternates('/termeni', locale, { enAvailable: false }),
+  };
+}
 
-export default function TermeniPage() {
+export default async function TermeniPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <PageHero
@@ -38,7 +48,7 @@ export default function TermeniPage() {
             <div>
               <h3 style={{ marginBottom: 12 }}>3. Limitarea răspunderii</h3>
               <p style={{ color: 'var(--fg-muted)' }}>
-                Site-ul este furnizat „ca atare". ACL Smart Software nu garantează disponibilitatea neîntreruptă și nu răspunde pentru daune indirecte rezultate din utilizarea site-ului.
+                Site-ul este furnizat „ca atare”. ACL Smart Software nu garantează disponibilitatea neîntreruptă și nu răspunde pentru daune indirecte rezultate din utilizarea site-ului.
               </p>
             </div>
 

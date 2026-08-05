@@ -46,7 +46,7 @@ export default function OGImage() {
         {/* Headline */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div style={{ fontSize: 13, color: '#aaff44', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-            Studio software independent · Petroșani, România
+            Firmă de software · Petroșani, România
           </div>
           <div
             style={{

@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import type { Case } from '@/types';
 
-interface Props { cases: Case[]; }
+interface Props { cases: Case[]; labels?: { done: string; link: string }; }
 
-export default function PortofoliuGrid({ cases }: Props) {
+const DEFAULT_LABELS = { done: '✓ Realizat', link: 'Vezi site-ul live →' };
+
+export default function PortofoliuGrid({ cases, labels = DEFAULT_LABELS }: Props) {
   return (
     <section className="section">
       <div className="wrap">
@@ -14,7 +16,7 @@ export default function PortofoliuGrid({ cases }: Props) {
                 {c.image
                   ? <Image src={c.image} alt={c.title} fill sizes="(max-width: 800px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: 'top center' }} />
                   : <CaseVisual slug={c.slug} />}
-                <span className="case-done-badge">✓ Realizat</span>
+                <span className="case-done-badge">{labels.done}</span>
               </div>
               <div className="case-body">
                 <div className="case-meta">
@@ -34,7 +36,7 @@ export default function PortofoliuGrid({ cases }: Props) {
                 </div>
                 {c.link && (
                   <a href={c.link} target="_blank" rel="noopener noreferrer" className="read-more" style={{ marginTop: 16, display: 'inline-block' }}>
-                    Vezi site-ul live →
+                    {labels.link}
                   </a>
                 )}
               </div>

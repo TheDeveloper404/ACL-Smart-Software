@@ -1,20 +1,30 @@
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { POSTS } from '@/data';
 import type { PostBlock } from '@/types';
 import ContactStrip from '@/components/sections/ContactStrip';
+import JsonLd from '@/components/seo/JsonLd';
+import { BASE, ORG_ID, ORGANIZATION_NODE, breadcrumbJsonLd, toIsoDate } from '@/lib/seo';
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
+// Articolele rămân doar în română — nu are sens tradus conținut scris pentru piața RO.
+// Sub /en nu generăm deloc aceste pagini static.
+// Specificăm explicit `locale: 'ro'` pe fiecare intrare, în loc să ne bazăm pe inferența
+// automată din generateStaticParams-ul părintelui — aceea genera 0 pagini (nici pentru ro),
+// pentru că filtrarea condiționată pe `params.locale` din opțiunea `options.params` nu s-a
+// comportat cum era documentat. Returnând combinația completă, ocolim complet problema.
 export async function generateStaticParams() {
-  return POSTS.map((p) => ({ slug: p.slug }));
+  return POSTS.map((p) => ({ locale: 'ro', slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (locale !== 'ro') return {};
   const post = POSTS.find((p) => p.slug === slug);
   if (!post) return {};
   const url = `https://acl-smartsoftware.ro/insights/${slug}`;
@@ -60,12 +70,45 @@ function renderBlock(block: PostBlock, i: number) {
 }
 
 export default async function InsightDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (locale !== 'ro') notFound();
+  setRequestLocale(locale);
   const post = POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 
+  const url = `${BASE}/insights/${slug}`;
+  const published = toIsoDate(post.date);
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      ORGANIZATION_NODE,
+      {
+        '@type': 'BlogPosting',
+        '@id': `${url}#article`,
+        headline: post.title,
+        description: post.excerpt,
+        url,
+        mainEntityOfPage: url,
+        articleSection: post.cat,
+        inLanguage: 'ro-RO',
+        // `datePublished` e omis dacă data de afișare nu e parsabilă — mai bine lipsă
+        // decât invalidă, altfel Google respinge tot blocul.
+        ...(published ? { datePublished: published, dateModified: published } : {}),
+        author: { '@id': ORG_ID },
+        publisher: { '@id': ORG_ID },
+      },
+      breadcrumbJsonLd([
+        { name: 'Acasă', path: '/' },
+        { name: 'Perspective', path: '/insights' },
+        { name: post.title, path: `/insights/${slug}` },
+      ]),
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={jsonLd} />
       <article>
         <header style={{ borderBottom: '1px solid var(--hairline)' }}>
           <div className="wrap" style={{ paddingTop: 80, paddingBottom: 64 }}>

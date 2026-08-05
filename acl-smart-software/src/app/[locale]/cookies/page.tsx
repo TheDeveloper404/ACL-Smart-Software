@@ -1,13 +1,24 @@
 import PageHero from '@/components/sections/PageHero';
 import ContactStrip from '@/components/sections/ContactStrip';
 import type { Metadata } from 'next';
+import { localeAlternates } from '@/lib/seo';
+import { setRequestLocale } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Politică Cookies — ACL Smart Software',
-  description: 'Informații despre cookie-urile folosite pe site-ul ACL Smart Software.',
-};
+// Pagină legală, doar RO — accesibilă și sub /en (nu are sens dublat conținutul), dar
+// canonical indică mereu spre /cookies: /en/cookies și /cookies afișează exact același
+// text, iar fără asta ar fi conținut duplicat în ochii Google.
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: 'Politică Cookies — ACL Smart Software',
+    description: 'Informații despre cookie-urile folosite pe site-ul ACL Smart Software.',
+    alternates: localeAlternates('/cookies', locale, { enAvailable: false }),
+  };
+}
 
-export default function CookiesPage() {
+export default async function CookiesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <PageHero

@@ -1,4 +1,6 @@
 import type { Service, Case, Post, ProcessStep, TechCategory } from '@/types';
+import { SERVICES_EN } from './services.en';
+import { CASES_EN } from './portfolio.en';
 
 export const SERVICES: Service[] = [
   {
@@ -67,35 +69,35 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    slug: 'aplicatii-mobile',
-    title: 'Aplicații Mobile',
-    short: 'iOS și Android din același codebase. Native când contează, cross-platform când are sens.',
-    tags: ['React Native', 'Swift', 'Kotlin', 'Expo', 'Firebase'],
-    tagline: 'O echipă. Două platforme. Un singur produs care merge.',
-    longDesc: 'Pornim de la întrebarea „chiar ai nevoie de mobile?". Dacă da — alegem împreună între React Native, Flutter sau native pur. Livrăm în AppStore & Play Store, inclusiv submitere.',
+    slug: 'consultanta-it',
+    title: 'Consultanță IT',
+    short: 'Audit tehnic, alegere de stack, planificare arhitecturală. Te ajutăm să iei deciziile care contează.',
+    tags: ['Audit tehnic', 'C4 Model', 'Tech Due-Diligence', 'Discovery'],
+    tagline: 'A doua opinie tehnică pe care nu o regreți.',
+    longDesc: 'Audit obiectiv pe arhitectură, cod, infrastructură sau echipă. Recomandări scrise, prioritizate pe impact și cost. Tech due-diligence pentru achiziții și investiții. Discovery sprint-uri pentru proiecte noi.',
     whatWeBuild: [
-      { title: 'Aplicații consumer (B2C)', desc: 'Aplicații pe care clienții tăi le instalează — onboarding scurt, push relevant, retention real.' },
-      { title: 'Aplicații pentru forța de teren', desc: 'Pentru echipe care nu stau la birou: livratori, tehnicieni, agenți. Offline-first, sync inteligent.' },
-      { title: 'Companion app pentru web', desc: 'Extinzi platforma ta web cu un app mobile care folosește același backend.' },
-      { title: 'MVP-uri pentru startup-uri', desc: 'Ajungi pe magazine în 6–10 săptămâni cu un produs care chiar e prezentabil la investitori.' },
+      { title: 'Audit tehnic', desc: 'Cod, arhitectură, infrastructură, securitate, observability — raport scris cu recomandări concrete.' },
+      { title: 'Tech due-diligence', desc: 'Pentru investitori sau achiziții — evaluăm riscurile tehnice ale unei companii înainte de tranzacție.' },
+      { title: 'Discovery sprint', desc: '1 săptămână pentru a defini scope, stack, estimare, riscuri pentru un proiect nou.' },
+      { title: 'Architecture review', desc: 'Ai o decizie mare de luat. Te ajutăm cu un al doilea ochi obiectiv.' },
     ],
     audience: [
-      { title: 'Companii de servicii', desc: 'Echipe pe teren care au nevoie de un app, nu de o aplicație web prinsă într-un browser.' },
-      { title: 'Retaileri & marketplace-uri', desc: 'Vrei un app cu push, scan QR, geo-fencing — funcționalități care nu există în web.' },
-      { title: 'Startup-uri mobile-first', desc: 'Produsul tău are sens doar ca app. Construim astfel încât să poți crește rapid post-launch.' },
+      { title: 'CTO-i în primul an', desc: 'Moștenești o echipă și un sistem. Avem nevoie de claritate înainte de orice mișcare.' },
+      { title: 'Investitori & corporate dev', desc: 'Evaluezi o companie tehnologică. Îți spunem ce nu se vede în pitch deck.' },
+      { title: 'Founderi non-tehnici', desc: 'Ai un produs construit de altcineva și vrei să știi dacă e bine. Vorbim onest.' },
     ],
     technologies: [
-      { cat: 'Cross-platform', items: ['React Native (Expo)', 'Flutter', 'TypeScript'] },
-      { cat: 'Native iOS', items: ['Swift', 'SwiftUI', 'Combine'] },
-      { cat: 'Native Android', items: ['Kotlin', 'Jetpack Compose', 'Coroutines'] },
-      { cat: 'Servicii', items: ['Push (FCM, APNs)', 'Auth (Firebase, Auth0)', 'Analytics', 'Crashlytics'] },
+      { cat: 'Framework-uri', items: ['ATAM', 'ADR', 'C4 model', 'Wardley maps'] },
+      { cat: 'Acoperire', items: ['Cloud', 'On-premise', 'Mobile', 'Web', 'AI / ML'] },
+      { cat: 'Livrabile', items: ['Raport scris', 'Workshop', 'Roadmap', 'Estimare cost & timeline'] },
+      { cat: 'Format', items: ['Remote', 'On-site', '1 zi → 4 săptămâni'] },
     ],
-    pricing: { from: '€1.200', duration: 'App pe magazine în 6–10 săptămâni', model: 'Fixed-scope sau retainer' },
-    timeline: '6–20 săptămâni',
+    pricing: { from: '€1.500', duration: 'Audit de 1 zi · Discovery de 1 săptămână', model: 'Fixed-price pe livrabil' },
+    timeline: '1 zi – 4 săptămâni',
     faq: [
-      { q: 'Submitterea în AppStore o faceți voi?', a: 'Da. Pregătire metadata, screenshots, App Privacy, review responses — toate.' },
-      { q: 'Ce alegere fac: native sau cross-platform?', a: 'Răspundem după ce înțelegem produsul. Pentru 80% din cazuri React Native e răspunsul corect.' },
-      { q: 'Continuați mentenanța?', a: 'Da. Update-uri SDK, fix-uri post-OS-update, feature-uri noi — retainer dedicat.' },
+      { q: 'Semnați NDA?', a: 'Da, standard. Putem semna și NDA-ul vostru dacă e cerut.' },
+      { q: 'Cui rămâne raportul?', a: 'Doar voi. Nu îl folosim ca material de marketing, nu îl arătăm altcuiva.' },
+      { q: 'Continuați și după consultanță?', a: 'Doar dacă vrei. Putem termina raportul și gata, putem continua cu execuție — depinde de tine.' },
     ],
   },
   {
@@ -195,35 +197,35 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    slug: 'consultanta-it',
-    title: 'Consultanță IT',
-    short: 'Audit tehnic, alegere de stack, planificare arhitecturală. Te ajutăm să iei deciziile care contează.',
-    tags: ['Audit tehnic', 'C4 Model', 'Tech Due-Diligence', 'Discovery'],
-    tagline: 'A doua opinie tehnică pe care nu o regreți.',
-    longDesc: 'Audit obiectiv pe arhitectură, cod, infrastructură sau echipă. Recomandări scrise, prioritizate pe impact și cost. Tech due-diligence pentru achiziții și investiții. Discovery sprint-uri pentru proiecte noi.',
+    slug: 'aplicatii-mobile',
+    title: 'Aplicații Mobile',
+    short: 'iOS și Android din același codebase. Native când contează, cross-platform când are sens.',
+    tags: ['React Native', 'Swift', 'Kotlin', 'Expo', 'Firebase'],
+    tagline: 'O echipă. Două platforme. Un singur produs care merge.',
+    longDesc: 'Pornim de la întrebarea „chiar ai nevoie de mobile?". Dacă da — alegem împreună între React Native, Flutter sau native pur. Livrăm în AppStore & Play Store, inclusiv submitere.',
     whatWeBuild: [
-      { title: 'Audit tehnic', desc: 'Cod, arhitectură, infrastructură, securitate, observability — raport scris cu recomandări concrete.' },
-      { title: 'Tech due-diligence', desc: 'Pentru investitori sau achiziții — evaluăm riscurile tehnice ale unei companii înainte de tranzacție.' },
-      { title: 'Discovery sprint', desc: '1 săptămână pentru a defini scope, stack, estimare, riscuri pentru un proiect nou.' },
-      { title: 'Architecture review', desc: 'Ai o decizie mare de luat. Te ajutăm cu un al doilea ochi obiectiv.' },
+      { title: 'Aplicații consumer (B2C)', desc: 'Aplicații pe care clienții tăi le instalează — onboarding scurt, push relevant, retention real.' },
+      { title: 'Aplicații pentru forța de teren', desc: 'Pentru echipe care nu stau la birou: livratori, tehnicieni, agenți. Offline-first, sync inteligent.' },
+      { title: 'Companion app pentru web', desc: 'Extinzi platforma ta web cu un app mobile care folosește același backend.' },
+      { title: 'MVP-uri pentru startup-uri', desc: 'Ajungi pe magazine în 6–10 săptămâni cu un produs care chiar e prezentabil la investitori.' },
     ],
     audience: [
-      { title: 'CTO-i în primul an', desc: 'Moștenești o echipă și un sistem. Avem nevoie de claritate înainte de orice mișcare.' },
-      { title: 'Investitori & corporate dev', desc: 'Evaluezi o companie tehnologică. Îți spunem ce nu se vede în pitch deck.' },
-      { title: 'Founderi non-tehnici', desc: 'Ai un produs construit de altcineva și vrei să știi dacă e bine. Vorbim onest.' },
+      { title: 'Companii de servicii', desc: 'Echipe pe teren care au nevoie de un app, nu de o aplicație web prinsă într-un browser.' },
+      { title: 'Retaileri & marketplace-uri', desc: 'Vrei un app cu push, scan QR, geo-fencing — funcționalități care nu există în web.' },
+      { title: 'Startup-uri mobile-first', desc: 'Produsul tău are sens doar ca app. Construim astfel încât să poți crește rapid post-launch.' },
     ],
     technologies: [
-      { cat: 'Framework-uri', items: ['ATAM', 'ADR', 'C4 model', 'Wardley maps'] },
-      { cat: 'Acoperire', items: ['Cloud', 'On-premise', 'Mobile', 'Web', 'AI / ML'] },
-      { cat: 'Livrabile', items: ['Raport scris', 'Workshop', 'Roadmap', 'Estimare cost & timeline'] },
-      { cat: 'Format', items: ['Remote', 'On-site', '1 zi → 4 săptămâni'] },
+      { cat: 'Cross-platform', items: ['React Native (Expo)', 'Flutter', 'TypeScript'] },
+      { cat: 'Native iOS', items: ['Swift', 'SwiftUI', 'Combine'] },
+      { cat: 'Native Android', items: ['Kotlin', 'Jetpack Compose', 'Coroutines'] },
+      { cat: 'Servicii', items: ['Push (FCM, APNs)', 'Auth (Firebase, Auth0)', 'Analytics', 'Crashlytics'] },
     ],
-    pricing: { from: '€1.500', duration: 'Audit de 1 zi · Discovery de 1 săptămână', model: 'Fixed-price pe livrabil' },
-    timeline: '1 zi – 4 săptămâni',
+    pricing: { from: '€1.200', duration: 'App pe magazine în 6–10 săptămâni', model: 'Fixed-scope sau retainer' },
+    timeline: '6–20 săptămâni',
     faq: [
-      { q: 'Semnați NDA?', a: 'Da, standard. Putem semna și NDA-ul vostru dacă e cerut.' },
-      { q: 'Cui rămâne raportul?', a: 'Doar voi. Nu îl folosim ca material de marketing, nu îl arătăm altcuiva.' },
-      { q: 'Continuați și după consultanță?', a: 'Doar dacă vrei. Putem termina raportul și gata, putem continua cu execuție — depinde de tine.' },
+      { q: 'Submitterea în AppStore o faceți voi?', a: 'Da. Pregătire metadata, screenshots, App Privacy, review responses — toate.' },
+      { q: 'Ce alegere fac: native sau cross-platform?', a: 'Răspundem după ce înțelegem produsul. Pentru 80% din cazuri React Native e răspunsul corect.' },
+      { q: 'Continuați mentenanța?', a: 'Da. Update-uri SDK, fix-uri post-OS-update, feature-uri noi — retainer dedicat.' },
     ],
   },
   {
@@ -261,6 +263,15 @@ export const SERVICES: Service[] = [
 ];
 
 export const SERVICE_BY_SLUG = Object.fromEntries(SERVICES.map(s => [s.slug, s]));
+const SERVICE_BY_SLUG_EN = Object.fromEntries(SERVICES_EN.map(s => [s.slug, s]));
+
+export function getServices(locale: string): Service[] {
+  return locale === 'en' ? SERVICES_EN : SERVICES;
+}
+
+export function getServiceBySlug(locale: string, slug: string): Service | undefined {
+  return locale === 'en' ? SERVICE_BY_SLUG_EN[slug] : SERVICE_BY_SLUG[slug];
+}
 
 export const CASES: Case[] = [
   {
@@ -335,6 +346,10 @@ export const CASES: Case[] = [
     image: '/bikewebsite-preview.png',
   },
 ];
+
+export function getCases(locale: string): Case[] {
+  return locale === 'en' ? CASES_EN : CASES;
+}
 
 export const POSTS: Post[] = [
   {

@@ -1,13 +1,24 @@
 import PageHero from '@/components/sections/PageHero';
 import ContactStrip from '@/components/sections/ContactStrip';
+import { Link } from '@/i18n/navigation';
 import type { Metadata } from 'next';
+import { localeAlternates } from '@/lib/seo';
+import { setRequestLocale } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Politică de confidențialitate — ACL Smart Software',
-  description: 'Cum colectăm, folosim și protejăm datele tale personale.',
-};
+// Pagină legală, doar RO — canonical indică mereu spre versiunea RO, ca să evităm conținut
+// duplicat între aceasta și /en/politica-confidentialitate (identice).
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: 'Politică de confidențialitate — ACL Smart Software',
+    description: 'Cum colectăm, folosim și protejăm datele tale personale.',
+    alternates: localeAlternates('/politica-confidentialitate', locale, { enAvailable: false }),
+  };
+}
 
-export default function PoliticaConfidentialitatePage() {
+export default async function PoliticaConfidentialitatePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <PageHero
@@ -23,7 +34,7 @@ export default function PoliticaConfidentialitatePage() {
             <div>
               <h3 style={{ marginBottom: 12 }}>1. Cine suntem</h3>
               <p style={{ color: 'var(--fg-muted)' }}>
-                ACL Smart Software SRL, cu sediul în Str. Horea 2/31, Petroșani, Hunedoara, CUI 51219715, J2025007081009 — denumit în continuare „ACL", „noi" sau „compania".
+                ACL Smart Software SRL, cu sediul în Str. Horea 2/31, Petroșani, Hunedoara, CUI 51219715, J2025007081009 — denumit în continuare „ACL”, „noi” sau „compania”.
                 Puteți lua legătura cu noi la <a href="mailto:office@acl-smartsoftware.ro" style={{ color: 'var(--accent)' }}>office@acl-smartsoftware.ro</a>.
               </p>
             </div>
@@ -71,7 +82,7 @@ export default function PoliticaConfidentialitatePage() {
               <h3 style={{ marginBottom: 12 }}>7. Cookies</h3>
               <p style={{ color: 'var(--fg-muted)' }}>
                 Site-ul folosește un cookie tehnic pentru salvarea preferințelor de temă (culoare, mod luminos/întunecat). Nu folosim cookie-uri de tracking sau analytics de la terți.
-                Detalii în <a href="/cookies" style={{ color: 'var(--accent)' }}>Politica Cookies</a>.
+                Detalii în <Link href="/cookies" style={{ color: 'var(--accent)' }}>Politica Cookies</Link>.
               </p>
             </div>
 

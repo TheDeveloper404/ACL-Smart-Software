@@ -1,24 +1,21 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { useLocale } from 'next-intl';
 
 const COMMAND = 'acl --services';
-const SERVICES = [
-  'Software custom',
-  'Aplicații web',
-  'Aplicații mobile',
-  'Cloud & DevOps',
-  'AI / Machine Learning',
-];
-const QUESTIONS = [
-  'Ce ai avea nevoie?',
-  'Hai să construim ceva.',
-  'Începe un proiect →',
-  'Ai o idee? Să vorbim.',
-];
+const SERVICES = {
+  ro: ['Software custom', 'Aplicații web', 'Aplicații mobile', 'Cloud & DevOps', 'AI / Machine Learning'],
+  en: ['Custom software', 'Web apps', 'Mobile apps', 'Cloud & DevOps', 'AI / Machine Learning'],
+};
+const QUESTIONS = {
+  ro: ['Ce ai avea nevoie?', 'Hai să construim ceva.', 'Începe un proiect →', 'Ai o idee? Să vorbim.'],
+  en: ['What do you need?', 'Let’s build something.', 'Start a project →', 'Got an idea? Let’s talk.'],
+};
 
 type Phase = 'cmd' | 'services' | 'loop';
 
 export default function HeroTerminal() {
+  const locale = useLocale() as 'ro' | 'en';
   const [cmd, setCmd] = useState('');
   const [services, setServices] = useState<string[]>([]);
   const [phase, setPhase] = useState<Phase>('cmd');
@@ -26,6 +23,8 @@ export default function HeroTerminal() {
 
   useEffect(() => {
     let cancelled = false;
+    const svcList = SERVICES[locale] ?? SERVICES.ro;
+    const questions = QUESTIONS[locale] ?? QUESTIONS.ro;
 
     const run = async () => {
       await delay(500);
@@ -40,7 +39,7 @@ export default function HeroTerminal() {
 
       // 2. afișează serviciile
       setPhase('services');
-      for (const svc of SERVICES) {
+      for (const svc of svcList) {
         if (cancelled) return;
         setServices(prev => [...prev, svc]);
         await delay(340);
@@ -51,7 +50,7 @@ export default function HeroTerminal() {
       setPhase('loop');
       let qi = 0;
       while (!cancelled) {
-        const q = QUESTIONS[qi % QUESTIONS.length];
+        const q = questions[qi % questions.length];
 
         // scrie
         for (let i = 1; i <= q.length; i++) {
@@ -76,7 +75,7 @@ export default function HeroTerminal() {
 
     run();
     return () => { cancelled = true; };
-  }, []);
+  }, [locale]);
 
   return (
     <div className="hero-terminal" aria-hidden="true">

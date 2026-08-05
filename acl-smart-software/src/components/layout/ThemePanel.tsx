@@ -1,9 +1,33 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLocale } from 'next-intl';
 import { useTheme, PALETTE_OPTIONS } from './ThemeProvider';
 
 const A11Y_KEY = 'acl-a11y-v1';
+
+const COPY = {
+  ro: {
+    waHint: 'Hai să vorbim! 👋', waAria: 'Contactează-ne pe WhatsApp',
+    toggleAria: 'Personalizare temă', closeAria: 'Închide',
+    title: 'Personalizare',
+    palette: 'Paletă', mode: 'Mod', dark: '🌙 Întunecat', light: '☀️ Luminos',
+    a11y: 'Accesibilitate',
+    reduceMotionName: 'Fără animații', reduceMotionDesc: 'Dezactivează tranziții și efecte',
+    largeTextName: 'Text mai mare', largeTextDesc: 'Mărește dimensiunea fontului',
+    highContrastName: 'Contrast ridicat', highContrastDesc: 'Intensifică culorile și marginile',
+  },
+  en: {
+    waHint: 'Let’s talk! 👋', waAria: 'Contact us on WhatsApp',
+    toggleAria: 'Theme settings', closeAria: 'Close',
+    title: 'Customize',
+    palette: 'Palette', mode: 'Mode', dark: '🌙 Dark', light: '☀️ Light',
+    a11y: 'Accessibility',
+    reduceMotionName: 'No animations', reduceMotionDesc: 'Disable transitions and effects',
+    largeTextName: 'Larger text', largeTextDesc: 'Increase font size',
+    highContrastName: 'High contrast', highContrastDesc: 'Intensify colors and borders',
+  },
+};
 
 interface A11yPrefs {
   reduceMotion: boolean;
@@ -25,14 +49,19 @@ function applyA11y(prefs: A11yPrefs) {
 }
 
 export default function ThemePanel() {
+  const locale = useLocale() as 'ro' | 'en';
+  const t = COPY[locale] ?? COPY.ro;
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [a11y, setA11yState] = useState<A11yPrefs>(DEFAULT_A11Y);
   const [showWaHint, setShowWaHint] = useState(false);
 
   useEffect(() => {
+    // localStorage nu există pe server — citirea trebuie să aștepte montarea pe client,
+    // deci setState-ul de aici e sincronizarea inițială cu un sistem extern.
     const seen = localStorage.getItem('acl-wa-hint');
     if (!seen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowWaHint(true);
       const t = setTimeout(() => {
         setShowWaHint(false);
@@ -47,6 +76,7 @@ export default function ThemePanel() {
       const stored = localStorage.getItem(A11Y_KEY);
       if (stored) {
         const parsed = JSON.parse(stored) as A11yPrefs;
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setA11yState(parsed);
         applyA11y(parsed);
       }
@@ -63,14 +93,14 @@ export default function ThemePanel() {
   return (
     <>
       {showWaHint && (
-        <span className="wa-hint">Hai să vorbim! 👋</span>
+        <span className="wa-hint">{t.waHint}</span>
       )}
       <a
         className="wa-btn"
         href="https://wa.me/40758154490"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Contactează-ne pe WhatsApp"
+        aria-label={t.waAria}
         title="WhatsApp"
         onClick={() => { setShowWaHint(false); localStorage.setItem('acl-wa-hint', '1'); }}
       >
@@ -82,21 +112,21 @@ export default function ThemePanel() {
       <button
         className="theme-panel-toggle"
         onClick={() => setOpen(v => !v)}
-        aria-label="Personalizare temă"
-        title="Personalizare"
+        aria-label={t.toggleAria}
+        title={t.title}
       >
         ⚙
       </button>
 
       {open && (
-        <aside className="theme-panel" role="dialog" aria-label="Personalizare temă">
+        <aside className="theme-panel" role="dialog" aria-label={t.toggleAria}>
           <div className="theme-panel-header">
-            <span className="theme-panel-title">Personalizare</span>
-            <button onClick={() => setOpen(false)} aria-label="Închide">×</button>
+            <span className="theme-panel-title">{t.title}</span>
+            <button onClick={() => setOpen(false)} aria-label={t.closeAria}>×</button>
           </div>
 
           <section className="theme-section">
-            <div className="theme-section-label">Paletă</div>
+            <div className="theme-section-label">{t.palette}</div>
             <div className="palette-swatches">
               {PALETTE_OPTIONS.filter(p => p.value === 'lime' || p.value === 'orange').map(p => (
                 <button
@@ -113,32 +143,32 @@ export default function ThemePanel() {
           </section>
 
           <section className="theme-section">
-            <div className="theme-section-label">Mod</div>
+            <div className="theme-section-label">{t.mode}</div>
             <div className="theme-radio-group">
               <button
                 className="theme-radio"
                 aria-pressed={theme.mode === 'dark'}
                 onClick={() => setTheme({ mode: 'dark' })}
               >
-                🌙 Întunecat
+                {t.dark}
               </button>
               <button
                 className="theme-radio"
                 aria-pressed={theme.mode === 'light'}
                 onClick={() => setTheme({ mode: 'light' })}
               >
-                ☀️ Luminos
+                {t.light}
               </button>
             </div>
           </section>
 
           <section className="theme-section">
-            <div className="theme-section-label">Accesibilitate</div>
+            <div className="theme-section-label">{t.a11y}</div>
             <div className="a11y-list">
               <label className="a11y-row">
                 <span className="a11y-info">
-                  <span className="a11y-name">Fără animații</span>
-                  <span className="a11y-desc">Dezactivează tranziții și efecte</span>
+                  <span className="a11y-name">{t.reduceMotionName}</span>
+                  <span className="a11y-desc">{t.reduceMotionDesc}</span>
                 </span>
                 <button
                   className={`a11y-toggle${a11y.reduceMotion ? ' is-on' : ''}`}
@@ -151,8 +181,8 @@ export default function ThemePanel() {
               </label>
               <label className="a11y-row">
                 <span className="a11y-info">
-                  <span className="a11y-name">Text mai mare</span>
-                  <span className="a11y-desc">Mărește dimensiunea fontului</span>
+                  <span className="a11y-name">{t.largeTextName}</span>
+                  <span className="a11y-desc">{t.largeTextDesc}</span>
                 </span>
                 <button
                   className={`a11y-toggle${a11y.largeText ? ' is-on' : ''}`}
@@ -165,8 +195,8 @@ export default function ThemePanel() {
               </label>
               <label className="a11y-row" style={{ borderBottom: 0 }}>
                 <span className="a11y-info">
-                  <span className="a11y-name">Contrast ridicat</span>
-                  <span className="a11y-desc">Intensifică culorile și marginile</span>
+                  <span className="a11y-name">{t.highContrastName}</span>
+                  <span className="a11y-desc">{t.highContrastDesc}</span>
                 </span>
                 <button
                   className={`a11y-toggle${a11y.highContrast ? ' is-on' : ''}`}

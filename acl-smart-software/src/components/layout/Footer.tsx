@@ -1,5 +1,6 @@
 'use client';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
+import { useLocale } from 'next-intl';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 function MatrixRain({ onClose }: { onClose: () => void }) {
@@ -70,7 +71,70 @@ function LegalLink({ href, children }: { href: string; children: React.ReactNode
   );
 }
 
+const COPY = {
+  ro: {
+    brandAria: 'ACL Smart Software — acasă',
+    tagline: 'Companie software independentă. Construim produse care cresc business-uri — nu doar livrabile pe deadline.',
+    servicesHead: 'Servicii',
+    services: [
+      { href: '/servicii/software-custom', label: 'Software custom' },
+      { href: '/servicii/aplicatii-web', label: 'Aplicații web' },
+      { href: '/servicii/aplicatii-mobile', label: 'Aplicații mobile' },
+      { href: '/servicii/ai-ml', label: 'AI / Machine Learning' },
+      { href: '/servicii/cloud-devops', label: 'Cloud & DevOps' },
+    ],
+    allServices: 'Toate serviciile →',
+    companyHead: 'Companie',
+    company: [
+      { href: '/servicii', label: 'Servicii' },
+      { href: '/portofoliu', label: 'Portofoliu' },
+      { href: '/insights', label: 'Perspective' },
+    ],
+    contactHead: 'Contact',
+    email: 'Email',
+    phone: 'Telefon',
+    address: 'Adresa',
+    addressValue: 'Petroșani, Hunedoara',
+    company_id: 'Date firmă',
+    rights: 'TOATE DREPTURILE REZERVATE',
+    privacy: 'Politică de confidențialitate',
+    terms: 'Termeni și condiții',
+    cookies: 'Cookies',
+  },
+  en: {
+    brandAria: 'ACL Smart Software — home',
+    tagline: 'Independent software company. We build products that grow businesses — not just deliverables on a deadline.',
+    servicesHead: 'Services',
+    services: [
+      { href: '/servicii/software-custom', label: 'Custom software' },
+      { href: '/servicii/aplicatii-web', label: 'Web apps' },
+      { href: '/servicii/aplicatii-mobile', label: 'Mobile apps' },
+      { href: '/servicii/ai-ml', label: 'AI / Machine Learning' },
+      { href: '/servicii/cloud-devops', label: 'Cloud & DevOps' },
+    ],
+    allServices: 'All services →',
+    companyHead: 'Company',
+    company: [
+      { href: '/servicii', label: 'Services' },
+      { href: '/portofoliu', label: 'Portfolio' },
+      { href: '/insights', label: 'Insights' },
+    ],
+    contactHead: 'Contact',
+    email: 'Email',
+    phone: 'Phone',
+    address: 'Address',
+    addressValue: 'Petroșani, Romania',
+    company_id: 'Company ID',
+    rights: 'ALL RIGHTS RESERVED',
+    privacy: 'Privacy Policy',
+    terms: 'Terms & Conditions',
+    cookies: 'Cookies',
+  },
+};
+
 export default function Footer() {
+  const locale = useLocale() as 'ro' | 'en';
+  const t = COPY[locale] ?? COPY.ro;
   const [, setClicks] = useState(0);
   const [showMatrix, setShowMatrix] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -94,52 +158,49 @@ export default function Footer() {
         <div className="wrap">
           <div className="footer-grid">
             <div className="footer-brand">
-              <Link href="/" className="brand" aria-label="ACL Smart Software — acasă">
+              <Link href="/" className="brand" aria-label={t.brandAria}>
                 <div className="brand-mark" style={{ width: 36, height: 36, fontSize: 13, fontFamily: 'var(--font-mono)', letterSpacing: '-0.05em' }} aria-hidden="true">&gt;_</div>
                 <div className="brand-name"><span className="brand-acl">ACL</span> <span className="sub">Smart Software</span></div>
               </Link>
-              <p>Companie software independentă. Construim produse care cresc business-uri — nu doar livrabile pe deadline.</p>
+              <p>{t.tagline}</p>
             </div>
 
             <div className="footer-col">
-              <h5>Servicii</h5>
+              <h5>{t.servicesHead}</h5>
               <ul>
-                <li><Link href="/servicii/software-custom">Software custom</Link></li>
-                <li><Link href="/servicii/aplicatii-web">Aplicații web</Link></li>
-                <li><Link href="/servicii/aplicatii-mobile">Aplicații mobile</Link></li>
-                <li><Link href="/servicii/ai-ml">AI / Machine Learning</Link></li>
-                <li><Link href="/servicii/cloud-devops">Cloud & DevOps</Link></li>
-                <li><Link href="/servicii">Toate serviciile →</Link></li>
+                {t.services.map((s) => (
+                  <li key={s.href}><Link href={s.href}>{s.label}</Link></li>
+                ))}
+                <li><Link href="/servicii">{t.allServices}</Link></li>
               </ul>
             </div>
 
             <div className="footer-col">
-              <h5>Companie</h5>
+              <h5>{t.companyHead}</h5>
               <ul>
-                <li><Link href="/servicii">Servicii</Link></li>
-                <li><Link href="/portofoliu">Portofoliu</Link></li>
-                <li><Link href="/insights">Perspective</Link></li>
-                <li><Link href="/cariere">Cariere</Link></li>
+                {t.company.map((c) => (
+                  <li key={c.href}><Link href={c.href}>{c.label}</Link></li>
+                ))}
               </ul>
             </div>
 
             <div className="footer-col">
-              <h5>Contact</h5>
+              <h5>{t.contactHead}</h5>
               <ul>
-                <li>Email: <a href="mailto:office@acl-smartsoftware.ro">office@acl-smartsoftware.ro</a></li>
-                <li>Telefon: <a href="tel:+40758154490">0758 154 490</a></li>
-                <li>Adresa: Str. Horea 2/31, Petroșani</li>
-                <li>Date firmă: CUI 51219715</li>
+                <li>{t.email}: <a href="mailto:office@acl-smartsoftware.ro">office@acl-smartsoftware.ro</a></li>
+                <li>{t.phone}: <a href="tel:+40758154490">0758 154 490</a></li>
+                <li>{t.address}: {t.addressValue}</li>
+                <li>{t.company_id}: CUI 51219715</li>
               </ul>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <span>© 2026 <span className="brand-acl" style={{ cursor: 'pointer', userSelect: 'none' }} onClick={handleAclClick}>ACL</span> SMART SOFTWARE SRL · TOATE DREPTURILE REZERVATE</span>
+            <span>© 2026 <span className="brand-acl" style={{ cursor: 'pointer', userSelect: 'none' }} onClick={handleAclClick}>ACL</span> SMART SOFTWARE SRL · {t.rights}</span>
             <div className="legal">
-              <LegalLink href="/politica-confidentialitate">Politică de confidențialitate</LegalLink>
-              <LegalLink href="/termeni">Termeni și condiții</LegalLink>
-              <LegalLink href="/cookies">Cookies</LegalLink>
+              <LegalLink href="/politica-confidentialitate">{t.privacy}</LegalLink>
+              <LegalLink href="/termeni">{t.terms}</LegalLink>
+              <LegalLink href="/cookies">{t.cookies}</LegalLink>
               <a href="https://anpc.ro" target="_blank" rel="noopener noreferrer">ANPC</a>
             </div>
           </div>
