@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, usePathname } from '@/i18n/navigation';
+import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 import { useState, useEffect } from 'react';
 
@@ -9,11 +9,15 @@ import { useState, useEffect } from 'react';
 // altfel sub locale `en` ar duce la `/en/insights`, care dă notFound().
 const NAV_ITEMS: Record<'ro' | 'en', { id: string; label: string; href: string; raw?: boolean }[]> = {
   ro: [
+    { id: 'acasa', label: 'Acasă', href: '/' },
+    { id: 'despre', label: 'Despre noi', href: '/despre-noi' },
     { id: 'servicii', label: 'Servicii', href: '/servicii' },
     { id: 'portofoliu', label: 'Portofoliu', href: '/portofoliu' },
     { id: 'insights', label: 'Perspective', href: '/insights' },
   ],
   en: [
+    { id: 'acasa', label: 'Home', href: '/' },
+    { id: 'despre', label: 'About us', href: '/despre-noi' },
     { id: 'servicii', label: 'Services', href: '/servicii' },
     { id: 'portofoliu', label: 'Portfolio', href: '/portofoliu' },
     { id: 'insights', label: 'Insights', href: '/insights', raw: true },
@@ -27,6 +31,7 @@ const COPY = {
 
 export default function Nav() {
   const pathname = usePathname();
+  const router = useRouter();
   const locale = useLocale() as 'ro' | 'en';
   const items = NAV_ITEMS[locale] ?? NAV_ITEMS.ro;
   const t = COPY[locale] ?? COPY.ro;
@@ -44,6 +49,12 @@ export default function Nav() {
     if (href === '/') return pathname === '/';
     return pathname.startsWith(href);
   };
+
+  // `router.replace(..., { locale })` actualizează cookie-ul de locale pe client și navighează
+  // direct spre ruta țintă — spre deosebire de `<Link locale=...>`, care la RO (implicită,
+  // neprefixată) trece printr-un hop `/ro/...` → redirect 307 spre `/...`, o navigare hard
+  // care resetează scroll-ul și dă flash vizibil.
+  const switchLocale = () => router.replace(pathname, { locale: otherLocale, scroll: false });
 
   return (
     <>
@@ -75,9 +86,9 @@ export default function Nav() {
             <Link href="/#contact" className="nav-cta">
               {t.cta}
             </Link>
-            <Link href={pathname} locale={otherLocale} className="nav-lang" aria-label={otherLocale === 'en' ? 'Switch to English' : 'Comută pe română'}>
+            <button type="button" onClick={switchLocale} className="nav-lang" aria-label={otherLocale === 'en' ? 'Switch to English' : 'Comută pe română'}>
               {otherLocale.toUpperCase()}
-            </Link>
+            </button>
           </div>
 
           <button
@@ -122,9 +133,9 @@ export default function Nav() {
           <Link href="/#contact" className="btn btn-primary btn-cta" onClick={() => setMenuOpen(false)}>
             {t.cta}
           </Link>
-          <Link href={pathname} locale={otherLocale} onClick={() => setMenuOpen(false)}>
+          <button type="button" className="lang-switch" onClick={() => { setMenuOpen(false); switchLocale(); }}>
             {otherLocale === 'en' ? 'English' : 'Română'}
-          </Link>
+          </button>
         </div>
       </div>
     </>

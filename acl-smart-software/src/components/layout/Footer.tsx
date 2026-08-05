@@ -86,6 +86,8 @@ const COPY = {
     allServices: 'Toate serviciile →',
     companyHead: 'Companie',
     company: [
+      { href: '/', label: 'Acasă' },
+      { href: '/despre-noi', label: 'Despre noi' },
       { href: '/servicii', label: 'Servicii' },
       { href: '/portofoliu', label: 'Portofoliu' },
       { href: '/insights', label: 'Perspective', raw: false },
@@ -117,6 +119,8 @@ const COPY = {
     // neprefixat, nu ca `Link` din i18n/navigation (care ar duce la `/en/insights`, 404).
     companyHead: 'Company',
     company: [
+      { href: '/', label: 'Home' },
+      { href: '/despre-noi', label: 'About us' },
       { href: '/servicii', label: 'Services' },
       { href: '/portofoliu', label: 'Portfolio' },
       { href: '/insights', label: 'Insights', raw: true },

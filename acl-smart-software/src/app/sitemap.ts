@@ -25,6 +25,7 @@ function bilingualEntry(
 export default function sitemap(): MetadataRoute.Sitemap {
   const bilingualRoutes: MetadataRoute.Sitemap = [
     ...bilingualEntry('', { changeFrequency: 'weekly', priority: 1.0 }),
+    ...bilingualEntry('/despre-noi', { changeFrequency: 'monthly', priority: 0.7 }),
     ...bilingualEntry('/servicii', { changeFrequency: 'monthly', priority: 0.9 }),
     ...bilingualEntry('/portofoliu', { changeFrequency: 'monthly', priority: 0.8 }),
     ...SERVICES.flatMap((s) => bilingualEntry(`/servicii/${s.slug}`, { changeFrequency: 'monthly', priority: 0.85 })),

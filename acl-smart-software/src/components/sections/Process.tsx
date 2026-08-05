@@ -11,8 +11,8 @@ const STEPS_EN = [
 ];
 
 const COPY = {
-  ro: { idx: '03 / PROCES', eyebrow: 'Cum lucrăm', h2: <>Consultanță, arhitectură, dezvoltare, testare, lansare, mentenanță. <em>Zero magie</em>.</>, steps: STEPS },
-  en: { idx: '03 / PROCESS', eyebrow: 'How we work', h2: <>Consulting, architecture, development, testing, launch, maintenance. <em>Zero magic</em>.</>, steps: STEPS_EN },
+  ro: { idx: '03 / PROCES', eyebrow: 'Cum lucrăm', h2: <>Acoperim tot fluxul <em>SDLC</em>.</>, steps: STEPS },
+  en: { idx: '03 / PROCESS', eyebrow: 'How we work', h2: <>We cover the entire <em>SDLC</em>.</>, steps: STEPS_EN },
 };
 
 export default async function Process() {

@@ -16,7 +16,7 @@ const COPY = {
     ],
   },
   en: {
-    h1: ['We don’t just write ', 'code', '.', 'We build products that', 'grow ', 'businesses', '.'],
+    h1: ['We don’t just write ', 'code', '.', 'We build products', 'that grow ', 'businesses', '.'],
     sub: 'IT consulting, custom software, web and mobile apps — from idea to production.',
     ctaPrimary: 'Start a project',
     ctaGhost: 'See what we’ve built',
