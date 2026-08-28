@@ -9,6 +9,7 @@ import Footer from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import ClientOnly from '@/components/layout/ClientOnly';
 import ScrollReset from '@/components/ui/ScrollReset';
+import RouteTransition from '@/components/ui/RouteTransition';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { routing, type AppLocale } from '@/i18n/routing';
@@ -133,7 +134,7 @@ export default async function RootLayout({ children, params }: { children: React
             <a href="#main-content" className="skip-link">{locale === 'en' ? 'Skip to content' : 'Sari la conținut'}</a>
             <Nav />
             <main id="main-content">
-              {children}
+              <RouteTransition>{children}</RouteTransition>
             </main>
             <Footer />
             <ClientOnly />

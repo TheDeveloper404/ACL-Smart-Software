@@ -5,14 +5,12 @@ import { REVIEWS, initialsOf } from '@/data/reviews';
 
 const COPY = {
   ro: {
-    idx: '01 / DOVADĂ',
     eyebrow: 'Ce am livrat',
     h2: <>Produse <em>live</em>, în producție.</>,
     liveLabel: 'Vezi live →',
     allWork: 'Tot portofoliul',
   },
   en: {
-    idx: '01 / PROOF',
     eyebrow: 'What we shipped',
     h2: <>Products <em>live</em> in production.</>,
     liveLabel: 'View live →',
@@ -39,7 +37,6 @@ export default async function Proof() {
       <div className="wrap">
         <div className="section-head">
           <div className="label-col">
-            <div className="idx">{t.idx}</div>
             <div className="eyebrow">{t.eyebrow}</div>
           </div>
           <h2>{t.h2}</h2>

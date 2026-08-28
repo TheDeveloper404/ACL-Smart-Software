@@ -100,6 +100,19 @@ img { display: block; max-width: 100%; }
 
 ::selection { background: var(--accent); color: var(--accent-ink); }
 
+/* Fade discret la navigarea între pagini (vezi components/ui/RouteTransition.tsx).
+   Doar opacity — fără transform, ca să nu creeze containing-block pentru elemente fixed.
+   Animația se aplică doar când clasa `-run` e adăugată de JS la schimbarea de rută, nu la
+   primul render (ca să nu întârzie primul paint). */
+.route-transition-run { animation: route-fade 180ms ease-out; }
+@keyframes route-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-transition-run { animation: none; }
+}
+
 .wrap { max-width: var(--maxw); margin: 0 auto; padding-left: var(--pad-x); padding-right: var(--pad-x); }
 
 .eyebrow {
