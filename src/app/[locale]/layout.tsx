@@ -123,7 +123,7 @@ export default async function RootLayout({ children, params }: { children: React
           ~25ms la fiecare switch RO↔EN. */}
       <body suppressHydrationWarning data-palette="lime" data-mode="light" data-font="grotesk" data-density="comfortable">
         {/* Blocking script — runs before first paint, eliminates theme flash + fixes scroll restoration */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{history.scrollRestoration='manual';if(!window.location.hash)window.scrollTo(0,0);}catch(e){}try{var s=localStorage.getItem('acl-tweaks-v2');if(!s)return;var t=JSON.parse(s);var b=document.body;if(t.palette)b.dataset.palette=t.palette;if(t.mode)b.dataset.mode=t.mode;if(t.fontPair)b.dataset.font=t.fontPair;if(t.density)b.dataset.density=t.density;}catch(e){}})();` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{history.scrollRestoration='manual';if(!window.location.hash)window.scrollTo({top:0,left:0,behavior:'instant'});}catch(e){}try{var s=localStorage.getItem('acl-tweaks-v2');if(!s)return;var t=JSON.parse(s);var b=document.body;if(t.palette)b.dataset.palette=t.palette;if(t.mode)b.dataset.mode=t.mode;if(t.fontPair)b.dataset.font=t.fontPair;if(t.density)b.dataset.density=t.density;}catch(e){}})();` }} />
         {/* Fără `messages`: nu folosim cataloage de mesaje (useTranslations) — textul e pe
             componente ca `COPY.ro`/`COPY.en`. `messages={null}` oprește auto-inheritance-ul
             din next-intl 4, care altfel aruncă "No messages found" neavând un i18n/request.ts
