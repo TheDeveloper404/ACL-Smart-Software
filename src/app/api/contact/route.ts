@@ -28,19 +28,31 @@ function getIp(req: Request): string {
   return 'unknown';
 }
 
-function emailTemplate({
-  name,
-  email,
-  company,
-  budget,
-  message,
-}: {
+/** Escapare pentru context HTML text ȘI atribut (dublă/simplă ghilimea incluse). */
+function esc(s: string): string {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function emailTemplate(raw: {
   name: string;
   email: string;
   company?: string;
   budget?: string;
   message: string;
 }) {
+  // Tot ce vine de la client e escape-uit înainte de interpolare. `email` intră și în
+  // atribut `href="mailto:..."` → suplimentar encodeURIComponent.
+  const name = esc(raw.name);
+  const email = esc(raw.email);
+  const emailHref = encodeURIComponent(raw.email);
+  const company = raw.company ? esc(raw.company) : '';
+  const budget = raw.budget ? esc(raw.budget) : '';
+  const message = esc(raw.message);
   return `<!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -80,7 +92,7 @@ function emailTemplate({
                 <tr>
                   <td style="padding:8px 0;width:110px;font-size:12px;font-family:'Courier New',monospace;text-transform:uppercase;letter-spacing:0.06em;color:#999;vertical-align:top;">Email</td>
                   <td style="padding:8px 0;font-size:15px;color:#0d0d0d;">
-                    <a href="mailto:${email}" style="color:#0d0d0d;text-decoration:none;font-weight:600;">${email}</a>
+                    <a href="mailto:${emailHref}" style="color:#0d0d0d;text-decoration:none;font-weight:600;">${email}</a>
                   </td>
                 </tr>
                 ${company ? `
@@ -115,7 +127,7 @@ function emailTemplate({
           <!-- CTA -->
           <tr>
             <td style="padding:0 40px 36px;">
-              <a href="mailto:${email}?subject=Re: Proiect ACL Smart Software"
+              <a href="mailto:${emailHref}?subject=Re:%20Proiect%20ACL%20Smart%20Software"
                  style="display:inline-block;background:#0d0d0d;color:#aaff44;font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;text-decoration:none;letter-spacing:-0.01em;">
                 Răspunde → ${email}
               </a>
@@ -156,7 +168,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true });
     }
 
-    if (!name || !email || !message) {
+    if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string' || !name || !email || !message) {
       return NextResponse.json({ error: 'Câmpuri obligatorii lipsă.' }, { status: 400 });
     }
 
@@ -165,11 +177,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Date invalide.' }, { status: 400 });
     }
 
+    // Email strict — folosit în replyTo, în subject și în atribute `mailto:` din email-ul HTML.
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: 'Email invalid.' }, { status: 400 });
+    }
+
+    // Câmpurile care ajung în header-ul `subject` — fără newline (anti header-injection).
+    const oneLine = (v: unknown) => (typeof v === 'string' ? v.replace(/[\r\n]+/g, ' ').trim() : '');
+    const subjName = oneLine(name);
+    const subjCompany = oneLine(company);
+    const subjBudget = oneLine(budget);
+
     const { data, error } = await resend.emails.send({
       from: 'ACL Smart Software <office@acl-smartsoftware.ro>',
       to: 'office@acl-smartsoftware.ro',
       replyTo: email,
-      subject: `[Contact] ${name}${company ? ` — ${company}` : ''}${budget ? ` · ${budget}` : ''}`,
+      subject: `[Contact] ${subjName}${subjCompany ? ` — ${subjCompany}` : ''}${subjBudget ? ` · ${subjBudget}` : ''}`,
       html: emailTemplate({ name, email, company, budget, message }),
     });
 

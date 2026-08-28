@@ -40,10 +40,13 @@ Thumbs.db
 CLAUDE.md
 AGENTS.md
 /Claude_Development_Rules
-.claude/.hook-state/
+/.claude
 
 # Understand-Anything (local knowledge-graph tooling output)
 .ua/
+
+# Remember plugin — local session history
+.remember/
 
 # debug
 npm-debug.log*

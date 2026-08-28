@@ -4,14 +4,14 @@ import { getServices } from '@/data';
 
 const COPY = {
   ro: {
-    idx: '02 / SERVICII',
+    idx: '03 / SERVICII',
     eyebrow: 'Ce facem',
     h2: <>Patru arii. <em>Pachete cu preț fix</em>.</>,
     all: 'Toate pachetele, cu prețuri',
     from: 'de la',
   },
   en: {
-    idx: '02 / SERVICES',
+    idx: '03 / SERVICES',
     eyebrow: 'What we do',
     h2: <>Four areas. <em>Fixed-price packages</em>.</>,
     all: 'All packages, with pricing',

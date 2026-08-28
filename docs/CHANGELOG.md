@@ -1,5 +1,29 @@
 # Changelog
 
+## 2026-08-28 — Structură repo + UX navigare + secțiune „Ce am livrat"
+
+**Aplatizare repo**
+- Mutat tot din `acl-smart-software/` în rădăcina repo-ului (`git mv`, 84 fișiere ca renames,
+  istoric păstrat). Cauza nesting-ului: `create-next-app` rulat într-un subfolder al unui repo
+  deja inițializat. `.gitignore` fuzionat (varianta app + `/.claude`, `.remember/`).
+- **Necesită manual în Vercel:** Project Settings → Root Directory `acl-smart-software` → gol/`.`
+  (altfel următorul deploy pică). Folderul gol `acl-smart-software/` a rămas pe disc (handle de
+  proces pe Windows) — de șters manual, e git-invizibil.
+- `eslint.config.mjs`: ignore pt `.remember/`, `.claude/`, `.ua/` (acum că lint rulează din rădăcină).
+
+**UX navigare**
+- Fade discret (~180ms opacity) la schimbarea de pagină — `RouteTransition.tsx`, fără remount
+  (nu clipește `RevealOnScroll`), respectă `prefers-reduced-motion`.
+- `ScrollReset.tsx` rescris: link înainte → scroll la top; **back/forward → revenire la poziția
+  de unde ai plecat** (salvare continuă în `sessionStorage` pe cheie de path, detecție `popstate`).
+
+**Homepage**
+- Secțiunea Proof: fără număr de secțiune (doar eyebrow „Ce am livrat"); restul secțiunilor
+  revenite la numerotarea originală (DESPRE 01, SERVICII 02, PROCES 03).
+- Restilizată discret și uniform: scos h2-ul „Produse live, în producție", scos gridul de
+  case-uri bordate. Acum: un rând de linkuri live + două testimoniale scurte, un singur stil
+  de card, totul egal.
+
 ## 2026-08-28 — Redefinire ofertă: 8 servicii → 4 arii cu pachete productizate
 
 **Poziționare & vânzare**

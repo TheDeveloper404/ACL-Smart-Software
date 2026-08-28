@@ -2,7 +2,7 @@ import { getLocale } from 'next-intl/server';
 
 const COPY = {
   ro: {
-    idx: '01 / DESPRE',
+    idx: '02 / DESPRE',
     eyebrow: 'Cine suntem',
     h2a: 'O companie mică.',
     h2bPre: 'Cu ',
@@ -21,7 +21,7 @@ const COPY = {
     industries: ['Corporate / Enterprise', 'Startup-uri', 'Logistică', 'E-commerce & Retail', 'Educație', 'Imobiliare'],
   },
   en: {
-    idx: '01 / ABOUT',
+    idx: '02 / ABOUT',
     eyebrow: 'Who we are',
     h2a: 'A small company.',
     h2bPre: 'With ',
