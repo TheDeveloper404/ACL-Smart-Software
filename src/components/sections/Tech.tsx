@@ -2,8 +2,8 @@ import { getLocale } from 'next-intl/server';
 import { TECH_ITEMS } from '@/data';
 
 const COPY = {
-  ro: { idx: '05 / TEHNOLOGII', eyebrow: 'Stack-ul nostru', h2: <>Folosim ce <em>are sens</em>, nu ce e la modă.</> },
-  en: { idx: '05 / TECHNOLOGIES', eyebrow: 'Our stack', h2: <>We use what <em>makes sense</em>, not what’s trendy.</> },
+  ro: { idx: '04 / TEHNOLOGII', eyebrow: 'Stack-ul nostru', h2: <>Folosim ce <em>are sens</em>, nu ce e la modă.</> },
+  en: { idx: '04 / TECHNOLOGIES', eyebrow: 'Our stack', h2: <>We use what <em>makes sense</em>, not what’s trendy.</> },
 };
 
 export default async function Tech() {

@@ -1,6 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
 import Hero from '@/components/sections/Hero';
-import Proof from '@/components/sections/Proof';
 import ServicesPreview from '@/components/sections/ServicesPreview';
 import About from '@/components/sections/About';
 import Process from '@/components/sections/Process';
@@ -77,9 +76,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <JsonLd data={buildJsonLd(locale)} />
       <ScrollToHash />
       <Hero />
-      <RevealOnScroll>
-        <Proof />
-      </RevealOnScroll>
       <RevealOnScroll>
         <About />
       </RevealOnScroll>

@@ -18,11 +18,12 @@
   de unde ai plecat** (salvare continuă în `sessionStorage` pe cheie de path, detecție `popstate`).
 
 **Homepage**
-- Secțiunea Proof: fără număr de secțiune (doar eyebrow „Ce am livrat"); restul secțiunilor
-  revenite la numerotarea originală (DESPRE 01, SERVICII 02, PROCES 03).
-- Restilizată discret și uniform: scos h2-ul „Produse live, în producție", scos gridul de
-  case-uri bordate. Acum: un rând de linkuri live + două testimoniale scurte, un singur stil
-  de card, totul egal.
+- Secțiunea „Ce am livrat" / Proof **ștearsă complet** (component + CSS + wiring). Testimonialele
+  rămân pe `/despre-noi`, portofoliul pe `/portofoliu`. `data/reviews.ts` păstrat (folosit de
+  Despre noi).
+- Secțiuni renumerotate consecutiv: `01 DESPRE · 02 SERVICII · 03 PROCES · 04 TEHNOLOGII · 05 CONTACT`.
+- Contact form (`api/contact/route.ts`): HTML-escape pe toate câmpurile din email + validare
+  strictă email + strip newline pe câmpurile din subject (anti header-injection).
 
 ## 2026-08-28 — Redefinire ofertă: 8 servicii → 4 arii cu pachete productizate
 

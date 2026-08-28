@@ -16,7 +16,7 @@ const EMPTY: FormData = { name: '', email: '', company: '', message: '', budget:
 
 const COPY = {
   ro: {
-    idx: '06 / CONTACT', eyebrow: 'Spune-ne despre proiect', h2: <>Hai să <em>vorbim</em>.</>,
+    idx: '05 / CONTACT', eyebrow: 'Spune-ne despre proiect', h2: <>Hai să <em>vorbim</em>.</>,
     intro: 'Trimite-ne câteva rânduri. Răspundem în 24 de ore lucrătoare, cu o întâlnire scurtă propusă în calendar.',
     email: 'Email', phone: 'Telefon',
     name: 'Nume', namePh: 'Andrei Popescu', emailPh: 'andrei@firma.ro',
@@ -28,7 +28,7 @@ const COPY = {
     received: (email: string) => <>Am primit mesajul. Revenim în maxim 24 de ore lucrătoare la <strong>{email}</strong>.</>,
   },
   en: {
-    idx: '06 / CONTACT', eyebrow: 'Tell us about your project', h2: <>Let’s <em>talk</em>.</>,
+    idx: '05 / CONTACT', eyebrow: 'Tell us about your project', h2: <>Let’s <em>talk</em>.</>,
     intro: 'Send us a few lines. We reply within 24 business hours, with a short call proposed on the calendar.',
     email: 'Email', phone: 'Phone',
     name: 'Name', namePh: 'John Smith', emailPh: 'john@company.com',
