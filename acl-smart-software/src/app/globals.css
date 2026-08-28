@@ -578,6 +578,22 @@ section { position: relative; }
   color: var(--accent);
   background: var(--accent-soft);
 }
+.service-card .svc-card-price {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.service-card .svc-card-price b {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--accent);
+}
 .service-arrow {
   position: absolute;
   top: 24px; right: 20px;
@@ -1445,6 +1461,109 @@ section { position: relative; }
 }
 
 /* =========================================================
+   Pachete productizate (pagină de arie de servicii) — scope
+   fix, preț „de la", durată, ce include, ce primești la final.
+   ========================================================= */
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+.pkg-card {
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  scroll-margin-top: 100px;
+}
+.pkg-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.pkg-card-head h3 {
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.pkg-price {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.pkg-price .pkg-from {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  font-weight: 400;
+}
+.pkg-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.pkg-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  color: var(--fg-muted);
+}
+.pkg-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  display: block;
+  margin-bottom: 8px;
+}
+.pkg-includes ul {
+  list-style: none;
+  display: grid;
+  gap: 7px;
+}
+.pkg-includes li {
+  font-size: 14px;
+  color: var(--fg-muted);
+  padding-left: 18px;
+  position: relative;
+}
+.pkg-includes li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.pkg-deliverable {
+  font-size: 14px;
+  color: var(--fg);
+  margin-top: auto;
+}
+.pkg-deliverable .pkg-label { display: inline; margin-right: 4px; }
+.pkg-cta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  align-self: flex-start;
+}
+.pkg-cta:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .pkg-grid { grid-template-columns: 1fr; }
+  .pkg-card { padding: 24px; }
+}
+
+/* =========================================================
    Valori (pagina Despre noi) — carduri cu accent vizual,
    nu simplă listă: valorile sunt argumentul principal al paginii.
    ========================================================= */
@@ -1575,6 +1694,71 @@ section { position: relative; }
 .review-name, .review-role { display: block; }
 .review-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
 .review-role { font-size: 12px; color: var(--fg-faint); margin-top: 2px; }
+
+/* Secțiunea „Dovadă" de pe homepage — case-uri live + testimoniale. */
+.proof-cases {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+  margin-bottom: 40px;
+}
+.proof-case {
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.proof-case-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.proof-case-label { color: var(--accent); }
+.proof-case-year { color: var(--fg-faint); }
+.proof-case h3 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.proof-case p {
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+.proof-case-foot {
+  margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.proof-case-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.proof-case-link:hover { text-decoration: underline; }
+.proof-case-more {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.proof-reviews { justify-content: start; }
+@media (max-width: 760px) {
+  .proof-cases { grid-template-columns: 1fr; }
+  .proof-case { padding: 24px; }
+}
 
 /* Tech pills sub titlu serviciu */
 .svc-tech-pills {
@@ -1969,42 +2153,6 @@ section { position: relative; }
   border-color: var(--accent);
 }
 
-/* Insights full list */
-.insights-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 32px;
-}
-.insight-card {
-  border: 1px solid var(--hairline);
-  border-radius: 12px;
-  padding: 24px;
-  display: flex; flex-direction: column; gap: 14px;
-  transition: border-color .2s ease, transform .2s ease;
-  background: var(--bg-card);
-  cursor: pointer;
-}
-.insight-card:hover { border-color: var(--hairline-strong); transform: translateY(-2px); }
-.insight-card .meta { display: flex; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; color: var(--fg-muted); text-transform: uppercase; }
-.insight-card .meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--fg-faint); }
-.insight-card h3 { font-size: 19px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; }
-.insight-card .read-more { margin-top: auto; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--accent); }
-.insight-card--featured {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px;
-  padding: 36px;
-  margin-bottom: 32px;
-  text-decoration: none;
-}
-@media (max-width: 760px) {
-  .insight-card--featured { grid-template-columns: 1fr; }
-  .insight-card--featured > div:last-child { min-height: 180px; }
-}
-@media (max-width: 900px) { .insights-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .insights-grid { grid-template-columns: 1fr; } }
-
 /* Roles big list */
 .roles-list {
   display: grid;
@@ -2138,28 +2286,6 @@ section { position: relative; }
 @media (max-width: 560px) {
   .services-index-card { padding: 28px 20px; min-height: 280px; }
 }
-
-/* Home "preview" cards (linking to subpages) */
-.home-preview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.home-preview-card {
-  border: 1px solid var(--hairline);
-  border-radius: 16px;
-  padding: 32px;
-  background: var(--bg-card);
-  display: flex; flex-direction: column;
-  min-height: 240px;
-  transition: border-color .2s ease, transform .2s ease;
-}
-.home-preview-card:hover { border-color: var(--hairline-strong); transform: translateY(-2px); }
-.home-preview-card .num { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
-.home-preview-card h3 { margin-top: 18px; font-size: clamp(22px, 2vw, 28px); font-weight: 500; letter-spacing: -0.02em; }
-.home-preview-card p { margin-top: 14px; color: var(--fg-muted); font-size: 14px; }
-.home-preview-card .more { margin-top: auto; padding-top: 20px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--accent); }
-@media (max-width: 760px) { .home-preview-grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
    Hero terminal widget

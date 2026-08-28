@@ -12,24 +12,16 @@ import type { Metadata } from 'next';
 
 const TITLE_DISPLAY: Record<string, Record<string, ReactNode>> = {
   ro: {
-    'software-custom':   <>Dezvoltare <em>Software</em> la comandă</>,
-    'aplicatii-web':     <>Aplicații <em>Web</em> și Creare <em>website-uri</em></>,
-    'aplicatii-mobile':  <>Aplicații <em>Mobile</em></>,
-    'ai-ml':             <><em>AI</em> / Machine Learning</>,
-    'cloud-devops':      <>Cloud <em>& DevOps</em></>,
-    'integrari-api':     <>Integrări <em>& API-uri</em></>,
-    'consultanta-it':    <>Consultanță <em>IT</em></>,
-    'mentenanta-suport': <>Mentenanță <em>& Suport</em></>,
+    'produse':        <>Produse <em>& aplicații</em> la comandă</>,
+    'ai':             <><em>AI</em> & automatizare</>,
+    'infrastructura': <>Infrastructură <em>& integrări</em></>,
+    'consultanta':    <>Consultanță <em>& preluare</em></>,
   },
   en: {
-    'software-custom':   <>Custom <em>Software</em> Development</>,
-    'aplicatii-web':     <>Web <em>Apps</em> & Website <em>Development</em></>,
-    'aplicatii-mobile':  <><em>Mobile</em> Apps</>,
-    'ai-ml':             <><em>AI</em> / Machine Learning</>,
-    'cloud-devops':      <>Cloud <em>& DevOps</em></>,
-    'integrari-api':     <>Integrations <em>& APIs</em></>,
-    'consultanta-it':    <>IT <em>Consulting</em></>,
-    'mentenanta-suport': <>Maintenance <em>& Support</em></>,
+    'produse':        <>Custom <em>Products</em> & Applications</>,
+    'ai':             <><em>AI</em> & Automation</>,
+    'infrastructura': <>Infrastructure <em>& Integrations</em></>,
+    'consultanta':    <>Consulting <em>& Takeover</em></>,
   },
 };
 
@@ -38,11 +30,13 @@ const COPY = {
     back: '← Servicii', startingPrice: 'Preț de pornire', timeline: 'Timeline', model: 'Model', term: 'Termen',
     cta: 'Discutăm proiectul →', build: 'Ce', buildEm: 'construim', fit: 'Cui se', fitEm: 'potrivește',
     faq: 'Întrebări', faqEm: 'frecvente', area: 'România',
+    packages: 'Pachete', packagesEm: 'productizate', includes: 'Include', deliverable: 'Primești', from: 'de la',
   },
   en: {
     back: '← Services', startingPrice: 'Starting price', timeline: 'Timeline', model: 'Model', term: 'Term',
     cta: 'Let’s talk about your project →', build: 'What we', buildEm: 'build', fit: 'Who it’s', fitEm: 'for',
     faq: 'Frequently asked', faqEm: 'questions', area: 'Romania',
+    packages: 'Productized', packagesEm: 'packages', includes: 'Includes', deliverable: 'You get', from: 'from',
   },
 };
 
@@ -52,6 +46,12 @@ interface Props {
 
 export async function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
+}
+
+/** Extrage valoarea numerică dintr-un preț afișat ("€4.500", "€600 / lună") pentru structured data. */
+function priceValue(label: string): string {
+  const m = label.match(/[\d.]+/);
+  return m ? m[0].replace(/\./g, '') : '';
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -100,6 +100,19 @@ export default async function ServiceDetailPage({ params }: Props) {
         availableChannel: {
           '@type': 'ServiceChannel',
           serviceUrl: url,
+        },
+        // Pachetele productizate, expuse ca OfferCatalog — pot apărea cu preț în SERP.
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: svc.title,
+          itemListElement: svc.packages.map((pkg) => ({
+            '@type': 'Offer',
+            name: pkg.name,
+            description: pkg.deliverable,
+            priceCurrency: 'EUR',
+            price: priceValue(pkg.from),
+            url: `${url}#${pkg.id}`,
+          })),
         },
       },
       // FAQ-ul e conținut real, deja afișat pe pagină de FaqAccordion — îl expunem
@@ -171,6 +184,39 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="wrap">
           <div className="svc-section-head">
             <div className="idx">01</div>
+            <h2>{copy.packages} <em>{copy.packagesEm}</em></h2>
+          </div>
+          <div className="pkg-grid">
+            {svc.packages.map((pkg) => (
+              <article className="pkg-card" id={pkg.id} key={pkg.id}>
+                <div className="pkg-card-head">
+                  <h3>{pkg.name}</h3>
+                  <div className="pkg-price"><span className="pkg-from">{copy.from}</span> {pkg.from}</div>
+                </div>
+                <div className="pkg-meta">
+                  <span className="pkg-chip">{pkg.duration}</span>
+                  <span className="pkg-chip">{pkg.model}</span>
+                </div>
+                <div className="pkg-includes">
+                  <div className="pkg-label">{copy.includes}</div>
+                  <ul>
+                    {pkg.includes.map((it) => <li key={it}>{it}</li>)}
+                  </ul>
+                </div>
+                <p className="pkg-deliverable">
+                  <span className="pkg-label">{copy.deliverable}</span> {pkg.deliverable}
+                </p>
+                <Link href="/#contact" className="pkg-cta">{copy.cta}</Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="svc-section">
+        <div className="wrap">
+          <div className="svc-section-head">
+            <div className="idx">02</div>
             <h2>{copy.build} <em>{copy.buildEm}</em></h2>
           </div>
           <WhatWeBuild items={svc.whatWeBuild} />
@@ -180,7 +226,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       <section className="svc-section">
         <div className="wrap">
           <div className="svc-section-head">
-            <div className="idx">02</div>
+            <div className="idx">03</div>
             <h2>{copy.fit} <em>{copy.fitEm}</em></h2>
           </div>
           <div className="audience-list">
@@ -198,7 +244,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       <section className="svc-section">
         <div className="wrap">
           <div className="svc-section-head">
-            <div className="idx">03</div>
+            <div className="idx">04</div>
             <h2>{copy.faq} <em>{copy.faqEm}</em></h2>
           </div>
           <FaqAccordion items={svc.faq} />

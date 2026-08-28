@@ -9,21 +9,21 @@ import type { Metadata } from 'next';
 
 const COPY = {
   ro: {
-    title: 'Servicii Software — Dezvoltare Web, Mobile, AI & DevOps',
-    description: 'Software custom, aplicații web și mobile, AI & ML, Cloud & DevOps, integrări API, consultanță IT și mentenanță. Prețuri transparente.',
+    title: 'Servicii Software — Pachete cu Preț Fix: Web, SaaS, AI, DevOps',
+    description: 'Patru arii, pachete productizate cu scope fix, durată și preț „de la": produse & aplicații la comandă, AI & automatizare, infrastructură & integrări, consultanță & preluare.',
     ogTitle: 'Servicii Software — ACL Smart Software',
-    ogDescription: 'Software custom, aplicații web și mobile, AI & ML, Cloud & DevOps. Prețuri transparente.',
-    heroTitle: <>Opt servicii. <em>Un singur scop</em> — produsul tău să meargă.</>,
-    heroSub: 'De la software custom la mentenanță 24/7, acoperim întreg ciclul unui produs digital. Click pe orice serviciu pentru detalii, tehnologii și preț de pornire.',
+    ogDescription: 'Pachete cu scope fix și preț de pornire transparent: produse la comandă, AI & automatizare, infrastructură & integrări, consultanță.',
+    heroTitle: <>Patru arii. <em>Pachete cu preț fix</em>, nu „cere ofertă”.</>,
+    heroSub: 'Fiecare pachet are scope definit, durată și preț de pornire. Alege aria potrivită și vezi ce include fiecare pachet, ce primești la final și în cât timp.',
     from: 'de la',
   },
   en: {
-    title: 'Software Services — Web, Mobile, AI & DevOps Development',
-    description: 'Custom software, web and mobile apps, AI & ML, Cloud & DevOps, API integrations, IT consulting and maintenance. Transparent pricing.',
+    title: 'Software Services — Fixed-Price Packages: Web, SaaS, AI, DevOps',
+    description: 'Four areas, productized packages with fixed scope, timeline, and a "from" price: custom products & apps, AI & automation, infrastructure & integrations, consulting & takeover.',
     ogTitle: 'Software Services — ACL Smart Software',
-    ogDescription: 'Custom software, web and mobile apps, AI & ML, Cloud & DevOps. Transparent pricing.',
-    heroTitle: <>Eight services. <em>One goal</em> — your product works.</>,
-    heroSub: 'From custom software to 24/7 maintenance, we cover the full lifecycle of a digital product. Click any service for details, tech stack, and starting price.',
+    ogDescription: 'Fixed-scope packages with a transparent starting price: custom products, AI & automation, infrastructure & integrations, consulting.',
+    heroTitle: <>Four areas. <em>Fixed-price packages</em>, not “request a quote”.</>,
+    heroSub: 'Every package has a defined scope, a timeline, and a starting price. Pick the right area and see what each package includes, what you get at the end, and how long it takes.',
     from: 'from',
   },
 };

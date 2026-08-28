@@ -33,6 +33,28 @@ const nextConfig: NextConfig = {
         destination: '/#contact',
         permanent: true,
       },
+      // Secțiunea `/insights` ștearsă (RO + EN). Articolele rămân în indexul Google — le
+      // pliem 301 spre homepage ca să nu dea 404.
+      { source: '/insights', destination: '/', permanent: true },
+      { source: '/insights/:slug*', destination: '/', permanent: true },
+      { source: '/en/insights', destination: '/en', permanent: true },
+      { source: '/en/insights/:slug*', destination: '/en', permanent: true },
+      // Restructurare servicii: 8 pagini individuale → 4 arii cu pachete productizate.
+      // Vechile slug-uri rămân în indexul Google; le pliem 301 spre aria corespunzătoare
+      // (RO neprefixat + varianta /en).
+      ...[
+        { from: 'software-custom', to: 'produse' },
+        { from: 'aplicatii-web', to: 'produse' },
+        { from: 'aplicatii-mobile', to: 'produse' },
+        { from: 'ai-ml', to: 'ai' },
+        { from: 'cloud-devops', to: 'infrastructura' },
+        { from: 'integrari-api', to: 'infrastructura' },
+        { from: 'consultanta-it', to: 'consultanta' },
+        { from: 'mentenanta-suport', to: 'consultanta' },
+      ].flatMap(({ from, to }) => [
+        { source: `/servicii/${from}`, destination: `/servicii/${to}`, permanent: true },
+        { source: `/en/servicii/${from}`, destination: `/en/servicii/${to}`, permanent: true },
+      ]),
     ];
   },
 };

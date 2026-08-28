@@ -77,11 +77,10 @@ const COPY = {
     tagline: 'Companie software independentă. Construim produse care cresc business-uri — nu doar livrabile pe deadline.',
     servicesHead: 'Servicii',
     services: [
-      { href: '/servicii/software-custom', label: 'Software custom' },
-      { href: '/servicii/aplicatii-web', label: 'Aplicații web' },
-      { href: '/servicii/aplicatii-mobile', label: 'Aplicații mobile' },
-      { href: '/servicii/ai-ml', label: 'AI / Machine Learning' },
-      { href: '/servicii/cloud-devops', label: 'Cloud & DevOps' },
+      { href: '/servicii/produse', label: 'Produse & aplicații la comandă' },
+      { href: '/servicii/ai', label: 'AI & automatizare' },
+      { href: '/servicii/infrastructura', label: 'Infrastructură & integrări' },
+      { href: '/servicii/consultanta', label: 'Consultanță & preluare' },
     ],
     allServices: 'Toate serviciile →',
     companyHead: 'Companie',
@@ -90,7 +89,6 @@ const COPY = {
       { href: '/despre-noi', label: 'Despre noi' },
       { href: '/servicii', label: 'Servicii' },
       { href: '/portofoliu', label: 'Portofoliu' },
-      { href: '/insights', label: 'Perspective', raw: false },
     ],
     contactHead: 'Contact',
     email: 'Email',
@@ -108,22 +106,18 @@ const COPY = {
     tagline: 'Independent software company. We build products that grow businesses — not just deliverables on a deadline.',
     servicesHead: 'Services',
     services: [
-      { href: '/servicii/software-custom', label: 'Custom software' },
-      { href: '/servicii/aplicatii-web', label: 'Web apps' },
-      { href: '/servicii/aplicatii-mobile', label: 'Mobile apps' },
-      { href: '/servicii/ai-ml', label: 'AI / Machine Learning' },
-      { href: '/servicii/cloud-devops', label: 'Cloud & DevOps' },
+      { href: '/servicii/produse', label: 'Custom Products & Applications' },
+      { href: '/servicii/ai', label: 'AI & Automation' },
+      { href: '/servicii/infrastructura', label: 'Infrastructure & Integrations' },
+      { href: '/servicii/consultanta', label: 'Consulting & Takeover' },
     ],
     allServices: 'All services →',
-    // `insights` rămâne doar în română — link `raw`, randat ca ancoră spre `/insights`
-    // neprefixat, nu ca `Link` din i18n/navigation (care ar duce la `/en/insights`, 404).
     companyHead: 'Company',
     company: [
       { href: '/', label: 'Home' },
       { href: '/despre-noi', label: 'About us' },
       { href: '/servicii', label: 'Services' },
       { href: '/portofoliu', label: 'Portfolio' },
-      { href: '/insights', label: 'Insights', raw: true },
     ],
     contactHead: 'Contact',
     email: 'Email',
@@ -185,7 +179,7 @@ export default function Footer() {
               <h5>{t.companyHead}</h5>
               <ul>
                 {t.company.map((c) => (
-                  <li key={c.href}>{c.raw ? <a href={c.href}>{c.label}</a> : <Link href={c.href}>{c.label}</Link>}</li>
+                  <li key={c.href}><Link href={c.href}>{c.label}</Link></li>
                 ))}
               </ul>
             </div>

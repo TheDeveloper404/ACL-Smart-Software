@@ -1,5 +1,51 @@
 # Changelog
 
+## 2026-08-28 — Redefinire ofertă: 8 servicii → 4 arii cu pachete productizate
+
+**Poziționare & vânzare**
+- Hero rescris pe poziționarea „de la idee la producție în 6–10 săptămâni, cod care rămâne
+  al tău" (RO + EN). CTA principal → „Discută proiectul (30 min)".
+- Statistica „Proiecte livrate": `10+` → `6` (aliniată la portofoliul real).
+- Secțiune nouă `Proof` pe homepage, între Hero și About: 2 case-uri live evidențiate
+  (FlotaPro, DETALIA) + 2 testimoniale reale, cu linkuri live.
+- Recenziile extrase în `src/data/reviews.ts` (refolosite de homepage și pagina Despre noi).
+
+**Servicii: 4 arii, ~17 pachete cu scope fix + preț „de la"**
+- `SERVICES` mutate în `src/data/services.ts` (RO) / `services.en.ts` (EN). Ariile:
+  `produse`, `ai`, `infrastructura`, `consultanta`. Tip nou `ServicePackage` + câmp
+  `packages` pe `Service`.
+- Pagina de arie (`/servicii/[slug]`) are secțiune nouă „Pachete" — tabel cu preț, durată,
+  ce include și livrabil per pachet. Aria `ai` are procesul detaliat (Audit → PoC → producție
+  → AI Ops) și arhitectura de agenți (planificator → executor → verificator, guardrails).
+- `OfferCatalog` + `Offer` (cu `priceCurrency`/`price`) adăugate în JSON-LD-ul fiecărei arii.
+- `/servicii` și `ServicesPreview` (homepage) rescrise pe cele 4 arii; badge-urile inventate
+  („#1 Enterprise", „Trending 2026") eliminate.
+- `CASES[].services` remapate pe noile 4 slug-uri. Footer: linkuri servicii 5 → 4.
+- Redirect-uri 301: cele 8 slug-uri vechi (`software-custom`, `aplicatii-web`, `ai-ml` etc.)
+  → aria corespunzătoare, RO + `/en`.
+
+**Onestitate (afirmații nesusținute înlocuite cu framing pe capabilitate)**
+- Scos „proiecte cu 100k+ utilizatori activi lunar", „mediana clienților: 32% reducere
+  factură", „certificați AWS și Azure", „rotație de 3 oameni minim" din FAQ-urile de servicii.
+- Articolele Insights `finops-aws-40` și `event-driven-2026`: reformulate din „am făcut X la
+  un client" (cu cifre specifice de engagement, ex. „$18.000/lună", „am migrat 3 sisteme în
+  2025") în „cum abordăm / tipare din practică".
+- Despre noi + About: „companii mari / corporații" → „companii, ONG-uri și startup-uri".
+- Stat homepage „8 servicii oferite" → „4 arii de servicii". `foundingDate` din JSON-LD
+  aliniat la 2024 (era 2025; About zice 2024 — **de confirmat de Liviu**).
+
+**Secțiunea `/insights` ștearsă complet** (RO + EN)
+- Șterse: `app/[locale]/insights/` (listă + `[slug]` + `InsightsGrid`), `POSTS` din `data/index.ts`,
+  tipurile `Post`/`PostBlock`, helper-ul `toIsoDate` + `MONTHS_RO` din `lib/seo.ts`, componenta
+  neutilizată `HomePreviews.tsx`, CSS-ul `.insight(s)-*` și `.home-preview-*`.
+- Scoase linkurile din Nav și Footer (RO + EN); scoase din `sitemap.ts`.
+- Redirect-uri 301: `/insights` și `/insights/:slug*` → `/` (RO), `/en/insights*` → `/en`.
+
+**Verificare:** `tsc --noEmit`, `eslint`, `next build` — verzi. Smoke-test pe `next start`:
+toate rutele noi 200, cele 8 redirect-uri vechi→arie rezolvă corect (RO + EN), conținut
+randat verificat prin grep. Fără e2e (alegere de proiect) — interacțiunea reală (accordion
+FAQ, hover carduri) nu a fost testată automat.
+
 ## 2026-08-05 — Site multilingv (RO/EN) + SEO tehnic
 
 **Multilingv**

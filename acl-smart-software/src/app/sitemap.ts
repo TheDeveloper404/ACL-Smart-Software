@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { SERVICES, POSTS } from '@/data';
+import { SERVICES } from '@/data';
 import { BASE } from '@/lib/seo';
 
 const SITE_LAUNCH = new Date('2026-05-01');
@@ -33,16 +33,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Doar RO — fără hreflang, fără variantă /en (vezi lib/seo.ts localeAlternates).
   const roOnlyRoutes: MetadataRoute.Sitemap = [
-    { url: `${BASE}/insights`,                   lastModified: SITE_LAUNCH, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${BASE}/politica-confidentialitate`, lastModified: SITE_LAUNCH, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${BASE}/termeni`,                    lastModified: SITE_LAUNCH, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${BASE}/cookies`,                    lastModified: SITE_LAUNCH, changeFrequency: 'yearly', priority: 0.2 },
-    ...POSTS.map((p) => ({
-      url: `${BASE}/insights/${p.slug}`,
-      lastModified: SITE_LAUNCH,
-      changeFrequency: 'yearly' as const,
-      priority: 0.65,
-    })),
   ];
 
   return [...bilingualRoutes, ...roOnlyRoutes];

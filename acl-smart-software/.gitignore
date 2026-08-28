@@ -42,6 +42,9 @@ AGENTS.md
 /Claude_Development_Rules
 .claude/.hook-state/
 
+# Understand-Anything (local knowledge-graph tooling output)
+.ua/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

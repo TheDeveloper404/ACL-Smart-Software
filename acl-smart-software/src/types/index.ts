@@ -1,3 +1,24 @@
+/**
+ * Un pachet productizat din interiorul unei arii de servicii — scope fix, preț „de la",
+ * durată și livrabil clar. Afișat ca tabel pe pagina de arie; alimentează și nodurile
+ * `Offer` din structured data.
+ */
+export interface ServicePackage {
+  /** Slug local, unic în cadrul ariei — folosit ca ancoră (#) și cheie de listă. */
+  id: string;
+  name: string;
+  /** Preț de pornire formatat, ex. „€4.500" sau „€600 / lună". */
+  from: string;
+  /** Durată formatată, ex. „5–8 săpt" sau „continuu". */
+  duration: string;
+  /** Model comercial, ex. „Scope fix" / „Retainer lunar" / „Preț fix pe livrabil". */
+  model: string;
+  /** 3–5 puncte: ce include pachetul. */
+  includes: string[];
+  /** O propoziție: ce rămâne clientul cu în mână la final. */
+  deliverable: string;
+}
+
 export interface Service {
   slug: string;
   title: string;
@@ -5,6 +26,7 @@ export interface Service {
   tags: string[];
   tagline: string;
   longDesc: string;
+  packages: ServicePackage[];
   whatWeBuild: { title: string; desc: string }[];
   audience: { title: string; desc: string }[];
   technologies: { cat: string; items: string[] }[];
@@ -24,22 +46,6 @@ export interface Case {
   results: { n: string; l: string }[];
   image?: string;
   link?: string;
-}
-
-export interface PostBlock {
-  type: 'p' | 'h2' | 'ul' | 'blockquote';
-  text?: string;
-  items?: string[];
-}
-
-export interface Post {
-  slug: string;
-  date: string;
-  cat: string;
-  title: string;
-  read: string;
-  excerpt: string;
-  body: PostBlock[];
 }
 
 export interface ProcessStep {

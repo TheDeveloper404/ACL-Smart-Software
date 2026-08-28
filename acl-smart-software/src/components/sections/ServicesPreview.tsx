@@ -2,30 +2,26 @@ import { Link } from '@/i18n/navigation';
 import { getLocale } from 'next-intl/server';
 import { getServices } from '@/data';
 
-const BADGES: Record<string, Record<string, string>> = {
-  ro: { 'aplicatii-web': 'Cel mai cerut', 'software-custom': '#1 Enterprise', 'ai-ml': 'Trending 2026' },
-  en: { 'aplicatii-web': 'Most requested', 'software-custom': '#1 Enterprise', 'ai-ml': 'Trending 2026' },
-};
-
 const COPY = {
   ro: {
-    idx: '02 / SERVICII',
+    idx: '03 / SERVICII',
     eyebrow: 'Ce facem',
-    h2: <>Software construit pentru <em>business-ul tău</em>.</>,
-    all: 'Toate serviciile, în detaliu',
+    h2: <>Patru arii. <em>Pachete cu preț fix</em>.</>,
+    all: 'Toate pachetele, cu prețuri',
+    from: 'de la',
   },
   en: {
-    idx: '02 / SERVICES',
+    idx: '03 / SERVICES',
     eyebrow: 'What we do',
-    h2: <>Software built for <em>your business</em>.</>,
-    all: 'All services, in detail',
+    h2: <>Four areas. <em>Fixed-price packages</em>.</>,
+    all: 'All packages, with pricing',
+    from: 'from',
   },
 };
 
 export default async function ServicesPreview() {
   const locale = await getLocale();
   const t = COPY[locale as keyof typeof COPY] ?? COPY.ro;
-  const badges = BADGES[locale] ?? BADGES.ro;
   const services = getServices(locale);
 
   return (
@@ -44,13 +40,14 @@ export default async function ServicesPreview() {
               <span className="service-arrow" aria-hidden="true">↗</span>
               <div className="svc-card-top">
                 <div className="num">/ {String(i + 1).padStart(2, '0')}</div>
-                {badges[s.slug] && <span className="svc-badge">{badges[s.slug]}</span>}
+                <span className="svc-badge">{s.packages.length} {locale === 'en' ? 'packages' : 'pachete'}</span>
               </div>
               <h3>{s.title}</h3>
               <p>{s.short}</p>
               <div className="tags">
                 {s.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
               </div>
+              <div className="svc-card-price">{t.from} <b>{s.pricing.from}</b></div>
             </Link>
           ))}
         </div>

@@ -4,23 +4,20 @@ import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 import { useState, useEffect } from 'react';
 
-// `insights` rămâne doar în română (vezi app/[locale]/insights/page.tsx) — marcat `raw`,
-// randat ca ancoră simplă spre `/insights` neprefixat, nu ca `Link` din i18n/navigation,
-// altfel sub locale `en` ar duce la `/en/insights`, care dă notFound().
+// `raw: true` = ancoră `<a>` simplă în loc de `Link` din i18n/navigation (pentru rute care
+// nu au variantă de locale). Momentan nefolosit, dar păstrat pentru rute RO-only viitoare.
 const NAV_ITEMS: Record<'ro' | 'en', { id: string; label: string; href: string; raw?: boolean }[]> = {
   ro: [
     { id: 'acasa', label: 'Acasă', href: '/' },
     { id: 'despre', label: 'Despre noi', href: '/despre-noi' },
     { id: 'servicii', label: 'Servicii', href: '/servicii' },
     { id: 'portofoliu', label: 'Portofoliu', href: '/portofoliu' },
-    { id: 'insights', label: 'Perspective', href: '/insights' },
   ],
   en: [
     { id: 'acasa', label: 'Home', href: '/' },
     { id: 'despre', label: 'About us', href: '/despre-noi' },
     { id: 'servicii', label: 'Services', href: '/servicii' },
     { id: 'portofoliu', label: 'Portfolio', href: '/portofoliu' },
-    { id: 'insights', label: 'Insights', href: '/insights', raw: true },
   ],
 };
 
