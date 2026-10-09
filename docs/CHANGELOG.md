@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-10-09 — Redesign anulat
+
+- Redesign-ul din 2026-10-04/05 a fost anulat la cererea utilizatorului. Codul, documentele și capturile sunt păstrate în `git stash` („redesign ACL 2026-10-04/05 (anulat 2026-10-09)”).
+- Păstrate: Meridian în portofoliu, Next.js 16.3.8 și `CONTEXT.md`, din care s-au scos notele despre redesign.
+- Rate limit formular de contact: 3 cereri pe oră per IP (era 5 la 10 minute).
+
+## 2026-10-04 — Next.js 16.3.8
+
+- Next.js și eslint-config-next actualizate de la 16.2.10 la 16.3.8, cu aprobarea utilizatorului, pentru remedierea alertelor critice din versiunea anterioară.
+
+## 2026-10-04 — Meridian Transconstruct în portofoliu
+
+- Meridian Transconstruct apare primul, înainte de Detalia, în versiunile RO și EN.
+- Eliminat proiectul E-BIKE din ambele liste; portofoliul rămâne la șase proiecte.
+- Adăugată captura reală a site-ului Meridian și linkul către site-ul public. Descrierea prezintă funcționalitățile vizibile, fără metrici de business presupuse.
+- Teste Playwright pentru ordine, absența E-BIKE, încărcarea imaginii și linkul extern, în RO/EN pe desktop și mobil.
+
 ## 2026-08-28 — Structură repo + UX navigare + secțiune „Ce am livrat"
 
 **Aplatizare repo**

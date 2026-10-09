@@ -3,6 +3,18 @@ import type { Case } from '@/types';
 // Traducere a CASES din `index.ts` — aceleași slug-uri/imagini/link-uri, în aceeași ordine.
 export const CASES_EN: Case[] = [
   {
+    slug: 'meridian-transconstruct',
+    tag: 'Construction & Online Presence',
+    year: '2026',
+    label: 'MERIDIAN TRANSCONSTRUCT',
+    title: 'Business website for a construction company',
+    desc: 'Website for Meridian Transconstruct, a construction company in Petroșani: service presentations, a project portfolio with real photographs, and clear contact paths for quote requests.',
+    services: ['produse'],
+    results: [{ n: 'Services', l: 'Organized by type of work' }, { n: 'Portfolio', l: 'Real project photographs' }, { n: 'Contact', l: 'Quote requests' }],
+    image: '/meridian-preview.png',
+    link: 'https://meridian-transconstruct.ro/',
+  },
+  {
     slug: 'detalia',
     tag: 'Community & Architecture',
     year: '2026',
@@ -61,16 +73,5 @@ export const CASES_EN: Case[] = [
     results: [{ n: 'E-commerce', l: 'Online stores' }, { n: 'XML feeds', l: 'Supplier integrations' }, { n: 'Automation', l: 'Digitized processes' }],
     image: '/itcustom-preview.png',
     link: 'https://itcustom.ro/',
-  },
-  {
-    slug: 'ebike',
-    tag: 'E-commerce',
-    year: '2024',
-    label: 'E-BIKE.RO',
-    title: 'Online store for electric bikes and accessories',
-    desc: 'An e-commerce platform for selling electric bikes and accessories. Modern design, product catalog, shopping cart, and an optimized buying experience.',
-    services: ['produse'],
-    results: [{ n: 'E-commerce', l: 'Online sales' }, { n: 'Mobile-first', l: 'Responsive design' }, { n: 'SEO', l: 'Optimized' }],
-    image: '/bikewebsite-preview.png',
   },
 ];

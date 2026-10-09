@@ -1,6 +1,38 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Pagina Portofoliu', () => {
+  test.use({ locale: 'ro-RO' });
+
+  for (const locale of ['ro', 'en']) {
+    test(`Meridian apare înainte de Detalia, cu imagine și link live (${locale})`, async ({ page }) => {
+      await page.goto(locale === 'en' ? '/en/portofoliu' : '/portofoliu');
+      await expect(page).toHaveURL(locale === 'en' ? '/en/portofoliu' : '/portofoliu');
+      const cards = page.locator('article.case');
+      await expect(cards).toHaveCount(6);
+      await expect(cards.nth(0)).toHaveAttribute('data-slug', 'meridian-transconstruct');
+      await expect(cards.nth(1)).toHaveAttribute('data-slug', 'detalia');
+      await expect(page.locator('article.case[data-slug="ebike"]')).toHaveCount(0);
+
+      const meridian = cards.first();
+      const image = meridian.getByRole('img', {
+        name: locale === 'en'
+          ? 'Business website for a construction company'
+          : 'Website de prezentare pentru o firmă de construcții',
+        exact: true,
+      });
+      await image.scrollIntoViewIfNeeded();
+      await expect(image).toBeVisible();
+      await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+
+      const link = meridian.getByRole('link', {
+        name: locale === 'en' ? 'View live site →' : 'Vezi site-ul live →', exact: true,
+      });
+      await expect(link).toHaveAttribute('href', 'https://meridian-transconstruct.ro/');
+      await expect(link).toHaveAttribute('target', '_blank');
+      await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+  }
+
   test('se randează cu proiecte', async ({ page }) => {
     await page.goto('/portofoliu');
     await expect(page.locator('h1')).toBeVisible();

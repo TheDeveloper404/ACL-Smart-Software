@@ -3,10 +3,10 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Simple in-memory rate limit: max 5 requests per 10 minutes per IP
+// Simple in-memory rate limit: max 3 requests per hour per IP
 const rateMap = new Map<string, { count: number; reset: number }>();
-const LIMIT = 5;
-const WINDOW_MS = 10 * 60 * 1000;
+const LIMIT = 3;
+const WINDOW_MS = 60 * 60 * 1000;
 
 function checkRate(ip: string): boolean {
   const now = Date.now();
