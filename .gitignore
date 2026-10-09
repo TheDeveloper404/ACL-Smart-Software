@@ -63,3 +63,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Semnătură Zoho + template cold email — documente interne, nu urcă pe GitHub
+docs/email/
