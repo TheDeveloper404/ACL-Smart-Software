@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { ContactInputError, readContactJson, validateContactInput } from '@/lib/contact-validation';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -160,27 +161,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Prea multe cereri. Încearcă din nou în câteva minute.' }, { status: 429 });
     }
 
-    const body = await request.json();
-    const { name, email, company, message, budget, _hp } = body;
-
-    // Honeypot — boții completează câmpuri ascunse
-    if (_hp) {
-      return NextResponse.json({ ok: true });
-    }
-
-    if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string' || !name || !email || !message) {
-      return NextResponse.json({ error: 'Câmpuri obligatorii lipsă.' }, { status: 400 });
-    }
-
-    // Sanitize basic limits
-    if (name.length > 100 || email.length > 200 || message.length > 5000) {
-      return NextResponse.json({ error: 'Date invalide.' }, { status: 400 });
-    }
-
-    // Email strict — folosit în replyTo, în subject și în atribute `mailto:` din email-ul HTML.
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json({ error: 'Email invalid.' }, { status: 400 });
-    }
+    const input = validateContactInput(await readContactJson(request));
+    if (!input) return NextResponse.json({ error: 'Date invalide.' }, { status: 400 });
+    if (input.kind === 'honeypot') return NextResponse.json({ ok: true });
+    const { name, email, company, budget, message } = input.value;
 
     // Câmpurile care ajung în header-ul `subject` — fără newline (anti header-injection).
     const oneLine = (v: unknown) => (typeof v === 'string' ? v.replace(/[\r\n]+/g, ' ').trim() : '');
@@ -207,6 +191,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
+    if (err instanceof ContactInputError) {
+      return NextResponse.json({ error: err.status === 413 ? 'Mesaj prea mare.' : 'Date invalide.' }, { status: err.status });
+    }
     console.error('Resend error:', err);
     return NextResponse.json({ error: 'Eroare server.' }, { status: 500 });
   }

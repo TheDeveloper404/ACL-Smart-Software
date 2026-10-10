@@ -4,12 +4,12 @@ import { getLocale } from 'next-intl/server';
 const COPY = {
   ro: {
     eyebrow: 'Hai să vorbim',
-    h2: <>Ai un proiect <em>în minte</em>?<br />Răspundem în 24h.</>,
+    h2: <>Ai un proiect în minte? <em>Răspundem în 24h.</em></>,
     cta: 'Începe un proiect',
   },
   en: {
     eyebrow: 'Let’s talk',
-    h2: <>Got a project <em>in mind</em>?<br />We reply within 24h.</>,
+    h2: <>Got a project in mind? <em>We reply within 24h.</em></>,
     cta: 'Start a project',
   },
 };
@@ -19,12 +19,9 @@ export default async function ContactStrip() {
   const t = COPY[locale as keyof typeof COPY] ?? COPY.ro;
 
   return (
-    <section className="contact-strip" aria-label="Contact CTA">
+    <section className="contact-strip" aria-label={locale === 'en' ? 'Discuss your project' : 'Discută proiectul'}>
       <div className="wrap contact-strip-inner">
-        <div>
-          <div className="eyebrow">{t.eyebrow}</div>
-          <h2>{t.h2}</h2>
-        </div>
+        <h2>{t.h2}</h2>
         <div className="contact-strip-actions">
           <Link href="/#contact" className="btn btn-primary btn-cta">
             {t.cta} <span className="arrow">→</span>

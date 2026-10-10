@@ -17,22 +17,13 @@ test.describe('Theme Panel', () => {
     await expect(page.locator('.theme-panel')).not.toBeVisible();
   });
 
-  test('schimbarea paletei la orange modifică data-palette', async ({ page }) => {
-    await page.locator('.theme-panel-toggle').click();
-    await page.locator('.palette-swatch[title="Orange"]').click();
-    await expect(page.locator('body')).toHaveAttribute('data-palette', 'orange');
-  });
-
-  test('toggle dark mode modifică data-mode', async ({ page }) => {
-    await page.locator('.theme-panel-toggle').click();
-    await page.locator('.theme-radio', { hasText: 'Întunecat' }).click();
+  test('identitatea rămâne dark și lime inclusiv cu preferințe vechi', async ({ page }) => {
+    await page.evaluate(() => localStorage.setItem('acl-tweaks-v2', JSON.stringify({ palette: 'orange', mode: 'light', fontPair: 'serif' })));
+    await page.reload();
     await expect(page.locator('body')).toHaveAttribute('data-mode', 'dark');
-  });
-
-  test('toggle light mode modifică data-mode', async ({ page }) => {
+    await expect(page.locator('body')).toHaveAttribute('data-palette', 'lime');
     await page.locator('.theme-panel-toggle').click();
-    await page.locator('.theme-radio', { hasText: 'Luminos' }).click();
-    await expect(page.locator('body')).toHaveAttribute('data-mode', 'light');
+    await expect(page.locator('.palette-swatch, .theme-radio')).toHaveCount(0);
   });
 
   test('toggle reduce motion funcționează', async ({ page }) => {

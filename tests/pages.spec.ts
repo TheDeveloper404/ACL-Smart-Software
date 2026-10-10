@@ -1,136 +1,78 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Pagina Portofoliu', () => {
-  test.use({ locale: 'ro-RO' });
-
+test.describe('Portofoliu și proiectele din Acasă', () => {
   for (const locale of ['ro', 'en']) {
-    test(`Meridian apare înainte de Detalia, cu imagine și link live (${locale})`, async ({ page }) => {
-      await page.goto(locale === 'en' ? '/en/portofoliu' : '/portofoliu');
-      await expect(page).toHaveURL(locale === 'en' ? '/en/portofoliu' : '/portofoliu');
+    const prefix = locale === 'en' ? '/en' : '';
+    test(`trei proiecte bento duc către detaliile din Portofoliu (${locale})`, async ({ page }) => {
+      await page.goto(prefix || '/');
+      const highlights = page.locator('.featured-project');
+      await expect(highlights).toHaveCount(3);
+      await expect(highlights.first()).toHaveAttribute('href', prefix + '/portofoliu#proiect-detalia');
+      await expect(highlights.nth(1)).toHaveAttribute('href', prefix + '/portofoliu#proiect-seminar');
+      await expect(highlights.nth(2)).toHaveAttribute('href', prefix + '/portofoliu#proiect-meridian-transconstruct');
+      await expect(page.locator('.bento-project-image')).toHaveCount(3);
+      const functions = page.locator('.bento-project-detail');
+      await expect(functions).toHaveCount(3);
+      await expect(functions.first()).toContainText(locale === 'en' ? '3 roles' : '3 roluri');
+      for (let index = 0; index < 3; index++) await expect(functions.nth(index)).toHaveAttribute('href', await highlights.nth(index).getAttribute('href') as string);
+      const explanations = page.locator('.home-bento-fact');
+      await expect(explanations).toHaveCount(3);
+      await expect(explanations.nth(2)).toHaveAttribute('href', prefix + '/portofoliu#proiect-meridian-transconstruct');
+      await expect(explanations.nth(2)).toContainText(locale === 'en' ? 'Real projects. Direct contact.' : 'Lucrări reale. Contact direct.');
+      await expect(page.locator('.device-laptop, .device-tablet, .device-phone')).toHaveCount(0);
+      await highlights.nth(1).click();
+      await expect(page).toHaveURL(prefix + '/portofoliu#proiect-seminar');
+      await expect(page.locator('#proiect-seminar')).toBeInViewport({ ratio: 0.2 });
+      await expect(page.locator('#proiect-seminar .case-result')).toHaveCount(0);
+      await expect(page.locator('#proiect-seminar a[target="_blank"]')).toHaveAttribute('href', 'https://seminarulteologicfiladelfia.ro/');
+    });
+
+    test(`toate proiectele sunt prezentate complet pe pagina proprie (${locale})`, async ({ page }) => {
+      await page.goto(prefix + '/portofoliu');
+      await expect(page).toHaveURL(prefix + '/portofoliu');
       const cards = page.locator('article.case');
       await expect(cards).toHaveCount(6);
-      await expect(cards.nth(0)).toHaveAttribute('data-slug', 'meridian-transconstruct');
-      await expect(cards.nth(1)).toHaveAttribute('data-slug', 'detalia');
-      await expect(page.locator('article.case[data-slug="ebike"]')).toHaveCount(0);
-
-      const meridian = cards.first();
-      const image = meridian.getByRole('img', {
-        name: locale === 'en'
-          ? 'Business website for a construction company'
-          : 'Website de prezentare pentru o firmă de construcții',
-        exact: true,
-      });
-      await image.scrollIntoViewIfNeeded();
-      await expect(image).toBeVisible();
-      await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
-
-      const link = meridian.getByRole('link', {
-        name: locale === 'en' ? 'View live site →' : 'Vezi site-ul live →', exact: true,
-      });
-      await expect(link).toHaveAttribute('href', 'https://meridian-transconstruct.ro/');
-      await expect(link).toHaveAttribute('target', '_blank');
-      await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      for (const [index, slug] of ['meridian-transconstruct', 'detalia', 'seminarul-teologic-filadelfia', 'flotapro', 'filadelfia', 'itcustom'].entries()) {
+        await expect(cards.nth(index)).toHaveAttribute('data-slug', slug);
+        await expect(cards.nth(index).locator('h3')).toBeVisible();
+        await expect(cards.nth(index).locator('p')).toBeVisible();
+        await expect(cards.nth(index).getByRole('link')).toHaveAttribute('target', '_blank');
+        await expect(cards.nth(index).getByRole('link')).toHaveAttribute('rel', 'noopener noreferrer');
+      }
+      await expect(page.locator('.case-done-badge')).toHaveCount(6);
     });
   }
-
-  test('se randează cu proiecte', async ({ page }) => {
-    await page.goto('/portofoliu');
-    await expect(page.locator('h1')).toBeVisible();
-    const cards = page.locator('article.case');
-    await expect(cards.first()).toBeVisible();
-    expect(await cards.count()).toBe(6);
-  });
-
-  test('fiecare card are titlu și rezultate', async ({ page }) => {
-    await page.goto('/portofoliu');
-    const cards = page.locator('article.case');
-    const count = await cards.count();
-    for (let i = 0; i < count; i++) {
-      await expect(cards.nth(i).locator('h3')).toBeVisible();
-      await expect(cards.nth(i).locator('.case-result')).toBeVisible();
-    }
-  });
-
-  test('badge-ul "Realizat" apare pe fiecare card', async ({ page }) => {
-    await page.goto('/portofoliu');
-    const badges = page.locator('.case-done-badge');
-    expect(await badges.count()).toBe(6);
-  });
 });
 
-test.describe('Pagina Echipă', () => {
-  test('se randează cu CEO card', async ({ page }) => {
-    await page.goto('/echipa');
-    await expect(page.locator('h1')).toBeVisible();
-    await expect(page.locator('.ceo-editorial')).toBeVisible();
-    await expect(page.locator('.ceo-heading')).toContainText('ACL');
+test.describe('Despre noi și rute istorice', () => {
+  test('fără poza fondatorului; cele 4 recenzii reale, inclusiv Meridian', async ({ page }) => {
+    await page.goto('/despre-noi');
+    await expect(page.getByRole('img', { name: 'Liviu Băncilă', exact: true })).toHaveCount(0);
+    await expect(page.locator('.review-selector')).toHaveCount(4);
+    const meridian = page.getByRole('tab', { name: /Meridian Transconstruct/ });
+    await meridian.click();
+    await expect(meridian).toHaveAttribute('aria-selected', 'true');
+    await expect(page.locator('.review-spotlight:visible')).toContainText('exact ce aveam nevoie pentru o firmă de construcții');
   });
 
-  test('lista echipei este vizibilă', async ({ page }) => {
-    await page.goto('/echipa');
-    const rows = page.locator('.team-list-row');
-    await expect(rows.first()).toBeVisible();
-    expect(await rows.count()).toBeGreaterThan(0);
+  test('colaborarea este explicată clar, iar recenziile se selectează cu tastatura', async ({ page }) => {
+    await page.goto('/despre-noi');
+    await expect(page.locator('.collaboration-item')).toHaveCount(3);
+    await expect(page.locator('.collaboration-item').first()).toContainText('Știi ce construim și cât costă');
+    await expect(page.locator('.how-cards, .why-bento, .projects-strip')).toHaveCount(0);
+    const clients = page.locator('.review-selector');
+    await clients.first().focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(clients.nth(1)).toBeFocused();
+    await expect(clients.nth(1)).toHaveAttribute('aria-selected', 'true');
   });
-
-  test('link cariere din echipă funcționează', async ({ page }) => {
-    await page.goto('/echipa');
-    await page.getByRole('link', { name: /Roluri deschise/i }).click();
-    await expect(page).toHaveURL('/cariere');
-  });
-});
-
-test.describe('Pagina Cariere', () => {
-  test('se randează cu roluri', async ({ page }) => {
-    await page.goto('/cariere');
-    await expect(page.locator('h1')).toBeVisible();
-    const roles = page.locator('a.role-row');
-    await expect(roles.first()).toBeVisible();
-    expect(await roles.count()).toBeGreaterThan(0);
-  });
-
-  test('fiecare rol are link mailto', async ({ page }) => {
-    await page.goto('/cariere');
-    const roles = page.locator('a.role-row');
-    const count = await roles.count();
-    for (let i = 0; i < count; i++) {
-      const href = await roles.nth(i).getAttribute('href');
-      expect(href).toMatch(/^mailto:/);
-    }
-  });
-
-  test('beneficii sunt vizibile', async ({ page }) => {
-    await page.goto('/cariere');
-    await expect(page.getByText('Salariu transparent')).toBeVisible();
-    await expect(page.getByText('Remote sau hybrid')).toBeVisible();
-  });
-});
-
-test.describe('Pagina Insights', () => {
-  test('se randează cu articole', async ({ page }) => {
-    await page.goto('/insights');
-    await expect(page.locator('h1')).toBeVisible();
-    const cards = page.locator('article.insight-card, a.insight-card');
-    await expect(cards.first()).toBeVisible();
-  });
-
-  test('filtrele de categorie funcționează', async ({ page }) => {
-    await page.goto('/insights');
-    const filterBtns = page.locator('.portfolio-filter button');
-    await expect(filterBtns.first()).toBeVisible();
-    expect(await filterBtns.count()).toBeGreaterThan(1);
-    await filterBtns.nth(1).click();
-    await expect(filterBtns.nth(1)).toHaveAttribute('aria-pressed', 'true');
-  });
-
-  test('click pe articol duce la pagina de detaliu', async ({ page }) => {
-    await page.goto('/insights');
-    const firstCard = page.locator('a.insight-card').first();
-    const href = await firstCard.getAttribute('href');
-    await firstCard.click();
-    await expect(page).toHaveURL(href!);
-    await expect(page.locator('h1')).toBeVisible();
-  });
+  for (const path of ['/echipa', '/cariere', '/insights']) {
+    test(path + ' redirecționează spre homepage', async ({ page }) => {
+      await page.goto(path);
+      await expect(page).toHaveURL('/');
+      await expect(page.locator('.hero h1')).toBeVisible();
+    });
+  }
 });
 
 test.describe('Pagini legale', () => {
@@ -152,7 +94,7 @@ test.describe('Pagina 404', () => {
 
   test('link înapoi acasă funcționează din 404', async ({ page }) => {
     await page.goto('/pagina-care-nu-exista-deloc');
-    await page.click('a[href="/"]');
+    await page.locator('main a[href="/"]').first().click();
     await expect(page).toHaveURL('/');
   });
 });

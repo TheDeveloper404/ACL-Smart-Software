@@ -1,188 +1,108 @@
 import { setRequestLocale } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
 import PageHero from '@/components/sections/PageHero';
 import ContactStrip from '@/components/sections/ContactStrip';
+import ClientReviews from '@/components/sections/ClientReviews';
+import MotionSurface from '@/components/ui/MotionSurface';
 import JsonLd from '@/components/seo/JsonLd';
-import { breadcrumbDocument, localeAlternates } from '@/lib/seo';
-import { REVIEWS, initialsOf } from '@/data/reviews';
+import { breadcrumbDocument, localeAlternates, localePath, socialMetadata } from '@/lib/seo';
+import { REVIEWS } from '@/data/reviews';
+import { ArrowUpRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowUpRight';
+import { ChatCircleTextIcon } from '@phosphor-icons/react/dist/ssr/ChatCircleText';
+import { EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
+import { KeyIcon } from '@phosphor-icons/react/dist/ssr/Key';
+import { BuildingsIcon } from '@phosphor-icons/react/dist/ssr/Buildings';
+import { GraduationCapIcon } from '@phosphor-icons/react/dist/ssr/GraduationCap';
+import { TruckIcon } from '@phosphor-icons/react/dist/ssr/Truck';
+import { WrenchIcon } from '@phosphor-icons/react/dist/ssr/Wrench';
 import type { Metadata } from 'next';
 
 const COPY = {
   ro: {
-    title: 'Despre noi — ACL Smart Software',
-    description: 'ACL Smart Software: firmă independentă de dezvoltare software din Petroșani. Cine suntem, ce ne ghidează și ce spun clienții despre noi.',
-    ogTitle: 'Despre noi — ACL Smart Software',
-    ogDescription: 'Cine suntem, ce ne ghidează și ce spun clienții despre noi.',
-    heroIdx: 'DESPRE NOI',
-    heroTitle: <>O echipă mică. <em>Rezultate</em> care contează.</>,
-    heroSub: 'Firmă independentă de dezvoltare software din Petroșani — implicare directă în fiecare proiect, de la prima discuție până la predare.',
-    storyEyebrow: 'Povestea noastră',
-    storyIdx: '01 / POVESTE',
-    storyTitle: <>Am pornit din ce <em>ne deranja</em>.</>,
-    story: [
-      'ACL Smart Software a pornit din aceeași frustrare pe care o vede orice dezvoltator bun: proiecte livrate la limită, cod greu de întreținut, agenții care dispar imediat după go-live. Am construit compania pe ideea opusă — implicare directă, cod curat și responsabilitate pe termen lung pentru tot ce livrăm.',
-      'Din 2024 lucrăm cu companii, ONG-uri și startup-uri, de la site-uri instituționale și audituri tehnice la platforme SaaS complete construite în câteva luni. Fiecare proiect trece prin aceleași mâini, de la discovery până la handover — nu externalizăm către subcontractori anonimi.',
+    title: 'Dezvoltare software, AI și automatizări — Despre ACL Smart Software', description: 'ACL Smart Software, companie de dezvoltare software din Petroșani. Construim site-uri, portaluri și produse SaaS, integrăm AI și automatizăm procese.',
+    idx: 'DESPRE NOI', hero: <>Oameni implicați.<br /><em>Software cu un scop.</em></>,
+    sub: 'Suntem ACL Smart Software. Construim aplicații, adăugăm AI în produse și conectăm procese pentru companii și organizații.',
+    storyLabel: 'Cine suntem', storyTitle: <>Lucrăm aproape<br />de <em>problema ta.</em></>,
+    story: ["ACL Smart Software este o companie de dezvoltare software din Petroșani, specializată în integrarea AI și automatizări inteligente în aplicații web, portaluri și produse SaaS.","Construim site-uri web, portaluri și aplicații personalizate pentru companii, apoi adăugăm funcții de inteligență artificială care automatizează procesele repetitive și cresc productivitatea.","Lucrăm transparent: înțelegem problema, stabilim funcțiile și bugetul, îți arătăm progresul pe măsură ce dezvoltăm și, la lansare, îți predăm codul, accesurile și instrucțiunile de administrare."],
+    workTitle: 'Cu cine lucrăm', workIntro: 'Lucrăm cu persoane fizice și juridice. Proiectele noastre includ companii, organizații și instituții din aceste domenii:', industries: ['Construcții', 'Educație', 'Transport', 'Servicii IT'],
+    principlesLabel: 'Colaborarea, explicată', principlesTitle: <>Ce înseamnă asta<br /><em>pentru tine.</em></>,
+    principles: [
+      { title: 'Știi ce construim și cât costă', desc: 'Stabilim funcțiile, livrabilele și oferta înainte de implementare. Dacă apar cerințe noi, discutăm impactul înainte să extindem proiectul.', proof: 'Scop și ofertă agreate' },
+      { title: 'Vezi produsul pe parcurs', desc: 'Îți arătăm versiuni de lucru și discutăm feedbackul. Poți verifica dacă fluxurile sunt potrivite înainte de lansare.', proof: 'Demo-uri și feedback' },
+      { title: 'Primești acces și explicații', desc: 'La predare primești codul și accesul la resursele agreate. Dacă vrei să continuăm după lansare, stabilim separat mentenanța.', proof: 'Cod, acces și documentație' },
     ],
-    valuesEyebrow: 'Ce ne ghidează',
-    valuesIdx: '02 / VALORI',
-    valuesTitle: <>Trei principii pe care <em>nu le negociem</em>.</>,
-    values: [
-      {
-        title: 'Transparență totală',
-        desc: 'Raportăm onest, inclusiv când estimarea inițială se schimbă. Fără facturi surpriză, fără scope ascuns.',
-        proof: 'Board public cu toate task-urile · demo bi-săptămânal',
-      },
-      {
-        title: 'Codul rămâne al tău',
-        desc: '100% code ownership, documentație completă, fără lock-in tehnologic sau contractual.',
-        proof: 'Repository în contul tău · documentație arhitecturală la predare',
-      },
-      {
-        title: 'Parteneriat, nu tranzacție',
-        desc: 'Rămânem alături după lansare, cât timp are sens pentru tine — nu dispărem după ultima factură.',
-        proof: 'SLA cu penalizări · reziliere cu 30 de zile notice',
-      },
-    ],
-    reviewsEyebrow: 'Ce spun alții despre noi',
-    reviewsIdx: '03 / RECENZII',
-    reviewsTitle: <>Cuvântul <em>clienților</em>, nu al nostru.</>,
+    processLink: 'Vezi cele șase etape ale unui proiect', reviewLabel: 'Din partea clienților', reviewTitle: <>Colaborări, în<br /><em>cuvintele lor.</em></>,
   },
   en: {
-    title: 'About us — ACL Smart Software',
-    description: 'ACL Smart Software: an independent software development company based in Romania. Who we are, what guides us, and what clients say about us.',
-    ogTitle: 'About us — ACL Smart Software',
-    ogDescription: 'Who we are, what guides us, and what clients say about us.',
-    heroIdx: 'ABOUT US',
-    heroTitle: <>A small team. <em>Results</em> that matter.</>,
-    heroSub: 'Independent software development company based in Romania — hands-on involvement in every project, from the first conversation to handover.',
-    storyEyebrow: 'Our story',
-    storyIdx: '01 / STORY',
-    storyTitle: <>We started from what <em>bothered us</em>.</>,
-    story: [
-      'ACL Smart Software started from the same frustration every good developer has seen: projects delivered right at the deadline, code that’s hard to maintain, agencies that disappear right after go-live. We built the company on the opposite idea — hands-on involvement, clean code, and long-term accountability for everything we ship.',
-      'Since 2024 we’ve worked with companies, non-profits, and startups, from institutional sites and one-day technical audits to full SaaS platforms built over a few months. Every project goes through the same hands, from discovery to handover — we don’t outsource to anonymous subcontractors.',
+    title: 'Software Development, AI and Automation — About ACL Smart Software', description: 'ACL Smart Software is a software development company in Romania. We build websites, portals and SaaS products, integrate AI and automate workflows.',
+    idx: 'ABOUT US', hero: <>Involved people.<br /><em>Software with a purpose.</em></>,
+    sub: 'We are ACL Smart Software. We build applications, add AI to products and connect workflows for businesses and organisations.',
+    storyLabel: 'Who we are', storyTitle: <>Close to the problem<br /><em>you need to solve.</em></>,
+    story: ["ACL Smart Software is a software development company based in Petroșani, Romania, specialising in AI integration and intelligent automation for web applications, portals and SaaS products.","We build websites, portals and custom applications for businesses, then add artificial intelligence features that automate repetitive processes and improve productivity.","We work transparently: we understand the problem, agree on features and budget, show you progress as we develop and, at launch, hand over the code, access and administration instructions."],
+    workTitle: 'Who we work with', workIntro: 'We work with individuals and legal entities. Our projects include businesses, organisations and institutions in these fields:', industries: ['Construction', 'Education', 'Transport', 'IT services'],
+    principlesLabel: 'Working together, explained', principlesTitle: <>What this means<br /><em>for you.</em></>,
+    principles: [
+      { title: 'You know the scope and cost', desc: 'We agree on features, deliverables and the quote before implementation. If new requirements emerge, we discuss their impact before expanding the project.', proof: 'Agreed scope and quote' },
+      { title: 'You see the product as it develops', desc: 'We show working versions and discuss your feedback. You can check whether the workflows fit before launch.', proof: 'Demos and feedback' },
+      { title: 'You receive access and guidance', desc: 'At handover, you receive the code and access to agreed resources. If you want us to continue after launch, we agree on maintenance separately.', proof: 'Code, access and documentation' },
     ],
-    valuesEyebrow: 'What guides us',
-    valuesIdx: '02 / VALUES',
-    valuesTitle: <>Three principles we <em>don’t negotiate</em>.</>,
-    values: [
-      {
-        title: 'Full transparency',
-        desc: 'We report honestly, including when the initial estimate changes. No surprise invoices, no hidden scope.',
-        proof: 'Public task board · bi-weekly demo',
-      },
-      {
-        title: 'The code stays yours',
-        desc: '100% code ownership, complete documentation, no technology or contractual lock-in.',
-        proof: 'Repository in your account · architecture docs at handover',
-      },
-      {
-        title: 'Partnership, not a transaction',
-        desc: 'We stay involved after launch, for as long as it makes sense for you — we don’t disappear after the last invoice.',
-        proof: 'SLA with penalties · 30-day notice termination',
-      },
-    ],
-    reviewsEyebrow: 'What others say about us',
-    reviewsIdx: '03 / REVIEWS',
-    reviewsTitle: <>Our <em>clients’</em> words, not ours.</>,
+    processLink: 'Explore the six project stages', reviewLabel: 'From our clients', reviewTitle: <>Working together,<br /><em>in their words.</em></>,
   },
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const copy = COPY[locale as keyof typeof COPY] ?? COPY.ro;
-  const url = `https://acl-smartsoftware.ro${locale === 'en' ? '/en' : ''}/despre-noi`;
-  return {
-    title: copy.title,
-    description: copy.description,
-    alternates: localeAlternates('/despre-noi', locale),
-    openGraph: { title: copy.ogTitle, description: copy.ogDescription, url, type: 'website' },
-  };
+  const t = locale === 'en' ? COPY.en : COPY.ro;
+  return { title: { absolute: t.title }, description: t.description, alternates: localeAlternates('/despre-noi', locale), ...socialMetadata(locale, t.title, t.description, '/despre-noi') };
 }
 
-export default async function DespreNoiPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const copy = COPY[locale as keyof typeof COPY] ?? COPY.ro;
-  const reviews = REVIEWS[locale as keyof typeof REVIEWS] ?? REVIEWS.ro;
-
-  const jsonLd = breadcrumbDocument([
-    { name: locale === 'en' ? 'Home' : 'Acasă', path: locale === 'en' ? '/en' : '/' },
-    { name: locale === 'en' ? 'About us' : 'Despre noi', path: locale === 'en' ? '/en/despre-noi' : '/despre-noi' },
-  ]);
-
-  return (
-    <>
-      <JsonLd data={jsonLd} />
-      <PageHero idx={copy.heroIdx} title={copy.heroTitle} sub={copy.heroSub} />
-
-      <section className="section">
-        <div className="wrap">
-          <div className="section-head">
-            <div className="label-col">
-              <div className="idx">{copy.storyIdx}</div>
-              <div className="eyebrow">{copy.storyEyebrow}</div>
+  const t = locale === 'en' ? COPY.en : COPY.ro;
+  const icons = [ChatCircleTextIcon, EyeIcon, KeyIcon];
+  const industryIcons = [BuildingsIcon, GraduationCapIcon, TruckIcon, WrenchIcon];
+  return <>
+    <JsonLd data={breadcrumbDocument([{ name: locale === 'en' ? 'Home' : 'Acasă', path: localePath(locale, '/') }, { name: locale === 'en' ? 'About us' : 'Despre noi', path: localePath(locale, '/despre-noi') }])} />
+    <PageHero idx={t.idx} title={t.hero} sub={t.sub} />
+    <section className="section about-story"><div className="wrap">
+      <div className="section-heading"><div><p className="eyebrow">{t.storyLabel}</p><h2>{t.storyTitle}</h2></div></div>
+      <div className="about-story-grid"><div className="story-copy">{t.story.map(p => <p key={p}>{p}</p>)}</div>
+        <MotionSurface className="industry-surface">
+          <aside className="story-work industry-card">
+            <h3>{t.workTitle}</h3><p>{t.workIntro}</p>
+            <div className="industry-map">
+              <svg className="industry-connections" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+                {['M70 60C160 60 140 150 200 150', 'M330 90C270 90 270 150 200 150', 'M70 210C140 210 140 150 200 150', 'M330 240C270 240 270 150 200 150'].map((d, i) => <g key={d}>
+                  <path d={d} className="industry-wire" />
+                  <path d={d} className="industry-packet" pathLength={1} style={{ animationDelay: `${i * -1.5}s` }} />
+                </g>)}
+              </svg>
+              <span className="industry-hub" aria-hidden="true"><strong>ACL</strong><span>Smart Software</span></span>
+              <ul className="industry-grid">{t.industries.map((industry, i) => {
+                const Icon = industryIcons[i];
+                return <li key={industry} style={{ animationDelay: `${i * -1.5}s` }}>
+                  <span className="industry-node-icon"><Icon size={34} weight="light" aria-hidden="true" /></span>
+                  <span>{industry}</span>
+                </li>;
+              })}</ul>
             </div>
-            <h2>{copy.storyTitle}</h2>
-          </div>
-          <div className="about-text">
-            {copy.story.map((p, i) => (
-              <p className="about-text-lg" key={i}>{p}</p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="wrap">
-          <div className="section-head">
-            <div className="label-col">
-              <div className="idx">{copy.valuesIdx}</div>
-              <div className="eyebrow">{copy.valuesEyebrow}</div>
-            </div>
-            <h2>{copy.valuesTitle}</h2>
-          </div>
-          <div className="values-grid">
-            {copy.values.map((v, i) => (
-              <article className="value-card" key={v.title}>
-                <div className="value-num">{String(i + 1).padStart(2, '0')}</div>
-                <h3>{v.title}</h3>
-                <p>{v.desc}</p>
-                <div className="value-proof">{v.proof}</div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {reviews.length > 0 && (
-        <section className="section">
-          <div className="wrap">
-            <div className="section-head">
-              <div className="label-col">
-                <div className="idx">{copy.reviewsIdx}</div>
-                <div className="eyebrow">{copy.reviewsEyebrow}</div>
-              </div>
-              <h2>{copy.reviewsTitle}</h2>
-            </div>
-            <div className="reviews-grid">
-              {reviews.map((r) => (
-                <figure className="review-card" key={r.name + r.quote.slice(0, 24)}>
-                  <blockquote>{r.quote}</blockquote>
-                  <figcaption className="review-author">
-                    <span className="review-avatar" aria-hidden="true">{r.initials ?? initialsOf(r.name)}</span>
-                    <span>
-                      <span className="review-name">{r.name}</span>
-                      <span className="review-role">{r.role}</span>
-                    </span>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      <ContactStrip />
-    </>
-  );
+          </aside>
+        </MotionSurface>
+      </div>
+    </div></section>
+    <section className="section collaboration-section"><div className="wrap">
+      <div className="section-heading"><div><p className="eyebrow">{t.principlesLabel}</p><h2>{t.principlesTitle}</h2></div>
+        <Link href="/#proces" className="text-link">{t.processLink}<ArrowUpRightIcon size={18} aria-hidden="true" /></Link></div>
+      <MotionSurface className="collaboration-list">{t.principles.map((principle, i) => { const Icon = icons[i]; return <article className="collaboration-item" key={principle.title}>
+        <div className="collaboration-symbol"><Icon size={30} weight="light" aria-hidden="true" /><span>0{i + 1}</span></div>
+        <div><h3>{principle.title}</h3><p>{principle.desc}</p></div><span className="collaboration-proof">{principle.proof}</span>
+      </article>; })}</MotionSurface>
+    </div></section>
+    <section className="section reviews-section"><div className="wrap">
+      <div className="section-heading"><div><p className="eyebrow">{t.reviewLabel}</p><h2>{t.reviewTitle}</h2></div></div>
+      <ClientReviews reviews={REVIEWS[locale === 'en' ? 'en' : 'ro']} locale={locale} />
+    </div></section>
+    <ContactStrip />
+  </>;
 }

@@ -1,384 +1,474 @@
 import type { Service } from '@/types';
 
-// English translation of SERVICES from `services.ts` — same slugs, same order.
-// Prices stay in EUR (EU contracts); copy is adapted for an international audience.
 export const SERVICES_EN: Service[] = [
   {
-    slug: 'produse',
-    title: 'Custom Products & Applications',
-    short: 'Websites, web apps, SaaS platforms, and mobile apps — built around your actual process, not a template.',
-    tags: ['Next.js', 'React', 'TypeScript', 'React Native', 'PostgreSQL'],
-    tagline: 'From idea to production, with code that stays 100% yours.',
-    longDesc: 'We start from your actual process. We design the architecture, pick the right stack for your context, and build incrementally with a demo every two weeks and a permanent staging environment. At the end we hand over everything — code, documentation, infrastructure.',
-    packages: [
+    "slug": "ai",
+    "title": "AI in your application",
+    "short": "Add AI to an existing product or build an assistant that searches your own documents.",
+    "tags": [
+      "AI assistants",
+      "Document search",
+      "AI in products"
+    ],
+    "tagline": "A useful feature for the people already using your product.",
+    "longDesc": "We start with a specific need: finding information, summarising a document or drafting a response. We choose the sources, build the feature and check responses against examples from your work. Together we define its limits and when human review is needed.",
+    "packages": [
       {
-        id: 'website',
-        name: 'Website & online presence',
-        from: '€900',
-        duration: '2–3 weeks',
-        model: 'Fixed scope',
-        includes: [
-          'Design on your brand, or starting from your Figma',
-          'Up to ~8 pages, CMS for editable content',
-          'Lighthouse 90+ performance, technical SEO, WCAG AA',
-          'Contact form, analytics, deploy on your domain',
+        "id": "rag-assistant",
+        "name": "Assistant for your documents",
+        "from": "€2,500",
+        "duration": "3–4 weeks",
+        "model": "Agreed scope",
+        "includes": [
+          "Search and questions over agreed documents",
+          "Responses with references to available sources",
+          "Access defined for your users",
+          "Validation against real questions"
         ],
-        deliverable: 'A live site on your domain, with full access to the code and the admin panel.',
+        "deliverable": "An assistant for your documents, with sources and usage limits explained.",
+        "priceNote": "From €2,500 for one assistant using an agreed document collection. OCR, additional sources and further integrations are estimated separately."
       },
       {
-        id: 'app-web',
-        name: 'Web app / customer portal',
-        from: '€4,500',
-        duration: '5–8 weeks',
-        model: 'Fixed scope',
-        includes: [
-          'Authentication, roles, dashboards, data export',
-          'Integration with 1–2 external systems (payments, ERP, email)',
-          'Permanent staging + a public board with every task',
-          'Automated tests on the main flows',
+        "id": "ai-feature",
+        "name": "AI in an existing product",
+        "from": "€3,500",
+        "duration": "3–5 weeks",
+        "model": "One agreed feature",
+        "includes": [
+          "One feature: search, summarisation, classification or text generation",
+          "Integration into your application and workflow",
+          "Usage limits and cost tracking",
+          "Tests against representative product examples"
         ],
-        deliverable: 'An app in production, repository under your account, technical documentation, and a handover session.',
+        "deliverable": "An AI feature integrated into your product that you can evaluate with users.",
+        "priceNote": "From €3,500 for one feature integrated into an existing application. The quote depends on code access and the changes required."
       },
       {
-        id: 'mvp-saas',
-        name: 'SaaS MVP (multi-tenant)',
-        from: '€8,000',
-        duration: '6–10 weeks',
-        model: 'Fixed scope',
-        includes: [
-          'Auth, subscription billing, per-tenant isolation, audit log',
-          'Onboarding, team roles, admin panel',
-          'Infrastructure as code + CI/CD from day one',
-          'A scaling plan for your traffic profile',
+        "id": "document-extraction",
+        "name": "Data extraction from documents",
+        "from": "On request",
+        "duration": "Estimated after reviewing the documents",
+        "model": "Agreed documents and fields",
+        "includes": [
+          "Extraction from the agreed document types",
+          "Structuring data into the fields you need",
+          "Human review for unclear information",
+          "Export or integration into the agreed application"
         ],
-        deliverable: 'A SaaS product ready for its first paying customers, with a foundation you can build on for two years.',
+        "deliverable": "A workflow that turns documents into structured data, with a review step.",
+        "priceNote": "On request: formats, document quality, fields to extract and the review step determine the scope and cost."
       },
       {
-        id: 'app-mobile',
-        name: 'Mobile app (React Native)',
-        from: '€12,000',
-        duration: '8–14 weeks',
-        model: 'Fixed scope',
-        includes: [
-          'iOS + Android from the same codebase (Expo)',
-          'Push notifications, offline mode, smart sync',
-          'App Store and Google Play publishing, submission included',
-          'Shared backend with the web app, if there is one',
+        "id": "ai-prototype",
+        "name": "Prototype for an AI idea",
+        "from": "On request",
+        "duration": "Estimated after defining the idea",
+        "model": "Validation before implementation",
+        "includes": [
+          "Selecting a specific use case",
+          "A prototype with representative data and examples",
+          "Evaluation of responses and usage costs",
+          "A recommendation on next steps and clear limitations"
         ],
-        deliverable: 'An app published in both stores, with a developer account in your name.',
+        "deliverable": "A prototype and evaluation to help you decide whether to invest in the AI feature.",
+        "priceNote": "On request: we first agree on the hypothesis, available data and evaluation criteria. A prototype is not a launched product."
+      }
+    ],
+    "whatWeBuild": [
+      {
+        "title": "Find information in documents",
+        "desc": "An assistant searches manuals, procedures or internal materials and identifies the sources it used."
       },
+      {
+        "title": "Work with text more easily",
+        "desc": "Summaries, draft responses and message classification inside the application you already use."
+      },
+      {
+        "title": "Extract information from documents",
+        "desc": "Turn information in documents into useful data, with human review where needed."
+      }
     ],
-    whatWeBuild: [
-      { title: 'ERPs & internal systems', desc: 'We replace spreadsheets and outdated software with modern tools that actually save time.' },
-      { title: 'Multi-tenant SaaS platforms', desc: 'Auth, billing, roles, audit log, white-label — the foundation for products that sell monthly.' },
-      { title: 'Dashboards, portals & marketplaces', desc: 'Self-service for customers or partners, data views that respond instantly, checkout flows that convert.' },
-      { title: 'B2C and field-force mobile apps', desc: 'Short onboarding, relevant push, offline mode for teams that aren’t at a desk.' },
+    "audience": [
+      {
+        "title": "You already have an application",
+        "desc": "You want to add an AI feature without rebuilding the entire product."
+      },
+      {
+        "title": "Information is spread across documents",
+        "desc": "Your team spends time looking for answers in multiple files."
+      }
     ],
-    audience: [
-      { title: 'Companies with complex processes', desc: 'When spreadsheets and email no longer hold up, but off-the-shelf software doesn’t fit either.' },
-      { title: 'Post-validation startups', desc: 'You’ve validated the idea, you have users — now you want a real product, not a patched-together prototype.' },
-      { title: 'Teams inheriting legacy systems', desc: 'An old system that works but costs too much. We modernize it without stopping the business.' },
-    ],
-    technologies: [
-      { cat: 'Frontend', items: ['React', 'Next.js', 'Vue 3', 'TypeScript', 'Tailwind'] },
-      { cat: 'Backend', items: ['Node.js', 'Python (FastAPI / Django)', '.NET 8', 'Go', 'Java Spring'] },
-      { cat: 'Mobile', items: ['React Native (Expo)', 'Swift', 'Kotlin'] },
-      { cat: 'Data & infra', items: ['PostgreSQL', 'Redis', 'Prisma / Drizzle', 'Docker', 'AWS / Azure'] },
-    ],
-    pricing: { from: '€900', duration: 'Website in 2–3 weeks · MVP in 6–10 weeks', model: 'Fixed-scope or monthly retainer' },
-    timeline: '2–20 weeks',
-    faq: [
-      { q: 'Do I own the code?', a: 'Yes, 100%. Repository on GitHub under your account, plus architectural documentation.' },
-      { q: 'What happens after go-live?', a: 'We can continue with a dedicated SLA, hand it over fully to your team, or a hybrid. Your call.' },
-      { q: 'Can I see progress in real time?', a: 'Yes. Permanent staging environment, a demo every two weeks, a public board with every task.' },
-      { q: 'What do I get at the end?', a: 'Source code, technical documentation, infrastructure as code, an operations manual, and a handover session.' },
-    ],
+    "technologies": [],
+    "pricing": {
+      "from": "€2,500",
+      "duration": "The final estimate follows scope definition",
+      "model": "Agreed project scope"
+    },
+    "timeline": "3–5 weeks, indicative",
+    "faq": [
+      {
+        "q": "What is a RAG assistant?",
+        "a": "An AI assistant that searches your documents before composing a response. It can cite sources but can still make mistakes; we check quality and define usage limits."
+      },
+      {
+        "q": "Can it be integrated into an existing application?",
+        "a": "Yes. We first review how the application works and what access we have to its code or interfaces, then agree on the integration."
+      },
+      {
+        "q": "Does the price include AI model costs?",
+        "a": "The starting price covers implementation. Recurring model and hosting costs are estimated separately based on usage."
+      },
+      {
+        "q": "Where do my documents go?",
+        "a": "Before implementation, we agree on which data may be processed, who has access and which providers may be used. The choice depends on project requirements."
+      }
+    ]
   },
   {
-    slug: 'ai',
-    title: 'AI & Automation',
-    short: 'LLMs embedded in your product, RAG assistants over your own documents, agents that finish repetitive processes — with metrics, not just demos.',
-    tags: ['LLM / RAG', 'Agents', 'MCP', 'pgvector / Qdrant', 'Claude & GPT'],
-    tagline: 'Pragmatic AI: we start from the job to be done, not from "we want AI".',
-    longDesc: 'We build AI integrations that deliver measurable value. The process is always the same: Audit (where AI helps, with an ROI estimate) → PoC with an eval set → production with guardrails → AI Ops. For agents we use a planner → executor → verifier architecture, with explicit limits: which tools the agent may use, which actions require human confirmation, a maximum step budget and cost per run.',
-    packages: [
+    "slug": "infrastructura",
+    "title": "Automation and integrations",
+    "short": "Connect the applications you use and automate the steps you repeat every day.",
+    "tags": [
+      "Repetitive workflows",
+      "Documents and email",
+      "Connected applications"
+    ],
+    "tagline": "Less moving data around. A simpler workflow.",
+    "longDesc": "We choose a clearly defined process, identify its applications and data, and agree on the rules. Automation can use AI when useful or ordinary rules when those are sufficient. We define how errors are handled and which actions require human confirmation.",
+    "packages": [
       {
-        id: 'ai-audit',
-        name: 'AI Readiness Audit',
-        from: '€1,200',
-        duration: '1 week',
-        model: 'Fixed price per deliverable',
-        includes: [
-          'We map the processes where AI would have real impact',
-          'Cost, effort, and ROI estimate per opportunity',
-          'Architecture recommendation: API vs. local model, RAG vs. fine-tune',
-          'Risks: data confidentiality, latency, recurring cost',
+        "id": "automation-agent",
+        "name": "Agent for one workflow",
+        "from": "€2,000",
+        "duration": "3–6 weeks",
+        "model": "One agreed workflow",
+        "includes": [
+          "Define the steps, data and workflow rules",
+          "Connect the relevant applications within available access",
+          "Human confirmation for agreed actions",
+          "Tests, execution records and error handling"
         ],
-        deliverable: 'A written report, prioritized by impact/cost, with a concrete next-steps plan.',
+        "deliverable": "An automated workflow with clear limits and instructions for use.",
+        "priceNote": "From €2,000 for one defined process with agreed rules and access. Additional processes are estimated separately."
       },
       {
-        id: 'rag-assistant',
-        name: 'Assistant over your documents (RAG)',
-        from: '€4,000',
-        duration: '3–4 weeks',
-        model: 'Fixed scope',
-        includes: [
-          'Indexing of manuals / contracts / knowledge base, automatic reindexing',
-          'Answers with source citations and role-based access control',
-          'API or self-hosted option (Llama / Mistral) if the data can’t leave',
-          'Eval set + metrics (accuracy, recall) defined upfront',
+        "id": "integration",
+        "name": "Connect two applications",
+        "from": "€1,500",
+        "duration": "1–3 weeks",
+        "model": "One agreed integration",
+        "includes": [
+          "Review the available interfaces and access",
+          "Transfer the required data between applications",
+          "Handle errors and avoid duplicate transfers",
+          "Main-flow tests and documentation"
         ],
-        deliverable: 'A chat embedded in your product or intranet, with an admin panel for the sources.',
+        "deliverable": "A working integration between two applications for the agreed data and actions.",
+        "priceNote": "From €1,500 for one data flow between two applications with available interfaces. Provider access and costs are checked first."
       },
       {
-        id: 'automation-agent',
-        name: 'Automation agent — 1 process',
-        from: '€5,000',
-        duration: '4–6 weeks',
-        model: 'Fixed scope',
-        includes: [
-          'One concrete process: ticket triage, reconciliation, PDF data extraction',
-          'Planner → executor → verifier architecture',
-          'Guardrails: allowed tools, what needs human confirmation, max budget per run',
-          'Human fallback on low-confidence cases',
+        "id": "workflow-automation",
+        "name": "Workflow automation",
+        "from": "On request",
+        "duration": "Estimated after reviewing the process",
+        "model": "Agreed steps and rules",
+        "includes": [
+          "Review of repetitive tasks in your work",
+          "Triggers and rules without AI where sufficient",
+          "Notifications, retries and error handling",
+          "Testing and instructions for your team"
         ],
-        deliverable: 'An agent in production that finishes a process, with monitoring and an accuracy report.',
+        "deliverable": "An automated workflow for repetitive tasks, such as receiving requests or preparing documents.",
+        "priceNote": "On request: the steps, connected applications and process exceptions determine the scope and price."
+      }
+    ],
+    "whatWeBuild": [
+      {
+        "title": "From document to application",
+        "desc": "Extract information from documents and prepare it for the system where you need it."
       },
       {
-        id: 'ai-feature',
-        name: 'AI feature in your existing product',
-        from: '€3,500',
-        duration: '3–5 weeks',
-        model: 'Fixed scope',
-        includes: [
-          'Semantic search, content generation with tone of voice, classification / routing',
-          'Integrated into your codebase, not a bolted-on microservice',
-          'Cost tracking and caching from day one',
-          'A measurable comparison against the non-AI version',
-        ],
-        deliverable: 'A feature live in your product, with metrics showing whether it’s worth keeping.',
+        "title": "Organised and routed messages",
+        "desc": "Sort requests according to agreed rules and prepare responses for review."
       },
       {
-        id: 'ai-ops',
-        name: 'AI Ops (retainer)',
-        from: '€600 / month',
-        duration: 'ongoing',
-        model: 'Monthly retainer',
-        includes: [
-          'Monitoring of accuracy, cost per query, and latency',
-          'Periodic eval-set runs, alerts on regression',
-          'Model upgrades and prompt tuning as new versions ship',
-          'Monthly report',
-        ],
-        deliverable: 'An AI system that doesn’t degrade silently — someone looks at the metrics every month.',
+        "title": "Applications that exchange data",
+        "desc": "Connect a website, CRM, payment system or other tools that provide integration access."
+      }
+    ],
+    "audience": [
+      {
+        "title": "You repeat the same steps",
+        "desc": "Your team repeatedly copies data, sorts messages or prepares the same documents."
       },
+      {
+        "title": "You use multiple applications",
+        "desc": "Information has to be entered manually into each tool."
+      }
     ],
-    whatWeBuild: [
-      { title: 'Internal copilot over your documents', desc: 'Semantic search + Q&A over manuals, contracts, knowledge base — with citations and access control.' },
-      { title: 'Agents for repetitive processes', desc: 'Email triage, form filling, monthly summaries — agents that actually finish tasks.' },
-      { title: 'Controlled content generation', desc: 'Reports, product descriptions, email drafts — respecting your tone of voice and brand guidelines.' },
-      { title: 'Classification & data extraction', desc: 'Structured data out of PDFs, invoices, contracts — with measured accuracy and human fallback.' },
-    ],
-    audience: [
-      { title: 'Companies with lots of text content', desc: 'Knowledge base, documentation, contracts — anywhere classic search stops being enough.' },
-      { title: 'Teams processing documents', desc: 'Invoices, contracts, forms — automate 70-90% of volume with human validation on the rest.' },
-      { title: 'Products with repetitive cases', desc: 'Support ticket triage, lead sorting, task prioritization — high volume, unclear rules.' },
-    ],
-    technologies: [
-      { cat: 'Models', items: ['Anthropic Claude', 'OpenAI GPT', 'Llama 3', 'Mistral', 'Local fine-tunes'] },
-      { cat: 'Orchestration & tools', items: ['MCP', 'LangChain', 'LlamaIndex', 'Vercel AI SDK', 'DSPy'] },
-      { cat: 'Data & vectors', items: ['pgvector', 'Qdrant', 'Pinecone', 'Weaviate'] },
-      { cat: 'Production', items: ['Eval pipelines', 'Cost tracking', 'Guardrails', 'Caching'] },
-    ],
-    pricing: { from: '€1,200', duration: 'Audit 1 week · PoC 2 weeks · production 4–8 weeks', model: 'Fixed deliverable + optional AI Ops' },
-    timeline: '1–10 weeks',
-    faq: [
-      { q: 'What is RAG?', a: 'Retrieval-Augmented Generation. The AI reads from your documents before answering — so it doesn’t make things up.' },
-      { q: 'Does my data sit on OpenAI’s servers?', a: 'Depends. We offer on-premise options (Llama, Mistral) or providers that don’t use your data for training.' },
-      { q: 'How do we measure that it works?', a: 'An eval set defined upfront, clear metrics (accuracy, recall, cost / query), and production monitoring.' },
-      { q: 'When do you NOT recommend AI?', a: 'When the problem has a deterministic answer, when you have no real data on how people use the product today, or when latency and cost don’t fit the use case. We say so in the audit, before writing any code.' },
-    ],
+    "technologies": [],
+    "pricing": {
+      "from": "€1,500",
+      "duration": "Integration: 1–3 weeks; agent: 3–6",
+      "model": "Agreed project scope"
+    },
+    "timeline": "1–6 weeks, indicative",
+    "faq": [
+      {
+        "q": "Does every automation need AI?",
+        "a": "No. For steps with clear rules, ordinary automation may be simpler and more suitable. We use AI where the process benefits from it."
+      },
+      {
+        "q": "Can you connect any application?",
+        "a": "It depends on the access provided by the application: APIs, exports, webhooks or other interfaces. We check this before preparing a quote."
+      },
+      {
+        "q": "What happens when a step fails?",
+        "a": "We agree on how errors are reported, what can be retried and when a person must intervene. These rules form part of the project scope."
+      },
+      {
+        "q": "Can the agent take actions without approval?",
+        "a": "Only explicitly agreed actions. For actions with an impact, we define confirmations and limits before implementation."
+      }
+    ]
   },
   {
-    slug: 'infrastructura',
-    title: 'Infrastructure & Integrations',
-    short: 'Cloud that scales without bill surprises, CI/CD from day one, and durable integrations between systems that don’t talk to each other.',
-    tags: ['AWS / Azure', 'Kubernetes', 'Terraform', 'CI/CD', 'REST / Webhooks'],
-    tagline: 'Infrastructure your team understands. Integrations that don’t lose data.',
-    longDesc: 'We build cloud platforms that actually scale — and that your team understands: Infrastructure as Code, CI/CD from day one, full observability, FinOps to keep the bill under control. And we connect the systems that don’t talk to each other — ERP, CRM, payments, shipping — with retry logic, idempotency, and an audit trail, with zero data loss.',
-    packages: [
+    "slug": "produse",
+    "title": "Websites, portals and SaaS",
+    "short": "From a company website to a user portal or a product sold through subscriptions.",
+    "tags": [
+      "Websites",
+      "Portals",
+      "SaaS products"
+    ],
+    "tagline": "A product built around what people need to do.",
+    "longDesc": "We clarify the users and important workflows, prepare the design and build in stages. You see the product as it develops and give feedback before launch. At handover, you receive access to the code and the guidance needed to use and administer it.",
+    "packages": [
       {
-        id: 'cloud-audit',
-        name: 'Cloud audit + FinOps plan',
-        from: '€800',
-        duration: '2 weeks',
-        model: 'Fixed price per deliverable',
-        includes: [
-          'Bill analysis by category: compute, storage, egress, backup',
-          'Typical waste: oversized instances, non-prod on prod config, avoidable egress',
-          'A prioritized optimization plan, with estimated impact per measure',
-          'Architecture recommendations for your next growth stage',
+        "id": "website",
+        "name": "Company website",
+        "from": "€1,200",
+        "duration": "2–3 weeks",
+        "model": "Agreed pages and content",
+        "includes": [
+          "Design adapted to your identity",
+          "Presentation pages and mobile navigation",
+          "Contact form and technical SEO elements",
+          "Launch on your domain and code access"
         ],
-        deliverable: 'A written report with the concrete list of measures and the estimated saving for each.',
+        "deliverable": "A public website that clearly explains what you do and how to contact you.",
+        "priceNote": "From €1,200 for a presentation website with agreed pages. Shop, portal and application features are estimated separately."
       },
       {
-        id: 'cicd-iac',
-        name: 'CI/CD setup + Infrastructure as Code',
-        from: '€2,500',
-        duration: '2–4 weeks',
-        model: 'Fixed scope',
-        includes: [
-          'Pipeline: build, tests, lint, security scan, automated deploy with rollback',
-          'Infrastructure described in Terraform / Pulumi, versioned',
-          'Separate environments (dev / staging / prod) with isolated config',
-          'Documentation + a training session for your team',
+        "id": "app-web",
+        "name": "Web application or portal",
+        "from": "€3,500",
+        "duration": "5–8 weeks",
+        "model": "Agreed workflows and features",
+        "includes": [
+          "User accounts and roles",
+          "Pages and tools for the main workflows",
+          "Integrations defined in the quote",
+          "Tests, launch and administration instructions"
         ],
-        deliverable: 'Push to main → production, safely, with infrastructure reproducible from code.',
+        "deliverable": "An application or portal for customers, your team, students or teachers.",
+        "priceNote": "From €3,500 for agreed main workflows and roles. Additional features and integrations are quoted separately."
       },
       {
-        id: 'integration',
-        name: 'One integration (ERP / payments / shipping / CRM)',
-        from: '€1,500',
-        duration: '1–3 weeks',
-        model: 'Per integration',
-        includes: [
-          'Bidirectional connection, real-time or batch',
-          'Retry logic, dead-letter queue, idempotency — no data loss',
-          'Full audit log, any event can be replayed',
-          'Monitoring and alerts if the partner’s API changes',
+        "id": "mvp-saas",
+        "name": "SaaS product",
+        "from": "€4,500",
+        "duration": "6–10 weeks",
+        "model": "First version with agreed scope",
+        "includes": [
+          "Essential features for the first version",
+          "Accounts and separation of user data",
+          "Subscriptions and payments within the agreed scope",
+          "Administration panel, tests and launch"
         ],
-        deliverable: 'One integration in production, with monitoring and documentation of the data contract.',
+        "deliverable": "A first version of your SaaS product, ready for customers to use.",
+        "priceNote": "From €4,500 for the first SaaS version with agreed essential features. Expansion after validation is estimated separately."
       },
       {
-        id: 'devops-retainer',
-        name: 'DevOps retainer',
-        from: '€1,800 / month',
-        duration: 'ongoing',
-        model: 'Monthly retainer',
-        includes: [
-          'On-call with clear escalation, not dependent on a single person',
-          'Monitoring: logs, metrics, traces, dashboards, alerting',
-          'Security patches within 48h, monthly dependency upgrades',
-          'Monthly report with incidents, cost, and recommendations',
+        "id": "product-mvp",
+        "name": "MVP for your idea",
+        "from": "On request",
+        "duration": "Estimated after defining the first version",
+        "model": "Essential features for validation",
+        "includes": [
+          "Defining users and the problem to solve",
+          "Design and implementation of the main workflow",
+          "Features needed by the first users",
+          "Testing, launch and next-version planning"
         ],
-        deliverable: 'An external ops team, with an SLA, for a product with no in-house SRE.',
+        "deliverable": "A working first version to test your idea with users before expanding the product.",
+        "priceNote": "On request: a first version can mean different things. We define its essential workflow before setting a budget."
+      }
+    ],
+    "whatWeBuild": [
+      {
+        "title": "Websites for businesses",
+        "desc": "Services, projects and contact details are easy to find, including on a phone."
       },
+      {
+        "title": "User portals",
+        "desc": "A space with role-based access for courses, documents or customer and team operations."
+      },
+      {
+        "title": "SaaS products",
+        "desc": "Subscription applications with the features your first users need."
+      }
     ],
-    whatWeBuild: [
-      { title: 'Cloud migrations', desc: 'From on-premise / VPS to AWS / Azure / GCP — zero downtime, with a rollback plan.' },
-      { title: 'Kubernetes platforms & CI/CD', desc: 'Production-ready clusters, GitOps, autoscaling, pipelines with tests, security scan, and automated deploy.' },
-      { title: 'ERP / CRM / payments / shipping integrations', desc: 'SAP, Dynamics, Salesforce, HubSpot, Stripe, Netopia, Fan Courier, Sameday — bidirectional, real-time or batch.' },
-      { title: 'Public & B2B APIs', desc: 'Auth, rate limiting, versioning, auto-generated docs — an API that won’t cost you endless support.' },
+    "audience": [
+      {
+        "title": "You need an online presence",
+        "desc": "You want to explain your business clearly and make contact easier."
+      },
+      {
+        "title": "Your workflow needs an application",
+        "desc": "An adapted portal or tool can help organise your work."
+      },
+      {
+        "title": "You want to launch a product",
+        "desc": "We define the first version around essential user features."
+      }
     ],
-    audience: [
-      { title: 'Teams without a dedicated SRE', desc: '5-20 developers and no ops expert. We build, hand over, and train your team.' },
-      { title: 'Companies with large cloud bills', desc: 'You’re paying a lot on cloud every month and can’t say exactly where. A FinOps audit shows the waste in concrete terms.' },
-      { title: 'Companies running multiple systems', desc: '5+ tools that don’t talk to each other. We remove the double work and the human errors.' },
-    ],
-    technologies: [
-      { cat: 'Cloud', items: ['AWS', 'Azure', 'Google Cloud', 'DigitalOcean', 'Hetzner'] },
-      { cat: 'IaC & containers', items: ['Terraform', 'Pulumi', 'Docker', 'Kubernetes', 'ArgoCD'] },
-      { cat: 'Integrations', items: ['REST', 'GraphQL', 'Webhooks', 'Kafka', 'AWS SQS'] },
-      { cat: 'Operations', items: ['Retry & DLQ', 'Idempotency', 'Audit log', 'Grafana / Prometheus', 'Sentry'] },
-    ],
-    pricing: { from: '€800', duration: 'Audit + plan in 2 weeks · one integration in 1–3 weeks', model: 'Fixed deliverable or retainer' },
-    timeline: '1–12 weeks · ongoing retainer',
-    faq: [
-      { q: 'Do you handle on-call too?', a: 'Yes. SLA with 15-minute to 4-hour response depending on severity, with clear escalation — never dependent on a single person.' },
-      { q: 'Do you work with our current cloud provider?', a: 'Yes. We work regularly on AWS and Azure, as well as GCP, Hetzner, DigitalOcean, and other providers.' },
-      { q: 'How much do I save with FinOps?', a: 'It depends on the setup — the typical waste is oversized instances, non-prod environments on production config, and avoidable egress. We give the number after the audit, not before.' },
-      { q: 'Do you guarantee no data loss on integrations?', a: 'Yes. Idempotency keys, dead-letter queue, full audit trail — any event can be replayed.' },
-    ],
+    "technologies": [],
+    "pricing": {
+      "from": "€1,200",
+      "duration": "Website: 2–3 weeks; portal or SaaS: 5–10",
+      "model": "Agreed project scope"
+    },
+    "timeline": "2–10 weeks, indicative",
+    "faq": [
+      {
+        "q": "What is the difference between a website and a portal?",
+        "a": "A website presents public information. A portal gives users accounts and access to features or materials according to their role."
+      },
+      {
+        "q": "Does the code remain mine?",
+        "a": "Yes. We hand over the project code and access to agreed resources together with the necessary documentation."
+      },
+      {
+        "q": "Can I see the product before launch?",
+        "a": "Yes. We show working versions along the way so you can check the workflows and give feedback."
+      },
+      {
+        "q": "What does the starting price mean?",
+        "a": "It is a reference for a project with a defined scope. The final quote depends on features, content, integrations and requirements. Hosting and other recurring costs are discussed separately."
+      },
+      {
+        "q": "How does an MVP differ from a SaaS product?",
+        "a": "An MVP is a first version for testing an idea and its main workflow. A SaaS product also includes subscription-related features such as account and payment management. We agree on the features for each project."
+      }
+    ]
   },
   {
-    slug: 'consultanta',
-    title: 'Consulting & Takeover',
-    short: 'The second technical opinion you won’t regret — audit, discovery, due-diligence — plus taking over and maintaining systems built by someone else.',
-    tags: ['Technical audit', 'Discovery', 'Due-diligence', 'SLA', 'Legacy'],
-    tagline: 'Clarity before any big move. And someone who answers afterward.',
-    longDesc: 'An objective audit of architecture, code, infrastructure, or team, with written recommendations prioritized by impact and cost. Discovery sprints for new projects. And, after launch, taking over inherited systems plus maintenance with a contractual SLA — we don’t disappear after the last invoice.',
-    packages: [
+    "slug": "consultanta",
+    "title": "Consultation, audit and maintenance",
+    "short": "We plan new projects, assess existing applications and provide support after launch.",
+    "tags": [
+      "Project planning",
+      "Web and API audits",
+      "Post-launch support"
+    ],
+    "tagline": "Understand what needs checking and what to fix first.",
+    "longDesc": "Consultation clarifies features and implementation stages. For audits, we define authorised scope and access, assess the application and document findings with evidence and priorities. Maintenance covers the tasks and interventions agreed in the project quote.",
+    "packages": [
       {
-        id: 'audit',
-        name: 'Technical audit — written report',
-        from: '€1,500',
-        duration: '1 week',
-        model: 'Fixed price per deliverable',
-        includes: [
-          'Code, architecture, infrastructure, security, observability',
-          'Recommendations prioritized by impact and cost',
-          'The risks that don’t show in a demo or a pitch deck',
-          'Standard NDA; the report stays with you only',
+        "id": "security-audit",
+        "name": "Web and API security audit",
+        "from": "€1,500",
+        "duration": "1 day–1 week",
+        "model": "Authorised and agreed scope",
+        "includes": [
+          "Checks within the agreed scope, referencing OWASP ASVS and Top 10",
+          "Evidence for identified issues",
+          "Report with impact and remediation priorities",
+          "Discussion of next steps"
         ],
-        deliverable: 'A written report with concrete, prioritized recommendations — yours, never used as marketing material.',
+        "deliverable": "An audit report with documented issues and remediation recommendations.",
+        "priceNote": "From €1,500 for the agreed scope and audit report. Remediation is quoted separately."
       },
       {
-        id: 'discovery',
-        name: 'Discovery sprint',
-        from: '€2,500',
-        duration: '1 week',
-        model: 'Fixed price per deliverable',
-        includes: [
-          'Interviews with stakeholders and users: how the process works today',
-          'Technical audit of existing systems, if any',
-          'A low-fidelity prototype validated with real users',
-          'Scope, stack, component-level estimate with uncertainty ranges',
+        "id": "maintenance",
+        "name": "Application maintenance",
+        "from": "€500 / month",
+        "duration": "Monthly collaboration",
+        "model": "Agreed work and availability",
+        "includes": [
+          "Agreed periodic updates and checks",
+          "Bug fixes within the defined package",
+          "Support for use and administration",
+          "Prioritised work and progress communication"
         ],
-        deliverable: 'A 10–15 page document: validated problem, proposed architecture, risks, estimate, go/no-go decision.',
+        "deliverable": "A maintenance plan with clear activities and conditions.",
+        "priceNote": "From €500 per month. Tasks, allocated time and availability are agreed in the quote; interventions are not unlimited."
       },
       {
-        id: 'legacy-takeover',
-        name: 'Legacy project takeover',
-        from: '€1,200 / month',
-        duration: 'ongoing',
-        model: 'Monthly retainer',
-        includes: [
-          'We take over PHP, Java, .NET Framework, Ruby, Python 2 systems',
-          'A learning phase: we document what isn’t documented',
-          'Stabilization: security patches, backup, monitoring',
-          'Gradual migration to a modern stack, if it makes sense',
+        "id": "project-consultation",
+        "name": "Consultation for your project",
+        "from": "On request",
+        "duration": "Agreed sessions and deliverables",
+        "model": "Planning or reviewing an existing product",
+        "includes": [
+          "Discussing goals, users and budget",
+          "Review of the existing application or proposed idea",
+          "Prioritising required features and integrations",
+          "Implementation plan and stage estimates"
         ],
-        deliverable: 'An inherited system, stabilized and documented, with someone who knows it and answers.',
+        "deliverable": "A clear recommendation and plan for what to build or improve.",
+        "priceNote": "On request: the required analysis, number of sessions and agreed deliverables determine the price."
+      }
+    ],
+    "whatWeBuild": [
+      {
+        "title": "A plan for your project",
+        "desc": "We clarify your idea or review the existing application, then propose priorities and implementation stages."
       },
       {
-        id: 'maintenance-sla',
-        name: 'Maintenance & SLA',
-        from: '€500 / month',
-        duration: 'ongoing',
-        model: 'Monthly retainer',
-        includes: [
-          'Contractual SLA: 15-minute to 4-hour response by severity',
-          'Security updates within 48h, monthly dependency upgrades',
-          'A monthly hours budget for small features, under your control',
-          'Transparent monthly report; 30-day notice termination after 6 months',
-        ],
-        deliverable: 'Your product stays alive, fast, and safe after go-live — with a written SLA, not promises.',
+        "title": "A report you can act on",
+        "desc": "Evidence, impact and a recommended remediation order for the assessed scope."
       },
+      {
+        "title": "Continuity after launch",
+        "desc": "Updates, fixes and support organised within an agreed maintenance plan."
+      }
     ],
-    whatWeBuild: [
-      { title: 'Technical audit', desc: 'Code, architecture, infrastructure, security, observability — a written report with concrete recommendations.' },
-      { title: 'Tech due-diligence', desc: 'For investors or acquisitions — we assess a company’s technical risk before the deal closes.' },
-      { title: 'Discovery sprint', desc: 'One week to define scope, stack, estimate, and risks for a new project.' },
-      { title: 'Takeover & SLA', desc: 'We take over inherited systems, stabilize them, and keep them alive with a contractual SLA and on-call.' },
+    "audience": [
+      {
+        "title": "You have an application to assess",
+        "desc": "You want to understand risks before launch or in an existing product."
+      },
+      {
+        "title": "You need technical support",
+        "desc": "You want a point of contact for website or application maintenance."
+      }
     ],
-    audience: [
-      { title: 'First-year CTOs', desc: 'You inherited a team and a system. You need clarity before making any move.' },
-      { title: 'Investors & corporate dev', desc: 'You’re evaluating a tech company. We tell you what the pitch deck doesn’t show.' },
-      { title: 'Products without a technical team', desc: 'A product that matters to the business, but no in-house dev. We become your team.' },
-    ],
-    technologies: [
-      { cat: 'Frameworks', items: ['ATAM', 'ADR', 'C4 model', 'Wardley maps'] },
-      { cat: 'Coverage', items: ['Cloud', 'On-premise', 'Mobile', 'Web', 'AI / ML'] },
-      { cat: 'Deliverables', items: ['Written report', 'Workshop', 'Roadmap', 'Cost & timeline estimate'] },
-      { cat: 'Format', items: ['Remote', 'On-site', '1 day → 4 weeks', 'Monthly retainer'] },
-    ],
-    pricing: { from: '€500 / month', duration: 'Audit 1 day–1 week · retainer from €500/month', model: 'Fixed per deliverable or monthly retainer' },
-    timeline: '1 day – 4 weeks · ongoing retainer',
-    faq: [
-      { q: 'Do you sign an NDA?', a: 'Yes, as standard. We can also sign yours if that’s required.' },
-      { q: 'Who keeps the report?', a: 'Only you. We never use it as marketing material or share it with anyone else.' },
-      { q: 'Do you continue after the consulting engagement?', a: 'Only if you want to. We can deliver the report and stop there, or continue into execution — your call.' },
-      { q: 'Can I end the maintenance contract whenever I want?', a: 'Yes, with 30 days’ notice after the first 6 months. We hand over all access and documentation, no strings attached.' },
-    ],
-  },
+    "technologies": [],
+    "pricing": {
+      "from": "€1,500",
+      "duration": "Audit estimate follows scope definition",
+      "model": "Fixed audit; optional monthly maintenance"
+    },
+    "timeline": "Audit: 1 day–1 week, indicative",
+    "faq": [
+      {
+        "q": "Does an audit guarantee there are no more vulnerabilities?",
+        "a": "No. The report describes checks and issues identified within the agreed scope and period. It does not guarantee that the application has no other vulnerabilities."
+      },
+      {
+        "q": "Do you need permission to test?",
+        "a": "Yes. We only assess systems with authorisation and a scope agreed before work starts."
+      },
+      {
+        "q": "Does the audit include fixes?",
+        "a": "The audit delivers the report and recommendations. Any fixes are agreed separately based on identified issues."
+      },
+      {
+        "q": "What does maintenance include?",
+        "a": "Activities, allocated time and availability are defined in the project quote and contract based on the application."
+      }
+    ]
+  }
 ];

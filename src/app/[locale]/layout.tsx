@@ -1,85 +1,42 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, Inter_Tight, JetBrains_Mono, Instrument_Serif } from 'next/font/google';
+import { Space_Grotesk, Inter_Tight } from 'next/font/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import '../globals.css';
+import '../rebrand.css';
 import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
-import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import ClientOnly from '@/components/layout/ClientOnly';
-import ScrollReset from '@/components/ui/ScrollReset';
 import RouteTransition from '@/components/ui/RouteTransition';
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import ConsentAnalytics from '@/components/layout/ConsentAnalytics';
 import { routing, type AppLocale } from '@/i18n/routing';
-import { BASE } from '@/lib/seo';
+import { BASE, socialMetadata } from '@/lib/seo';
 
 const spaceGrotesk = Space_Grotesk({
+  variable: '--font-grotesk',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
 const interTight = Inter_Tight({
+  variable: '--font-inter',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  display: 'swap',
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ['latin'],
-  weight: ['400'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-});
-
 const LAYOUT_METADATA: Record<AppLocale, Metadata> = {
   ro: {
-    title: {
-      default: 'ACL Smart Software — Software custom, aplicații web & mobile, AI | Petroșani',
-      template: '%s | ACL Smart Software',
-    },
-    description: 'Firmă de software din Petroșani: dezvoltare software la comandă, aplicații web și mobile, AI & Machine Learning, Cloud & DevOps pentru companii din România.',
-    openGraph: {
-      title: 'ACL Smart Software — Software custom, aplicații web & mobile, AI',
-      description: 'Firmă de software din Petroșani. Construim software la comandă, aplicații web și mobile, AI, Cloud & DevOps.',
-      url: BASE,
-      siteName: 'ACL Smart Software',
-      type: 'website',
-      locale: 'ro_RO',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'ACL Smart Software — Software custom & AI | Petroșani',
-      description: 'Firmă de software din Petroșani. Software la comandă, aplicații web & mobile, AI, Cloud & DevOps.',
-    },
+    title: { default: 'ACL Smart Software — AI, automatizări și produse digitale | Petroșani', template: '%s | ACL Smart Software' },
+    description: 'ACL Smart Software, companie de dezvoltare software din Petroșani. Site-uri, portaluri, produse SaaS, integrare AI și automatizări pentru companii.',
+    ...socialMetadata('ro', 'ACL Smart Software — AI, automatizări și produse digitale', 'Construim site-uri, portaluri și SaaS. Integrăm AI și automatizăm procesele companiei tale.'),
   },
   en: {
-    title: {
-      default: 'ACL Smart Software — Custom Software, Web & Mobile Apps, AI | Romania',
-      template: '%s | ACL Smart Software',
-    },
-    description: 'Software company based in Romania: custom software development, web and mobile apps, AI & Machine Learning, Cloud & DevOps for businesses worldwide.',
-    openGraph: {
-      title: 'ACL Smart Software — Custom Software, Web & Mobile Apps, AI',
-      description: 'Software company based in Romania. We build custom software, web and mobile apps, AI, Cloud & DevOps.',
-      url: `${BASE}/en`,
-      siteName: 'ACL Smart Software',
-      type: 'website',
-      locale: 'en_US',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'ACL Smart Software — Custom Software & AI | Romania',
-      description: 'Software company based in Romania. Custom software, web & mobile apps, AI, Cloud & DevOps.',
-    },
+    title: { default: 'ACL Smart Software — AI, Automation and Digital Products | Romania', template: '%s | ACL Smart Software' },
+    description: 'ACL Smart Software is a software development company in Romania. Websites, portals, SaaS products, AI integration and business automation.',
+    ...socialMetadata('en', 'ACL Smart Software — AI, Automation and Digital Products', 'We build websites, portals and SaaS products. We integrate AI and automate your business workflows.'),
   },
 };
 
@@ -113,24 +70,15 @@ export default async function RootLayout({ children, params }: { children: React
   return (
     <html
       lang={locale}
-      className={`${spaceGrotesk.className} ${interTight.className} ${jetbrainsMono.className} ${instrumentSerif.className}`}
+      data-scroll-behavior="smooth"
+      className={`${spaceGrotesk.variable} ${interTight.variable}`}
     >
-      {/* Atributele de temă rămân aici ca valori implicite corecte pentru SSR / primul paint.
-          ATENȚIE: fiind randate de React pe <body>, ele sunt REAPLICATE la orice re-randare de
-          layout — inclusiv la schimbarea de limbă, care schimbă segmentul `[locale]`. De aceea
-          ThemeProvider le restaurează într-un `useLayoutEffect` (sincron, înainte de paint) și
-          nu într-un `useEffect` pasiv: altfel un utilizator pe tema dark vedea un flash alb de
-          ~25ms la fiecare switch RO↔EN. */}
-      <body suppressHydrationWarning data-palette="lime" data-mode="light" data-font="grotesk" data-density="comfortable">
-        {/* Blocking script — runs before first paint, eliminates theme flash + fixes scroll restoration */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{history.scrollRestoration='manual';if(!window.location.hash)window.scrollTo({top:0,left:0,behavior:'instant'});}catch(e){}try{var s=localStorage.getItem('acl-tweaks-v2');if(!s)return;var t=JSON.parse(s);var b=document.body;if(t.palette)b.dataset.palette=t.palette;if(t.mode)b.dataset.mode=t.mode;if(t.fontPair)b.dataset.font=t.fontPair;if(t.density)b.dataset.density=t.density;}catch(e){}})();` }} />
+      <body suppressHydrationWarning data-palette="lime" data-mode="dark" data-font="grotesk" data-density="comfortable">
         {/* Fără `messages`: nu folosim cataloage de mesaje (useTranslations) — textul e pe
             componente ca `COPY.ro`/`COPY.en`. `messages={null}` oprește auto-inheritance-ul
             din next-intl 4, care altfel aruncă "No messages found" neavând un i18n/request.ts
             care să returneze `messages`. */}
         <NextIntlClientProvider locale={locale} messages={null}>
-          <ThemeProvider>
-            <ScrollReset />
             <a href="#main-content" className="skip-link">{locale === 'en' ? 'Skip to content' : 'Sari la conținut'}</a>
             <Nav />
             <main id="main-content">
@@ -138,9 +86,7 @@ export default async function RootLayout({ children, params }: { children: React
             </main>
             <Footer />
             <ClientOnly />
-            <Analytics />
-            <SpeedInsights />
-          </ThemeProvider>
+            <ConsentAnalytics />
         </NextIntlClientProvider>
       </body>
     </html>

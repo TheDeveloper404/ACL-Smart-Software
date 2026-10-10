@@ -1,387 +1,475 @@
 import type { Service } from '@/types';
 
-/**
- * Cele 4 arii de servicii (RO). Fiecare arie grupează pachete productizate — scope fix,
- * preț „de la", durată, livrabil. Traducerea EN, aceleași slug-uri și aceeași ordine, în
- * `services.en.ts`.
- */
+// Slug-urile istorice rămân stabile pentru paginile deja indexate.
 export const SERVICES: Service[] = [
   {
-    slug: 'produse',
-    title: 'Produse & aplicații la comandă',
-    short: 'Website-uri, aplicații web, platforme SaaS și aplicații mobile — construite pe procesul tău, nu pe un template.',
-    tags: ['Next.js', 'React', 'TypeScript', 'React Native', 'PostgreSQL'],
-    tagline: 'De la idee la producție, cu cod care rămâne 100% al tău.',
-    longDesc: 'Pornim de la procesul tău real. Proiectăm arhitectura, alegem stack-ul potrivit pentru context, construim incremental cu demo bi-săptămânal și staging permanent. La final predăm tot — cod, documentație, infrastructură.',
-    packages: [
+    "slug": "ai",
+    "title": "AI în aplicația ta",
+    "short": "Adăugăm AI într-un produs existent sau construim un asistent care caută în documentele tale.",
+    "tags": [
+      "Asistenți AI",
+      "Căutare în documente",
+      "AI în produse"
+    ],
+    "tagline": "O funcție utilă pentru oamenii care folosesc deja produsul tău.",
+    "longDesc": "Pornim de la o nevoie concretă: găsirea unei informații, rezumarea unui document sau pregătirea unui răspuns. Alegem sursele, construim funcția și verificăm răspunsurile pe exemple din activitatea ta. Stabilim împreună limitele și când este necesară verificarea de către un om.",
+    "packages": [
       {
-        id: 'website',
-        name: 'Website & prezență online',
-        from: '€900',
-        duration: '2–3 săpt',
-        model: 'Scope fix',
-        includes: [
-          'Design pe brandul tău sau pornind de la Figma-ul tău',
-          'Până la ~8 pagini, CMS pentru conținut editabil',
-          'Performanță Lighthouse 90+, SEO tehnic, WCAG AA',
-          'Formular de contact, analytics, deploy pe domeniul tău',
+        "id": "rag-assistant",
+        "name": "Asistent pe documentele tale",
+        "from": "€2.500",
+        "duration": "3–4 săptămâni",
+        "model": "Scop agreat",
+        "includes": [
+          "Căutare și întrebări peste documentele agreate",
+          "Răspunsuri cu trimiteri la sursele disponibile",
+          "Acces stabilit pentru utilizatorii tăi",
+          "Verificare pe un set de întrebări reale"
         ],
-        deliverable: 'Site live pe domeniul tău, cu acces complet la cod și la panoul de administrare.',
+        "deliverable": "Un asistent pentru documentele tale, cu surse și limite de utilizare explicate.",
+        "priceNote": "De la €2.500 pentru un asistent pe o bază de documente agreată. OCR, mai multe surse și integrări suplimentare se estimează separat."
       },
       {
-        id: 'app-web',
-        name: 'Aplicație web / portal client',
-        from: '€4.500',
-        duration: '5–8 săpt',
-        model: 'Scope fix',
-        includes: [
-          'Autentificare, roluri, dashboard-uri, export de date',
-          'Integrare cu 1–2 sisteme externe (plăți, ERP, e-mail)',
-          'Staging permanent + board public cu toate task-urile',
-          'Teste automate pe fluxurile principale',
+        "id": "ai-feature",
+        "name": "AI într-un produs existent",
+        "from": "€3.500",
+        "duration": "3–5 săptămâni",
+        "model": "O funcționalitate agreată",
+        "includes": [
+          "O funcție: căutare, rezumare, clasificare sau generare de text",
+          "Integrare în aplicația și fluxul tău de lucru",
+          "Limite de utilizare și urmărirea costurilor",
+          "Teste pe exemple reprezentative pentru produs"
         ],
-        deliverable: 'Aplicație în producție, repository în contul tău, documentație tehnică și sesiune de handover.',
+        "deliverable": "O funcționalitate AI integrată în produsul tău, pe care o poți evalua cu utilizatorii.",
+        "priceNote": "De la €3.500 pentru o funcționalitate integrată în aplicația existentă. Oferta depinde de accesul la cod și de modificările necesare."
       },
       {
-        id: 'mvp-saas',
-        name: 'MVP SaaS (multi-tenant)',
-        from: '€8.000',
-        duration: '6–10 săpt',
-        model: 'Scope fix',
-        includes: [
-          'Auth, billing cu abonamente, izolare pe tenant, audit log',
-          'Onboarding, roluri de echipă, panou de administrare',
-          'Infrastructură ca cod + CI/CD din ziua 1',
-          'Plan de scalare pe profilul tău de trafic',
+        "id": "document-extraction",
+        "name": "Extragere de date din documente",
+        "from": "La ofertă",
+        "duration": "Estimare după analiza documentelor",
+        "model": "Documente și câmpuri agreate",
+        "includes": [
+          "Extragere din tipurile de documente stabilite",
+          "Structurarea datelor în câmpurile de care ai nevoie",
+          "Verificare umană pentru informațiile neclare",
+          "Export sau integrare în aplicația agreată"
         ],
-        deliverable: 'Produs SaaS gata de primii clienți plătitori, cu fundația pe care poți construi 2 ani.',
+        "deliverable": "Un flux care transformă documentele în date structurate, cu posibilitatea de verificare.",
+        "priceNote": "La ofertă: costul depinde de formate, calitatea documentelor, câmpurile de extras și pasul de verificare."
       },
       {
-        id: 'app-mobile',
-        name: 'Aplicație mobilă (React Native)',
-        from: '€12.000',
-        duration: '8–14 săpt',
-        model: 'Scope fix',
-        includes: [
-          'iOS + Android din același codebase (Expo)',
-          'Push notifications, mod offline, sincronizare inteligentă',
-          'Publicare în App Store și Google Play, inclusiv submitere',
-          'Backend comun cu aplicația web, dacă există',
+        "id": "ai-prototype",
+        "name": "Prototip pentru o idee AI",
+        "from": "La ofertă",
+        "duration": "Estimare după definirea ideii",
+        "model": "Validare înainte de implementare",
+        "includes": [
+          "Alegerea unui caz de utilizare concret",
+          "Prototip cu date și exemple reprezentative",
+          "Evaluarea răspunsurilor și a costurilor de utilizare",
+          "Recomandare pentru continuare și limite explicate"
         ],
-        deliverable: 'Aplicație publicată în ambele magazine, cu cont de developer pe numele tău.',
+        "deliverable": "Un prototip și o evaluare pe care poți baza decizia de a investi în funcția AI.",
+        "priceNote": "La ofertă: stabilim mai întâi ipoteza de testat, datele disponibile și criteriile de evaluare. Prototipul nu este un produs lansat."
+      }
+    ],
+    "whatWeBuild": [
+      {
+        "title": "Găsești informația în documente",
+        "desc": "Un asistent caută în manuale, proceduri sau materiale interne și indică sursele folosite."
       },
+      {
+        "title": "Lucrezi mai ușor cu texte",
+        "desc": "Rezumate, propuneri de răspuns și clasificarea mesajelor, în aplicația în care lucrezi deja."
+      },
+      {
+        "title": "Extragi informații din documente",
+        "desc": "Transformăm informații din documente în date utile, cu verificare umană unde este nevoie."
+      }
     ],
-    whatWeBuild: [
-      { title: 'ERP-uri & sisteme interne', desc: 'Înlocuim foi de Excel și aplicații învechite cu instrumente moderne care chiar reduc timpul de lucru.' },
-      { title: 'Platforme SaaS multi-tenant', desc: 'Auth, billing, roluri, audit log, white-label — fundația pentru produsele care se vând lunar.' },
-      { title: 'Dashboard-uri, portaluri & marketplace-uri', desc: 'Self-service pentru clienți sau parteneri, vizualizări de date care răspund instant, checkout care convertește.' },
-      { title: 'Aplicații mobile B2C și pentru forța de teren', desc: 'Onboarding scurt, push relevant, mod offline pentru echipe care nu stau la birou.' },
+    "audience": [
+      {
+        "title": "Ai deja o aplicație",
+        "desc": "Vrei să adaugi o funcție AI fără să reconstruiești întregul produs."
+      },
+      {
+        "title": "Informația e răspândită în documente",
+        "desc": "Echipa pierde timp căutând răspunsuri în mai multe fișiere."
+      }
     ],
-    audience: [
-      { title: 'Companii cu procese complexe', desc: 'Când Excel + email nu mai țin, dar nici un soft standard nu se potrivește.' },
-      { title: 'Startup-uri post-validation', desc: 'Ai validat ideea, ai users — acum vrei un produs serios, nu un prototip lipit.' },
-      { title: 'Echipe care moștenesc legacy', desc: 'Sistem vechi care funcționează, dar costă scump. Îl modernizăm fără să-l oprim.' },
-    ],
-    technologies: [
-      { cat: 'Frontend', items: ['React', 'Next.js', 'Vue 3', 'TypeScript', 'Tailwind'] },
-      { cat: 'Backend', items: ['Node.js', 'Python (FastAPI / Django)', '.NET 8', 'Go', 'Java Spring'] },
-      { cat: 'Mobile', items: ['React Native (Expo)', 'Swift', 'Kotlin'] },
-      { cat: 'Date & infra', items: ['PostgreSQL', 'Redis', 'Prisma / Drizzle', 'Docker', 'AWS / Azure'] },
-    ],
-    pricing: { from: '€900', duration: 'Website în 2–3 săpt · MVP în 6–10 săpt', model: 'Scope fix sau retainer lunar' },
-    timeline: '2–20 săptămâni',
-    faq: [
-      { q: 'Codul rămâne al meu?', a: 'Da. 100%. Repository pe GitHub în contul tău, predăm și documentația arhitecturală.' },
-      { q: 'Ce se întâmplă după go-live?', a: 'Putem continua cu SLA dedicat, putem preda complet către echipa ta, sau hibrid. Decizi tu.' },
-      { q: 'Pot vedea progresul în timp real?', a: 'Da. Staging permanent, demo bi-săptămânal, board public cu toate task-urile.' },
-      { q: 'Ce primesc la final?', a: 'Cod sursă, documentație tehnică, infrastructură ca cod, manual de operare, sesiune de handover.' },
-    ],
+    "technologies": [],
+    "pricing": {
+      "from": "€2.500",
+      "duration": "Estimarea finală urmează definirea scopului",
+      "model": "Proiect cu scop agreat"
+    },
+    "timeline": "3–5 săptămâni, orientativ",
+    "faq": [
+      {
+        "q": "Ce înseamnă un asistent RAG?",
+        "a": "Este un asistent AI care caută informații în documentele tale înainte de a formula un răspuns. Poate indica sursele, dar poate greși; verificăm calitatea și stabilim limitele de utilizare."
+      },
+      {
+        "q": "Se poate integra în aplicația existentă?",
+        "a": "Da. Mai întâi verificăm cum funcționează aplicația și ce acces avem la cod sau la interfețele ei, apoi stabilim integrarea potrivită."
+      },
+      {
+        "q": "Prețul include costurile modelelor AI?",
+        "a": "Prețul de pornire este pentru implementare. Costurile recurente ale modelelor și găzduirii se estimează separat, în funcție de utilizare."
+      },
+      {
+        "q": "Unde ajung documentele mele?",
+        "a": "Stabilim înainte de implementare ce date pot fi procesate, cine are acces și ce furnizori pot fi folosiți. Alegerea depinde de cerințele proiectului."
+      }
+    ]
   },
   {
-    slug: 'ai',
-    title: 'AI & automatizare',
-    short: 'LLM-uri integrate în produs, asistenți RAG pe documentele tale, agenți care duc la capăt procese repetitive — cu metrici, nu doar demo-uri.',
-    tags: ['LLM / RAG', 'Agenți', 'MCP', 'pgvector / Qdrant', 'Claude & GPT'],
-    tagline: 'AI pragmatic: pornim de la job-to-be-done, nu de la „vrem AI".',
-    longDesc: 'Construim integrări AI care livrează valoare măsurabilă. Procesul e mereu același: Audit (unde ajută AI, cu estimare de ROI) → PoC cu eval set → producție cu guardrails → AI Ops. Pentru agenți folosim arhitectura planificator → executor → verificator, cu limite explicite: ce unelte are voie agentul, ce acțiuni cer confirmare umană, buget maxim de pași și cost per rulare.',
-    packages: [
+    "slug": "infrastructura",
+    "title": "Automatizări și integrări",
+    "short": "Legăm aplicațiile pe care le folosești și automatizăm pașii pe care îi repeți în fiecare zi.",
+    "tags": [
+      "Procese repetitive",
+      "Documente și email",
+      "Aplicații conectate"
+    ],
+    "tagline": "Mai puține mutări de date. Un flux de lucru mai simplu.",
+    "longDesc": "Alegem un proces clar, identificăm aplicațiile și datele implicate și stabilim regulile. Automatizarea poate folosi AI când este util sau reguli obișnuite când acestea sunt suficiente. Definim ce se întâmplă la erori și ce acțiuni trebuie confirmate de un om.",
+    "packages": [
       {
-        id: 'ai-audit',
-        name: 'AI Readiness Audit',
-        from: '€1.200',
-        duration: '1 săpt',
-        model: 'Preț fix pe livrabil',
-        includes: [
-          'Cartografiem procesele unde AI ar avea impact real',
-          'Estimare de cost, efort și ROI per oportunitate',
-          'Recomandare de arhitectură: API vs. model local, RAG vs. fine-tune',
-          'Riscuri: confidențialitate date, latență, cost recurent',
+        "id": "automation-agent",
+        "name": "Agent pentru un proces",
+        "from": "€2.000",
+        "duration": "3–6 săptămâni",
+        "model": "Un proces agreat",
+        "includes": [
+          "Definirea pașilor, datelor și regulilor procesului",
+          "Conectarea la aplicațiile implicate, în limita accesului disponibil",
+          "Confirmare umană pentru acțiunile agreate",
+          "Teste, evidența execuțiilor și tratarea erorilor"
         ],
-        deliverable: 'Raport scris, prioritizat pe impact/cost, cu un plan concret de următorii pași.',
+        "deliverable": "Un proces automatizat, cu limite clare și instrucțiuni de utilizare.",
+        "priceNote": "De la €2.000 pentru un proces delimitat, cu reguli și acces agreate. Procesele suplimentare se estimează separat."
       },
       {
-        id: 'rag-assistant',
-        name: 'Asistent pe documentele tale (RAG)',
-        from: '€4.000',
-        duration: '3–4 săpt',
-        model: 'Scope fix',
-        includes: [
-          'Indexare manuale / contracte / knowledge base, reindexare automată',
-          'Răspunsuri cu citări la sursă și control de acces pe rol',
-          'Variantă API sau self-hosted (Llama / Mistral) dacă datele nu pot pleca',
-          'Eval set + metrici (accuracy, recall) definite de la început',
+        "id": "integration",
+        "name": "Conectarea a două aplicații",
+        "from": "€1.500",
+        "duration": "1–3 săptămâni",
+        "model": "O integrare agreată",
+        "includes": [
+          "Verificarea interfețelor și accesului disponibil",
+          "Transferul datelor necesare între aplicații",
+          "Tratarea erorilor și evitarea transferurilor duplicate",
+          "Teste pe fluxul principal și documentație"
         ],
-        deliverable: 'Chat integrat în produsul sau intranetul tău, cu panou de administrare a surselor.',
+        "deliverable": "O integrare funcțională între două aplicații, pentru datele și acțiunile stabilite.",
+        "priceNote": "De la €1.500 pentru un flux de date între două aplicații cu interfețe disponibile. Accesul și costurile furnizorilor se verifică înainte."
       },
       {
-        id: 'automation-agent',
-        name: 'Agent de automatizare — 1 proces',
-        from: '€5.000',
-        duration: '4–6 săpt',
-        model: 'Scope fix',
-        includes: [
-          'Un proces concret: triere tickete, reconciliere, extragere date din PDF',
-          'Arhitectură planificator → executor → verificator',
-          'Guardrails: ce unelte are voie, ce cere confirmare umană, buget max/rulare',
-          'Fallback la om pe cazurile cu încredere scăzută',
+        "id": "workflow-automation",
+        "name": "Automatizarea unui flux de lucru",
+        "from": "La ofertă",
+        "duration": "Estimare după analiza procesului",
+        "model": "Pași și reguli agreate",
+        "includes": [
+          "Analiza pașilor care se repetă în activitatea ta",
+          "Declanșatoare și reguli fără AI, unde sunt suficiente",
+          "Notificări, reluarea pașilor și gestionarea erorilor",
+          "Teste și instrucțiuni pentru echipă"
         ],
-        deliverable: 'Agent în producție care duce la capăt un proces, cu monitoring și raport de acuratețe.',
+        "deliverable": "Un flux automatizat pentru sarcini repetitive, precum preluarea solicitărilor sau pregătirea documentelor.",
+        "priceNote": "La ofertă: numărul de pași, aplicațiile implicate și excepțiile procesului determină scopul și prețul."
+      }
+    ],
+    "whatWeBuild": [
+      {
+        "title": "Din document în aplicație",
+        "desc": "Preluăm informații din documente și le pregătim pentru sistemul în care ai nevoie de ele."
       },
       {
-        id: 'ai-feature',
-        name: 'AI feature în produsul existent',
-        from: '€3.500',
-        duration: '3–5 săpt',
-        model: 'Scope fix',
-        includes: [
-          'Search semantic, generare de conținut cu tone-of-voice, clasificare / rutare',
-          'Integrare în codebase-ul tău, nu un microserviciu lipit',
-          'Cost tracking și caching din prima zi',
-          'Comparație măsurabilă față de varianta fără AI',
-        ],
-        deliverable: 'Funcționalitate live în produsul tău, cu metrici care arată dacă merită păstrată.',
+        "title": "Mesaje organizate și direcționate",
+        "desc": "Sortăm solicitările după reguli agreate și pregătim răspunsuri pentru verificare."
       },
       {
-        id: 'ai-ops',
-        name: 'AI Ops (retainer)',
-        from: '€600 / lună',
-        duration: 'continuu',
-        model: 'Retainer lunar',
-        includes: [
-          'Monitoring de acuratețe, cost per query și latență',
-          'Rulare periodică a eval set-ului, alertă la regresie',
-          'Upgrade de model și ajustare de prompturi când apar versiuni noi',
-          'Raport lunar',
-        ],
-        deliverable: 'Un sistem AI care nu se degradează în tăcere — cineva se uită la metrici lunar.',
+        "title": "Aplicații care schimbă date",
+        "desc": "Conectăm un site, un CRM, un sistem de plăți sau alte instrumente care oferă acces pentru integrare."
+      }
+    ],
+    "audience": [
+      {
+        "title": "Repeți aceiași pași",
+        "desc": "Copiați date, sortați mesaje sau pregătiți aceleași documente în mod repetat."
       },
+      {
+        "title": "Folosești mai multe aplicații",
+        "desc": "Informația trebuie introdusă manual în fiecare instrument."
+      }
     ],
-    whatWeBuild: [
-      { title: 'Copilot intern pe documentele tale', desc: 'Search semantic + Q&A peste manuale, contracte, knowledge base. Cu citări și control acces.' },
-      { title: 'Agenți pentru procese repetitive', desc: 'Triere de email-uri, completare formulare, sumarizare lunară — agenți care chiar termină task-uri.' },
-      { title: 'Generare de conținut controlată', desc: 'Rapoarte, descrieri de produs, draft-uri de email — cu tone of voice și brand guidelines respectate.' },
-      { title: 'Clasificare & extragere date', desc: 'Scoatem date structurate din PDF-uri, facturi, contracte — cu accuracy măsurată și fallback la om.' },
-    ],
-    audience: [
-      { title: 'Companii cu mult conținut text', desc: 'Knowledge base, documentație, contracte — orice unde căutarea clasică nu mai e suficientă.' },
-      { title: 'Echipe care procesează documente', desc: 'Facturi, contracte, formulare — automatizezi 70-90% din volum cu validare umană pe restul.' },
-      { title: 'Produse cu cazuri repetitive', desc: 'Triere tickete suport, sortare lead-uri, prioritizare task-uri — locuri cu volum mare și reguli neclare.' },
-    ],
-    technologies: [
-      { cat: 'Modele', items: ['Anthropic Claude', 'OpenAI GPT', 'Llama 3', 'Mistral', 'Local fine-tunes'] },
-      { cat: 'Orchestrare & unelte', items: ['MCP', 'LangChain', 'LlamaIndex', 'Vercel AI SDK', 'DSPy'] },
-      { cat: 'Date & vectori', items: ['pgvector', 'Qdrant', 'Pinecone', 'Weaviate'] },
-      { cat: 'Producție', items: ['Eval pipelines', 'Cost tracking', 'Guardrails', 'Caching'] },
-    ],
-    pricing: { from: '€1.200', duration: 'Audit 1 săpt · PoC 2 săpt · producție 4–8 săpt', model: 'Livrabil fix + AI Ops opțional' },
-    timeline: '1–10 săptămâni',
-    faq: [
-      { q: 'Ce e RAG?', a: 'Retrieval-Augmented Generation. AI-ul citește din documentele tale înainte să răspundă — astfel nu inventează.' },
-      { q: 'Datele mele stau pe serverele OpenAI?', a: 'Depinde. Avem variante on-premise (Llama, Mistral) sau cu provideri care nu folosesc datele tale pentru training.' },
-      { q: 'Cum măsurăm că funcționează?', a: 'Eval set definit de la început, metrici clare (accuracy, recall, cost / query), monitoring în producție.' },
-      { q: 'Când NU recomandați AI?', a: 'Când problema are răspuns determinist, când nu ai date reale despre cum folosesc oamenii produsul acum, sau când latența și costul nu se potrivesc cu use case-ul. O spunem în audit, înainte să scriem cod.' },
-    ],
+    "technologies": [],
+    "pricing": {
+      "from": "€1.500",
+      "duration": "O integrare: 1–3 săptămâni; un agent: 3–6",
+      "model": "Proiect cu scop agreat"
+    },
+    "timeline": "1–6 săptămâni, orientativ",
+    "faq": [
+      {
+        "q": "Orice automatizare are nevoie de AI?",
+        "a": "Nu. Pentru pași cu reguli clare, o automatizare obișnuită poate fi mai simplă și mai potrivită. Folosim AI când procesul chiar beneficiază de el."
+      },
+      {
+        "q": "Puteți conecta orice aplicație?",
+        "a": "Depinde de accesul oferit de aplicație: API, exporturi, webhooks sau alte interfețe. Verificăm acest lucru înainte de ofertă."
+      },
+      {
+        "q": "Ce se întâmplă dacă un pas eșuează?",
+        "a": "Stabilim cum sunt semnalate erorile, ce poate fi reluat și când trebuie să intervină un om. Aceste reguli fac parte din scopul proiectului."
+      },
+      {
+        "q": "Agentul poate face acțiuni fără aprobare?",
+        "a": "Doar acțiunile agreate explicit. Pentru acțiuni cu impact stabilim confirmări și limite înainte de implementare."
+      }
+    ]
   },
   {
-    slug: 'infrastructura',
-    title: 'Infrastructură & integrări',
-    short: 'Cloud care scalează fără surprize pe factură, CI/CD din ziua 1, și integrări durabile între sistemele care nu vorbesc între ele.',
-    tags: ['AWS / Azure', 'Kubernetes', 'Terraform', 'CI/CD', 'REST / Webhooks'],
-    tagline: 'Infrastructură pe care echipa ta o înțelege. Integrări care nu pierd date.',
-    longDesc: 'Construim platforme cloud care chiar scalează — și pe care echipa ta le înțelege: Infrastructure as Code, CI/CD din ziua 1, observability completă, FinOps pentru a ține factura sub control. Și conectăm sistemele care nu vorbesc între ele — ERP, CRM, plăți, curierat — cu retry logic, idempotency și audit trail, fără pierderi de date.',
-    packages: [
+    "slug": "produse",
+    "title": "Site-uri, portaluri și SaaS",
+    "short": "De la un site de prezentare la un portal pentru utilizatori sau un produs vândut prin abonament.",
+    "tags": [
+      "Website-uri",
+      "Portaluri",
+      "Produse SaaS"
+    ],
+    "tagline": "Un produs construit pentru ce au nevoie oamenii să facă.",
+    "longDesc": "Clarificăm utilizatorii și fluxurile importante, pregătim designul și construim în etape. Vezi produsul pe parcurs și dai feedback înainte de lansare. La predare primești acces la cod și explicațiile necesare pentru folosire și administrare.",
+    "packages": [
       {
-        id: 'cloud-audit',
-        name: 'Audit cloud + plan FinOps',
-        from: '€800',
-        duration: '2 săpt',
-        model: 'Preț fix pe livrabil',
-        includes: [
-          'Analiză factură pe categorii: compute, storage, egress, backup',
-          'Risipa tipică: instanțe supradimensionate, non-prod pe config de prod, egress evitabil',
-          'Plan de optimizare prioritizat, cu impact estimat per măsură',
-          'Recomandări de arhitectură pentru următoarea etapă de creștere',
+        "id": "website",
+        "name": "Site de prezentare",
+        "from": "€1.200",
+        "duration": "2–3 săptămâni",
+        "model": "Pagini și conținut agreate",
+        "includes": [
+          "Design adaptat identității tale",
+          "Pagini de prezentare și navigație pentru mobil",
+          "Formular de contact și elemente de SEO tehnic",
+          "Lansare pe domeniul tău și acces la cod"
         ],
-        deliverable: 'Raport scris cu lista concretă de măsuri și economia estimată per fiecare.',
+        "deliverable": "Un site public care prezintă clar ce faci și cum poți fi contactat.",
+        "priceNote": "De la €1.200 pentru un site de prezentare cu paginile agreate. Funcțiile de magazin, portal sau aplicație se estimează separat."
       },
       {
-        id: 'cicd-iac',
-        name: 'Setup CI/CD + Infrastructure as Code',
-        from: '€2.500',
-        duration: '2–4 săpt',
-        model: 'Scope fix',
-        includes: [
-          'Pipeline: build, teste, lint, security scan, deploy automat cu rollback',
-          'Infrastructură descrisă în Terraform / Pulumi, versionată',
-          'Environments separate (dev / staging / prod) cu config izolat',
-          'Documentație + sesiune de training pentru echipa ta',
+        "id": "app-web",
+        "name": "Aplicație web sau portal",
+        "from": "€3.500",
+        "duration": "5–8 săptămâni",
+        "model": "Fluxuri și funcții agreate",
+        "includes": [
+          "Conturi și roluri pentru utilizatori",
+          "Pagini și instrumente pentru fluxurile principale",
+          "Integrările definite în ofertă",
+          "Teste, lansare și instrucțiuni de administrare"
         ],
-        deliverable: 'Push pe main → producție în siguranță, cu infrastructură reproductibilă din cod.',
+        "deliverable": "O aplicație sau un portal pentru clienți, echipă, studenți ori profesori.",
+        "priceNote": "De la €3.500 pentru fluxurile principale și rolurile agreate. Extinderile și integrările suplimentare intră într-o ofertă separată."
       },
       {
-        id: 'integration',
-        name: 'O integrare (ERP / plăți / curierat / CRM)',
-        from: '€1.500',
-        duration: '1–3 săpt',
-        model: 'Per integrare',
-        includes: [
-          'Conectare bidirecțională, real-time sau batch',
-          'Retry logic, dead-letter queue, idempotency — fără pierderi de date',
-          'Audit log complet, orice eveniment poate fi rejucat',
-          'Monitoring și alertă dacă API-ul partenerului se schimbă',
+        "id": "mvp-saas",
+        "name": "Produs SaaS",
+        "from": "€4.500",
+        "duration": "6–10 săptămâni",
+        "model": "Prima versiune cu scop agreat",
+        "includes": [
+          "Funcțiile esențiale pentru prima versiune",
+          "Conturi și separarea datelor utilizatorilor",
+          "Abonamente și plăți, conform scopului agreat",
+          "Panou de administrare, teste și lansare"
         ],
-        deliverable: 'O integrare în producție, cu monitoring și documentația contractului de date.',
+        "deliverable": "O primă versiune a produsului tău SaaS, pregătită pentru a fi folosită de clienți.",
+        "priceNote": "De la €4.500 pentru prima versiune SaaS cu funcțiile esențiale agreate. Extinderea produsului după validare se estimează separat."
       },
       {
-        id: 'devops-retainer',
-        name: 'DevOps retainer',
-        from: '€1.800 / lună',
-        duration: 'continuu',
-        model: 'Retainer lunar',
-        includes: [
-          'On-call cu escalare clară, fără să depindă de un singur om',
-          'Monitoring: logs, metrics, traces, dashboards, alerting',
-          'Security patches în 48h, upgrade-uri de dependențe lunare',
-          'Raport lunar cu incidente, cost și recomandări',
+        "id": "product-mvp",
+        "name": "MVP pentru ideea ta",
+        "from": "La ofertă",
+        "duration": "Estimare după definirea primei versiuni",
+        "model": "Funcțiile esențiale pentru validare",
+        "includes": [
+          "Definirea utilizatorilor și a problemei de rezolvat",
+          "Design și implementarea fluxului principal",
+          "Funcțiile necesare pentru primii utilizatori",
+          "Teste, lansare și pași pentru următoarea versiune"
         ],
-        deliverable: 'O echipă de ops externă, cu SLA, pentru un produs fără SRE intern.',
+        "deliverable": "O primă versiune funcțională prin care poți testa ideea cu utilizatori, înainte să extinzi produsul.",
+        "priceNote": "La ofertă: prima versiune poate însemna lucruri diferite. Stabilim fluxul esențial înainte de a fixa bugetul."
+      }
+    ],
+    "whatWeBuild": [
+      {
+        "title": "Site-uri pentru afaceri",
+        "desc": "Serviciile, lucrările și datele de contact sunt ușor de găsit, inclusiv de pe telefon."
       },
+      {
+        "title": "Portaluri pentru utilizatori",
+        "desc": "Un spațiu cu acces pe roluri, pentru cursuri, documente sau operațiuni ale clienților și echipei."
+      },
+      {
+        "title": "Produse SaaS",
+        "desc": "Aplicații oferite prin abonament, cu funcțiile de care au nevoie primii utilizatori."
+      }
     ],
-    whatWeBuild: [
-      { title: 'Migrări către cloud', desc: 'De la on-premise / VPS la AWS / Azure / GCP — fără downtime, cu plan de rollback.' },
-      { title: 'Platforme Kubernetes & CI/CD', desc: 'Cluster-e production-ready, GitOps, autoscaling, pipeline-uri cu tests, security scan și deploy automat.' },
-      { title: 'Integrări ERP / CRM / plăți / curierat', desc: 'SAP, Dynamics, Salesforce, HubSpot, Stripe, Netopia, Fan Courier, Sameday — bidirectional, real-time sau batch.' },
-      { title: 'API-uri publice & B2B', desc: 'Auth, rate limiting, versioning, docs auto-generate — un API care nu te costă suport infinit.' },
+    "audience": [
+      {
+        "title": "Ai nevoie de o prezență online",
+        "desc": "Vrei să prezinți clar afacerea și să faci contactul mai simplu."
+      },
+      {
+        "title": "Ai un flux care cere o aplicație",
+        "desc": "Un portal sau un instrument adaptat poate organiza mai bine activitatea."
+      },
+      {
+        "title": "Vrei să lansezi un produs",
+        "desc": "Definim prima versiune în jurul funcțiilor esențiale pentru utilizatori."
+      }
     ],
-    audience: [
-      { title: 'Echipe fără SRE dedicat', desc: 'Ai 5-20 developeri și niciun expert în ops. Construim, predăm, antrenăm.' },
-      { title: 'Companii cu facturi cloud mari', desc: 'Plătiți sume mari pe cloud lunar și nu știți exact unde. Un audit FinOps arată risipa în concret.' },
-      { title: 'Companii cu multiple sisteme', desc: '5+ instrumente care nu vorbesc între ele. Te scapă de munca dublă și de erorile umane.' },
-    ],
-    technologies: [
-      { cat: 'Cloud', items: ['AWS', 'Azure', 'Google Cloud', 'DigitalOcean', 'Hetzner'] },
-      { cat: 'IaC & containere', items: ['Terraform', 'Pulumi', 'Docker', 'Kubernetes', 'ArgoCD'] },
-      { cat: 'Integrări', items: ['REST', 'GraphQL', 'Webhooks', 'Kafka', 'AWS SQS'] },
-      { cat: 'Operare', items: ['Retry & DLQ', 'Idempotency', 'Audit log', 'Grafana / Prometheus', 'Sentry'] },
-    ],
-    pricing: { from: '€800', duration: 'Audit + plan în 2 săpt · o integrare în 1–3 săpt', model: 'Livrabil fix sau retainer' },
-    timeline: '1–12 săptămâni · retainer continuu',
-    faq: [
-      { q: 'Vă ocupați și de on-call?', a: 'Da. SLA cu răspuns de la 15 min la 4 ore, în funcție de severitate, cu escalare clară — nu depinde de un singur om.' },
-      { q: 'Lucrați cu cloud provider-ul nostru actual?', a: 'Da. Lucrăm constant pe AWS și Azure, precum și cu GCP, Hetzner, DigitalOcean și alți provideri.' },
-      { q: 'Cât economisesc cu FinOps?', a: 'Depinde de setup — risipa tipică e la instanțe supradimensionate, environments non-prod pe config de producție și egress evitabil. Cifra o dăm după audit, nu înainte.' },
-      { q: 'Garantați că nu se pierd date la integrări?', a: 'Da. Idempotency keys, dead-letter queue, audit trail complet — orice eveniment poate fi rejucat.' },
-    ],
+    "technologies": [],
+    "pricing": {
+      "from": "€1.200",
+      "duration": "Site: 2–3 săptămâni; portal sau SaaS: 5–10",
+      "model": "Proiect cu scop agreat"
+    },
+    "timeline": "2–10 săptămâni, orientativ",
+    "faq": [
+      {
+        "q": "Care este diferența dintre site și portal?",
+        "a": "Un site prezintă informații publice. Un portal oferă utilizatorilor conturi și acces la funcții sau materiale, în funcție de rol."
+      },
+      {
+        "q": "Codul rămâne al meu?",
+        "a": "Da. Predăm codul proiectului și accesul la resursele agreate, împreună cu documentația necesară."
+      },
+      {
+        "q": "Pot vedea produsul înainte de lansare?",
+        "a": "Da. Îți prezentăm versiuni de lucru pe parcurs, pentru a putea verifica fluxurile și a da feedback."
+      },
+      {
+        "q": "Ce înseamnă prețul de pornire?",
+        "a": "Este un reper pentru un proiect cu scop delimitat. Oferta finală depinde de funcții, conținut, integrări și cerințe. Găzduirea și alte costuri recurente sunt discutate separat."
+      },
+      {
+        "q": "Cum diferă un MVP de un produs SaaS?",
+        "a": "MVP-ul este prima versiune cu care testezi o idee și fluxul principal. Un SaaS include și elementele necesare unui produs oferit prin abonament, precum gestionarea conturilor și a plăților. Stabilim funcțiile pentru fiecare proiect."
+      }
+    ]
   },
   {
-    slug: 'consultanta',
-    title: 'Consultanță & preluare',
-    short: 'A doua opinie tehnică pe care nu o regreți — audit, discovery, due-diligence — plus preluarea și mentenanța sistemelor construite de altcineva.',
-    tags: ['Audit tehnic', 'Discovery', 'Due-diligence', 'SLA', 'Legacy'],
-    tagline: 'Claritate înainte de orice mișcare mare. Și cineva care răspunde după.',
-    longDesc: 'Audit obiectiv pe arhitectură, cod, infrastructură sau echipă, cu recomandări scrise, prioritizate pe impact și cost. Discovery sprint-uri pentru proiecte noi. Și, după lansare, preluarea sistemelor moștenite plus mentenanță cu SLA contractual — nu dispărem după ultima factură.',
-    packages: [
+    "slug": "consultanta",
+    "title": "Consultanță, audit și mentenanță",
+    "short": "Definim pașii unui proiect nou, verificăm o aplicație existentă și oferim suport după lansare.",
+    "tags": [
+      "Planificare de proiect",
+      "Audit web și API",
+      "Suport după lansare"
+    ],
+    "tagline": "Înțelegi ce trebuie verificat și ce merită reparat întâi.",
+    "longDesc": "Prin consultanță clarificăm funcțiile și pașii de implementare. Pentru audit definim perimetrul și accesul autorizat, verificăm aplicația și documentăm problemele cu dovezi și priorități. Mentenanța acoperă activitățile și intervențiile stabilite în oferta proiectului.",
+    "packages": [
       {
-        id: 'audit',
-        name: 'Audit tehnic — raport scris',
-        from: '€1.500',
-        duration: '1 săpt',
-        model: 'Preț fix pe livrabil',
-        includes: [
-          'Cod, arhitectură, infrastructură, securitate, observability',
-          'Recomandări prioritizate pe impact și cost',
-          'Riscurile care nu se văd în demo sau în pitch deck',
-          'NDA standard; raportul rămâne doar la tine',
+        "id": "security-audit",
+        "name": "Audit de securitate web și API",
+        "from": "€1.500",
+        "duration": "1 zi–1 săptămână",
+        "model": "Perimetru autorizat și agreat",
+        "includes": [
+          "Verificări pe perimetrul agreat, cu referințe OWASP ASVS și Top 10",
+          "Dovezi pentru problemele identificate",
+          "Raport cu impact și priorități de remediere",
+          "Discuție despre pașii următori"
         ],
-        deliverable: 'Raport scris cu recomandări concrete, prioritizate — al tău, nefolosit ca material de marketing.',
+        "deliverable": "Un raport de audit cu probleme documentate și recomandări de remediere.",
+        "priceNote": "De la €1.500 pentru perimetrul agreat și raportul de audit. Remedierea problemelor este ofertată separat."
       },
       {
-        id: 'discovery',
-        name: 'Discovery sprint',
-        from: '€2.500',
-        duration: '1 săpt',
-        model: 'Preț fix pe livrabil',
-        includes: [
-          'Interviuri cu stakeholderi și utilizatori: cum se face procesul acum',
-          'Audit tehnic pe sistemele existente, dacă există',
-          'Prototip low-fidelity validat cu utilizatori reali',
-          'Scope, stack, estimare pe componente cu intervale de incertitudine',
+        "id": "maintenance",
+        "name": "Mentenanță pentru aplicația ta",
+        "from": "€500 / lună",
+        "duration": "Colaborare lunară",
+        "model": "Intervenții și disponibilitate agreate",
+        "includes": [
+          "Actualizări și verificări periodice agreate",
+          "Remedierea erorilor în limita pachetului stabilit",
+          "Suport pentru utilizare și administrare",
+          "Prioritizarea intervențiilor și comunicarea progresului"
         ],
-        deliverable: 'Document de 10–15 pagini: problema validată, arhitectura propusă, riscuri, estimare, decizie go/no-go.',
+        "deliverable": "Un plan de mentenanță cu activități și condiții clare.",
+        "priceNote": "De la €500 pe lună. Activitățile, timpul alocat și disponibilitatea se stabilesc în ofertă; nu include intervenții nelimitate."
       },
       {
-        id: 'legacy-takeover',
-        name: 'Preluare proiect legacy',
-        from: '€1.200 / lună',
-        duration: 'continuu',
-        model: 'Retainer lunar',
-        includes: [
-          'Preluăm sisteme PHP, Java, .NET Framework, Ruby, Python 2',
-          'Fază de learning: documentăm ce nu e documentat',
-          'Stabilizare: security patches, backup, monitoring',
-          'Trecere graduală spre stack modern, dacă are sens',
+        "id": "project-consultation",
+        "name": "Consultanță pentru proiectul tău",
+        "from": "La ofertă",
+        "duration": "Sesiuni și livrabile agreate",
+        "model": "Planificare sau evaluarea unui produs existent",
+        "includes": [
+          "Discuție despre obiective, utilizatori și buget",
+          "Analiza aplicației existente sau a ideii propuse",
+          "Prioritizarea funcțiilor și a integrărilor necesare",
+          "Plan de implementare și estimarea etapelor"
         ],
-        deliverable: 'Un sistem moștenit, stabilizat și documentat, cu cineva care îl cunoaște și răspunde.',
+        "deliverable": "O recomandare clară și un plan pentru ce merită construit sau îmbunătățit.",
+        "priceNote": "La ofertă: prețul depinde de analiza necesară, numărul de sesiuni și livrabilele agreate."
+      }
+    ],
+    "whatWeBuild": [
+      {
+        "title": "Un plan pentru proiectul tău",
+        "desc": "Clarificăm ideea sau analizăm aplicația existentă, apoi propunem priorități și pași de implementare."
       },
       {
-        id: 'maintenance-sla',
-        name: 'Mentenanță & SLA',
-        from: '€500 / lună',
-        duration: 'continuu',
-        model: 'Retainer lunar',
-        includes: [
-          'SLA contractual: răspuns 15 min – 4h în funcție de severitate',
-          'Update-uri de securitate în 48h, upgrade-uri de dependențe lunare',
-          'Buget lunar de ore pentru feature-uri mici, sub controlul tău',
-          'Raport lunar transparent; reziliere cu 30 de zile notice după 6 luni',
-        ],
-        deliverable: 'Produsul tău rămâne viu, rapid și sigur după go-live — cu SLA scris, nu promisiuni.',
+        "title": "Un raport pe care poți acționa",
+        "desc": "Primești dovezi, impact și o ordine recomandată a remedierilor, pentru perimetrul verificat."
       },
+      {
+        "title": "Continuitate după lansare",
+        "desc": "Actualizări, corecții și suport organizate într-un plan de mentenanță agreat."
+      }
     ],
-    whatWeBuild: [
-      { title: 'Audit tehnic', desc: 'Cod, arhitectură, infrastructură, securitate, observability — raport scris cu recomandări concrete.' },
-      { title: 'Tech due-diligence', desc: 'Pentru investitori sau achiziții — evaluăm riscurile tehnice ale unei companii înainte de tranzacție.' },
-      { title: 'Discovery sprint', desc: '1 săptămână pentru a defini scope, stack, estimare, riscuri pentru un proiect nou.' },
-      { title: 'Preluare & SLA', desc: 'Preluăm sisteme moștenite, le stabilizăm și le ținem vii cu SLA contractual și on-call.' },
+    "audience": [
+      {
+        "title": "Ai o aplicație de verificat",
+        "desc": "Vrei să înțelegi riscurile înainte de lansare sau pentru un produs existent."
+      },
+      {
+        "title": "Ai nevoie de suport tehnic",
+        "desc": "Vrei un punct de contact pentru întreținerea site-ului sau aplicației."
+      }
     ],
-    audience: [
-      { title: 'CTO-i în primul an', desc: 'Moștenești o echipă și un sistem. Avem nevoie de claritate înainte de orice mișcare.' },
-      { title: 'Investitori & corporate dev', desc: 'Evaluezi o companie tehnologică. Îți spunem ce nu se vede în pitch deck.' },
-      { title: 'Produse fără echipă tehnică', desc: 'Ai un produs important pentru business, dar nu un dev intern. Devenim noi echipa ta.' },
-    ],
-    technologies: [
-      { cat: 'Framework-uri', items: ['ATAM', 'ADR', 'C4 model', 'Wardley maps'] },
-      { cat: 'Acoperire', items: ['Cloud', 'On-premise', 'Mobile', 'Web', 'AI / ML'] },
-      { cat: 'Livrabile', items: ['Raport scris', 'Workshop', 'Roadmap', 'Estimare cost & timeline'] },
-      { cat: 'Format', items: ['Remote', 'On-site', '1 zi → 4 săptămâni', 'Retainer lunar'] },
-    ],
-    pricing: { from: '€500 / lună', duration: 'Audit 1 zi–1 săpt · retainer de la €500/lună', model: 'Fix pe livrabil sau retainer lunar' },
-    timeline: '1 zi – 4 săptămâni · retainer continuu',
-    faq: [
-      { q: 'Semnați NDA?', a: 'Da, standard. Putem semna și NDA-ul vostru dacă e cerut.' },
-      { q: 'Cui rămâne raportul?', a: 'Doar voi. Nu îl folosim ca material de marketing, nu îl arătăm altcuiva.' },
-      { q: 'Continuați și după consultanță?', a: 'Doar dacă vrei. Putem termina raportul și gata, putem continua cu execuție — depinde de tine.' },
-      { q: 'Pot termina contractul de mentenanță când vreau?', a: 'Da, cu 30 zile notice după primele 6 luni. Predăm tot accesul și documentația, fără pile.' },
-    ],
-  },
+    "technologies": [],
+    "pricing": {
+      "from": "€1.500",
+      "duration": "Auditul este estimat după definirea perimetrului",
+      "model": "Audit fix; mentenanță lunară opțională"
+    },
+    "timeline": "Audit: 1 zi–1 săptămână, orientativ",
+    "faq": [
+      {
+        "q": "Auditul garantează că nu mai există vulnerabilități?",
+        "a": "Nu. Raportul descrie verificările și problemele identificate în perimetrul și intervalul agreat. Nu este o garanție că aplicația nu are alte vulnerabilități."
+      },
+      {
+        "q": "Aveți nevoie de acord pentru testare?",
+        "a": "Da. Verificăm doar sistemele pentru care există autorizare și un perimetru stabilit înainte de începere."
+      },
+      {
+        "q": "Remedierea este inclusă în audit?",
+        "a": "Auditul livrează raportul și recomandările. Eventualele remedieri se stabilesc separat, pe baza problemelor identificate."
+      },
+      {
+        "q": "Ce include mentenanța?",
+        "a": "Activitățile, timpul alocat și disponibilitatea sunt definite în oferta și contractul proiectului, în funcție de aplicație."
+      }
+    ]
+  }
 ];

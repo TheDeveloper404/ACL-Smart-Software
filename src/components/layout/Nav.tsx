@@ -2,7 +2,7 @@
 
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // `raw: true` = ancoră `<a>` simplă în loc de `Link` din i18n/navigation (pentru rute care
 // nu au variantă de locale). Momentan nefolosit, dar păstrat pentru rute RO-only viitoare.
@@ -10,20 +10,20 @@ const NAV_ITEMS: Record<'ro' | 'en', { id: string; label: string; href: string; 
   ro: [
     { id: 'acasa', label: 'Acasă', href: '/' },
     { id: 'despre', label: 'Despre noi', href: '/despre-noi' },
-    { id: 'servicii', label: 'Servicii', href: '/servicii' },
+    { id: 'servicii', label: 'Soluții', href: '/servicii' },
     { id: 'portofoliu', label: 'Portofoliu', href: '/portofoliu' },
   ],
   en: [
     { id: 'acasa', label: 'Home', href: '/' },
     { id: 'despre', label: 'About us', href: '/despre-noi' },
-    { id: 'servicii', label: 'Services', href: '/servicii' },
+    { id: 'servicii', label: 'Solutions', href: '/servicii' },
     { id: 'portofoliu', label: 'Portfolio', href: '/portofoliu' },
   ],
 };
 
 const COPY = {
-  ro: { brand: 'ACL Smart Software — acasă', cta: 'Începe un proiect →', open: 'Deschide meniu', close: 'Închide meniu', nav: 'Navigare principală', menu: 'Meniu mobil' },
-  en: { brand: 'ACL Smart Software — home', cta: 'Start a project →', open: 'Open menu', close: 'Close menu', nav: 'Main navigation', menu: 'Mobile menu' },
+  ro: { brand: 'ACL Smart Software — acasă', cta: 'Discută proiectul →', open: 'Deschide meniu', close: 'Închide meniu', nav: 'Navigare principală', menu: 'Meniu mobil' },
+  en: { brand: 'ACL Smart Software — home', cta: 'Discuss your project →', open: 'Open menu', close: 'Close menu', nav: 'Main navigation', menu: 'Mobile menu' },
 };
 
 export default function Nav() {
@@ -35,9 +35,39 @@ export default function Nav() {
   const otherLocale = locale === 'en' ? 'ro' : 'en';
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menu = useRef<HTMLDivElement>(null);
+  const toggle = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    menu.current?.querySelector<HTMLElement>('a')?.focus();
+    const desktop = window.matchMedia('(min-width: 881px)');
+    const onDesktop = () => { if (desktop.matches) setMenuOpen(false); };
+    desktop.addEventListener('change', onDesktop);
+    onDesktop();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setMenuOpen(false); toggle.current?.focus(); }
+      if (event.key !== 'Tab') return;
+      const controls = menu.current?.querySelectorAll<HTMLElement>('a, button');
+      if (!controls?.length) return;
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKey);
+      desktop.removeEventListener('change', onDesktop);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 24);
+    handler();
     window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
   }, []);
@@ -89,9 +119,12 @@ export default function Nav() {
           </div>
 
           <button
+            ref={toggle}
+            type="button"
             className="nav-mobile-toggle"
             aria-label={menuOpen ? t.close : t.open}
             aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMenuOpen(v => !v)}
           >
             <span />
@@ -102,10 +135,14 @@ export default function Nav() {
       </nav>
 
       <div
+        id="mobile-navigation"
+        ref={menu}
         className={`mobile-menu${menuOpen ? ' is-open' : ''}`}
         role="dialog"
+        aria-modal={menuOpen}
         aria-label={t.menu}
         aria-hidden={!menuOpen}
+        inert={!menuOpen}
       >
         <div className="mobile-menu-inner">
           {items.map(item => item.raw ? (

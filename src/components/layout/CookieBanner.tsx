@@ -1,15 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
-const STORAGE_KEY = 'acl-cookie-consent';
+import { readConsent, saveConsent } from '@/lib/consent';
 
 const COPY = {
   ro: {
     aria: 'Consimțământ cookie-uri',
-    text: <>Folosim cookie-uri pentru a îmbunătăți experiența pe site. Prin continuarea navigării, ești de acord cu{' '}
+    text: <>Păstrăm preferințele esențiale pentru funcționarea site-ului. Poți accepta sau refuza statisticile opționale de utilizare și performanță. Detalii în{' '}
       <Link href="/politica-confidentialitate">Politica de confidențialitate</Link>{' '}și{' '}
       <Link href="/cookies">Politica de cookie-uri</Link>.</>,
     decline: 'Doar esențiale',
@@ -17,7 +17,7 @@ const COPY = {
   },
   en: {
     aria: 'Cookie consent',
-    text: <>We use cookies to improve your experience on the site. By continuing to browse, you agree to our{' '}
+    text: <>We store essential preferences for the site to work. You can accept or decline optional usage and performance statistics. Details in our{' '}
       <Link href="/politica-confidentialitate">Privacy Policy</Link>{' '}and{' '}
       <Link href="/cookies">Cookie Policy</Link>.</>,
     decline: 'Essential only',
@@ -29,30 +29,44 @@ export default function CookieBanner() {
   const locale = useLocale() as 'ro' | 'en';
   const t = COPY[locale] ?? COPY.ro;
   const [visible, setVisible] = useState(false);
+  const banner = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     try {
       // localStorage nu există pe server — citirea trebuie să aștepte montarea pe client,
       // deci setState-ul de aici e sincronizarea inițială cu un sistem extern, nu un antipattern.
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
+      if (!readConsent()) setVisible(true);
     } catch {}
   }, []);
 
+  useEffect(() => {
+    const element = banner.current;
+    if (!visible || !element) return;
+    const updateHeight = () => document.documentElement.style.setProperty('--cookie-banner-height', `${element.getBoundingClientRect().height}px`);
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty('--cookie-banner-height');
+    };
+  }, [visible]);
+
   function accept() {
-    try { localStorage.setItem(STORAGE_KEY, 'accepted'); } catch {}
+    saveConsent('accepted');
     setVisible(false);
   }
 
   function decline() {
-    try { localStorage.setItem(STORAGE_KEY, 'declined'); } catch {}
+    saveConsent('declined');
     setVisible(false);
   }
 
   if (!visible) return null;
 
   return (
-    <div className="cookie-banner" role="dialog" aria-label={t.aria} aria-modal="false">
+    <div ref={banner} className="cookie-banner" role="dialog" aria-label={t.aria} aria-modal="false">
       <div className="cookie-banner-inner">
         <div className="cookie-text">
           <p>{t.text}</p>

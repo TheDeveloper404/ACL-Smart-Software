@@ -3,7 +3,7 @@ import { getLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 
 export const metadata: Metadata = {
-  title: '404 — Pagina nu există | ACL Smart Software',
+  title: { absolute: '404 — Pagina nu există | ACL Smart Software' },
 };
 
 const COPY = {
@@ -11,14 +11,14 @@ const COPY = {
     title: 'Pagina nu există.',
     body: 'Fie ai nimerit un link greșit, fie pagina a fost mutată. Nu e nicio problemă — hai înapoi la ceva real.',
     home: 'Înapoi acasă',
-    services: 'Servicii',
+    services: 'Soluții',
     contact: 'Contact',
   },
   en: {
     title: 'This page doesn’t exist.',
     body: 'Either the link was wrong, or the page moved. No harm done — let’s get you back to something real.',
     home: 'Back home',
-    services: 'Services',
+    services: 'Solutions',
     contact: 'Contact',
   },
 };

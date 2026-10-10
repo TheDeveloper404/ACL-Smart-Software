@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 export const BASE = 'https://acl-smartsoftware.ro';
 
 export const ORG_ID = `${BASE}/#organization`;
@@ -15,7 +17,7 @@ export const ORGANIZATION_NODE = {
   '@id': ORG_ID,
   name: 'ACL Smart Software SRL',
   url: BASE,
-  logo: `${BASE}/og-image.png`,
+  logo: `${BASE}/icon.svg`,
 } as const;
 
 export interface Crumb {
@@ -71,5 +73,17 @@ export function localeAlternates(path: string, locale: string, opts?: { enAvaila
   return {
     canonical: locale === 'en' ? enUrl : roUrl,
     languages: { ro: roUrl, en: enUrl, 'x-default': roUrl },
+  };
+}
+
+/** Page-specific share metadata with a localized 1200×630 image. */
+export function socialMetadata(locale: string, title: string, description: string, path = ''): Pick<Metadata, 'openGraph' | 'twitter'> {
+  const image = { url: BASE + localePath(locale, '/opengraph-image'), width: 1200, height: 630, alt: 'ACL Smart Software' };
+  return {
+    openGraph: {
+      title, description, url: BASE + localePath(locale, path), siteName: 'ACL Smart Software', type: 'website',
+      locale: locale === 'en' ? 'en_US' : 'ro_RO', images: [image],
+    },
+    twitter: { card: 'summary_large_image', title, description, images: [image] },
   };
 }

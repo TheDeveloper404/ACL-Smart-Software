@@ -13,6 +13,9 @@ export default function WhatWeBuild({ items }: { items: Item[] }) {
       <div className="wtb-tabs">
         {items.map((it, i) => (
           <button
+            type="button"
+            aria-pressed={active === i}
+            aria-controls="what-we-build-panel"
             key={i}
             className={`wtb-tab${active === i ? ' is-active' : ''}`}
             onClick={() => setActive(i)}
@@ -22,7 +25,7 @@ export default function WhatWeBuild({ items }: { items: Item[] }) {
           </button>
         ))}
       </div>
-      <div className="wtb-panel">
+      <div className="wtb-panel" id="what-we-build-panel" aria-live="polite">
         <div className="wtb-panel-num" aria-hidden="true">
           {String(active + 1).padStart(2, '0')}
         </div>

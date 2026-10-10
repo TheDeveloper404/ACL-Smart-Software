@@ -1,11 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 const NAV_LINKS = [
-  { label: 'Servicii', href: '/servicii' },
+  { label: 'Soluții', href: '/servicii' },
   { label: 'Portofoliu', href: '/portofoliu' },
-  { label: 'Echipă', href: '/echipa' },
-  { label: 'Perspective', href: '/insights' },
-  { label: 'Cariere', href: '/cariere' },
+  { label: 'Despre noi', href: '/despre-noi' },
 ];
 
 test.describe('Navigare desktop', () => {
@@ -28,7 +26,7 @@ test.describe('Navigare desktop', () => {
     });
   }
 
-  test('CTA "Începe un proiect" duce la #contact', async ({ page }) => {
+  test('CTA "Discută proiectul" duce la #contact', async ({ page }) => {
     await page.click('a.nav-cta');
     await expect(page).toHaveURL('/#contact');
     await expect(page.locator('#contact')).toBeInViewport({ ratio: 0.3 });
@@ -64,5 +62,20 @@ test.describe('Navigare mobilă', () => {
     await page.locator('.mobile-menu a[href="/servicii"]').click();
     await expect(page.locator('.mobile-menu')).not.toBeVisible();
     await expect(page).toHaveURL('/servicii');
+  });
+
+  test('Escape și trecerea la desktop închid meniul și deblochează scroll-ul', async ({ page }) => {
+    await page.goto('/');
+    const toggle = page.getByRole('button', { name: 'Deschide meniu', exact: true });
+    await toggle.click();
+    const firstLink = page.locator('.mobile-menu').getByRole('link', { name: 'Acasă', exact: true });
+    await expect(firstLink).toBeFocused();
+    await firstLink.press('Escape');
+    await expect(toggle).toBeFocused();
+    await toggle.click();
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await expect(page.locator('.mobile-menu')).not.toBeVisible();
+    await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
+    await expect(page.locator('.nav-links')).toBeVisible();
   });
 });

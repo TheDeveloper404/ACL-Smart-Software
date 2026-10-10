@@ -1,17 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 const SLUGS = [
-  'software-custom',
-  'aplicatii-web',
-  'aplicatii-mobile',
-  'ai-ml',
-  'cloud-devops',
-  'integrari-api',
-  'consultanta-it',
-  'mentenanta-suport',
+  'produse',
+  'ai',
+  'infrastructura',
+  'consultanta',
 ];
 
-test.describe('Pagina Servicii', () => {
+test.describe('Pagina Soluții', () => {
   test('se randează cu toate serviciile listate', async ({ page }) => {
     await page.goto('/servicii');
     await expect(page.locator('h1')).toBeVisible();
@@ -23,9 +19,13 @@ test.describe('Pagina Servicii', () => {
   test('fiecare card are titlu și link', async ({ page }) => {
     await page.goto('/servicii');
     const cards = page.locator('.services-index-card');
-    const count = await cards.count();
+    const tabs = page.locator('.solution-tab');
+    const count = await tabs.count();
     for (let i = 0; i < count; i++) {
-      await expect(cards.nth(i).locator('h3, h2')).toBeVisible();
+      await tabs.nth(i).click();
+      await expect(tabs.nth(i)).toHaveAttribute('aria-selected', 'true');
+      await expect(cards.nth(i).locator('h2').first()).toBeVisible();
+      await expect(cards.nth(i).locator('.service-detail-link')).toBeVisible();
     }
   });
 });
@@ -53,14 +53,15 @@ test.describe('Pagini detaliu servicii', () => {
       await page.goto(`/servicii/${slug}`);
       const firstItem = page.locator('.faq-item').first();
       await expect(firstItem).toBeVisible();
-      await firstItem.click();
+      await firstItem.getByRole('button').click();
       await expect(page.locator('.faq-item[data-open="true"] .faq-a').first()).toBeVisible();
     });
 
     test(`/servicii/${slug} — back link duce la /servicii`, async ({ page }) => {
       await page.goto(`/servicii/${slug}`);
       await page.click('a.svc-back');
-      await expect(page).toHaveURL('/servicii');
+      await expect(page).toHaveURL('/servicii?solutie=' + slug);
+      await expect(page.locator('#solution-tab-' + slug)).toHaveAttribute('aria-selected', 'true');
     });
   }
 });
@@ -72,3 +73,18 @@ test.describe('Slug invalid', () => {
     await expect(page.locator('h1')).toContainText('nu există');
   });
 });
+
+for (const prefix of ['', '/en']) {
+  test('Back păstrează categoria aleasă ' + (prefix || 'ro'), async ({ page }) => {
+    await page.goto(prefix + '/servicii');
+    await page.locator('#solution-tab-produse').click();
+    await expect(page).toHaveURL(prefix + '/servicii?solutie=produse');
+    await page.locator('#solution-panel-produse .service-detail-link').click();
+    await expect(page).toHaveURL(prefix + '/servicii/produse');
+    await page.goBack();
+    await expect(page.locator('#solution-tab-produse')).toHaveAttribute('aria-selected', 'true');
+    await page.locator('#solution-panel-produse .service-detail-link').click();
+    await page.locator('.svc-back').click();
+    await expect(page.locator('#solution-tab-produse')).toHaveAttribute('aria-selected', 'true');
+  });
+}

@@ -45,36 +45,6 @@
   --section-y: clamp(80px, 9vw, 140px);
 }
 
-/* ----- Palettes ----- */
-body[data-palette="lime"]    { --accent: oklch(0.92 0.18 124); --accent-soft: oklch(0.92 0.18 124 / 0.14); --accent-ink: #0b0b0c; }
-body[data-palette="blue"]    { --accent: oklch(0.72 0.18 250); --accent-soft: oklch(0.72 0.18 250 / 0.16); --accent-ink: #ffffff; }
-body[data-palette="orange"]  { --accent: oklch(0.78 0.18 50);  --accent-soft: oklch(0.78 0.18 50 / 0.16);  --accent-ink: #0b0b0c; }
-body[data-palette="violet"]  { --accent: oklch(0.72 0.20 300); --accent-soft: oklch(0.72 0.20 300 / 0.16); --accent-ink: #ffffff; }
-
-/* ----- Light mode ----- */
-body[data-mode="light"] {
-  --bg: #f4f1ea;
-  --bg-soft: #ebe7dd;
-  --bg-card: #ffffff;
-  --fg: #0b0b0c;
-  --fg-muted: #55534d;
-  --fg-faint: #9a9890;
-  --hairline: rgba(11, 11, 12, 0.10);
-  --hairline-strong: rgba(11, 11, 12, 0.22);
-}
-body[data-mode="light"][data-palette="lime"]   { --accent: oklch(0.78 0.18 124); --accent-ink: #0b0b0c; --accent-soft: oklch(0.78 0.18 124 / 0.18); }
-body[data-mode="light"][data-palette="blue"]   { --accent: oklch(0.55 0.20 250); --accent-ink: #ffffff; }
-body[data-mode="light"][data-palette="orange"] { --accent: oklch(0.68 0.20 50);  --accent-ink: #0b0b0c; }
-body[data-mode="light"][data-palette="violet"] { --accent: oklch(0.55 0.22 300); --accent-ink: #ffffff; }
-
-/* ----- Font pairings ----- */
-body[data-font="grotesk"] { --font-display: "Space Grotesk", system-ui, sans-serif; --font-body: "Inter Tight", system-ui, sans-serif; }
-body[data-font="geist"]   { --font-display: "Geist", system-ui, sans-serif;          --font-body: "Geist", system-ui, sans-serif; }
-body[data-font="serif"]   { --font-display: "Instrument Serif", Georgia, serif;       --font-body: "Inter Tight", system-ui, sans-serif; }
-body[data-font="plex"]    { --font-display: "IBM Plex Sans", system-ui, sans-serif;   --font-body: "IBM Plex Sans", system-ui, sans-serif; }
-
-body[data-density="compact"] { --section-y: clamp(56px, 6vw, 96px); }
-
 /* =========================================================
    Base
    ========================================================= */

@@ -7,8 +7,10 @@ export interface ServicePackage {
   /** Slug local, unic în cadrul ariei — folosit ca ancoră (#) și cheie de listă. */
   id: string;
   name: string;
-  /** Preț de pornire formatat, ex. „€4.500" sau „€600 / lună". */
+  /** Preț de pornire formatat, ex. „€3.500", „€500 / lună", sau „La ofertă". */
   from: string;
+  /** Explains the starting scope or why a tailored quote is required. */
+  priceNote: string;
   /** Durată formatată, ex. „5–8 săpt" sau „continuu". */
   duration: string;
   /** Model comercial, ex. „Scope fix" / „Retainer lunar" / „Preț fix pe livrabil". */

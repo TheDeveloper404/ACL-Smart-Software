@@ -31,12 +31,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...SERVICES.flatMap((s) => bilingualEntry(`/servicii/${s.slug}`, { changeFrequency: 'monthly', priority: 0.85 })),
   ];
 
-  // Doar RO — fără hreflang, fără variantă /en (vezi lib/seo.ts localeAlternates).
-  const roOnlyRoutes: MetadataRoute.Sitemap = [
-    { url: `${BASE}/politica-confidentialitate`, lastModified: SITE_LAUNCH, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${BASE}/termeni`,                    lastModified: SITE_LAUNCH, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${BASE}/cookies`,                    lastModified: SITE_LAUNCH, changeFrequency: 'yearly', priority: 0.2 },
-  ];
-
-  return [...bilingualRoutes, ...roOnlyRoutes];
+  const legalRoutes = ['/politica-confidentialitate', '/termeni', '/cookies'].flatMap(path => bilingualEntry(path, { changeFrequency: 'yearly', priority: 0.2 }));
+  return [...bilingualRoutes, ...legalRoutes];
 }

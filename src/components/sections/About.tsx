@@ -14,7 +14,7 @@ const COPY = {
     stats: [
       { big: '2024', accent: '.', lbl: 'Înființare', desc: 'De la prima linie de cod, am ales să construim lucruri care durează — nu să livrăm și să plecăm.' },
       { big: '100', accent: '%', lbl: 'Cod ownership', desc: 'Tot ce construim rămâne al tău — repository, documentație, infrastructură.' },
-      { big: '4', accent: '', lbl: 'Arii de servicii', desc: 'Produse la comandă, AI & automatizare, infrastructură & integrări, consultanță & preluare.' },
+      { big: '4', accent: '', lbl: 'Arii de servicii', desc: 'Produse la comandă, AI & automatizare, infrastructură & integrări, consultanță & securitate.' },
       { big: 'RO', accent: '·EU', lbl: 'Acoperire', desc: 'Lucrăm cu clienți din România și Europa, remote sau on-site după nevoie.' },
     ],
     industriesLbl: 'Industrii →',
@@ -33,7 +33,7 @@ const COPY = {
     stats: [
       { big: '2024', accent: '.', lbl: 'Founded', desc: 'From the first line of code, we chose to build things that last — not to ship and disappear.' },
       { big: '100', accent: '%', lbl: 'Code ownership', desc: 'Everything we build stays yours — repository, documentation, infrastructure.' },
-      { big: '4', accent: '', lbl: 'Service areas', desc: 'Custom products, AI & automation, infrastructure & integrations, consulting & takeover.' },
+      { big: '4', accent: '', lbl: 'Service areas', desc: 'Custom products, AI & automation, infrastructure & integrations, consulting & security.' },
       { big: 'RO', accent: '·EU', lbl: 'Coverage', desc: 'We work with clients across Romania and Europe, remote or on-site as needed.' },
     ],
     industriesLbl: 'Industries →',

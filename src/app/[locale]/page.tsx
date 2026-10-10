@@ -1,12 +1,10 @@
 import { setRequestLocale } from 'next-intl/server';
+import FeaturedProjects from '@/components/sections/FeaturedProjects';
 import Hero from '@/components/sections/Hero';
 import ServicesPreview from '@/components/sections/ServicesPreview';
-import About from '@/components/sections/About';
 import Process from '@/components/sections/Process';
-import Tech from '@/components/sections/Tech';
 import Contact from '@/components/sections/Contact';
 import RevealOnScroll from '@/components/ui/RevealOnScroll';
-import ScrollToHash from '@/components/ui/ScrollToHash';
 import JsonLd from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 import { BASE, localeAlternates } from '@/lib/seo';
@@ -26,13 +24,12 @@ function buildJsonLd(locale: string) {
         '@id': `${BASE}/#organization`,
         name: 'ACL Smart Software SRL',
         url: BASE,
-        logo: `${BASE}/og-image.png`,
+        logo: `${BASE}/icon.svg`,
         email: 'office@acl-smartsoftware.ro',
         telephone: '+40758154490',
-        foundingDate: '2024',
         description: isEn
-          ? 'Software company based in Romania. We build custom software, web and mobile apps, AI, Cloud & DevOps.'
-          : 'Firmă de software din Petroșani. Construim software la comandă, aplicații web și mobile, AI, Cloud & DevOps.',
+          ? 'Software company based in Romania. We build custom software, web apps, AI features, automation and security audits.'
+          : 'Firmă de software din Petroșani. Construim software la comandă, aplicații web, AI, automatizări și audituri de securitate.',
         sameAs: [],
       },
       {
@@ -74,19 +71,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <JsonLd data={buildJsonLd(locale)} />
-      <ScrollToHash />
       <Hero />
-      <RevealOnScroll>
-        <About />
-      </RevealOnScroll>
+      <FeaturedProjects />
       <RevealOnScroll>
         <ServicesPreview />
       </RevealOnScroll>
       <RevealOnScroll>
         <Process />
-      </RevealOnScroll>
-      <RevealOnScroll>
-        <Tech />
       </RevealOnScroll>
       <RevealOnScroll>
         <Contact />

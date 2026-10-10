@@ -8,6 +8,8 @@ export interface Review {
   quote: string;
   name: string;
   role: string;
+  /** Confirmed collaboration context, displayed separately from the client quote. */
+  context?: string;
   /** Inițiale pentru avatar; dacă lipsesc, se derivă din `name`. */
   initials?: string;
 }
@@ -25,14 +27,22 @@ export const REVIEWS: Record<'ro' | 'en', Review[]> = {
     {
       quote: 'O experiență foarte bună de la început până la final. Site-ul este modern, rapid și bine structurat, iar atenția la detalii se vede în fiecare aspect. Comunicarea a fost promptă, iar cerințele au fost înțelese și implementate exact cum am dorit. Recomand pentru oricine caută servicii de dezvoltare web de calitate.',
       name: 'Biserica Filadelfia Petroșani',
-      role: 'Client',
+      role: 'Site-ul bisericii și portalul Seminarului',
+      context: 'Am construit mai întâi site-ul Bisericii Filadelfia Petroșani. Mulțumiți de prima colaborare, au apelat din nou la noi pentru portalul Seminarului Teologic Filadelfia — același client, două proiecte.',
       initials: 'BF',
     },
     {
       quote: 'Sunt foarte mulțumit de colaborare. Tot procesul a decurs fără probleme, iar rezultatul a fost peste așteptări. Site-ul arată excelent, se mișcă foarte bine și este ușor de administrat. Recomand cu încredere!',
       name: 'Dani N.',
-      role: 'Fondator, IT Custom',
+      role: 'IT Custom și FlotaPro',
       initials: 'D',
+    },
+    {
+      // Proprietarul a confirmat autenticitatea și acordul de publicare la 2026-10-10.
+      quote: 'Site-ul a ieșit bine. Clar, curat și exact ce aveam nevoie pentru o firmă de construcții. Recomand.',
+      name: 'Meridian Transconstruct',
+      role: 'Firmă de construcții',
+      initials: 'MT',
     },
   ],
   en: [
@@ -45,14 +55,22 @@ export const REVIEWS: Record<'ro' | 'en', Review[]> = {
     {
       quote: 'A very good experience from start to finish. The website is modern, fast, and well structured, and the attention to detail shows in every aspect. Communication was prompt, and our requirements were understood and implemented exactly as we wanted. I recommend this for anyone looking for quality web development services.',
       name: 'Biserica Filadelfia Petroșani',
-      role: 'Client',
+      role: 'Church website and Seminary portal',
+      context: 'We first built the website for Biserica Filadelfia Petroșani. Happy with our first collaboration, they returned for the Filadelfia Theological Seminary portal — the same client, two projects.',
       initials: 'BF',
     },
     {
       quote: 'I’m very happy with the collaboration. The whole process went smoothly, and the result exceeded expectations. The website looks excellent, runs very well, and is easy to manage. I recommend it with confidence!',
       name: 'Dani N.',
-      role: 'Founder, IT Custom',
+      role: 'IT Custom and FlotaPro',
       initials: 'D',
+    },
+    {
+      // Owner confirmed the original testimonial and publication permission on 2026-10-10.
+      quote: 'The website turned out well. Clear, clean, and exactly what we needed for a construction company. I recommend it.',
+      name: 'Meridian Transconstruct',
+      role: 'Construction company',
+      initials: 'MT',
     },
   ],
 };

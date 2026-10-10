@@ -21,13 +21,14 @@ export default function FaqAccordion({ items }: Props) {
           key={i}
           className="faq-item"
           data-open={open === i ? 'true' : undefined}
-          onClick={() => setOpen(open === i ? null : i)}
         >
           <dt className="faq-q">
+            <button type="button" aria-expanded={open === i} aria-controls={`faq-answer-${i}`} onClick={() => setOpen(open === i ? null : i)}>
             {item.q}
             <span className="toggle" aria-hidden="true">+</span>
+            </button>
           </dt>
-          <dd className="faq-a">{item.a}</dd>
+          <dd id={`faq-answer-${i}`} className="faq-a" hidden={open !== i}>{item.a}</dd>
         </div>
       ))}
     </dl>

@@ -1,49 +1,24 @@
 import { getLocale } from 'next-intl/server';
 import { STEPS } from '@/data';
+import ProcessJourney from './ProcessJourney';
 
 const STEPS_EN = [
-  { n: '01', title: 'Consulting', desc: 'We understand the problem before the solution. Technical audit, discovery sprint, validation with real users. We never skip this.', deliver: ['Technical audit', 'Roadmap', 'Honest estimate'] },
-  { n: '02', title: 'Architecture', desc: 'Stack, flows, data model, UI. Everything that matters gets decided before line 1 of code is written.', deliver: ['Prototypes & UI', 'Database schema', 'Cloud architecture'] },
-  { n: '03', title: 'Development', desc: '2-week sprints, a demo at the end of each, fast feedback. Continuous integration from day one. You see progress in real time.', deliver: ['Bi-weekly demo', 'Staging environment', 'Code review'] },
-  { n: '04', title: 'Testing', desc: 'Dedicated QA before every launch: unit, integration, end-to-end tests and a security audit. Nothing reaches production untested.', deliver: ['Automated tests', 'Security audit', 'Quality report'] },
-  { n: '05', title: 'Launch', desc: 'Going live with a rollback plan, active monitoring, and hands-on support. We’re one message away for the first 30 days.', deliver: ['Production launch', 'Monitoring & alerts', 'Live documentation'] },
-  { n: '06', title: 'Maintenance', desc: 'Optimizations, new features, security updates. Your product grows — and we grow with it. Clear SLAs, no surprises.', deliver: ['Dedicated SLA', 'Ongoing roadmap', 'Annual technical audit'] },
+  { n: '01', title: 'Consulting', desc: 'We discuss what you want to solve, who will use the product and what matters in the first version. We agree on the scope before implementation.', deliver: ['A clearly defined need', 'Agreed priorities', 'An initial estimate'] },
+  { n: '02', title: 'Architecture', desc: 'We turn the idea into workflows and a design you can discuss. We choose a technical approach that fits the project.', deliver: ['User workflows', 'Interface proposal', 'Implementation plan'] },
+  { n: '03', title: 'Development', desc: 'We build in stages and show working versions in demos approximately every two weeks. You can check the product and give feedback while it develops.', deliver: ['Working versions', 'Demos and feedback', 'Progress updates'] },
+  { n: '04', title: 'Testing', desc: 'We check the important workflows, error cases and access rules before launch. We fix identified issues within the agreed scope.', deliver: ['Main workflows checked', 'Errors addressed', 'A version ready for launch'] },
+  { n: '05', title: 'Launch', desc: 'We publish the product in the agreed environment and check that it is available. You receive access and the guidance needed to use it.', deliver: ['Live product', 'Agreed access', 'Usage instructions'] },
+  { n: '06', title: 'Maintenance', desc: 'After launch, you receive one year of free support for usage help and bug fixes in the delivered product. New features and additional work are agreed separately.', deliver: ['One year of free support', 'Usage help and bug fixes', 'Separate plan for new features'] },
 ];
-
-const COPY = {
-  ro: { idx: '03 / PROCES', eyebrow: 'Cum lucrăm', h2: <>Acoperim tot fluxul <em>SDLC</em>.</>, steps: STEPS },
-  en: { idx: '03 / PROCESS', eyebrow: 'How we work', h2: <>We cover the entire <em>SDLC</em>.</>, steps: STEPS_EN },
-};
 
 export default async function Process() {
   const locale = await getLocale();
-  const t = COPY[locale as keyof typeof COPY] ?? COPY.ro;
-
-  return (
-    <section className="section process" id="proces">
-      <div className="wrap">
-        <div className="section-head">
-          <div className="label-col">
-            <div className="idx">{t.idx}</div>
-            <div className="eyebrow">{t.eyebrow}</div>
-          </div>
-          <h2>{t.h2}</h2>
-        </div>
-        <div className="process-steps">
-          {t.steps.map((s) => (
-            <div className="step" key={s.n}>
-              <div className="step-num">→ {s.n}</div>
-              <div><h3>{s.title}</h3></div>
-              <div>
-                <p>{s.desc}</p>
-                <div className="deliver">
-                  {s.deliver.map((d) => <span className="deliver-item" key={d}>{d}</span>)}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  const en = locale === 'en';
+  return <section className="section process" id="proces"><div className="wrap">
+    <div className="section-heading"><div><p className="eyebrow">{en ? 'How we work' : 'Cum lucrăm'}</p>
+      <h2>{en ? 'From the first conversation' : 'De la prima discuție'}<br /><em>{en ? 'to a working product.' : 'la un produs funcțional.'}</em></h2></div>
+      <p>{en ? 'Six stages, with a clear purpose. You know where the project stands and what comes next.' : 'Șase etape, fiecare cu un scop clar. Știi unde se află proiectul și ce urmează.'}</p>
+    </div>
+    <ProcessJourney steps={en ? STEPS_EN : STEPS} locale={locale} />
+  </div></section>;
 }

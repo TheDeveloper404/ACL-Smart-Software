@@ -38,18 +38,18 @@ export const CASES: Case[] = [
     desc: 'Comunitate profesională unde arhitecți, constructori și beneficiari dezbat detalii de execuție pe roluri — publici un detaliu, alți profesioniști propun soluții direct peste el, iar comunitatea validează deschis.',
     services: ['produse'],
     results: [{ n: 'Pe roluri', l: 'Arhitect / constructor / beneficiar' }, { n: 'Validare', l: 'Deschisă, cu nume' }, { n: 'Comunitate', l: 'Profesională' }],
-    image: '/detalia-preview.png',
+    image: '/detalia-current.jpg',
     link: 'https://detalia.ro/',
   },
   {
     slug: 'seminarul-teologic-filadelfia',
-    tag: 'Educație & Instituțional',
+    tag: 'Educație & Portal',
     year: '2026',
     label: 'SEMINARUL TEOLOGIC FILADELFIA',
-    title: 'Site instituțional — Seminarul Teologic Penticostal Filadelfia',
-    desc: 'Prezență online completă pentru o instituție de învățământ teologic: admitere, programă educațională, profesori, studenți, absolvenți și arhivă foto/video — totul structurat și ușor de navigat.',
+    title: 'Portal pentru studenți și profesori — Seminarul Filadelfia',
+    desc: 'Seminarul avea nevoie de un portal pentru studenți și profesori, cu acces la cursuri și materiale educaționale. Am construit un spațiu digital pentru această nevoie.',
     services: ['produse'],
-    results: [{ n: 'Multi-secțiune', l: 'Admitere, programă, absolvenți' }, { n: 'Mobile-first', l: 'Design responsive' }, { n: 'SEO', l: 'Optimizat' }],
+    results: [],
     image: '/seminarul-teologic-preview.png',
     link: 'https://seminarulteologicfiladelfia.ro/',
   },
@@ -61,7 +61,7 @@ export const CASES: Case[] = [
     title: 'Site instituțional — Biserica Penticostală Filadelfia Petroșani',
     desc: 'Prezență online modernă pentru o comunitate locală din Petroșani. Design curat, conținut editorial, optimizat pentru mobil și motoare de căutare.',
     services: ['produse'],
-    results: [{ n: 'Mobile-first', l: 'Design responsive' }, { n: 'SEO', l: 'Optimizat local' }, { n: 'Performanță', l: 'Lighthouse 95+' }],
+    results: [{ n: 'Mobile-first', l: 'Design responsive' }, { n: 'SEO', l: 'Optimizat local' }],
     image: '/filadelfia-preview.png',
     link: 'https://www.filadelfia-petrosani.ro/',
   },
@@ -73,7 +73,7 @@ export const CASES: Case[] = [
     title: 'Platformă SaaS pentru gestionarea facturilor Uber Fleet',
     desc: 'Aplicație multi-tenant pentru Uber Fleet Partners: import CSV din rapoartele Uber, generare facturi în format CSV/XLS, abonamente cu plăți online prin EuPlatesc și securitate avansată cu audit logging.',
     services: ['produse', 'infrastructura'],
-    results: [{ n: 'Multi-tenant', l: 'Flote izolate' }, { n: 'CSV/XLS', l: 'Facturi auto-generate' }, { n: 'EuPlatesc', l: 'Plăți integrate' }],
+    results: [{ n: 'Conturi separate', l: 'Pentru fiecare flotă' }, { n: 'CSV/XLS', l: 'Facturi auto-generate' }, { n: 'EuPlatesc', l: 'Plăți integrate' }],
     image: '/flotapro-preview.png',
     link: 'https://flotapro.ro/',
   },
@@ -96,22 +96,76 @@ export function getCases(locale: string): Case[] {
 }
 
 export const STEPS: ProcessStep[] = [
-  { n: '01', title: 'Consultanță', desc: 'Înțelegem problema înainte de soluție. Audit tehnic, discovery sprint, validare cu utilizatori reali. Nu sărim peste asta — niciodată.', deliver: ['Audit tehnic', 'Foaie de drum', 'Estimare onestă'] },
-  { n: '02', title: 'Arhitectură', desc: 'Stack-ul, fluxurile, modelul de date, UI-ul. Tot ce contează e decis înainte să se scrie linia 1 de cod.', deliver: ['Prototipuri & UI', 'Schemă bază de date', 'Arhitectură cloud'] },
-  { n: '03', title: 'Dezvoltare', desc: 'Sprint-uri de 2 săptămâni, demo la final, feedback rapid. Integrare continuă din ziua 1. Tu vezi progresul în timp real.', deliver: ['Demo bi-săptămânal', 'Mediu de testare', 'Revizuire cod'] },
-  { n: '04', title: 'Testare', desc: 'QA dedicat înainte de orice lansare: teste unitare, integrare, end-to-end și un audit de securitate. Nimic nu ajunge în producție netestat.', deliver: ['Teste automate', 'Audit securitate', 'Raport de calitate'] },
-  { n: '05', title: 'Lansare', desc: 'Punere în producție cu plan de rollback, monitorizare activă și suport intens. Primele 30 de zile suntem la o tastă distanță.', deliver: ['Lansare în producție', 'Monitorizare & alerte', 'Documentație live'] },
-  { n: '06', title: 'Mentenanță', desc: 'Optimizări, funcționalități noi, actualizări de securitate. Produsul tău crește — și noi creștem cu el. SLA-uri clare, fără surprize.', deliver: ['SLA dedicat', 'Foaie de drum continuă', 'Audit tehnic anual'] },
+  {
+    "n": "01",
+    "title": "Consultanță",
+    "desc": "Discutăm ce vrei să rezolvi, cine va folosi produsul și ce contează în prima versiune. Stabilim scopul înainte de implementare.",
+    "deliver": [
+      "Nevoia definită clar",
+      "Priorități agreate",
+      "Estimare inițială"
+    ]
+  },
+  {
+    "n": "02",
+    "title": "Arhitectură",
+    "desc": "Transformăm ideea în fluxuri și un design pe care îl poți discuta. Alegem o soluție tehnică potrivită proiectului.",
+    "deliver": [
+      "Fluxuri de utilizare",
+      "Propunere de interfață",
+      "Plan de implementare"
+    ]
+  },
+  {
+    "n": "03",
+    "title": "Dezvoltare",
+    "desc": "Construim în etape și îți arătăm versiuni funcționale în demo-uri la aproximativ două săptămâni. Poți verifica produsul și da feedback în timp ce acesta prinde formă.",
+    "deliver": [
+      "Versiuni funcționale",
+      "Demo-uri și feedback",
+      "Progres comunicat"
+    ]
+  },
+  {
+    "n": "04",
+    "title": "Testare",
+    "desc": "Verificăm fluxurile importante, cazurile de eroare și regulile de acces înainte de lansare. Reparăm problemele identificate în scopul agreat.",
+    "deliver": [
+      "Fluxuri principale verificate",
+      "Erori remediate",
+      "Versiune pregătită de lansare"
+    ]
+  },
+  {
+    "n": "05",
+    "title": "Lansare",
+    "desc": "Publicăm produsul în mediul stabilit și verificăm că este disponibil. Primești acces și explicațiile necesare pentru a-l folosi.",
+    "deliver": [
+      "Produs disponibil",
+      "Accesurile agreate",
+      "Instrucțiuni de utilizare"
+    ]
+  },
+  {
+    "n": "06",
+    "title": "Mentenanță",
+    "desc": "După lansare primești un an de suport gratuit pentru utilizare și remedierea erorilor produsului livrat. Funcționalitățile noi și intervențiile suplimentare se stabilesc separat.",
+    "deliver": [
+      "Un an de suport gratuit",
+      "Ajutor la utilizare și remedieri",
+      "Plan separat pentru dezvoltări noi"
+    ]
+  }
 ];
 
 export const TECH_ITEMS: string[] = [
   'TypeScript', 'React', 'Next.js', 'Node.js', 'Java', 'PostgreSQL', 'PHP',
-  'React Native', 'Docker', 'AWS', 'Kubernetes', 'Spring Boot', 'Tailwind', 'GraphQL', 'Redis',
+  'Docker', 'AWS', 'Kubernetes', 'Spring Boot', 'Tailwind', 'GraphQL', 'Redis',
 ];
 
 export const TECH_CATEGORIES: TechCategory[] = [
   { name: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'HTML / CSS'] },
   { name: 'Backend', items: ['Node.js', 'Java (Spring)', 'PHP (Laravel)', 'GraphQL', 'REST'] },
-  { name: 'Mobile', items: ['React Native', 'TypeScript', 'Expo'] },
+  { name: 'Securitate', items: ['OWASP ASVS', 'OWASP Top 10', 'Audit web & API'] },
   { name: 'Cloud & DevOps', items: ['Docker', 'AWS', 'Kubernetes', 'PostgreSQL', 'Redis'] },
 ];
