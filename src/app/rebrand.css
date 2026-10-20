@@ -407,7 +407,7 @@ body[data-reduce-motion="true"] .logo-marquee-track li[aria-hidden="true"] { dis
 .pkg-compare thead span { display: block; margin-top: 4px; color: var(--accent); font-size: 13px; font-weight: 500; }
 .pkg-compare tbody th { width: 34%; text-align: left; color: var(--fg); font-size: 15px; font-weight: 400; line-height: 1.45; }
 .pkg-compare tbody tr:hover { background: #ffffff06; }
-.pkg-compare td svg { color: var(--accent); vertical-align: middle; }
+.pkg-compare td svg { display: inline-block; color: var(--accent); vertical-align: middle; }
 .pkg-compare td > span[aria-hidden="true"] { color: var(--fg-faint); }
 .pkg-compare-note { margin-top: 16px; color: var(--fg-faint); font-size: 13px; line-height: 1.6; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
