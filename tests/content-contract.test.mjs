@@ -126,7 +126,8 @@ test('The merged category has one integration offer and the two approved AI assi
     assert.notEqual(combined.packages[0].model, combined.packages[1].model);
     assert.equal(combined.packages[1].model, combined.packages[2].model);
     for (const offer of combined.packages) {
-      assert.equal(offer.from, locale === 'ro' ? 'La oferta' : 'On request');
+      // User: "Cere oferta (poti scrie sub -- oferta se face in functie de complexitate)".
+      assert.equal(offer.from, locale === 'ro' ? 'Cere ofertă' : 'Request a quote');
       assert.equal(offerPrice(offer.from), undefined);
     }
     assert.equal(services.some(service => service.slug === 'infrastructura'), false);
@@ -146,8 +147,8 @@ test('Structured offers parse public EUR prices and omit unpriced quotes', () =>
   assert.equal(offerPrice('€4.500'), '4500');
   assert.equal(offerPrice('€4,500'), '4500');
   assert.equal(offerPrice('€500 / lună'), '500');
-  assert.equal(offerPrice('La ofertă'), undefined);
-  assert.equal(offerPrice('On request'), undefined);
+  assert.equal(offerPrice('Cere ofertă'), undefined);
+  assert.equal(offerPrice('Request a quote'), undefined);
   assert.equal(offerPrice(''), undefined);
 });
 

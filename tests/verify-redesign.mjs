@@ -182,7 +182,7 @@ async function page(route) {
     assert.doesNotMatch(about, /studio|independent|În proiectele noastre|In our projects/i);
     assert.match(about, locale === 'en' ? /IT Custom and FlotaPro/ : /IT Custom și FlotaPro/);
     assert.equal(['ai', 'produse', 'consultanta'].reduce((count, slug) => count + (texts.get('/servicii/' + slug).match(/class="pkg-card rise"/g) || []).length, 0), 10);
-    assert.match(texts.get('/servicii/ai'), locale === 'en' ? /On request/ : /La oferta/);
+    assert.match(texts.get('/servicii/ai'), locale === 'en' ? /Request a quote/ : /Cere ofertă/);
     assert.match(about, locale === 'en' ? /Who we work with/ : /Cu cine lucrăm/);
     assert.match(about, /industry-map/);
     assert.doesNotMatch(about, /industry-orbit/);
@@ -194,7 +194,7 @@ async function page(route) {
     assert.ok(glyphs);
     assert.match(glyphs[1], /^[01\s]+$/);
     assert.match(texts.get('/servicii/produse'), locale === 'en' ? /€4,500/ : /€4\.500/);
-    assert.match(texts.get('/servicii/ai'), locale === 'en' ? /On request/ : /La oferta/);
+    assert.match(texts.get('/servicii/ai'), locale === 'en' ? /Request a quote/ : /Cere ofertă/);
     assert.doesNotMatch(texts.get('/servicii'), /FinOps|Kubernetes|DevOps retainer/);
     assert.match(texts.get('/cookies'), /acl-a11y-v1/);
     if (locale === 'en') {
@@ -214,10 +214,10 @@ async function page(route) {
     assert.match(combined, /id="integration-explainer-title"/);
     assert.ok(combined.indexOf('id="integration"') < combined.indexOf('id="integration-explainer-title"'), 'Show the actual offer before the explanation');
     assert.doesNotMatch(combined, /class="wtb-layout"|class="audience-list"/);
-    assert.match(combined, /class="integration-roles"/);
-    assert.match(combined, /class="integration-flow"/);
-    assert.match(combined, locale === 'en' ? /API integrations and automation/ : /Integrari API si automatizari/);
-    assert.match(combined, locale === 'en' ? /AI assistants/ : /Asistenti AI/);
+    assert.equal((combined.match(/class="integration-group"/g) || []).length, 6);
+    assert.equal((combined.match(/class="flow-strip"/g) || []).length, 3);
+    assert.match(combined, locale === 'en' ? /API integrations and automation/ : /Integrări API și automatizări/);
+    assert.match(combined, locale === 'en' ? /AI assistants/ : /Asistenți AI/);
     for (const id of ['integration', 'customer-assistant', 'shop-assistant']) assert.ok(combined.includes('id="' + id + '"'));
     assert.equal((combined.match(/class="pkg-card rise"/g) || []).length, 3);
     assert.doesNotMatch(combined, /id="(?:document-processing|automation-agent|ai-assessment|ai-feature)"/);

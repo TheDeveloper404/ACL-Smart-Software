@@ -2,6 +2,8 @@
 
 import { Link } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
+import { LinkedinLogoIcon } from '@phosphor-icons/react/dist/ssr/LinkedinLogo';
+import { InstagramLogoIcon } from '@phosphor-icons/react/dist/ssr/InstagramLogo';
 
 export default function Footer() {
   const en = useLocale() === 'en';
@@ -12,7 +14,7 @@ export default function Footer() {
     { href: '/portofoliu', label: en ? 'Portfolio' : 'Portofoliu' },
   ];
   const solutions = [
-    { href: '/servicii/ai', label: en ? 'API integrations and AI assistants' : 'Integrari API si asistenti AI' },
+    { href: '/servicii/ai', label: en ? 'API integrations and AI assistants' : 'Integrări API și asistenți AI' },
     { href: '/servicii/produse', label: en ? 'Websites, portals and SaaS' : 'Site-uri, portaluri și SaaS' },
     { href: '/servicii/consultanta', label: en ? 'Consultation, audit and maintenance' : 'Consultanță, audit și mentenanță' },
   ];
@@ -31,7 +33,10 @@ export default function Footer() {
         <li><a href="mailto:office@acl-smartsoftware.ro">office@acl-smartsoftware.ro</a></li>
         <li><a href="tel:+40758154490">0758 154 490</a></li>
         <li>Petroșani, Hunedoara</li><li>CUI 51219715</li>
-        <li className="footer-socials"><a href="https://www.instagram.com/acl_smartsoftware/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/company/acl-smartsoftware/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
+      </ul></div>
+      <div className="footer-col footer-social"><h5>{en ? 'Follow us' : 'Urmărește-ne'}</h5><ul className="footer-socials">
+        <li><a href="https://www.linkedin.com/company/acl-smartsoftware/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedinLogoIcon size={22} aria-hidden="true" /></a></li>
+        <li><a href="https://www.instagram.com/acl_smartsoftware/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramLogoIcon size={22} aria-hidden="true" /></a></li>
       </ul></div>
     </div>
     <div className="footer-bottom">

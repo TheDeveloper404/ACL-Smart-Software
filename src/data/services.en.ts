@@ -4,59 +4,56 @@ export const SERVICES_EN: Service[] = [
   {
     "slug": "ai",
     "title": "API integrations and AI assistants",
-    "short": "We connect your website or application to the services you use and implement AI assistants for enquiries, appointments and online stores.",
+    "short": "We connect the applications you already use — payments, invoicing, calendar, CRM, store — and put an AI assistant in charge of customer enquiries.",
     "tags": [
       "API integrations",
       "Automation",
       "AI assistants"
     ],
     "tagline": "Connected applications. Captured enquiries. Less repetitive work.",
-    "longDesc": "We start with a concrete result: a payment reaching invoicing, a saved appointment or a customer finding the right product. We check what existing tools can do, configure a suitable solution and build only the missing integrations. We test the complete workflow before handover.",
+    "longDesc": "We connect your website to Stripe, SmartBill, WhatsApp, Google Calendar or your CRM, through APIs or platforms such as n8n and Make. Where it helps, we add an AI assistant that answers customers and carries the enquiry through to the end.",
     "packages": [
       {
         "id": "integration",
-        "name": "Connect your website or application to external services",
-        "from": "On request",
+        "name": "Integration between applications (API, n8n, Make)",
+        "from": "Request a quote",
         "duration": "Estimated after checking the applications",
         "model": "API integrations and automation",
         "includes": [
-          "Define the data and actions that need to move between applications",
-          "Configure existing connectors or develop the required integration",
-          "Automate the agreed steps: payments, invoicing, CRM, couriers or suppliers",
-          "Test the workflow, handle errors and provide usage instructions"
+          "We connect your website to payments, invoicing, CRM, couriers or suppliers",
+          "We use n8n, Make or existing connectors; we write code only where a link is missing",
+          "We test the workflow end to end, including errors: failed payment, missing data"
         ],
-        "deliverable": "A working flow between the agreed applications. For example: a confirmed website payment generates an invoice in your invoicing application.",
-        "priceNote": "The quote depends on the applications, available access and workflow rules. External service subscriptions are discussed separately."
+        "deliverable": "A workflow that runs on its own. Example: a confirmed Stripe payment issues the invoice in SmartBill and emails it to the customer.",
+        "priceNote": "External service subscriptions (n8n, Make, invoicing) are discussed separately."
       },
       {
         "id": "customer-assistant",
-        "name": "Enquiry and appointment assistant",
-        "from": "On request",
+        "name": "AI assistant for enquiries and appointments",
+        "from": "Request a quote",
         "duration": "Estimated after defining the workflow",
         "model": "AI assistants",
         "includes": [
-          "Configure the assistant on your website or WhatsApp, on the agreed channel",
-          "Prepare service information and the questions needed to complete enquiries",
-          "Connect the calendar or send the completed enquiry to your team",
-          "Test conversations and hand over to a person for the agreed situations"
+          "An assistant on your website or WhatsApp Business, trained on information about your services",
+          "Asks for missing details and saves the appointment in Google Calendar or sends it to your team",
+          "Hands the conversation over to a person in the agreed situations"
         ],
-        "deliverable": "An assistant that identifies the service the customer needs, collects the details and saves the appointment or sends the enquiry to your team, depending on the available integration.",
-        "priceNote": "The quote depends on the channel, booking system and required actions. AI platform and channel costs are estimated separately."
+        "deliverable": "An assistant that takes the enquiry, asks for the details and books the appointment — including evenings and weekends.",
+        "priceNote": "AI platform and WhatsApp Business costs are estimated separately."
       },
       {
         "id": "shop-assistant",
-        "name": "Online store assistant",
-        "from": "On request",
+        "name": "AI assistant for your online store",
+        "from": "Request a quote",
         "duration": "Estimated after checking the store",
         "model": "AI assistants",
         "includes": [
-          "Configure an existing solution or integrate it into your store",
-          "Connect the catalog, availability and order information according to available access",
-          "Prepare conversations for product selection and order enquiries",
-          "Check access to customer data and hand exceptions over to your team"
+          "Integrated into WooCommerce, Shopify or your store platform",
+          "Recommends products from the catalog and answers questions about order status",
+          "Customers only see their own order data; exceptions go to your team"
         ],
-        "deliverable": "An assistant connected to your store that helps shoppers choose products and check the status of their own order.",
-        "priceNote": "The quote depends on the store platform, data sources and agreed actions. Subscriptions and AI usage are discussed separately."
+        "deliverable": "An assistant that helps shoppers choose the right product and tells them where their order is.",
+        "priceNote": "Subscriptions and AI usage are discussed separately."
       }
     ],
     "whatWeBuild": [
@@ -89,7 +86,7 @@ export const SERVICES_EN: Service[] = [
     ],
     "technologies": [],
     "pricing": {
-      "from": "On request",
+      "from": "Request a quote",
       "duration": "After checking applications and the workflow",
       "model": "Implementation with an agreed scope"
     },
@@ -177,7 +174,7 @@ export const SERVICES_EN: Service[] = [
       {
         "id": "product-mvp",
         "name": "MVP for your idea",
-        "from": "On request",
+        "from": "Request a quote",
         "duration": "Estimated after defining the first version",
         "model": "Essential features for validation",
         "includes": [
@@ -187,7 +184,7 @@ export const SERVICES_EN: Service[] = [
           "Testing, launch and next-version planning"
         ],
         "deliverable": "A working first version to test your idea with users before expanding the product.",
-        "priceNote": "On request: a first version can mean different things. We define its essential workflow before setting a budget."
+        "priceNote": "A first version can mean different things. We define its essential workflow before setting a budget."
       }
     ],
     "whatWeBuild": [
@@ -293,7 +290,7 @@ export const SERVICES_EN: Service[] = [
       {
         "id": "project-consultation",
         "name": "Consultation for your project",
-        "from": "On request",
+        "from": "Request a quote",
         "duration": "Agreed sessions and deliverables",
         "model": "Planning or reviewing an existing product",
         "includes": [
@@ -303,7 +300,7 @@ export const SERVICES_EN: Service[] = [
           "Implementation plan and stage estimates"
         ],
         "deliverable": "A clear recommendation and plan for what to build or improve.",
-        "priceNote": "On request: the required analysis, number of sessions and agreed deliverables determine the price."
+        "priceNote": "The required analysis, number of sessions and agreed deliverables determine the price."
       }
     ],
     "whatWeBuild": [

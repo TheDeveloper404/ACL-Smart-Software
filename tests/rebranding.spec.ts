@@ -12,16 +12,17 @@ test('preferințele de accesibilitate acceptă doar booleene valide', () => {
 
 test('oferta RO/EN este coerentă, fără pachetul mobil și cu audit OWASP', () => {
   // User: "eventual uneste cele doua pagini intr-una, chiar daca sunt mai putine servicii, important e sa fie ce putem livra."
-  const prices = ['La oferta', 'La oferta', 'La oferta', '€1.200', '€3.500', '€4.500', 'La ofertă', '€1.500', '€500 / lună', 'La ofertă'];
+  // User: "Cere oferta (poti scrie sub -- oferta se face in functie de complexitate)".
+  const prices = ['Cere ofertă', 'Cere ofertă', 'Cere ofertă', '€1.200', '€3.500', '€4.500', 'Cere ofertă', '€1.500', '€500 / lună', 'Cere ofertă'];
   expect(SERVICES.flatMap(s => s.packages.map(p => p.from))).toEqual(prices);
-  expect(SERVICES_EN.flatMap(s => s.packages.map(p => p.from))).toEqual(prices.map(p => p.replace('.', ',').replace('lună', 'month').replace(/La ofert[ăa]/, 'On request')));
+  expect(SERVICES_EN.flatMap(s => s.packages.map(p => p.from))).toEqual(prices.map(p => p.replace('.', ',').replace('lună', 'month').replace('Cere ofertă', 'Request a quote')));
   expect(SERVICES.find(s => s.slug === 'produse')?.pricing.from).toBe('€1.200');
   expect(SERVICES_EN.find(s => s.slug === 'produse')?.pricing.from).toBe('€1,200');
   expect(SERVICES.map(s => s.slug)).toEqual(SERVICES_EN.map(s => s.slug));
   for (let i = 0; i < SERVICES.length; i++) {
     expect(SERVICES[i].packages.map(p => p.id)).toEqual(SERVICES_EN[i].packages.map(p => p.id));
     for (let j = 0; j < SERVICES[i].packages.length; j++) {
-      expect(SERVICES[i].packages[j].from.replace(/[.,]/g, '').replace('La oferta', 'La ofertă')).toBe(SERVICES_EN[i].packages[j].from.replace(/[.,]/g, '').replace('month', 'lună').replace('On request', 'La ofertă'));
+      expect(SERVICES[i].packages[j].from.replace(/[.,]/g, '')).toBe(SERVICES_EN[i].packages[j].from.replace(/[.,]/g, '').replace('month', 'lună').replace('Request a quote', 'Cere ofertă'));
     }
   }
   expect(JSON.stringify(SERVICES)).not.toMatch(/app-mobile|React Native/);

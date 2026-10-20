@@ -1,4 +1,5 @@
 import ServicesExplorer from '@/components/sections/ServicesExplorer';
+import { IntegrationHub } from '@/components/sections/Integrations';
 import { getServices } from '@/data';
 import ContactStrip from '@/components/sections/ContactStrip';
 import JsonLd from '@/components/seo/JsonLd';
@@ -11,15 +12,15 @@ const COPY = {
     title: 'Soluții — AI, automatizări și produse digitale',
     description: 'Site-uri, portaluri si SaaS, integrari API si asistenti AI pentru cereri, programari si magazine online. Consultanta, audit si mentenanta.',
     idx: 'SOLUȚII',
-    hero: <>Construim software.<br /><em>Conectam aplicatii.</em></>,
-    sub: 'Site-uri, aplicatii web si SaaS. Integrari care elimina pasii manuali. Asistenti AI pentru clienti. Consultanta si suport pentru ce ai deja.',
+    hero: <>Construim software.<br /><em>Conectăm aplicații.</em></>,
+    sub: 'Legăm plățile, facturarea, calendarul și magazinul tău, ca datele să circule singure. Plus site-uri, portaluri și asistenți AI.',
   },
   en: {
     title: 'Solutions — AI, automation and digital products',
     description: 'Websites, portals and SaaS, API integrations and AI assistants for enquiries, appointments and online stores. Consultation, audit and maintenance.',
     idx: 'SOLUTIONS',
     hero: <>We build software.<br /><em>We connect applications.</em></>,
-    sub: 'Websites, web applications and SaaS. Integrations that remove manual steps. AI assistants for customers. Consultation and support for what you already have.',
+    sub: 'We connect your payments, invoicing, calendar and store so data moves on its own. Plus websites, portals and AI assistants.',
   },
 };
 
@@ -37,7 +38,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
   return <>
     <JsonLd data={breadcrumbDocument([{ name: locale === 'en' ? 'Home' : 'Acasă', path: localePath(locale, '/') },
       { name: locale === 'en' ? 'Solutions' : 'Soluții', path: localePath(locale, '/servicii') }])} />
-    <header className="services-hero"><div className="wrap"><p className="eyebrow">{t.idx}</p><h1>{t.hero}</h1><p className="services-hero-intro">{t.sub}</p></div></header>
+    <header className="services-hero"><div className="wrap"><p className="eyebrow">{t.idx}</p><h1>{t.hero}</h1><p className="services-hero-intro">{t.sub}</p><IntegrationHub locale={locale} /></div></header>
     <section className="section services-list-section"><div className="wrap"><ServicesExplorer services={getServices(locale)} locale={locale} /></div></section>
     <ContactStrip />
   </>;

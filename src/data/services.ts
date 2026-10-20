@@ -4,60 +4,57 @@ import type { Service } from '@/types';
 export const SERVICES: Service[] = [
   {
     "slug": "ai",
-    "title": "Integrari API si asistenti AI",
-    "short": "Conectam site-ul sau aplicatia ta la serviciile folosite si implementam asistenti AI pentru cereri, programari si magazine online.",
+    "title": "Integrări API și asistenți AI",
+    "short": "Legăm aplicațiile pe care le folosești deja — plăți, facturare, calendar, CRM, magazin — și punem un asistent AI să preia cererile clienților.",
     "tags": [
-      "Integrari API",
-      "Automatizari",
-      "Asistenti AI"
+      "Integrări API",
+      "Automatizări",
+      "Asistenți AI"
     ],
-    "tagline": "Aplicatii conectate. Cereri preluate. Mai putina munca repetitiva.",
-    "longDesc": "Pornim de la un rezultat concret: o plata ajunsa in facturare, o programare salvata sau un client ajutat sa aleaga produsul potrivit. Verificam ce pot face instrumentele existente, configuram solutia potrivita si dezvoltam doar integrarile care lipsesc. Testam fluxul complet inainte de predare.",
+    "tagline": "Aplicații conectate. Cereri preluate. Mai puțină muncă repetitivă.",
+    "longDesc": "Conectăm site-ul la Stripe, SmartBill, WhatsApp, Google Calendar sau CRM-ul tău, prin API sau prin platforme ca n8n și Make. Unde ajută, adăugăm un asistent AI care răspunde clienților și duce cererea până la capăt.",
     "packages": [
       {
         "id": "integration",
-        "name": "Conectarea site-ului sau aplicatiei la servicii externe",
-        "from": "La oferta",
-        "duration": "Estimare dupa verificarea aplicatiilor",
-        "model": "Integrari API si automatizari",
+        "name": "Integrare între aplicații (API, n8n, Make)",
+        "from": "Cere ofertă",
+        "duration": "Estimare după verificarea aplicațiilor",
+        "model": "Integrări API și automatizări",
         "includes": [
-          "Stabilirea datelor si actiunilor care trebuie sa circule intre aplicatii",
-          "Configurarea conectorilor existenti sau dezvoltarea integrarii necesare",
-          "Automatizarea pasilor stabiliti: plati, facturare, CRM, curieri sau furnizori",
-          "Testarea fluxului, tratarea erorilor si instructiuni de utilizare"
+          "Conectăm site-ul la plăți, facturare, CRM, curieri sau furnizori",
+          "Folosim n8n, Make sau conectori existenți; scriem cod doar unde lipsește o legătură",
+          "Testăm fluxul cap-coadă, inclusiv erorile: plată eșuată, date lipsă"
         ],
-        "deliverable": "Un flux functional intre aplicatiile stabilite. De exemplu: plata confirmata in site genereaza factura in programul de facturare.",
-        "priceNote": "Oferta depinde de aplicatiile implicate, accesul disponibil si regulile fluxului. Abonamentele serviciilor externe se discuta separat."
+        "deliverable": "Un flux care rulează singur. Exemplu: plata Stripe confirmată emite factura în SmartBill și o trimite clientului pe email.",
+        "priceNote": "Abonamentele serviciilor externe (n8n, Make, facturare) se discută separat."
       },
       {
         "id": "customer-assistant",
-        "name": "Asistent pentru cereri si programari",
-        "from": "La oferta",
-        "duration": "Estimare dupa definirea fluxului",
-        "model": "Asistenti AI",
+        "name": "Asistent AI pentru cereri și programări",
+        "from": "Cere ofertă",
+        "duration": "Estimare după definirea fluxului",
+        "model": "Asistenți AI",
         "includes": [
-          "Configurarea asistentului pe site sau WhatsApp, pe canalul stabilit",
-          "Pregatirea informatiilor despre servicii si a intrebarilor necesare",
-          "Conectarea la calendar sau transmiterea cererii completate catre echipa",
-          "Testarea conversatiilor si predarea catre un om pentru situatiile stabilite"
+          "Asistent pe site sau pe WhatsApp Business, instruit cu informațiile despre serviciile tale",
+          "Cere detaliile lipsă și salvează programarea în Google Calendar sau o trimite echipei",
+          "Predă conversația unui om în situațiile stabilite"
         ],
-        "deliverable": "Un asistent care afla ce serviciu doreste clientul, colecteaza detaliile si salveaza programarea sau trimite cererea echipei, in functie de integrarea disponibila.",
-        "priceNote": "Oferta depinde de canal, sistemul de programari si actiunile necesare. Costurile platformei AI si ale canalului se estimeaza separat."
+        "deliverable": "Un asistent care preia cererea, cere detaliile și face programarea — inclusiv seara și în weekend.",
+        "priceNote": "Costurile platformei AI și ale WhatsApp Business se estimează separat."
       },
       {
         "id": "shop-assistant",
-        "name": "Asistent pentru magazinul online",
-        "from": "La oferta",
-        "duration": "Estimare dupa verificarea magazinului",
-        "model": "Asistenti AI",
+        "name": "Asistent AI pentru magazinul online",
+        "from": "Cere ofertă",
+        "duration": "Estimare după verificarea magazinului",
+        "model": "Asistenți AI",
         "includes": [
-          "Configurarea unei solutii existente sau integrarea in magazinul tau",
-          "Conectarea la catalog, disponibilitate si informatiile comenzilor, dupa accesul oferit",
-          "Pregatirea conversatiilor pentru alegerea produselor si intrebari despre comenzi",
-          "Verificarea accesului la datele clientului si predarea exceptiilor catre echipa"
+          "Integrat în WooCommerce, Shopify sau platforma magazinului tău",
+          "Recomandă produse din catalog și răspunde despre statusul comenzii",
+          "Clientul vede doar datele propriei comenzi; excepțiile ajung la echipă"
         ],
-        "deliverable": "Un asistent conectat la magazin, care ajuta cumparatorul sa aleaga produse si sa afle statusul propriei comenzi.",
-        "priceNote": "Oferta depinde de platforma magazinului, sursele de date si actiunile stabilite. Abonamentele si consumul AI se discuta separat."
+        "deliverable": "Un asistent care ajută cumpărătorul să aleagă produsul potrivit și îi spune unde este comanda.",
+        "priceNote": "Abonamentele și consumul AI se discută separat."
       }
     ],
     "whatWeBuild": [
@@ -90,7 +87,7 @@ export const SERVICES: Service[] = [
     ],
     "technologies": [],
     "pricing": {
-      "from": "La oferta",
+      "from": "Cere ofertă",
       "duration": "Dupa verificarea aplicatiilor si a fluxului",
       "model": "Implementare cu scop stabilit"
     },
@@ -178,7 +175,7 @@ export const SERVICES: Service[] = [
       {
         "id": "product-mvp",
         "name": "MVP pentru ideea ta",
-        "from": "La ofertă",
+        "from": "Cere ofertă",
         "duration": "Estimare după definirea primei versiuni",
         "model": "Funcțiile esențiale pentru validare",
         "includes": [
@@ -188,7 +185,7 @@ export const SERVICES: Service[] = [
           "Teste, lansare și pași pentru următoarea versiune"
         ],
         "deliverable": "O primă versiune funcțională prin care poți testa ideea cu utilizatori, înainte să extinzi produsul.",
-        "priceNote": "La ofertă: prima versiune poate însemna lucruri diferite. Stabilim fluxul esențial înainte de a fixa bugetul."
+        "priceNote": "Prima versiune poate însemna lucruri diferite. Stabilim fluxul esențial înainte de a fixa bugetul."
       }
     ],
     "whatWeBuild": [
@@ -294,7 +291,7 @@ export const SERVICES: Service[] = [
       {
         "id": "project-consultation",
         "name": "Consultanță pentru proiectul tău",
-        "from": "La ofertă",
+        "from": "Cere ofertă",
         "duration": "Sesiuni și livrabile agreate",
         "model": "Planificare sau evaluarea unui produs existent",
         "includes": [
@@ -304,7 +301,7 @@ export const SERVICES: Service[] = [
           "Plan de implementare și estimarea etapelor"
         ],
         "deliverable": "O recomandare clară și un plan pentru ce merită construit sau îmbunătățit.",
-        "priceNote": "La ofertă: prețul depinde de analiza necesară, numărul de sesiuni și livrabilele agreate."
+        "priceNote": "Prețul depinde de analiza necesară, numărul de sesiuni și livrabilele agreate."
       }
     ],
     "whatWeBuild": [

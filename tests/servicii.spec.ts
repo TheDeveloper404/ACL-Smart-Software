@@ -78,9 +78,9 @@ for (const prefix of ['', '/en']) {
     await expect(page.locator('.services-index-card')).toHaveCount(3);
     await page.locator('#solution-ai .service-detail-link').click();
     await expect(page).toHaveURL(prefix + '/servicii/ai');
-    await expect(page.locator('h1')).toContainText(prefix ? 'API integrations' : 'Integrari API');
-    await expect(page.locator('.integration-roles > div')).toHaveCount(2);
-    await expect(page.locator('.integration-flow li')).toHaveCount(3);
+    await expect(page.locator('h1')).toContainText(prefix ? 'API integrations' : 'Integrări API');
+    await expect(page.locator('.integration-group')).toHaveCount(6);
+    await expect(page.locator('.integration-example .flow-strip')).toHaveCount(3);
     await expect(page.locator('.svc-offer-group').first().locator('.pkg-card')).toHaveCount(1);
     await expect(page.locator('.svc-offer-group').nth(1).locator('.pkg-card')).toHaveCount(2);
     for (const id of ['integration', 'customer-assistant', 'shop-assistant']) {
@@ -107,7 +107,8 @@ for (const prefix of ['', '/en']) {
     await expect(page).toHaveURL(prefix + '/servicii/produse#website');
     await expect(page.locator('#website')).toBeVisible();
     await expect(page.locator('#website .pkg-price')).toContainText(prefix ? '€1,200' : '€1.200');
-    await expect(page.locator('footer a', { hasText: 'Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/acl_smartsoftware/');
-    await expect(page.locator('footer a', { hasText: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/company/acl-smartsoftware/');
+    // User: "in footer trebuie iconitele de la cele doua pagini linkedin si instagram".
+    await expect(page.locator('footer').getByRole('link', { name: 'Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/acl_smartsoftware/');
+    await expect(page.locator('footer').getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/company/acl-smartsoftware/');
   });
 }
