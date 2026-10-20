@@ -56,35 +56,6 @@ export const SERVICES_EN: Service[] = [
         "priceNote": "Subscriptions and AI usage are discussed separately."
       }
     ],
-    "whatWeBuild": [
-      {
-        "title": "From payment to invoice",
-        "desc": "A confirmed website payment triggers invoice generation in your invoicing application. The API integration moves data and automation runs the agreed steps."
-      },
-      {
-        "title": "From conversation to appointment",
-        "desc": "The customer describes what they need. AI interprets the request and asks for the required details; the integration checks availability and saves the appointment."
-      },
-      {
-        "title": "Help inside your store",
-        "desc": "A shopper explains what they want or asks about their order. The assistant uses the catalog and available data, while your team takes over situations needing intervention."
-      }
-    ],
-    "audience": [
-      {
-        "title": "You use applications that need connecting",
-        "desc": "Your website, invoicing tool, CRM or suppliers do not exchange the information your workflow needs."
-      },
-      {
-        "title": "You receive enquiries and appointments",
-        "desc": "You want to collect customer details and carry them through to a booking or the person responsible for the enquiry."
-      },
-      {
-        "title": "You run an online store",
-        "desc": "Customers need help choosing products and finding information about their orders."
-      }
-    ],
-    "technologies": [],
     "pricing": {
       "from": "Request a quote",
       "duration": "After checking applications and the workflow",
@@ -124,7 +95,7 @@ export const SERVICES_EN: Service[] = [
       "SaaS products"
     ],
     "tagline": "A product built around what people need to do.",
-    "longDesc": "We clarify the users and important workflows, prepare the design and build in stages. You see the product as it develops and give feedback before launch. At handover, you receive access to the code and the guidance needed to use and administer it.",
+    "longDesc": "We build in stages, with a demo roughly every two weeks, so you see the product as it develops. At handover you get the code and administration instructions.",
     "packages": [
       {
         "id": "website",
@@ -133,10 +104,9 @@ export const SERVICES_EN: Service[] = [
         "duration": "2–3 weeks",
         "model": "Agreed pages and content",
         "includes": [
-          "Design adapted to your identity",
-          "Presentation pages and mobile navigation",
-          "Contact form and technical SEO elements",
-          "Launch on your domain and code access"
+          "Design built on your identity, mobile first",
+          "Contact form and technical SEO",
+          "Launch on your domain, with code access"
         ],
         "deliverable": "A public website that clearly explains what you do and how to contact you.",
         "priceNote": "From €1,200 for a presentation website with agreed pages. Shop, portal and application features are estimated separately."
@@ -149,8 +119,7 @@ export const SERVICES_EN: Service[] = [
         "model": "Agreed workflows and features",
         "includes": [
           "User accounts and roles",
-          "Pages and tools for the main workflows",
-          "Integrations defined in the quote",
+          "Tools for the main workflows and the integrations in the quote",
           "Tests, launch and administration instructions"
         ],
         "deliverable": "An application or portal for customers, your team, students or teachers.",
@@ -163,10 +132,9 @@ export const SERVICES_EN: Service[] = [
         "duration": "6–10 weeks",
         "model": "First version with agreed scope",
         "includes": [
-          "Essential features for the first version",
-          "Accounts and separation of user data",
-          "Subscriptions and payments within the agreed scope",
-          "Administration panel, tests and launch"
+          "Accounts, with each customer’s data kept separate",
+          "Subscriptions and online payments",
+          "Admin panel, tests and launch"
         ],
         "deliverable": "A first version of your SaaS product, ready for customers to use.",
         "priceNote": "From €4,500 for the first SaaS version with agreed essential features. Expansion after validation is estimated separately."
@@ -178,44 +146,14 @@ export const SERVICES_EN: Service[] = [
         "duration": "Estimated after defining the first version",
         "model": "Essential features for validation",
         "includes": [
-          "Defining users and the problem to solve",
-          "Design and implementation of the main workflow",
-          "Features needed by the first users",
-          "Testing, launch and next-version planning"
+          "We define the users and the problem to solve",
+          "We build only the main workflow",
+          "Launch for the first users and a plan for the next version"
         ],
         "deliverable": "A working first version to test your idea with users before expanding the product.",
         "priceNote": "A first version can mean different things. We define its essential workflow before setting a budget."
       }
     ],
-    "whatWeBuild": [
-      {
-        "title": "Websites for businesses",
-        "desc": "Services, projects and contact details are easy to find, including on a phone."
-      },
-      {
-        "title": "User portals",
-        "desc": "A space with role-based access for courses, documents or customer and team operations."
-      },
-      {
-        "title": "SaaS products",
-        "desc": "Subscription applications with the features your first users need."
-      }
-    ],
-    "audience": [
-      {
-        "title": "You need an online presence",
-        "desc": "You want to explain your business clearly and make contact easier."
-      },
-      {
-        "title": "Your workflow needs an application",
-        "desc": "An adapted portal or tool can help organise your work."
-      },
-      {
-        "title": "You want to launch a product",
-        "desc": "We define the first version around essential user features."
-      }
-    ],
-    "technologies": [],
     "pricing": {
       "from": "€1,200",
       "duration": "Website: 2–3 weeks; portal or SaaS: 5–10",
@@ -255,7 +193,7 @@ export const SERVICES_EN: Service[] = [
       "Post-launch support"
     ],
     "tagline": "Understand what needs checking and what to fix first.",
-    "longDesc": "Consultation clarifies features and implementation stages. For audits, we define authorised scope and access, assess the application and document findings with evidence and priorities. Maintenance covers the tasks and interventions agreed in the project quote.",
+    "longDesc": "We check your application’s security against OWASP, maintain it after launch or help you plan what to build.",
     "packages": [
       {
         "id": "security-audit",
@@ -264,10 +202,9 @@ export const SERVICES_EN: Service[] = [
         "duration": "1 day–1 week",
         "model": "Authorised and agreed scope",
         "includes": [
-          "Checks within the agreed scope, referencing OWASP ASVS and Top 10",
-          "Evidence for identified issues",
-          "Report with impact and remediation priorities",
-          "Discussion of next steps"
+          "Checks within the agreed scope, against OWASP ASVS and Top 10",
+          "Evidence for every issue found",
+          "Report with impact and remediation order"
         ],
         "deliverable": "An audit report with documented issues and remediation recommendations.",
         "priceNote": "From €1,500 for the agreed scope and audit report. Remediation is quoted separately."
@@ -279,10 +216,9 @@ export const SERVICES_EN: Service[] = [
         "duration": "Monthly collaboration",
         "model": "Agreed work and availability",
         "includes": [
-          "Agreed periodic updates and checks",
-          "Bug fixes within the defined package",
-          "Support for use and administration",
-          "Prioritised work and progress communication"
+          "Periodic updates and checks",
+          "Bug fixes within the package",
+          "Usage support and progress reporting"
         ],
         "deliverable": "A maintenance plan with clear activities and conditions.",
         "priceNote": "From €500 per month. Tasks, allocated time and availability are agreed in the quote; interventions are not unlimited."
@@ -294,40 +230,14 @@ export const SERVICES_EN: Service[] = [
         "duration": "Agreed sessions and deliverables",
         "model": "Planning or reviewing an existing product",
         "includes": [
-          "Discussing goals, users and budget",
-          "Review of the existing application or proposed idea",
-          "Prioritising required features and integrations",
-          "Implementation plan and stage estimates"
+          "Goals, users and budget",
+          "Review of the idea or existing application",
+          "Staged implementation plan, with priorities"
         ],
         "deliverable": "A clear recommendation and plan for what to build or improve.",
         "priceNote": "The required analysis, number of sessions and agreed deliverables determine the price."
       }
     ],
-    "whatWeBuild": [
-      {
-        "title": "A plan for your project",
-        "desc": "We clarify your idea or review the existing application, then propose priorities and implementation stages."
-      },
-      {
-        "title": "A report you can act on",
-        "desc": "Evidence, impact and a recommended remediation order for the assessed scope."
-      },
-      {
-        "title": "Continuity after launch",
-        "desc": "Updates, fixes and support organised within an agreed maintenance plan."
-      }
-    ],
-    "audience": [
-      {
-        "title": "You have an application to assess",
-        "desc": "You want to understand risks before launch or in an existing product."
-      },
-      {
-        "title": "You need technical support",
-        "desc": "You want a point of contact for website or application maintenance."
-      }
-    ],
-    "technologies": [],
     "pricing": {
       "from": "€1,500",
       "duration": "Audit estimate follows scope definition",

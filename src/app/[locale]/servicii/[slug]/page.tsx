@@ -5,9 +5,8 @@ import type { ReactNode } from 'react';
 import { SERVICES, getCases, getServiceBySlug } from '@/data';
 import ContactStrip from '@/components/sections/ContactStrip';
 import FaqAccordion from './FaqAccordion';
-import WhatWeBuild from './WhatWeBuild';
 import AuditCoverage from '@/components/sections/AuditCoverage';
-import { FlowStrip, IntegrationCatalog, type FlowStep } from '@/components/sections/Integrations';
+import { FlowStrip, IntegrationCatalog, StackCatalog, type FlowStep } from '@/components/sections/Integrations';
 import MotionSurface from '@/components/ui/MotionSurface';
 import JsonLd from '@/components/seo/JsonLd';
 import { BASE, ORG_ID, ORGANIZATION_NODE, breadcrumbJsonLd, localeAlternates, localePath, socialMetadata } from '@/lib/seo';
@@ -30,31 +29,56 @@ const TITLE_DISPLAY: Record<string, Record<string, ReactNode>> = {
 const COPY = {
   ro: {
     back: '← Soluții', startingPrice: 'Preț de pornire', timeline: 'Durată estimată', model: 'Colaborare', term: 'Estimare',
-    cta: 'Discutăm proiectul →', pkgCta: 'Cere ofertă', build: 'Ce', buildEm: 'construim', fit: 'Cui se', fitEm: 'potrivește',
+    cta: 'Discutăm proiectul →', pkgCta: 'Cere ofertă', build: 'Cu ce', buildEm: 'construim', flows: 'Cum arată', flowsEm: 'în practică',
     faq: 'Întrebări', faqEm: 'frecvente', area: 'România',
     packages: 'Pachete', packagesEm: 'și livrabile', includes: 'Include', deliverable: 'Primești', from: 'de la',
     quoteNote: 'Prețul se stabilește în funcție de complexitate, după ce clarificăm câteva detalii.',
   },
   en: {
     back: '← Solutions', startingPrice: 'Starting price', timeline: 'Timeline', model: 'Model', term: 'Term',
-    cta: 'Let’s talk about your project →', pkgCta: 'Request a quote', build: 'What we', buildEm: 'build', fit: 'Who it’s', fitEm: 'for',
+    cta: 'Let’s talk about your project →', pkgCta: 'Request a quote', build: 'What we', buildEm: 'build with', flows: 'How it works', flowsEm: 'in practice',
     faq: 'Frequently asked', faqEm: 'questions', area: 'Romania',
     packages: 'Packages', packagesEm: '& deliverables', includes: 'Includes', deliverable: 'You get', from: 'from',
     quoteNote: 'The price depends on complexity and is set once we clarify a few details.',
   },
 };
 
-const AI_FLOWS: Record<string, { title: string; steps: FlowStep[] }[]> = {
-  ro: [
-    { title: 'De la plată la factură', steps: [{ tool: 'Stripe', text: 'Plata e confirmată în site' }, { tool: 'SmartBill', text: 'Factura se emite automat' }, { tool: 'Email', text: 'Factura ajunge la client' }] },
-    { title: 'De la mesaj la programare', steps: [{ tool: 'WhatsApp', text: '„Aș vrea o programare vineri”' }, { tool: 'AI', text: 'Află serviciul și ora potrivită' }, { tool: 'Google Calendar', text: 'Programarea e salvată' }] },
-    { title: 'Ajutor direct în magazin', steps: [{ tool: 'WooCommerce', text: '„Caut un cadou până în 200 lei”' }, { tool: 'AI', text: 'Caută în catalog și în stoc' }, { tool: 'Răspuns', text: 'Produse recomandate, cu link de comandă' }] },
-  ],
-  en: [
-    { title: 'From payment to invoice', steps: [{ tool: 'Stripe', text: 'Payment confirmed on the website' }, { tool: 'SmartBill', text: 'Invoice issued automatically' }, { tool: 'Email', text: 'The invoice reaches the customer' }] },
-    { title: 'From message to appointment', steps: [{ tool: 'WhatsApp', text: '“I’d like an appointment on Friday”' }, { tool: 'AI', text: 'Finds the right service and time' }, { tool: 'Google Calendar', text: 'The appointment is saved' }] },
-    { title: 'Help inside your store', steps: [{ tool: 'WooCommerce', text: '“Looking for a gift under €40”' }, { tool: 'AI', text: 'Searches the catalog and stock' }, { tool: 'Reply', text: 'Recommended products, with an order link' }] },
-  ],
+// Câte trei exemple concrete per categorie, în locul descrierilor generale.
+const DETAIL_FLOWS: Record<string, Record<string, { title: string; steps: FlowStep[] }[]>> = {
+  ro: {
+    ai: [
+      { title: 'De la plată la factură', steps: [{ tool: 'Stripe', text: 'Plata e confirmată în site' }, { tool: 'SmartBill', text: 'Factura se emite automat' }, { tool: 'Email', text: 'Factura ajunge la client' }] },
+      { title: 'De la mesaj la programare', steps: [{ tool: 'WhatsApp', text: '„Aș vrea o programare vineri”' }, { tool: 'AI', text: 'Află serviciul și ora potrivită' }, { tool: 'Google Calendar', text: 'Programarea e salvată' }] },
+      { title: 'Ajutor direct în magazin', steps: [{ tool: 'WooCommerce', text: '„Caut un cadou până în 200 lei”' }, { tool: 'AI', text: 'Caută în catalog și în stoc' }, { tool: 'Răspuns', text: 'Produse recomandate, cu link de comandă' }] },
+    ],
+    produse: [
+      { title: 'Site de prezentare', steps: [{ tool: 'Google', text: 'Clientul te găsește' }, { tool: 'Site', text: 'Vede ce faci, pe telefon sau desktop' }, { tool: 'Formular', text: 'Cererea lui ajunge pe email' }] },
+      { title: 'Portal pentru utilizatori', steps: [{ tool: 'Cont', text: 'Utilizatorul se autentifică' }, { tool: 'Cerere', text: 'Trimite o cerere sau un document' }, { tool: 'Admin', text: 'Echipa o vede și răspunde' }] },
+      { title: 'Produs SaaS', steps: [{ tool: 'Înregistrare', text: 'Clientul își face cont' }, { tool: 'Stripe', text: 'Plătește abonamentul' }, { tool: 'Acces', text: 'Folosește produsul imediat' }] },
+    ],
+    consultanta: [
+      { title: 'Audit de securitate', steps: [{ tool: 'Perimetru', text: 'Stabilim ce verificăm' }, { tool: 'OWASP', text: 'Testăm autentificarea, accesul și datele' }, { tool: 'Raport', text: 'Probleme cu dovezi și priorități' }] },
+      { title: 'Mentenanță', steps: [{ tool: 'Actualizări', text: 'Verificări periodice' }, { tool: 'Erori', text: 'Remediate în limita pachetului' }, { tool: 'Progres', text: 'Știi ce s-a făcut' }] },
+      { title: 'Consultanță', steps: [{ tool: 'Obiective', text: 'Utilizatori, buget, priorități' }, { tool: 'Analiză', text: 'Ideea sau aplicația existentă' }, { tool: 'Plan', text: 'Ce construim și în ce ordine' }] },
+    ],
+  },
+  en: {
+    ai: [
+      { title: 'From payment to invoice', steps: [{ tool: 'Stripe', text: 'Payment confirmed on the website' }, { tool: 'SmartBill', text: 'Invoice issued automatically' }, { tool: 'Email', text: 'The invoice reaches the customer' }] },
+      { title: 'From message to appointment', steps: [{ tool: 'WhatsApp', text: '“I’d like an appointment on Friday”' }, { tool: 'AI', text: 'Finds the right service and time' }, { tool: 'Google Calendar', text: 'The appointment is saved' }] },
+      { title: 'Help inside your store', steps: [{ tool: 'WooCommerce', text: '“Looking for a gift under €40”' }, { tool: 'AI', text: 'Searches the catalog and stock' }, { tool: 'Reply', text: 'Recommended products, with an order link' }] },
+    ],
+    produse: [
+      { title: 'Company website', steps: [{ tool: 'Google', text: 'A customer finds you' }, { tool: 'Website', text: 'Sees what you do, on mobile or desktop' }, { tool: 'Form', text: 'Their request reaches your email' }] },
+      { title: 'User portal', steps: [{ tool: 'Account', text: 'The user signs in' }, { tool: 'Request', text: 'Sends a request or a document' }, { tool: 'Admin', text: 'Your team sees it and replies' }] },
+      { title: 'SaaS product', steps: [{ tool: 'Sign-up', text: 'The customer creates an account' }, { tool: 'Stripe', text: 'Pays the subscription' }, { tool: 'Access', text: 'Uses the product right away' }] },
+    ],
+    consultanta: [
+      { title: 'Security audit', steps: [{ tool: 'Scope', text: 'We agree what to check' }, { tool: 'OWASP', text: 'We test authentication, access and data' }, { tool: 'Report', text: 'Issues with evidence and priorities' }] },
+      { title: 'Maintenance', steps: [{ tool: 'Updates', text: 'Periodic checks' }, { tool: 'Bugs', text: 'Fixed within the package' }, { tool: 'Progress', text: 'You know what was done' }] },
+      { title: 'Consultation', steps: [{ tool: 'Goals', text: 'Users, budget, priorities' }, { tool: 'Review', text: 'The idea or existing application' }, { tool: 'Plan', text: 'What to build, and in what order' }] },
+    ],
+  },
 };
 
 interface Props {
@@ -87,6 +111,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const copy = COPY[locale as keyof typeof COPY] ?? COPY.ro;
   const titleDisplay = TITLE_DISPLAY[locale] ?? TITLE_DISPLAY.ro;
   const en = locale === 'en';
+  const flows = (en ? DETAIL_FLOWS.en : DETAIL_FLOWS.ro)[slug] ?? [];
   const packageGroups = slug === 'ai' ? [
     { title: en ? 'API integrations and automation' : 'Integrări API și automatizări', packages: svc.packages.slice(0, 1) },
     { title: en ? 'AI assistants' : 'Asistenți AI', packages: svc.packages.slice(1) },
@@ -227,38 +252,22 @@ export default async function ServiceDetailPage({ params }: Props) {
       {slug === 'ai' && <section className="svc-section integration-explainer" aria-labelledby="integration-explainer-title"><div className="wrap">
         <div className="svc-section-head"><div className="idx">02</div><h2 id="integration-explainer-title">{en ? 'What we' : 'Cu ce'} <em>{en ? 'connect' : 'ne integrăm'}</em></h2></div>
         <IntegrationCatalog locale={locale} />
-        <MotionSurface className="integration-examples">{(en ? AI_FLOWS.en : AI_FLOWS.ro).map(flow => <div className="integration-example" key={flow.title}>
+        <MotionSurface className="integration-examples">{flows.map(flow => <div className="integration-example" key={flow.title}>
           <h3>{flow.title}</h3><FlowStrip steps={flow.steps} />
         </div>)}</MotionSurface>
       </div></section>}
 
-      {slug !== 'ai' && <section className="svc-section">
-        <div className="wrap">
-          <div className="svc-section-head">
-            <div className="idx">02</div>
-            <h2>{copy.build} <em>{copy.buildEm}</em></h2>
-          </div>
-          <WhatWeBuild items={svc.whatWeBuild} />
-        </div>
-      </section>}
+      {slug === 'produse' && <section className="svc-section" aria-labelledby="stack-title"><div className="wrap">
+        <div className="svc-section-head"><div className="idx">02</div><h2 id="stack-title">{copy.build} <em>{copy.buildEm}</em></h2></div>
+        <StackCatalog locale={locale} />
+      </div></section>}
 
-      {slug !== 'ai' && <section className="svc-section">
-        <div className="wrap">
-          <div className="svc-section-head">
-            <div className="idx">03</div>
-            <h2>{copy.fit} <em>{copy.fitEm}</em></h2>
-          </div>
-          <div className="audience-list">
-            {svc.audience.map((a, i) => (
-              <div key={a.title} className="audience-item rise">
-                <div className="a-num">{String(i + 1).padStart(2, '0')}</div>
-                <h4>{a.title}</h4>
-                <p>{a.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>}
+      {slug !== 'ai' && <section className="svc-section" aria-labelledby="flows-title"><div className="wrap">
+        <div className="svc-section-head"><div className="idx">{slug === 'produse' ? '03' : '02'}</div><h2 id="flows-title">{copy.flows} <em>{copy.flowsEm}</em></h2></div>
+        <MotionSurface className="integration-examples">{flows.map(flow => <div className="integration-example" key={flow.title}>
+          <h3>{flow.title}</h3><FlowStrip steps={flow.steps} />
+        </div>)}</MotionSurface>
+      </div></section>}
 
       {slug === 'ai' && <section className="svc-section" aria-labelledby="integration-projects-title"><div className="wrap">
         <div className="svc-section-head"><div className="idx">03</div><h2 id="integration-projects-title">{en ? 'Integrations from' : 'Integrări din'} <em>{en ? 'our portfolio' : 'portofoliul nostru'}</em></h2></div>

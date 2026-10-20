@@ -57,35 +57,6 @@ export const SERVICES: Service[] = [
         "priceNote": "Abonamentele și consumul AI se discută separat."
       }
     ],
-    "whatWeBuild": [
-      {
-        "title": "De la plata la factura",
-        "desc": "O plata confirmata in site porneste emiterea facturii in aplicatia de facturare. Integrarea API muta datele, iar automatizarea executa pasii stabiliti."
-      },
-      {
-        "title": "De la conversatie la programare",
-        "desc": "Clientul descrie ce doreste. AI-ul intelege solicitarea si cere detaliile necesare; integrarea verifica disponibilitatea si salveaza programarea."
-      },
-      {
-        "title": "Ajutor direct in magazin",
-        "desc": "Cumparatorul explica ce cauta sau intreaba despre comanda sa. Asistentul foloseste catalogul si datele disponibile, iar echipa preia situatiile care cer interventie."
-      }
-    ],
-    "audience": [
-      {
-        "title": "Folosesti aplicatii care trebuie conectate",
-        "desc": "Site-ul, facturarea, CRM-ul sau furnizorii tai nu schimba informatiile necesare in fluxul de lucru."
-      },
-      {
-        "title": "Primesti cereri si programari",
-        "desc": "Vrei sa preiei detaliile clientului si sa le duci pana la programare sau pana la persoana care se ocupa de solicitare."
-      },
-      {
-        "title": "Ai un magazin online",
-        "desc": "Clientii au nevoie de ajutor la alegerea produselor si de informatii despre comenzile lor."
-      }
-    ],
-    "technologies": [],
     "pricing": {
       "from": "Cere ofertă",
       "duration": "Dupa verificarea aplicatiilor si a fluxului",
@@ -125,7 +96,7 @@ export const SERVICES: Service[] = [
       "Produse SaaS"
     ],
     "tagline": "Un produs construit pentru ce au nevoie oamenii să facă.",
-    "longDesc": "Clarificăm utilizatorii și fluxurile importante, pregătim designul și construim în etape. Vezi produsul pe parcurs și dai feedback înainte de lansare. La predare primești acces la cod și explicațiile necesare pentru folosire și administrare.",
+    "longDesc": "Construim în etape, cu demo la aproximativ două săptămâni, ca să vezi produsul pe parcurs. La predare primești codul și instrucțiunile de administrare.",
     "packages": [
       {
         "id": "website",
@@ -134,10 +105,9 @@ export const SERVICES: Service[] = [
         "duration": "2–3 săptămâni",
         "model": "Pagini și conținut agreate",
         "includes": [
-          "Design adaptat identității tale",
-          "Pagini de prezentare și navigație pentru mobil",
-          "Formular de contact și elemente de SEO tehnic",
-          "Lansare pe domeniul tău și acces la cod"
+          "Design pe identitatea ta, gândit întâi pentru mobil",
+          "Formular de contact și SEO tehnic",
+          "Lansare pe domeniul tău, cu acces la cod"
         ],
         "deliverable": "Un site public care prezintă clar ce faci și cum poți fi contactat.",
         "priceNote": "De la €1.200 pentru un site de prezentare cu paginile agreate. Funcțiile de magazin, portal sau aplicație se estimează separat."
@@ -150,8 +120,7 @@ export const SERVICES: Service[] = [
         "model": "Fluxuri și funcții agreate",
         "includes": [
           "Conturi și roluri pentru utilizatori",
-          "Pagini și instrumente pentru fluxurile principale",
-          "Integrările definite în ofertă",
+          "Instrumentele pentru fluxurile principale și integrările din ofertă",
           "Teste, lansare și instrucțiuni de administrare"
         ],
         "deliverable": "O aplicație sau un portal pentru clienți, echipă, studenți ori profesori.",
@@ -164,9 +133,8 @@ export const SERVICES: Service[] = [
         "duration": "6–10 săptămâni",
         "model": "Prima versiune cu scop agreat",
         "includes": [
-          "Funcțiile esențiale pentru prima versiune",
-          "Conturi și separarea datelor utilizatorilor",
-          "Abonamente și plăți, conform scopului agreat",
+          "Conturi, cu datele fiecărui client separate",
+          "Abonamente și plăți online",
           "Panou de administrare, teste și lansare"
         ],
         "deliverable": "O primă versiune a produsului tău SaaS, pregătită pentru a fi folosită de clienți.",
@@ -179,44 +147,14 @@ export const SERVICES: Service[] = [
         "duration": "Estimare după definirea primei versiuni",
         "model": "Funcțiile esențiale pentru validare",
         "includes": [
-          "Definirea utilizatorilor și a problemei de rezolvat",
-          "Design și implementarea fluxului principal",
-          "Funcțiile necesare pentru primii utilizatori",
-          "Teste, lansare și pași pentru următoarea versiune"
+          "Definim utilizatorii și problema de rezolvat",
+          "Construim doar fluxul principal",
+          "Lansare pentru primii utilizatori și planul versiunii următoare"
         ],
         "deliverable": "O primă versiune funcțională prin care poți testa ideea cu utilizatori, înainte să extinzi produsul.",
         "priceNote": "Prima versiune poate însemna lucruri diferite. Stabilim fluxul esențial înainte de a fixa bugetul."
       }
     ],
-    "whatWeBuild": [
-      {
-        "title": "Site-uri pentru afaceri",
-        "desc": "Serviciile, lucrările și datele de contact sunt ușor de găsit, inclusiv de pe telefon."
-      },
-      {
-        "title": "Portaluri pentru utilizatori",
-        "desc": "Un spațiu cu acces pe roluri, pentru cursuri, documente sau operațiuni ale clienților și echipei."
-      },
-      {
-        "title": "Produse SaaS",
-        "desc": "Aplicații oferite prin abonament, cu funcțiile de care au nevoie primii utilizatori."
-      }
-    ],
-    "audience": [
-      {
-        "title": "Ai nevoie de o prezență online",
-        "desc": "Vrei să prezinți clar afacerea și să faci contactul mai simplu."
-      },
-      {
-        "title": "Ai un flux care cere o aplicație",
-        "desc": "Un portal sau un instrument adaptat poate organiza mai bine activitatea."
-      },
-      {
-        "title": "Vrei să lansezi un produs",
-        "desc": "Definim prima versiune în jurul funcțiilor esențiale pentru utilizatori."
-      }
-    ],
-    "technologies": [],
     "pricing": {
       "from": "€1.200",
       "duration": "Site: 2–3 săptămâni; portal sau SaaS: 5–10",
@@ -256,7 +194,7 @@ export const SERVICES: Service[] = [
       "Suport după lansare"
     ],
     "tagline": "Înțelegi ce trebuie verificat și ce merită reparat întâi.",
-    "longDesc": "Prin consultanță clarificăm funcțiile și pașii de implementare. Pentru audit definim perimetrul și accesul autorizat, verificăm aplicația și documentăm problemele cu dovezi și priorități. Mentenanța acoperă activitățile și intervențiile stabilite în oferta proiectului.",
+    "longDesc": "Verificăm securitatea aplicației după OWASP, o întreținem după lansare sau te ajutăm să planifici ce construiești.",
     "packages": [
       {
         "id": "security-audit",
@@ -265,10 +203,9 @@ export const SERVICES: Service[] = [
         "duration": "1 zi–1 săptămână",
         "model": "Perimetru autorizat și agreat",
         "includes": [
-          "Verificări pe perimetrul agreat, cu referințe OWASP ASVS și Top 10",
-          "Dovezi pentru problemele identificate",
-          "Raport cu impact și priorități de remediere",
-          "Discuție despre pașii următori"
+          "Verificări pe perimetrul agreat, după OWASP ASVS și Top 10",
+          "Dovezi pentru fiecare problemă găsită",
+          "Raport cu impact și ordinea de remediere"
         ],
         "deliverable": "Un raport de audit cu probleme documentate și recomandări de remediere.",
         "priceNote": "De la €1.500 pentru perimetrul agreat și raportul de audit. Remedierea problemelor este ofertată separat."
@@ -280,10 +217,9 @@ export const SERVICES: Service[] = [
         "duration": "Colaborare lunară",
         "model": "Intervenții și disponibilitate agreate",
         "includes": [
-          "Actualizări și verificări periodice agreate",
-          "Remedierea erorilor în limita pachetului stabilit",
-          "Suport pentru utilizare și administrare",
-          "Prioritizarea intervențiilor și comunicarea progresului"
+          "Actualizări și verificări periodice",
+          "Remedierea erorilor în limita pachetului",
+          "Suport la utilizare și raportarea progresului"
         ],
         "deliverable": "Un plan de mentenanță cu activități și condiții clare.",
         "priceNote": "De la €500 pe lună. Activitățile, timpul alocat și disponibilitatea se stabilesc în ofertă; nu include intervenții nelimitate."
@@ -295,40 +231,14 @@ export const SERVICES: Service[] = [
         "duration": "Sesiuni și livrabile agreate",
         "model": "Planificare sau evaluarea unui produs existent",
         "includes": [
-          "Discuție despre obiective, utilizatori și buget",
-          "Analiza aplicației existente sau a ideii propuse",
-          "Prioritizarea funcțiilor și a integrărilor necesare",
-          "Plan de implementare și estimarea etapelor"
+          "Obiective, utilizatori și buget",
+          "Analiza ideii sau a aplicației existente",
+          "Plan de implementare pe etape, cu priorități"
         ],
         "deliverable": "O recomandare clară și un plan pentru ce merită construit sau îmbunătățit.",
         "priceNote": "Prețul depinde de analiza necesară, numărul de sesiuni și livrabilele agreate."
       }
     ],
-    "whatWeBuild": [
-      {
-        "title": "Un plan pentru proiectul tău",
-        "desc": "Clarificăm ideea sau analizăm aplicația existentă, apoi propunem priorități și pași de implementare."
-      },
-      {
-        "title": "Un raport pe care poți acționa",
-        "desc": "Primești dovezi, impact și o ordine recomandată a remedierilor, pentru perimetrul verificat."
-      },
-      {
-        "title": "Continuitate după lansare",
-        "desc": "Actualizări, corecții și suport organizate într-un plan de mentenanță agreat."
-      }
-    ],
-    "audience": [
-      {
-        "title": "Ai o aplicație de verificat",
-        "desc": "Vrei să înțelegi riscurile înainte de lansare sau pentru un produs existent."
-      },
-      {
-        "title": "Ai nevoie de suport tehnic",
-        "desc": "Vrei un punct de contact pentru întreținerea site-ului sau aplicației."
-      }
-    ],
-    "technologies": [],
     "pricing": {
       "from": "€1.500",
       "duration": "Auditul este estimat după definirea perimetrului",

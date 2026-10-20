@@ -29,9 +29,6 @@ export interface Service {
   tagline: string;
   longDesc: string;
   packages: ServicePackage[];
-  whatWeBuild: { title: string; desc: string }[];
-  audience: { title: string; desc: string }[];
-  technologies: { cat: string; items: string[] }[];
   pricing: { from: string; duration: string; model: string };
   timeline: string;
   faq: { q: string; a: string }[];

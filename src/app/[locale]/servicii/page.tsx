@@ -1,5 +1,5 @@
 import ServicesExplorer from '@/components/sections/ServicesExplorer';
-import { IntegrationHub } from '@/components/sections/Integrations';
+import { IntegrationMarquee } from '@/components/sections/Integrations';
 import { getServices } from '@/data';
 import ContactStrip from '@/components/sections/ContactStrip';
 import JsonLd from '@/components/seo/JsonLd';
@@ -38,7 +38,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
   return <>
     <JsonLd data={breadcrumbDocument([{ name: locale === 'en' ? 'Home' : 'Acasă', path: localePath(locale, '/') },
       { name: locale === 'en' ? 'Solutions' : 'Soluții', path: localePath(locale, '/servicii') }])} />
-    <header className="services-hero"><div className="wrap"><p className="eyebrow">{t.idx}</p><h1>{t.hero}</h1><p className="services-hero-intro">{t.sub}</p><IntegrationHub locale={locale} /></div></header>
+    <header className="services-hero"><div className="wrap"><p className="eyebrow">{t.idx}</p><h1>{t.hero}</h1><p className="services-hero-intro">{t.sub}</p><IntegrationMarquee locale={locale} /></div></header>
     <section className="section services-list-section"><div className="wrap"><ServicesExplorer services={getServices(locale)} locale={locale} /></div></section>
     <ContactStrip />
   </>;

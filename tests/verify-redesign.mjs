@@ -58,7 +58,10 @@ async function page(route) {
     const solutions = texts.get('/servicii');
     // User: "PE LANGA faptul ca e greu de citit si sunt 100 de mii de carduri".
     assert.equal((solutions.match(/class="services-index-card solution-overview"/g) || []).length, 3);
-    assert.doesNotMatch(solutions, /solutions-guide-section/);
+    assert.doesNotMatch(solutions, /solutions-guide-section|integration-map/);
+    // User: "animatia aia din partea de sus, nu prea are sens" -> carusel de logo-uri.
+    assert.match(solutions, /class="motion-surface logo-marquee"/);
+    assert.match(solutions, /class="brand-icon"/);
     // Every offer linked from the overview must have a real destination on its detail page.
     const offerLinks = Array.from(solutions.matchAll(/href="([^"#]*\/servicii\/(ai|produse|consultanta)#([^"#]+))"/g));
     assert.equal(offerLinks.length, 10);
@@ -213,7 +216,13 @@ async function page(route) {
     const combined = texts.get('/servicii/ai');
     assert.match(combined, /id="integration-explainer-title"/);
     assert.ok(combined.indexOf('id="integration"') < combined.indexOf('id="integration-explainer-title"'), 'Show the actual offer before the explanation');
-    assert.doesNotMatch(combined, /class="wtb-layout"|class="audience-list"/);
+    // User: "poti face si cele 2 pagini neatinse".
+    for (const slug of ['ai', 'produse', 'consultanta']) {
+      const detail = texts.get('/servicii/' + slug);
+      assert.doesNotMatch(detail, /class="wtb-layout"|class="audience-list"/);
+      assert.equal((detail.match(/class="flow-strip"/g) || []).length, 3, slug);
+    }
+    assert.match(texts.get('/servicii/produse'), /id="stack-title"/);
     assert.equal((combined.match(/class="integration-group"/g) || []).length, 6);
     assert.equal((combined.match(/class="flow-strip"/g) || []).length, 3);
     assert.match(combined, locale === 'en' ? /API integrations and automation/ : /Integrări API și automatizări/);

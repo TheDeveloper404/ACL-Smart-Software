@@ -36,14 +36,12 @@ test.describe('Pagini detaliu servicii', () => {
       await expect(page.locator('.svc-pricing-card')).toBeVisible();
     });
 
-    if (slug !== 'ai') test(`/servicii/${slug} — WhatWeBuild este interactiv`, async ({ page }) => {
+    // User: "poti face si cele 2 pagini neatinse" — exemple concrete (fluxuri) in locul textului general.
+    test(`/servicii/${slug} — arata trei fluxuri concrete`, async ({ page }) => {
       await page.goto(`/servicii/${slug}`);
-      const tabs = page.locator('.wtb-tab');
-      await expect(tabs.first()).toBeVisible();
-      const count = await tabs.count();
-      expect(count).toBeGreaterThan(1);
-      await tabs.nth(1).click();
-      await expect(tabs.nth(1)).toHaveClass(/is-active/);
+      await expect(page.locator('.integration-example .flow-strip')).toHaveCount(3);
+      await expect(page.locator('.integration-example .flow-strip').first().locator('li')).toHaveCount(3);
+      await expect(page.locator('.wtb-layout, .audience-list')).toHaveCount(0);
     });
 
     test(`/servicii/${slug} — FAQ accordion funcționează`, async ({ page }) => {
