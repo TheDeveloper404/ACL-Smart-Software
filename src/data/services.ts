@@ -4,30 +4,60 @@ import type { Service } from '@/types';
 export const SERVICES: Service[] = [
   {
     "slug": "ai",
-    "title": "AI în aplicația ta",
-    "short": "Adăugăm AI într-un produs existent sau construim un asistent care caută în documentele tale.",
+    "title": "AI pentru firma ta",
+    "short": "Automatizăm munca cu documente și mesaje și adăugăm AI în aplicațiile tale, conectat la datele firmei.",
     "tags": [
-      "Asistenți AI",
-      "Căutare în documente",
-      "AI în produse"
+      "Procesare documente",
+      "Asistent pentru clienți",
+      "Agenți AI"
     ],
-    "tagline": "O funcție utilă pentru oamenii care folosesc deja produsul tău.",
-    "longDesc": "Pornim de la o nevoie concretă: găsirea unei informații, rezumarea unui document sau pregătirea unui răspuns. Alegem sursele, construim funcția și verificăm răspunsurile pe exemple din activitatea ta. Stabilim împreună limitele și când este necesară verificarea de către un om.",
+    "tagline": "AI care lucrează în aplicațiile tale, nu într-o fereastră de chat.",
+    "longDesc": "Pornim de la o activitate care îți consumă timp: introducerea datelor din documente, răspunsurile la aceleași întrebări sau un proces cu mulți pași. Conectăm AI la aplicațiile și datele tale, ca să lucreze automat, la volum, fără copiere manuală. Testăm pe exemple reale din activitatea ta și stabilim împreună ce verifică un om.",
     "packages": [
       {
-        "id": "rag-assistant",
-        "name": "Asistent pe documentele tale",
-        "from": "€2.500",
-        "duration": "3–4 săptămâni",
-        "model": "Scop agreat",
+        "id": "document-processing",
+        "name": "Procesare automată de documente",
+        "from": "La ofertă",
+        "duration": "Estimare după analiza documentelor",
+        "model": "Documente și câmpuri agreate",
         "includes": [
-          "Căutare și întrebări peste documentele agreate",
-          "Răspunsuri cu trimiteri la sursele disponibile",
-          "Acces stabilit pentru utilizatorii tăi",
-          "Verificare pe un set de întrebări reale"
+          "Preluare automată din email, folder sau aplicație",
+          "Extragerea câmpurilor de care ai nevoie: furnizor, sume, date, produse",
+          "Verificare umană doar pentru cazurile neclare",
+          "Datele ajung în Excel, în programul de facturare sau în aplicația ta"
         ],
-        "deliverable": "Un asistent pentru documentele tale, cu surse și limite de utilizare explicate.",
-        "priceNote": "De la €2.500 pentru un asistent pe o bază de documente agreată. OCR, mai multe surse și integrări suplimentare se estimează separat."
+        "deliverable": "Un flux care preia documentele și pune datele direct unde lucrezi, fără introducere manuală.",
+        "priceNote": "La ofertă: costul depinde de tipurile și volumul documentelor, câmpurile de extras și aplicația în care ajung datele."
+      },
+      {
+        "id": "customer-assistant",
+        "name": "Asistent pentru clienții tăi",
+        "from": "La ofertă",
+        "duration": "Estimare după stabilirea canalelor",
+        "model": "Canale și subiecte agreate",
+        "includes": [
+          "Răspunsuri pe site, pe email sau pe WhatsApp",
+          "Informații din datele tale: program, prețuri, servicii, status comenzi",
+          "Predarea conversației către un om când asistentul nu știe",
+          "Istoricul conversațiilor, pentru verificare"
+        ],
+        "deliverable": "Un asistent care răspunde clienților tăi cu informațiile firmei și știe când să cheme un om.",
+        "priceNote": "La ofertă: costul depinde de canale, sursele de date și volumul de conversații. WhatsApp Business și modelele AI au costuri recurente separate."
+      },
+      {
+        "id": "automation-agent",
+        "name": "Agent AI pentru un proces",
+        "from": "€2.000",
+        "duration": "3–6 săptămâni",
+        "model": "Un proces agreat",
+        "includes": [
+          "Definirea pașilor, datelor și regulilor procesului",
+          "Conectarea la aplicațiile implicate, în limita accesului disponibil",
+          "Confirmare umană pentru acțiunile agreate",
+          "Teste, evidența execuțiilor și tratarea erorilor"
+        ],
+        "deliverable": "Un proces care rulează singur, de exemplu o cerere de ofertă devenită ofertă draft, pe care doar o aprobi.",
+        "priceNote": "De la €2.000 pentru un proces delimitat, cu reguli și acces agreate. Procesele suplimentare se estimează separat."
       },
       {
         "id": "ai-feature",
@@ -45,71 +75,56 @@ export const SERVICES: Service[] = [
         "priceNote": "De la €3.500 pentru o funcționalitate integrată în aplicația existentă. Oferta depinde de accesul la cod și de modificările necesare."
       },
       {
-        "id": "document-extraction",
-        "name": "Extragere de date din documente",
+        "id": "ai-assessment",
+        "name": "Analiză: unde te ajută AI",
         "from": "La ofertă",
-        "duration": "Estimare după analiza documentelor",
-        "model": "Documente și câmpuri agreate",
+        "duration": "1–2 sesiuni",
+        "model": "Analiză înainte de investiție",
         "includes": [
-          "Extragere din tipurile de documente stabilite",
-          "Structurarea datelor în câmpurile de care ai nevoie",
-          "Verificare umană pentru informațiile neclare",
-          "Export sau integrare în aplicația agreată"
+          "Discuție despre activitățile care îți consumă cel mai mult timp",
+          "2–3 procese în care AI economisește timp sau bani",
+          "Estimare de cost și efort pentru fiecare",
+          "Recomandare: ce merită făcut cu AI și ce nu"
         ],
-        "deliverable": "Un flux care transformă documentele în date structurate, cu posibilitatea de verificare.",
-        "priceNote": "La ofertă: costul depinde de formate, calitatea documentelor, câmpurile de extras și pasul de verificare."
-      },
-      {
-        "id": "ai-prototype",
-        "name": "Prototip pentru o idee AI",
-        "from": "La ofertă",
-        "duration": "Estimare după definirea ideii",
-        "model": "Validare înainte de implementare",
-        "includes": [
-          "Alegerea unui caz de utilizare concret",
-          "Prototip cu date și exemple reprezentative",
-          "Evaluarea răspunsurilor și a costurilor de utilizare",
-          "Recomandare pentru continuare și limite explicate"
-        ],
-        "deliverable": "Un prototip și o evaluare pe care poți baza decizia de a investi în funcția AI.",
-        "priceNote": "La ofertă: stabilim mai întâi ipoteza de testat, datele disponibile și criteriile de evaluare. Prototipul nu este un produs lansat."
+        "deliverable": "O listă scurtă de procese potrivite pentru AI, cu estimări, pe baza căreia decizi ce faci mai departe.",
+        "priceNote": "La ofertă: depinde de numărul de procese analizate și de datele disponibile."
       }
     ],
     "whatWeBuild": [
       {
-        "title": "Găsești informația în documente",
-        "desc": "Un asistent caută în manuale, proceduri sau materiale interne și indică sursele folosite."
+        "title": "Documente fără introducere manuală",
+        "desc": "Facturi, avize sau comenzi ajung ca date în aplicația ta, cu verificare umană doar unde e nevoie."
       },
       {
-        "title": "Lucrezi mai ușor cu texte",
-        "desc": "Rezumate, propuneri de răspuns și clasificarea mesajelor, în aplicația în care lucrezi deja."
+        "title": "Clienți care primesc răspuns imediat",
+        "desc": "Un asistent răspunde pe site, email sau WhatsApp cu informațiile firmei tale."
       },
       {
-        "title": "Extragi informații din documente",
-        "desc": "Transformăm informații din documente în date utile, cu verificare umană unde este nevoie."
+        "title": "Procese care merg singure",
+        "desc": "Un agent face pașii repetitivi în aplicațiile tale, iar tu aprobi doar ce contează."
       }
     ],
     "audience": [
       {
-        "title": "Ai deja o aplicație",
-        "desc": "Vrei să adaugi o funcție AI fără să reconstruiești întregul produs."
+        "title": "Pierzi timp cu aceleași sarcini",
+        "desc": "Echipa introduce date, răspunde la aceleași întrebări sau pregătește aceleași documente."
       },
       {
-        "title": "Informația e răspândită în documente",
-        "desc": "Echipa pierde timp căutând răspunsuri în mai multe fișiere."
+        "title": "Ai deja o aplicație",
+        "desc": "Vrei să adaugi o funcție AI fără să reconstruiești întregul produs."
       }
     ],
     "technologies": [],
     "pricing": {
-      "from": "€2.500",
+      "from": "€2.000",
       "duration": "Estimarea finală urmează definirea scopului",
       "model": "Proiect cu scop agreat"
     },
-    "timeline": "3–5 săptămâni, orientativ",
+    "timeline": "3–6 săptămâni, orientativ",
     "faq": [
       {
-        "q": "Ce înseamnă un asistent RAG?",
-        "a": "Este un asistent AI care caută informații în documentele tale înainte de a formula un răspuns. Poate indica sursele, dar poate greși; verificăm calitatea și stabilim limitele de utilizare."
+        "q": "De ce nu folosesc direct ChatGPT?",
+        "a": "ChatGPT e util pentru un document sau o întrebare pusă de mână. Noi conectăm AI la aplicațiile și datele tale, ca să lucreze automat și la volum, fără copiere manuală, să răspundă clienților tăi cu informații reale și să respecte cine are acces la ce."
       },
       {
         "q": "Se poate integra în aplicația existentă?",
@@ -120,38 +135,27 @@ export const SERVICES: Service[] = [
         "a": "Prețul de pornire este pentru implementare. Costurile recurente ale modelelor și găzduirii se estimează separat, în funcție de utilizare."
       },
       {
-        "q": "Unde ajung documentele mele?",
+        "q": "Unde ajung datele mele?",
         "a": "Stabilim înainte de implementare ce date pot fi procesate, cine are acces și ce furnizori pot fi folosiți. Alegerea depinde de cerințele proiectului."
+      },
+      {
+        "q": "Agentul poate face acțiuni fără aprobare?",
+        "a": "Doar acțiunile agreate explicit. Pentru acțiuni cu impact stabilim confirmări și limite înainte de implementare."
       }
     ]
   },
   {
     "slug": "infrastructura",
-    "title": "Automatizări și integrări",
-    "short": "Legăm aplicațiile pe care le folosești și automatizăm pașii pe care îi repeți în fiecare zi.",
+    "title": "Integrări API și automatizări",
+    "short": "Integrăm prin API aplicațiile pe care le folosești (CRM, plăți, facturare) și automatizăm pașii pe care îi repeți zilnic. Soluții de integrare software la comandă.",
     "tags": [
+      "Integrări API",
       "Procese repetitive",
-      "Documente și email",
       "Aplicații conectate"
     ],
     "tagline": "Mai puține mutări de date. Un flux de lucru mai simplu.",
-    "longDesc": "Alegem un proces clar, identificăm aplicațiile și datele implicate și stabilim regulile. Automatizarea poate folosi AI când este util sau reguli obișnuite când acestea sunt suficiente. Definim ce se întâmplă la erori și ce acțiuni trebuie confirmate de un om.",
+    "longDesc": "Alegem un proces clar, identificăm aplicațiile și datele implicate și stabilim regulile. Pentru pași cu reguli clare nu e nevoie de AI: o integrare sau o automatizare obișnuită e mai simplă, mai ieftină și mai previzibilă. Definim ce se întâmplă la erori și ce acțiuni trebuie confirmate de un om.",
     "packages": [
-      {
-        "id": "automation-agent",
-        "name": "Agent pentru un proces",
-        "from": "€2.000",
-        "duration": "3–6 săptămâni",
-        "model": "Un proces agreat",
-        "includes": [
-          "Definirea pașilor, datelor și regulilor procesului",
-          "Conectarea la aplicațiile implicate, în limita accesului disponibil",
-          "Confirmare umană pentru acțiunile agreate",
-          "Teste, evidența execuțiilor și tratarea erorilor"
-        ],
-        "deliverable": "Un proces automatizat, cu limite clare și instrucțiuni de utilizare.",
-        "priceNote": "De la €2.000 pentru un proces delimitat, cu reguli și acces agreate. Procesele suplimentare se estimează separat."
-      },
       {
         "id": "integration",
         "name": "Conectarea a două aplicații",
@@ -185,12 +189,12 @@ export const SERVICES: Service[] = [
     ],
     "whatWeBuild": [
       {
-        "title": "Din document în aplicație",
-        "desc": "Preluăm informații din documente și le pregătim pentru sistemul în care ai nevoie de ele."
+        "title": "Date sincronizate între aplicații",
+        "desc": "Comenzile, clienții sau facturile ajung automat dintr-o aplicație în alta, fără introducere dublă."
       },
       {
-        "title": "Mesaje organizate și direcționate",
-        "desc": "Sortăm solicitările după reguli agreate și pregătim răspunsuri pentru verificare."
+        "title": "Pași declanșați automat",
+        "desc": "Un eveniment, cum ar fi o comandă nouă sau un formular trimis, pornește singur notificările și pașii următori."
       },
       {
         "title": "Aplicații care schimbă date",
@@ -200,7 +204,7 @@ export const SERVICES: Service[] = [
     "audience": [
       {
         "title": "Repeți aceiași pași",
-        "desc": "Copiați date, sortați mesaje sau pregătiți aceleași documente în mod repetat."
+        "desc": "Copiați date între aplicații sau pregătiți aceleași documente în mod repetat."
       },
       {
         "title": "Folosești mai multe aplicații",
@@ -210,14 +214,14 @@ export const SERVICES: Service[] = [
     "technologies": [],
     "pricing": {
       "from": "€1.500",
-      "duration": "O integrare: 1–3 săptămâni; un agent: 3–6",
+      "duration": "O integrare: 1–3 săptămâni",
       "model": "Proiect cu scop agreat"
     },
-    "timeline": "1–6 săptămâni, orientativ",
+    "timeline": "1–3 săptămâni, orientativ",
     "faq": [
       {
         "q": "Orice automatizare are nevoie de AI?",
-        "a": "Nu. Pentru pași cu reguli clare, o automatizare obișnuită poate fi mai simplă și mai potrivită. Folosim AI când procesul chiar beneficiază de el."
+        "a": "Nu. Pentru pași cu reguli clare, o automatizare obișnuită e mai simplă și mai potrivită. Când procesul cere înțelegerea unor documente sau mesaje, soluția potrivită e un agent AI, de la AI pentru firma ta."
       },
       {
         "q": "Puteți conecta orice aplicație?",
@@ -226,10 +230,6 @@ export const SERVICES: Service[] = [
       {
         "q": "Ce se întâmplă dacă un pas eșuează?",
         "a": "Stabilim cum sunt semnalate erorile, ce poate fi reluat și când trebuie să intervină un om. Aceste reguli fac parte din scopul proiectului."
-      },
-      {
-        "q": "Agentul poate face acțiuni fără aprobare?",
-        "a": "Doar acțiunile agreate explicit. Pentru acțiuni cu impact stabilim confirmări și limite înainte de implementare."
       }
     ]
   },

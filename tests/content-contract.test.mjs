@@ -38,9 +38,10 @@ const numeric = value => { const match = value.match(/[\d.,]+/); return match ? 
 
 test('Public offers retain the approved prices in both languages', () => {
   // User: „produs saas ... de la 4500 euro ... RAG — 2500 euro. Agent automatizare — 2000 euro.”
+  // User 2026-10-20: RAG înlocuit de pachetele noi AI; agentul mutat pe AI, „Da, sunt de acord”.
   for (const services of [SERVICES, SERVICES_EN]) {
     const offers = services.flatMap(service => service.packages);
-    for (const [id, amount] of [['mvp-saas', 4500], ['rag-assistant', 2500], ['automation-agent', 2000]]) {
+    for (const [id, amount] of [['mvp-saas', 4500], ['automation-agent', 2000]]) {
       assert.equal(numeric(offers.find(offer => offer.id === id).from), amount, id);
     }
     assert.equal(numeric(offers.find(offer => offer.id === 'website').from), 1200);
@@ -117,8 +118,9 @@ test('Real testimonials are preserved for every client in RO and EN', () => {
 
 test('New packages are distinct, localized and quoted without invented prices', () => {
   // User: „2–4 pachete la fiecare, inclusiv mvp, consultanță”; new prices: „La ofertă”.
-  const counts = { ai: 4, infrastructura: 3, produse: 4, consultanta: 3 };
-  const newIds = ['document-extraction', 'ai-prototype', 'workflow-automation', 'product-mvp', 'project-consultation'];
+  // User 2026-10-20: „poti cere oferta la 1 si 2” (procesare documente, asistent clienți); analiza AI tot la ofertă.
+  const counts = { ai: 5, infrastructura: 2, produse: 4, consultanta: 3 };
+  const newIds = ['document-processing', 'customer-assistant', 'ai-assessment', 'workflow-automation', 'product-mvp', 'project-consultation'];
   for (const [locale, services] of [['ro', SERVICES], ['en', SERVICES_EN]]) {
     for (const service of services) assert.equal(service.packages.length, counts[service.slug]);
     for (const id of newIds) {

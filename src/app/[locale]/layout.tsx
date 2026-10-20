@@ -29,8 +29,8 @@ const interTight = Inter_Tight({
 
 const LAYOUT_METADATA: Record<AppLocale, Metadata> = {
   ro: {
-    title: { default: 'ACL Smart Software — AI, automatizări și produse digitale | Petroșani', template: '%s | ACL Smart Software' },
-    description: 'ACL Smart Software, companie de dezvoltare software din Petroșani. Site-uri, portaluri, produse SaaS, integrare AI și automatizări pentru companii.',
+    title: { default: 'ACL Smart Software — Dezvoltare software la comandă | Petroșani', template: '%s | ACL Smart Software' },
+    description: 'Dezvoltare software la comandă din Petroșani: site-uri, portaluri, aplicații SaaS, integrări API, AI și automatizări pentru companii din toată România.',
     ...socialMetadata('ro', 'ACL Smart Software — AI, automatizări și produse digitale', 'Construim site-uri, portaluri și SaaS. Integrăm AI și automatizăm procesele companiei tale.'),
   },
   en: {

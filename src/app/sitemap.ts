@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { SERVICES } from '@/data';
 import { BASE } from '@/lib/seo';
 
-const SITE_LAUNCH = new Date('2026-05-01');
+const SITE_LAUNCH = new Date('2026-10-20');
 
 /**
  * Pentru fiecare path tradus (RO + EN), generăm DOUĂ intrări — una per limbă — fiecare cu

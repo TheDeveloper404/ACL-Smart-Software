@@ -15,14 +15,14 @@ import type { Metadata } from 'next';
 const TITLE_DISPLAY: Record<string, Record<string, ReactNode>> = {
   ro: {
     'produse':        <>Site-uri, portaluri <em>și SaaS</em></>,
-    'ai':             <><em>AI</em> în aplicația ta</>,
-    'infrastructura': <>Automatizări <em>și integrări</em></>,
+    'ai':             <><em>AI</em> pentru firma ta</>,
+    'infrastructura': <>Integrări API <em>și automatizări</em></>,
     'consultanta':    <>Consultanță, audit <em>și mentenanță</em></>,
   },
   en: {
     'produse':        <>Websites, portals <em>and SaaS</em></>,
-    'ai':             <><em>AI</em> in your application</>,
-    'infrastructura': <>Automation <em>and integrations</em></>,
+    'ai':             <><em>AI</em> for your business</>,
+    'infrastructura': <>API integrations <em>and automation</em></>,
     'consultanta':    <>Consultation, audit <em>and maintenance</em></>,
   },
 };

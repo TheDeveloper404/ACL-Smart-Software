@@ -11,8 +11,9 @@ test('preferințele de accesibilitate acceptă doar booleene valide', () => {
 });
 
 test('oferta RO/EN este coerentă, fără pachetul mobil și cu audit OWASP', () => {
-  // Prețuri aprobate: SaaS €4.500, RAG €2.500, agent €2.000; pachetele noi „La ofertă”.
-  const prices = ['€2.500', '€3.500', 'La ofertă', 'La ofertă', '€2.000', '€1.500', 'La ofertă', '€1.200', '€3.500', '€4.500', 'La ofertă', '€1.500', '€500 / lună', 'La ofertă'];
+  // Prețuri aprobate: SaaS €4.500, agent €2.000; pachetele noi „La ofertă”.
+  // User 2026-10-20: RAG înlocuit, agentul mutat pe AI; „poti cere oferta la 1 si 2”.
+  const prices = ['La ofertă', 'La ofertă', '€2.000', '€3.500', 'La ofertă', '€1.500', 'La ofertă', '€1.200', '€3.500', '€4.500', 'La ofertă', '€1.500', '€500 / lună', 'La ofertă'];
   expect(SERVICES.flatMap(s => s.packages.map(p => p.from))).toEqual(prices);
   expect(SERVICES_EN.flatMap(s => s.packages.map(p => p.from))).toEqual(prices.map(p => p.replace('.', ',').replace('lună', 'month').replace('La ofertă', 'On request')));
   expect(SERVICES.find(s => s.slug === 'produse')?.pricing.from).toBe('€1.200');

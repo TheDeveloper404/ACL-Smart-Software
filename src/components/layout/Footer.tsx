@@ -12,7 +12,7 @@ export default function Footer() {
     { href: '/portofoliu', label: en ? 'Portfolio' : 'Portofoliu' },
   ];
   const solutions = [
-    { href: '/servicii/ai', label: en ? 'AI in your application' : 'AI în aplicația ta' },
+    { href: '/servicii/ai', label: en ? 'AI for your business' : 'AI pentru firma ta' },
     { href: '/servicii/infrastructura', label: en ? 'Automation and integrations' : 'Automatizări și integrări' },
     { href: '/servicii/produse', label: en ? 'Websites, portals and SaaS' : 'Site-uri, portaluri și SaaS' },
     { href: '/servicii/consultanta', label: en ? 'Consultation, audit and maintenance' : 'Consultanță, audit și mentenanță' },

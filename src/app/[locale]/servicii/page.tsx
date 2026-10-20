@@ -11,25 +11,25 @@ import type { Metadata } from 'next';
 const COPY = {
   ro: {
     title: 'Soluții — AI, automatizări și produse digitale',
-    description: 'AI în produse existente, asistenți pe documente, automatizări, site-uri, portaluri și SaaS. Soluții explicate clar, cu prețuri de pornire publice.',
+    description: 'Procesare de documente cu AI, asistenți pentru clienți, integrări API, automatizări, site-uri, portaluri și SaaS. Soluții explicate clar, cu prețuri de pornire publice.',
     idx: 'SOLUȚII',
     hero: <>AI. Automatizări.<br /><em>Produse care îți sunt utile.</em></>,
     sub: 'Ai o aplicație de îmbunătățit, un proces de simplificat sau un produs de construit? Alegem soluția pornind de la ce ai nevoie.',
     guideLabel: 'Alege după nevoie',
     guideTitle: <>Pornim de la problemă.<br /><em>Alegem ce are sens.</em></>,
     guideIntro: 'Nu fiecare proces are nevoie de AI și nu fiecare idee de o aplicație nouă. Iată cum deosebim soluțiile.',
-    guide: [{"slug":"ai","need":"Cauți răspunsuri în multe documente","solution":"AI pe informațiile tale","detail":"Un asistent care caută în materialele agreate și indică sursa răspunsului."},{"slug":"infrastructura","need":"Muți aceleași date între aplicații","solution":"Automatizare și integrări","detail":"Conectăm sistemele și pașii repetitivi; pentru reguli clare, AI poate să nu fie necesar."},{"slug":"produse","need":"Ai nevoie de un spațiu digital propriu","solution":"Site, portal sau SaaS","detail":"Un site pentru prezentare, un portal pentru acces și lucru sau SaaS pentru un produs."},{"slug":"consultanta","need":"Ai o idee sau o aplicație de evaluat","solution":"Consultanță sau audit","detail":"Clarificăm funcțiile primei versiuni ori verificăm aplicația existentă înainte de investiții noi."}],
+    guide: [{"slug":"ai","need":"Pierzi timp cu documente și mesaje","solution":"AI conectat la datele tale","detail":"Procesează documente, răspunde clienților și face pașii repetitivi în aplicațiile tale."},{"slug":"infrastructura","need":"Muți aceleași date între aplicații","solution":"Integrări API și automatizări","detail":"Conectăm aplicațiile prin API și automatizăm pașii cu reguli clare, fără AI acolo unde nu e nevoie."},{"slug":"produse","need":"Ai nevoie de un spațiu digital propriu","solution":"Site, portal sau SaaS","detail":"Un site pentru prezentare, un portal pentru acces și lucru sau SaaS pentru un produs."},{"slug":"consultanta","need":"Ai o idee sau o aplicație de evaluat","solution":"Consultanță sau audit","detail":"Clarificăm funcțiile primei versiuni ori verificăm aplicația existentă înainte de investiții noi."}],
   },
   en: {
     title: 'Solutions — AI, automation and digital products',
-    description: 'AI in existing products, document assistants, automation, websites, portals and SaaS. Clearly explained solutions with public starting prices.',
+    description: 'AI document processing, customer assistants, API integrations, automation, websites, portals and SaaS. Clearly explained solutions with public starting prices.',
     idx: 'SOLUTIONS',
     hero: <>AI. Automation.<br /><em>Products that work for you.</em></>,
     sub: 'An application to improve, a process to simplify or a product to build? We choose the solution around what you need.',
     guideLabel: 'Choose by need',
     guideTitle: <>Start with the problem.<br /><em>Choose what makes sense.</em></>,
     guideIntro: 'Not every process needs AI, and not every idea needs a new application. Here is how we distinguish the options.',
-    guide: [{"slug":"ai","need":"You search for answers across many documents","solution":"AI on your information","detail":"An assistant that searches agreed materials and identifies the source of its answer."},{"slug":"infrastructura","need":"You move the same data between applications","solution":"Automation and integrations","detail":"We connect systems and repetitive steps; clear rules may not require AI."},{"slug":"produse","need":"You need your own digital space","solution":"Website, portal or SaaS","detail":"A website for presentation, a portal for access and work, or SaaS for a product."},{"slug":"consultanta","need":"You have an idea or an application to assess","solution":"Consultation or audit","detail":"We clarify first-version features or assess an existing application before further investment."}],
+    guide: [{"slug":"ai","need":"You lose time on documents and messages","solution":"AI connected to your data","detail":"It processes documents, answers customers and handles repetitive steps in your applications."},{"slug":"infrastructura","need":"You move the same data between applications","solution":"API integrations and automation","detail":"We connect applications through APIs and automate steps with clear rules, without AI where it is not needed."},{"slug":"produse","need":"You need your own digital space","solution":"Website, portal or SaaS","detail":"A website for presentation, a portal for access and work, or SaaS for a product."},{"slug":"consultanta","need":"You have an idea or an application to assess","solution":"Consultation or audit","detail":"We clarify first-version features or assess an existing application before further investment."}],
   },
 };
 

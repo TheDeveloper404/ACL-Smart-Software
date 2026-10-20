@@ -3,30 +3,60 @@ import type { Service } from '@/types';
 export const SERVICES_EN: Service[] = [
   {
     "slug": "ai",
-    "title": "AI in your application",
-    "short": "Add AI to an existing product or build an assistant that searches your own documents.",
+    "title": "AI for your business",
+    "short": "We automate work with documents and messages and add AI to your applications, connected to your company data.",
     "tags": [
-      "AI assistants",
-      "Document search",
-      "AI in products"
+      "Document processing",
+      "Customer assistant",
+      "AI agents"
     ],
-    "tagline": "A useful feature for the people already using your product.",
-    "longDesc": "We start with a specific need: finding information, summarising a document or drafting a response. We choose the sources, build the feature and check responses against examples from your work. Together we define its limits and when human review is needed.",
+    "tagline": "AI that works inside your applications, not in a chat window.",
+    "longDesc": "We start with an activity that costs you time: entering data from documents, answering the same questions or a process with many steps. We connect AI to your applications and data so it works automatically, at volume, without manual copying. We test on real examples from your work and agree together on what a person reviews.",
     "packages": [
       {
-        "id": "rag-assistant",
-        "name": "Assistant for your documents",
-        "from": "€2,500",
-        "duration": "3–4 weeks",
-        "model": "Agreed scope",
+        "id": "document-processing",
+        "name": "Automated document processing",
+        "from": "On request",
+        "duration": "Estimated after reviewing the documents",
+        "model": "Agreed documents and fields",
         "includes": [
-          "Search and questions over agreed documents",
-          "Responses with references to available sources",
-          "Access defined for your users",
-          "Validation against real questions"
+          "Automatic intake from email, a folder or an application",
+          "Extraction of the fields you need: supplier, amounts, dates, products",
+          "Human review only for unclear cases",
+          "Data lands in Excel, your invoicing software or your application"
         ],
-        "deliverable": "An assistant for your documents, with sources and usage limits explained.",
-        "priceNote": "From €2,500 for one assistant using an agreed document collection. OCR, additional sources and further integrations are estimated separately."
+        "deliverable": "A workflow that takes in documents and puts the data straight where you work, with no manual entry.",
+        "priceNote": "On request: the cost depends on document types and volume, the fields to extract and the application receiving the data."
+      },
+      {
+        "id": "customer-assistant",
+        "name": "Assistant for your customers",
+        "from": "On request",
+        "duration": "Estimated after agreeing the channels",
+        "model": "Agreed channels and topics",
+        "includes": [
+          "Answers on your website, by email or on WhatsApp",
+          "Information from your data: opening hours, prices, services, order status",
+          "Hand-over to a person when the assistant does not know",
+          "Conversation history for review"
+        ],
+        "deliverable": "An assistant that answers your customers with your company information and knows when to call a person.",
+        "priceNote": "On request: the cost depends on channels, data sources and conversation volume. WhatsApp Business and AI models have separate recurring costs."
+      },
+      {
+        "id": "automation-agent",
+        "name": "AI agent for one workflow",
+        "from": "€2,000",
+        "duration": "3–6 weeks",
+        "model": "One agreed workflow",
+        "includes": [
+          "Define the steps, data and workflow rules",
+          "Connect the relevant applications within available access",
+          "Human confirmation for agreed actions",
+          "Tests, execution records and error handling"
+        ],
+        "deliverable": "A process that runs on its own, for example a quote request turned into a draft quote that you only approve.",
+        "priceNote": "From €2,000 for one defined process with agreed rules and access. Additional processes are estimated separately."
       },
       {
         "id": "ai-feature",
@@ -44,71 +74,56 @@ export const SERVICES_EN: Service[] = [
         "priceNote": "From €3,500 for one feature integrated into an existing application. The quote depends on code access and the changes required."
       },
       {
-        "id": "document-extraction",
-        "name": "Data extraction from documents",
+        "id": "ai-assessment",
+        "name": "Assessment: where AI helps you",
         "from": "On request",
-        "duration": "Estimated after reviewing the documents",
-        "model": "Agreed documents and fields",
+        "duration": "1–2 sessions",
+        "model": "Assessment before investment",
         "includes": [
-          "Extraction from the agreed document types",
-          "Structuring data into the fields you need",
-          "Human review for unclear information",
-          "Export or integration into the agreed application"
+          "A discussion of the activities that take up most of your time",
+          "2–3 processes where AI saves time or money",
+          "Cost and effort estimate for each",
+          "Recommendation: what is worth doing with AI and what is not"
         ],
-        "deliverable": "A workflow that turns documents into structured data, with a review step.",
-        "priceNote": "On request: formats, document quality, fields to extract and the review step determine the scope and cost."
-      },
-      {
-        "id": "ai-prototype",
-        "name": "Prototype for an AI idea",
-        "from": "On request",
-        "duration": "Estimated after defining the idea",
-        "model": "Validation before implementation",
-        "includes": [
-          "Selecting a specific use case",
-          "A prototype with representative data and examples",
-          "Evaluation of responses and usage costs",
-          "A recommendation on next steps and clear limitations"
-        ],
-        "deliverable": "A prototype and evaluation to help you decide whether to invest in the AI feature.",
-        "priceNote": "On request: we first agree on the hypothesis, available data and evaluation criteria. A prototype is not a launched product."
+        "deliverable": "A short list of processes suited to AI, with estimates, to decide what you do next.",
+        "priceNote": "On request: depends on the number of processes assessed and the data available."
       }
     ],
     "whatWeBuild": [
       {
-        "title": "Find information in documents",
-        "desc": "An assistant searches manuals, procedures or internal materials and identifies the sources it used."
+        "title": "Documents without manual entry",
+        "desc": "Invoices, delivery notes or orders become data in your application, with human review only where needed."
       },
       {
-        "title": "Work with text more easily",
-        "desc": "Summaries, draft responses and message classification inside the application you already use."
+        "title": "Customers who get an immediate answer",
+        "desc": "An assistant answers on your website, by email or on WhatsApp with your company information."
       },
       {
-        "title": "Extract information from documents",
-        "desc": "Turn information in documents into useful data, with human review where needed."
+        "title": "Processes that run on their own",
+        "desc": "An agent handles the repetitive steps in your applications, and you approve only what matters."
       }
     ],
     "audience": [
       {
-        "title": "You already have an application",
-        "desc": "You want to add an AI feature without rebuilding the entire product."
+        "title": "You lose time on the same tasks",
+        "desc": "Your team enters data, answers the same questions or prepares the same documents."
       },
       {
-        "title": "Information is spread across documents",
-        "desc": "Your team spends time looking for answers in multiple files."
+        "title": "You already have an application",
+        "desc": "You want to add an AI feature without rebuilding the entire product."
       }
     ],
     "technologies": [],
     "pricing": {
-      "from": "€2,500",
+      "from": "€2,000",
       "duration": "The final estimate follows scope definition",
       "model": "Agreed project scope"
     },
-    "timeline": "3–5 weeks, indicative",
+    "timeline": "3–6 weeks, indicative",
     "faq": [
       {
-        "q": "What is a RAG assistant?",
-        "a": "An AI assistant that searches your documents before composing a response. It can cite sources but can still make mistakes; we check quality and define usage limits."
+        "q": "Why not just use ChatGPT?",
+        "a": "ChatGPT is useful for one document or one question entered by hand. We connect AI to your applications and data so it works automatically and at volume, without manual copying, answers your customers with real information and respects who has access to what."
       },
       {
         "q": "Can it be integrated into an existing application?",
@@ -119,38 +134,27 @@ export const SERVICES_EN: Service[] = [
         "a": "The starting price covers implementation. Recurring model and hosting costs are estimated separately based on usage."
       },
       {
-        "q": "Where do my documents go?",
+        "q": "Where does my data go?",
         "a": "Before implementation, we agree on which data may be processed, who has access and which providers may be used. The choice depends on project requirements."
+      },
+      {
+        "q": "Can the agent take actions without approval?",
+        "a": "Only explicitly agreed actions. For actions with an impact, we define confirmations and limits before implementation."
       }
     ]
   },
   {
     "slug": "infrastructura",
-    "title": "Automation and integrations",
-    "short": "Connect the applications you use and automate the steps you repeat every day.",
+    "title": "API integrations and automation",
+    "short": "We integrate the applications you use (CRM, payments, invoicing) through APIs and automate the steps you repeat every day. Custom software integration solutions.",
     "tags": [
+      "API integrations",
       "Repetitive workflows",
-      "Documents and email",
       "Connected applications"
     ],
     "tagline": "Less moving data around. A simpler workflow.",
-    "longDesc": "We choose a clearly defined process, identify its applications and data, and agree on the rules. Automation can use AI when useful or ordinary rules when those are sufficient. We define how errors are handled and which actions require human confirmation.",
+    "longDesc": "We choose a clearly defined process, identify its applications and data, and agree on the rules. Steps with clear rules do not need AI: an ordinary integration or automation is simpler, cheaper and more predictable. We define how errors are handled and which actions require human confirmation.",
     "packages": [
-      {
-        "id": "automation-agent",
-        "name": "Agent for one workflow",
-        "from": "€2,000",
-        "duration": "3–6 weeks",
-        "model": "One agreed workflow",
-        "includes": [
-          "Define the steps, data and workflow rules",
-          "Connect the relevant applications within available access",
-          "Human confirmation for agreed actions",
-          "Tests, execution records and error handling"
-        ],
-        "deliverable": "An automated workflow with clear limits and instructions for use.",
-        "priceNote": "From €2,000 for one defined process with agreed rules and access. Additional processes are estimated separately."
-      },
       {
         "id": "integration",
         "name": "Connect two applications",
@@ -184,12 +188,12 @@ export const SERVICES_EN: Service[] = [
     ],
     "whatWeBuild": [
       {
-        "title": "From document to application",
-        "desc": "Extract information from documents and prepare it for the system where you need it."
+        "title": "Data synced between applications",
+        "desc": "Orders, customers or invoices move automatically from one application to another, without double entry."
       },
       {
-        "title": "Organised and routed messages",
-        "desc": "Sort requests according to agreed rules and prepare responses for review."
+        "title": "Automatically triggered steps",
+        "desc": "An event, such as a new order or a submitted form, starts the notifications and next steps on its own."
       },
       {
         "title": "Applications that exchange data",
@@ -199,7 +203,7 @@ export const SERVICES_EN: Service[] = [
     "audience": [
       {
         "title": "You repeat the same steps",
-        "desc": "Your team repeatedly copies data, sorts messages or prepares the same documents."
+        "desc": "Your team repeatedly copies data between applications or prepares the same documents."
       },
       {
         "title": "You use multiple applications",
@@ -209,14 +213,14 @@ export const SERVICES_EN: Service[] = [
     "technologies": [],
     "pricing": {
       "from": "€1,500",
-      "duration": "Integration: 1–3 weeks; agent: 3–6",
+      "duration": "Integration: 1–3 weeks",
       "model": "Agreed project scope"
     },
-    "timeline": "1–6 weeks, indicative",
+    "timeline": "1–3 weeks, indicative",
     "faq": [
       {
         "q": "Does every automation need AI?",
-        "a": "No. For steps with clear rules, ordinary automation may be simpler and more suitable. We use AI where the process benefits from it."
+        "a": "No. For steps with clear rules, ordinary automation is simpler and more suitable. When the process requires understanding documents or messages, the right fit is an AI agent, under AI for your business."
       },
       {
         "q": "Can you connect any application?",
@@ -225,10 +229,6 @@ export const SERVICES_EN: Service[] = [
       {
         "q": "What happens when a step fails?",
         "a": "We agree on how errors are reported, what can be retried and when a person must intervene. These rules form part of the project scope."
-      },
-      {
-        "q": "Can the agent take actions without approval?",
-        "a": "Only explicitly agreed actions. For actions with an impact, we define confirmations and limits before implementation."
       }
     ]
   },
