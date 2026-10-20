@@ -39,6 +39,8 @@ const nextConfig: NextConfig = {
       { source: '/insights/:slug*', destination: '/', permanent: true },
       { source: '/en/insights', destination: '/en', permanent: true },
       { source: '/en/insights/:slug*', destination: '/en', permanent: true },
+      { source: '/servicii/infrastructura', destination: '/servicii/ai', permanent: true },
+      { source: '/en/servicii/infrastructura', destination: '/en/servicii/ai', permanent: true },
       // Restructurare servicii: 8 pagini individuale → 4 arii cu pachete productizate.
       // Vechile slug-uri rămân în indexul Google; le pliem 301 spre aria corespunzătoare
       // (RO neprefixat + varianta /en).
@@ -47,8 +49,8 @@ const nextConfig: NextConfig = {
         { from: 'aplicatii-web', to: 'produse' },
         { from: 'aplicatii-mobile', to: 'produse' },
         { from: 'ai-ml', to: 'ai' },
-        { from: 'cloud-devops', to: 'infrastructura' },
-        { from: 'integrari-api', to: 'infrastructura' },
+        { from: 'cloud-devops', to: 'ai' },
+        { from: 'integrari-api', to: 'ai' },
         { from: 'consultanta-it', to: 'consultanta' },
         { from: 'mentenanta-suport', to: 'consultanta' },
       ].flatMap(({ from, to }) => [

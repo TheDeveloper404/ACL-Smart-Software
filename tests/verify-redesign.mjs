@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const base = process.env.ACL_VERIFY_URL || 'http://localhost:3000';
-const routes = ['', '/despre-noi', '/servicii', '/portofoliu', '/servicii/ai', '/servicii/infrastructura', '/servicii/produse', '/servicii/consultanta', '/politica-confidentialitate', '/termeni', '/cookies'];
+const routes = ['', '/despre-noi', '/servicii', '/portofoliu', '/servicii/ai', '/servicii/produse', '/servicii/consultanta', '/politica-confidentialitate', '/termeni', '/cookies'];
 const reports = [];
 function readable(html) {
   return html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
@@ -56,7 +56,7 @@ async function page(route) {
       reports.push({ route: prefix + (route || '/'), status: 200, locale });
     }
     const solutions = texts.get('/servicii');
-    assert.equal((solutions.match(/class="solutions-guide-option"/g) || []).length, 4);
+    assert.equal((solutions.match(/class="solutions-guide-option"/g) || []).length, 3);
     const guide = solutions.match(/<section[^>]*solutions-guide-section[^>]*>([\s\S]*?)<\/section>/)[1];
     assert.doesNotMatch(guide, /<a\b/);
     assert.doesNotMatch(solutions, /solutions-context|Nu știi încă|Not sure/);
@@ -184,8 +184,7 @@ async function page(route) {
     assert.ok(glyphs);
     assert.match(glyphs[1], /^[01\s]+$/);
     assert.match(texts.get('/servicii/produse'), locale === 'en' ? /€4,500/ : /€4\.500/);
-    assert.match(texts.get('/servicii/ai'), locale === 'en' ? /€2,500/ : /€2\.500/);
-    assert.match(texts.get('/servicii/infrastructura'), locale === 'en' ? /€2,000/ : /€2\.000/);
+    assert.match(texts.get('/servicii/ai'), locale === 'en' ? /On request/ : /La oferta/);
     assert.doesNotMatch(texts.get('/servicii'), /FinOps|Kubernetes|DevOps retainer/);
     assert.match(texts.get('/cookies'), /acl-a11y-v1/);
     if (locale === 'en') {
@@ -193,12 +192,31 @@ async function page(route) {
       assert.match(texts.get('/termeni'), /Terms and conditions/);
       assert.match(texts.get('/cookies'), /Cookie policy/);
     }
-    for (const slug of ['ai', 'infrastructura', 'produse', 'consultanta']) {
-      const restored = await page(prefix + '/servicii?solutie=' + slug);
-      assert.match(restored, new RegExp('id="solution-tab-' + slug + '"[^>]*aria-selected="true"'));
+    // User: "eventual uneste cele doua pagini intr-una, chiar daca sunt mai putine servicii, important e sa fie ce putem livra. Dar cumva sa se deosebeasca ce ineamna integrare API si AI"
+    for (const slug of ['ai', 'produse', 'consultanta']) {
+      assert.match(solutions, new RegExp('id="solution-' + slug + '"'));
       const backLink = texts.get('/servicii/' + slug).match(/<a\b[^>]*class="svc-back"[^>]*>/)?.[0];
-      assert.ok(backLink, "Missing back link");
-      assert.ok(backLink.includes('href="' + prefix + '/servicii?solutie=' + slug + '"'), "Back link must retain the category");
+      assert.ok(backLink?.includes('href="' + prefix + '/servicii#solution-' + slug + '"'), 'Back link must reach its visible category');
+      assert.ok(solutions.includes('href="' + prefix + '/servicii/' + slug + '"'), 'Overview must link to its detail page');
+    }
+    assert.doesNotMatch(solutions, /role="tabpanel"|solution-tab-|servicii\/infrastructura/);
+    const combined = texts.get('/servicii/ai');
+    assert.match(combined, /id="integration-explainer-title"/);
+    assert.match(combined, /class="integration-roles"/);
+    assert.match(combined, /class="integration-flow"/);
+    assert.match(combined, locale === 'en' ? /API integrations and automation/ : /Integrari API si automatizari/);
+    assert.match(combined, locale === 'en' ? /AI assistants/ : /Asistenti AI/);
+    for (const id of ['integration', 'customer-assistant', 'shop-assistant']) assert.ok(combined.includes('id="' + id + '"'));
+    assert.equal((combined.match(/class="pkg-card rise"/g) || []).length, 3);
+    assert.doesNotMatch(combined, /id="(?:document-processing|automation-agent|ai-assessment|ai-feature)"/);
+    for (const project of ['flotapro', 'itcustom']) {
+      assert.ok(combined.includes('href="' + prefix + '/portofoliu#proiect-' + project + '"'));
+      assert.ok(texts.get('/portofoliu').includes('id="proiect-' + project + '"'));
+    }
+    for (const old of ['infrastructura', 'integrari-api', 'cloud-devops', 'ai-ml']) {
+      const response = await fetch(base + prefix + '/servicii/' + old, { redirect: 'manual' });
+      assert.equal(response.status, 308, 'Permanent redirect: ' + prefix + '/' + old);
+      assert.equal(new URL(response.headers.get('location'), base).pathname, prefix + '/servicii/ai');
     }
     for (const route of ['/servicii', '/despre-noi', '']) {
       const html = texts.get(route);
@@ -212,7 +230,10 @@ async function page(route) {
   for (const route of ['/cookies', '/termeni', '/politica-confidentialitate']) assert.ok(xml.includes('https://acl-smartsoftware.ro/en' + route));
   assert.ok(xml.includes('https://acl-smartsoftware.ro/portofoliu'));
   assert.ok(xml.includes('https://acl-smartsoftware.ro/en/portofoliu'));
+  assert.ok(!xml.includes('/servicii/infrastructura'));
+  assert.ok(xml.includes('https://acl-smartsoftware.ro/servicii/ai'));
+  assert.ok(xml.includes('https://acl-smartsoftware.ro/en/servicii/ai'));
   fs.mkdirSync('.remember/redesign-2026-10-10', { recursive: true });
   fs.writeFileSync('.remember/redesign-2026-10-10/http-verification.json', JSON.stringify({ at: new Date().toISOString(), reports, checks: 'HTTP and server-rendered content only; no browser or Playwright' }, null, 2));
-  console.log('PASS: 22 RO/EN pages, one home bento board with 3 projects, 3 needs and 3 confirmed functions and 4 connected About industries, 6 complete portfolio projects, approved prices, 14 packages, project order, client attribution, 6 process stages with matching deliverable counts, client involvement and checkpoints, 8 URL selection cases, back links, panel IDs, legal translations and sitemap. No browser used.');
+  console.log('PASS: 20 RO/EN pages, three visible solution categories, merged API/AI page with three offers and real portfolio links, eight permanent redirects, localized back links, metadata and sitemap. Existing product and consultation prices, portfolio and process checks passed. No browser used.');
 })().catch(error => { console.error(error.message.split('Input:')[0]); process.exitCode = 1; });

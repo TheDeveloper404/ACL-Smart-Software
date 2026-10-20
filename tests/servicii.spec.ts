@@ -3,7 +3,6 @@ import { test, expect } from '@playwright/test';
 const SLUGS = [
   'produse',
   'ai',
-  'infrastructura',
   'consultanta',
 ];
 
@@ -16,17 +15,15 @@ test.describe('Pagina Soluții', () => {
     expect(await cards.count()).toBe(SLUGS.length);
   });
 
-  test('fiecare card are titlu și link', async ({ page }) => {
+  test('toate categoriile sunt vizibile si au link spre detalii', async ({ page }) => {
     await page.goto('/servicii');
-    const cards = page.locator('.services-index-card');
-    const tabs = page.locator('.solution-tab');
-    const count = await tabs.count();
-    for (let i = 0; i < count; i++) {
-      await tabs.nth(i).click();
-      await expect(tabs.nth(i)).toHaveAttribute('aria-selected', 'true');
-      await expect(cards.nth(i).locator('h2').first()).toBeVisible();
-      await expect(cards.nth(i).locator('.service-detail-link')).toBeVisible();
+    for (const slug of SLUGS) {
+      const card = page.locator('#solution-' + slug);
+      await expect(card).toBeVisible();
+      await expect(card.getByRole('heading', { level: 2 })).toBeVisible();
+      await expect(card.locator('.service-detail-link')).toHaveAttribute('href', '/servicii/' + slug);
     }
+    await expect(page.locator('.solution-tab')).toHaveCount(0);
   });
 });
 
@@ -60,8 +57,8 @@ test.describe('Pagini detaliu servicii', () => {
     test(`/servicii/${slug} — back link duce la /servicii`, async ({ page }) => {
       await page.goto(`/servicii/${slug}`);
       await page.click('a.svc-back');
-      await expect(page).toHaveURL('/servicii?solutie=' + slug);
-      await expect(page.locator('#solution-tab-' + slug)).toHaveAttribute('aria-selected', 'true');
+      await expect(page).toHaveURL('/servicii#solution-' + slug);
+      await expect(page.locator('#solution-' + slug)).toBeVisible();
     });
   }
 });
@@ -75,16 +72,29 @@ test.describe('Slug invalid', () => {
 });
 
 for (const prefix of ['', '/en']) {
-  test('Back păstrează categoria aleasă ' + (prefix || 'ro'), async ({ page }) => {
+  // User: "eventual uneste cele doua pagini intr-una, chiar daca sunt mai putine servicii, important e sa fie ce putem livra. Dar cumva sa se deosebeasca ce ineamna integrare API si AI"
+  test('pagina comuna explica API si AI si duce spre servicii si portofoliu ' + (prefix || 'ro'), async ({ page }) => {
     await page.goto(prefix + '/servicii');
-    await page.locator('#solution-tab-produse').click();
-    await expect(page).toHaveURL(prefix + '/servicii?solutie=produse');
-    await page.locator('#solution-panel-produse .service-detail-link').click();
-    await expect(page).toHaveURL(prefix + '/servicii/produse');
-    await page.goBack();
-    await expect(page.locator('#solution-tab-produse')).toHaveAttribute('aria-selected', 'true');
-    await page.locator('#solution-panel-produse .service-detail-link').click();
+    await expect(page.locator('.services-index-card')).toHaveCount(3);
+    await page.locator('#solution-ai .service-detail-link').click();
+    await expect(page).toHaveURL(prefix + '/servicii/ai');
+    await expect(page.locator('h1')).toContainText(prefix ? 'API integrations' : 'Integrari API');
+    await expect(page.locator('.integration-roles > div')).toHaveCount(2);
+    await expect(page.locator('.integration-flow li')).toHaveCount(3);
+    await expect(page.locator('.svc-offer-group').first().locator('.pkg-card')).toHaveCount(1);
+    await expect(page.locator('.svc-offer-group').nth(1).locator('.pkg-card')).toHaveCount(2);
+    for (const id of ['integration', 'customer-assistant', 'shop-assistant']) {
+      await expect(page.locator('#' + id)).toBeVisible();
+    }
+    await expect(page.locator('.integration-projects a').first()).toHaveAttribute('href', prefix + '/portofoliu#proiect-flotapro');
     await page.locator('.svc-back').click();
-    await expect(page.locator('#solution-tab-produse')).toHaveAttribute('aria-selected', 'true');
+    await expect(page).toHaveURL(prefix + '/servicii#solution-ai');
+    await expect(page.locator('#solution-ai')).toBeVisible();
+  });
+
+  test('vechea pagina de integrari redirectioneaza permanent ' + (prefix || 'ro'), async ({ request }) => {
+    const response = await request.get(prefix + '/servicii/infrastructura', { maxRedirects: 0 });
+    expect(response.status()).toBe(308);
+    expect(response.headers().location).toBe(prefix + '/servicii/ai');
   });
 }

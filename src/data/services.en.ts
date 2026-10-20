@@ -3,232 +3,117 @@ import type { Service } from '@/types';
 export const SERVICES_EN: Service[] = [
   {
     "slug": "ai",
-    "title": "AI for your business",
-    "short": "We automate work with documents and messages and add AI to your applications, connected to your company data.",
-    "tags": [
-      "Document processing",
-      "Customer assistant",
-      "AI agents"
-    ],
-    "tagline": "AI that works inside your applications, not in a chat window.",
-    "longDesc": "We start with an activity that costs you time: entering data from documents, answering the same questions or a process with many steps. We connect AI to your applications and data so it works automatically, at volume, without manual copying. We test on real examples from your work and agree together on what a person reviews.",
-    "packages": [
-      {
-        "id": "document-processing",
-        "name": "Automated document processing",
-        "from": "On request",
-        "duration": "Estimated after reviewing the documents",
-        "model": "Agreed documents and fields",
-        "includes": [
-          "Automatic intake from email, a folder or an application",
-          "Extraction of the fields you need: supplier, amounts, dates, products",
-          "Human review only for unclear cases",
-          "Data lands in Excel, your invoicing software or your application"
-        ],
-        "deliverable": "A workflow that takes in documents and puts the data straight where you work, with no manual entry.",
-        "priceNote": "On request: the cost depends on document types and volume, the fields to extract and the application receiving the data."
-      },
-      {
-        "id": "customer-assistant",
-        "name": "Assistant for your customers",
-        "from": "On request",
-        "duration": "Estimated after agreeing the channels",
-        "model": "Agreed channels and topics",
-        "includes": [
-          "Answers on your website, by email or on WhatsApp",
-          "Information from your data: opening hours, prices, services, order status",
-          "Hand-over to a person when the assistant does not know",
-          "Conversation history for review"
-        ],
-        "deliverable": "An assistant that answers your customers with your company information and knows when to call a person.",
-        "priceNote": "On request: the cost depends on channels, data sources and conversation volume. WhatsApp Business and AI models have separate recurring costs."
-      },
-      {
-        "id": "automation-agent",
-        "name": "AI agent for one workflow",
-        "from": "€2,000",
-        "duration": "3–6 weeks",
-        "model": "One agreed workflow",
-        "includes": [
-          "Define the steps, data and workflow rules",
-          "Connect the relevant applications within available access",
-          "Human confirmation for agreed actions",
-          "Tests, execution records and error handling"
-        ],
-        "deliverable": "A process that runs on its own, for example a quote request turned into a draft quote that you only approve.",
-        "priceNote": "From €2,000 for one defined process with agreed rules and access. Additional processes are estimated separately."
-      },
-      {
-        "id": "ai-feature",
-        "name": "AI in an existing product",
-        "from": "€3,500",
-        "duration": "3–5 weeks",
-        "model": "One agreed feature",
-        "includes": [
-          "One feature: search, summarisation, classification or text generation",
-          "Integration into your application and workflow",
-          "Usage limits and cost tracking",
-          "Tests against representative product examples"
-        ],
-        "deliverable": "An AI feature integrated into your product that you can evaluate with users.",
-        "priceNote": "From €3,500 for one feature integrated into an existing application. The quote depends on code access and the changes required."
-      },
-      {
-        "id": "ai-assessment",
-        "name": "Assessment: where AI helps you",
-        "from": "On request",
-        "duration": "1–2 sessions",
-        "model": "Assessment before investment",
-        "includes": [
-          "A discussion of the activities that take up most of your time",
-          "2–3 processes where AI saves time or money",
-          "Cost and effort estimate for each",
-          "Recommendation: what is worth doing with AI and what is not"
-        ],
-        "deliverable": "A short list of processes suited to AI, with estimates, to decide what you do next.",
-        "priceNote": "On request: depends on the number of processes assessed and the data available."
-      }
-    ],
-    "whatWeBuild": [
-      {
-        "title": "Documents without manual entry",
-        "desc": "Invoices, delivery notes or orders become data in your application, with human review only where needed."
-      },
-      {
-        "title": "Customers who get an immediate answer",
-        "desc": "An assistant answers on your website, by email or on WhatsApp with your company information."
-      },
-      {
-        "title": "Processes that run on their own",
-        "desc": "An agent handles the repetitive steps in your applications, and you approve only what matters."
-      }
-    ],
-    "audience": [
-      {
-        "title": "You lose time on the same tasks",
-        "desc": "Your team enters data, answers the same questions or prepares the same documents."
-      },
-      {
-        "title": "You already have an application",
-        "desc": "You want to add an AI feature without rebuilding the entire product."
-      }
-    ],
-    "technologies": [],
-    "pricing": {
-      "from": "€2,000",
-      "duration": "The final estimate follows scope definition",
-      "model": "Agreed project scope"
-    },
-    "timeline": "3–6 weeks, indicative",
-    "faq": [
-      {
-        "q": "Why not just use ChatGPT?",
-        "a": "ChatGPT is useful for one document or one question entered by hand. We connect AI to your applications and data so it works automatically and at volume, without manual copying, answers your customers with real information and respects who has access to what."
-      },
-      {
-        "q": "Can it be integrated into an existing application?",
-        "a": "Yes. We first review how the application works and what access we have to its code or interfaces, then agree on the integration."
-      },
-      {
-        "q": "Does the price include AI model costs?",
-        "a": "The starting price covers implementation. Recurring model and hosting costs are estimated separately based on usage."
-      },
-      {
-        "q": "Where does my data go?",
-        "a": "Before implementation, we agree on which data may be processed, who has access and which providers may be used. The choice depends on project requirements."
-      },
-      {
-        "q": "Can the agent take actions without approval?",
-        "a": "Only explicitly agreed actions. For actions with an impact, we define confirmations and limits before implementation."
-      }
-    ]
-  },
-  {
-    "slug": "infrastructura",
-    "title": "API integrations and automation",
-    "short": "We integrate the applications you use (CRM, payments, invoicing) through APIs and automate the steps you repeat every day. Custom software integration solutions.",
+    "title": "API integrations and AI assistants",
+    "short": "We connect your website or application to the services you use and implement AI assistants for enquiries, appointments and online stores.",
     "tags": [
       "API integrations",
-      "Repetitive workflows",
-      "Connected applications"
+      "Automation",
+      "AI assistants"
     ],
-    "tagline": "Less moving data around. A simpler workflow.",
-    "longDesc": "We choose a clearly defined process, identify its applications and data, and agree on the rules. Steps with clear rules do not need AI: an ordinary integration or automation is simpler, cheaper and more predictable. We define how errors are handled and which actions require human confirmation.",
+    "tagline": "Connected applications. Captured enquiries. Less repetitive work.",
+    "longDesc": "We start with a concrete result: a payment reaching invoicing, a saved appointment or a customer finding the right product. We check what existing tools can do, configure a suitable solution and build only the missing integrations. We test the complete workflow before handover.",
     "packages": [
       {
         "id": "integration",
-        "name": "Connect two applications",
-        "from": "€1,500",
-        "duration": "1–3 weeks",
-        "model": "One agreed integration",
+        "name": "Connect your website or application to external services",
+        "from": "On request",
+        "duration": "Estimated after checking the applications",
+        "model": "API integrations and automation",
         "includes": [
-          "Review the available interfaces and access",
-          "Transfer the required data between applications",
-          "Handle errors and avoid duplicate transfers",
-          "Main-flow tests and documentation"
+          "Define the data and actions that need to move between applications",
+          "Configure existing connectors or develop the required integration",
+          "Automate the agreed steps: payments, invoicing, CRM, couriers or suppliers",
+          "Test the workflow, handle errors and provide usage instructions"
         ],
-        "deliverable": "A working integration between two applications for the agreed data and actions.",
-        "priceNote": "From €1,500 for one data flow between two applications with available interfaces. Provider access and costs are checked first."
+        "deliverable": "A working flow between the agreed applications. For example: a confirmed website payment generates an invoice in your invoicing application.",
+        "priceNote": "The quote depends on the applications, available access and workflow rules. External service subscriptions are discussed separately."
       },
       {
-        "id": "workflow-automation",
-        "name": "Workflow automation",
+        "id": "customer-assistant",
+        "name": "Enquiry and appointment assistant",
         "from": "On request",
-        "duration": "Estimated after reviewing the process",
-        "model": "Agreed steps and rules",
+        "duration": "Estimated after defining the workflow",
+        "model": "AI assistants",
         "includes": [
-          "Review of repetitive tasks in your work",
-          "Triggers and rules without AI where sufficient",
-          "Notifications, retries and error handling",
-          "Testing and instructions for your team"
+          "Configure the assistant on your website or WhatsApp, on the agreed channel",
+          "Prepare service information and the questions needed to complete enquiries",
+          "Connect the calendar or send the completed enquiry to your team",
+          "Test conversations and hand over to a person for the agreed situations"
         ],
-        "deliverable": "An automated workflow for repetitive tasks, such as receiving requests or preparing documents.",
-        "priceNote": "On request: the steps, connected applications and process exceptions determine the scope and price."
+        "deliverable": "An assistant that identifies the service the customer needs, collects the details and saves the appointment or sends the enquiry to your team, depending on the available integration.",
+        "priceNote": "The quote depends on the channel, booking system and required actions. AI platform and channel costs are estimated separately."
+      },
+      {
+        "id": "shop-assistant",
+        "name": "Online store assistant",
+        "from": "On request",
+        "duration": "Estimated after checking the store",
+        "model": "AI assistants",
+        "includes": [
+          "Configure an existing solution or integrate it into your store",
+          "Connect the catalog, availability and order information according to available access",
+          "Prepare conversations for product selection and order enquiries",
+          "Check access to customer data and hand exceptions over to your team"
+        ],
+        "deliverable": "An assistant connected to your store that helps shoppers choose products and check the status of their own order.",
+        "priceNote": "The quote depends on the store platform, data sources and agreed actions. Subscriptions and AI usage are discussed separately."
       }
     ],
     "whatWeBuild": [
       {
-        "title": "Data synced between applications",
-        "desc": "Orders, customers or invoices move automatically from one application to another, without double entry."
+        "title": "From payment to invoice",
+        "desc": "A confirmed website payment triggers invoice generation in your invoicing application. The API integration moves data and automation runs the agreed steps."
       },
       {
-        "title": "Automatically triggered steps",
-        "desc": "An event, such as a new order or a submitted form, starts the notifications and next steps on its own."
+        "title": "From conversation to appointment",
+        "desc": "The customer describes what they need. AI interprets the request and asks for the required details; the integration checks availability and saves the appointment."
       },
       {
-        "title": "Applications that exchange data",
-        "desc": "Connect a website, CRM, payment system or other tools that provide integration access."
+        "title": "Help inside your store",
+        "desc": "A shopper explains what they want or asks about their order. The assistant uses the catalog and available data, while your team takes over situations needing intervention."
       }
     ],
     "audience": [
       {
-        "title": "You repeat the same steps",
-        "desc": "Your team repeatedly copies data between applications or prepares the same documents."
+        "title": "You use applications that need connecting",
+        "desc": "Your website, invoicing tool, CRM or suppliers do not exchange the information your workflow needs."
       },
       {
-        "title": "You use multiple applications",
-        "desc": "Information has to be entered manually into each tool."
+        "title": "You receive enquiries and appointments",
+        "desc": "You want to collect customer details and carry them through to a booking or the person responsible for the enquiry."
+      },
+      {
+        "title": "You run an online store",
+        "desc": "Customers need help choosing products and finding information about their orders."
       }
     ],
     "technologies": [],
     "pricing": {
-      "from": "€1,500",
-      "duration": "Integration: 1–3 weeks",
-      "model": "Agreed project scope"
+      "from": "On request",
+      "duration": "After checking applications and the workflow",
+      "model": "Implementation with an agreed scope"
     },
-    "timeline": "1–3 weeks, indicative",
+    "timeline": "Agreed after defining the workflow",
     "faq": [
       {
-        "q": "Does every automation need AI?",
-        "a": "No. For steps with clear rules, ordinary automation is simpler and more suitable. When the process requires understanding documents or messages, the right fit is an AI agent, under AI for your business."
+        "q": "What do I get beyond an AI subscription or MCP?",
+        "a": "Existing tools may already cover part or all of the workflow. We check that option first. Our service covers selecting and configuring the solution, connecting your applications, making the required adaptations and testing the complete workflow. If an existing tool meets your needs without implementation, we tell you."
+      },
+      {
+        "q": "Does every integration need AI?",
+        "a": "No. Data transfers and steps with defined rules can run through APIs and automation. We use AI to interpret enquiries and handle customer conversations where it is useful."
+      },
+      {
+        "q": "Do you build everything from scratch?",
+        "a": "We use existing platforms and connectors when they meet the requirements. Custom development covers missing connections or behavior, after checking the alternatives."
       },
       {
         "q": "Can you connect any application?",
-        "a": "It depends on the access provided by the application: APIs, exports, webhooks or other interfaces. We check this before preparing a quote."
+        "a": "It depends on the access and actions each application provides. We check APIs, connectors and permissions before confirming what we can deliver."
       },
       {
-        "q": "What happens when a step fails?",
-        "a": "We agree on how errors are reported, what can be retried and when a person must intervene. These rules form part of the project scope."
+        "q": "What costs remain after implementation?",
+        "a": "The assistant platform, AI usage, WhatsApp, hosting or other services may have recurring costs. We identify these in the quote. Any subsequent support is agreed separately."
       }
     ]
   },

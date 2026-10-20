@@ -37,11 +37,10 @@ const { solutionIndex, solutionUrl } = loadTs('src/lib/solution-selection.ts');
 const numeric = value => { const match = value.match(/[\d.,]+/); return match ? Number(match[0].replace(/[.,]/g, '')) : null; }
 
 test('Public offers retain the approved prices in both languages', () => {
-  // User: „produs saas ... de la 4500 euro ... RAG — 2500 euro. Agent automatizare — 2000 euro.”
-  // User 2026-10-20: RAG înlocuit de pachetele noi AI; agentul mutat pe AI, „Da, sunt de acord”.
+  // User: "paginile cele doua tirmise in link, alea nu trebuie schimbate, ca ce ofera"
   for (const services of [SERVICES, SERVICES_EN]) {
     const offers = services.flatMap(service => service.packages);
-    for (const [id, amount] of [['mvp-saas', 4500], ['automation-agent', 2000]]) {
+    for (const [id, amount] of [['mvp-saas', 4500], ['security-audit', 1500], ['maintenance', 500]]) {
       assert.equal(numeric(offers.find(offer => offer.id === id).from), amount, id);
     }
     assert.equal(numeric(offers.find(offer => offer.id === 'website').from), 1200);
@@ -51,7 +50,7 @@ test('Public offers retain the approved prices in both languages', () => {
 
 test('Every solution and package has matching RO/EN identity and numeric prices', () => {
   assert.deepEqual(Array.from(SERVICES, service => service.slug), Array.from(SERVICES_EN, service => service.slug));
-  assert.deepEqual(Array.from(SERVICES, service => service.slug).sort(), ['ai', 'consultanta', 'infrastructura', 'produse']);
+  assert.deepEqual(Array.from(SERVICES, service => service.slug).sort(), ['ai', 'consultanta', 'produse']);
   for (const ro of SERVICES) {
     const en = SERVICES_EN.find(service => service.slug === ro.slug);
     assert.deepEqual(Array.from(ro.packages, offer => offer.id), Array.from(en.packages, offer => offer.id));
@@ -116,18 +115,29 @@ test('Real testimonials are preserved for every client in RO and EN', () => {
   assert.ok(REVIEWS.ro.every(review => review.quote && review.role));
 });
 
-test('New packages are distinct, localized and quoted without invented prices', () => {
-  // User: „2–4 pachete la fiecare, inclusiv mvp, consultanță”; new prices: „La ofertă”.
-  // User 2026-10-20: „poti cere oferta la 1 si 2” (procesare documente, asistent clienți); analiza AI tot la ofertă.
-  const counts = { ai: 5, infrastructura: 2, produse: 4, consultanta: 3 };
-  const newIds = ['document-processing', 'customer-assistant', 'ai-assessment', 'workflow-automation', 'product-mvp', 'project-consultation'];
+test('The merged category has one integration offer and the two approved AI assistants', () => {
+  // User: "pentru pagina de AI, da 1 si 2, 3 e mai greu."
+  // User: "eventual uneste cele doua pagini intr-una, chiar daca sunt mai putine servicii, important e sa fie ce putem livra. Dar cumva sa se deosebeasca ce ineamna integrare API si AI"
+  const counts = { ai: 3, produse: 4, consultanta: 3 };
   for (const [locale, services] of [['ro', SERVICES], ['en', SERVICES_EN]]) {
     for (const service of services) assert.equal(service.packages.length, counts[service.slug]);
-    for (const id of newIds) {
-      const offer = services.flatMap(service => service.packages).find(item => item.id === id);
-      assert.ok(offer, id);
-      assert.equal(offer.from, locale === 'ro' ? 'La ofertă' : 'On request');
+    const combined = services.find(service => service.slug === 'ai');
+    assert.deepEqual(Array.from(combined.packages, offer => offer.id), ['integration', 'customer-assistant', 'shop-assistant']);
+    assert.notEqual(combined.packages[0].model, combined.packages[1].model);
+    assert.equal(combined.packages[1].model, combined.packages[2].model);
+    for (const offer of combined.packages) {
+      assert.equal(offer.from, locale === 'ro' ? 'La oferta' : 'On request');
       assert.equal(offerPrice(offer.from), undefined);
+    }
+    assert.equal(services.some(service => service.slug === 'infrastructura'), false);
+    assert.doesNotMatch(JSON.stringify(combined), /document-processing|automation-agent|ai-assessment|ai-feature|\bvoice\b|\bvocal\b/i);
+  }
+});
+
+test('Portfolio service references point to categories still available after the merge', () => {
+  for (const [locale, cases] of [['ro', CASES], ['en', CASES_EN]]) {
+    for (const project of cases) {
+      for (const slug of project.services) assert.ok(getServiceBySlug(locale, slug), project.slug + ': ' + slug);
     }
   }
 });

@@ -4,232 +4,117 @@ import type { Service } from '@/types';
 export const SERVICES: Service[] = [
   {
     "slug": "ai",
-    "title": "AI pentru firma ta",
-    "short": "Automatizăm munca cu documente și mesaje și adăugăm AI în aplicațiile tale, conectat la datele firmei.",
+    "title": "Integrari API si asistenti AI",
+    "short": "Conectam site-ul sau aplicatia ta la serviciile folosite si implementam asistenti AI pentru cereri, programari si magazine online.",
     "tags": [
-      "Procesare documente",
-      "Asistent pentru clienți",
-      "Agenți AI"
+      "Integrari API",
+      "Automatizari",
+      "Asistenti AI"
     ],
-    "tagline": "AI care lucrează în aplicațiile tale, nu într-o fereastră de chat.",
-    "longDesc": "Pornim de la o activitate care îți consumă timp: introducerea datelor din documente, răspunsurile la aceleași întrebări sau un proces cu mulți pași. Conectăm AI la aplicațiile și datele tale, ca să lucreze automat, la volum, fără copiere manuală. Testăm pe exemple reale din activitatea ta și stabilim împreună ce verifică un om.",
-    "packages": [
-      {
-        "id": "document-processing",
-        "name": "Procesare automată de documente",
-        "from": "La ofertă",
-        "duration": "Estimare după analiza documentelor",
-        "model": "Documente și câmpuri agreate",
-        "includes": [
-          "Preluare automată din email, folder sau aplicație",
-          "Extragerea câmpurilor de care ai nevoie: furnizor, sume, date, produse",
-          "Verificare umană doar pentru cazurile neclare",
-          "Datele ajung în Excel, în programul de facturare sau în aplicația ta"
-        ],
-        "deliverable": "Un flux care preia documentele și pune datele direct unde lucrezi, fără introducere manuală.",
-        "priceNote": "La ofertă: costul depinde de tipurile și volumul documentelor, câmpurile de extras și aplicația în care ajung datele."
-      },
-      {
-        "id": "customer-assistant",
-        "name": "Asistent pentru clienții tăi",
-        "from": "La ofertă",
-        "duration": "Estimare după stabilirea canalelor",
-        "model": "Canale și subiecte agreate",
-        "includes": [
-          "Răspunsuri pe site, pe email sau pe WhatsApp",
-          "Informații din datele tale: program, prețuri, servicii, status comenzi",
-          "Predarea conversației către un om când asistentul nu știe",
-          "Istoricul conversațiilor, pentru verificare"
-        ],
-        "deliverable": "Un asistent care răspunde clienților tăi cu informațiile firmei și știe când să cheme un om.",
-        "priceNote": "La ofertă: costul depinde de canale, sursele de date și volumul de conversații. WhatsApp Business și modelele AI au costuri recurente separate."
-      },
-      {
-        "id": "automation-agent",
-        "name": "Agent AI pentru un proces",
-        "from": "€2.000",
-        "duration": "3–6 săptămâni",
-        "model": "Un proces agreat",
-        "includes": [
-          "Definirea pașilor, datelor și regulilor procesului",
-          "Conectarea la aplicațiile implicate, în limita accesului disponibil",
-          "Confirmare umană pentru acțiunile agreate",
-          "Teste, evidența execuțiilor și tratarea erorilor"
-        ],
-        "deliverable": "Un proces care rulează singur, de exemplu o cerere de ofertă devenită ofertă draft, pe care doar o aprobi.",
-        "priceNote": "De la €2.000 pentru un proces delimitat, cu reguli și acces agreate. Procesele suplimentare se estimează separat."
-      },
-      {
-        "id": "ai-feature",
-        "name": "AI într-un produs existent",
-        "from": "€3.500",
-        "duration": "3–5 săptămâni",
-        "model": "O funcționalitate agreată",
-        "includes": [
-          "O funcție: căutare, rezumare, clasificare sau generare de text",
-          "Integrare în aplicația și fluxul tău de lucru",
-          "Limite de utilizare și urmărirea costurilor",
-          "Teste pe exemple reprezentative pentru produs"
-        ],
-        "deliverable": "O funcționalitate AI integrată în produsul tău, pe care o poți evalua cu utilizatorii.",
-        "priceNote": "De la €3.500 pentru o funcționalitate integrată în aplicația existentă. Oferta depinde de accesul la cod și de modificările necesare."
-      },
-      {
-        "id": "ai-assessment",
-        "name": "Analiză: unde te ajută AI",
-        "from": "La ofertă",
-        "duration": "1–2 sesiuni",
-        "model": "Analiză înainte de investiție",
-        "includes": [
-          "Discuție despre activitățile care îți consumă cel mai mult timp",
-          "2–3 procese în care AI economisește timp sau bani",
-          "Estimare de cost și efort pentru fiecare",
-          "Recomandare: ce merită făcut cu AI și ce nu"
-        ],
-        "deliverable": "O listă scurtă de procese potrivite pentru AI, cu estimări, pe baza căreia decizi ce faci mai departe.",
-        "priceNote": "La ofertă: depinde de numărul de procese analizate și de datele disponibile."
-      }
-    ],
-    "whatWeBuild": [
-      {
-        "title": "Documente fără introducere manuală",
-        "desc": "Facturi, avize sau comenzi ajung ca date în aplicația ta, cu verificare umană doar unde e nevoie."
-      },
-      {
-        "title": "Clienți care primesc răspuns imediat",
-        "desc": "Un asistent răspunde pe site, email sau WhatsApp cu informațiile firmei tale."
-      },
-      {
-        "title": "Procese care merg singure",
-        "desc": "Un agent face pașii repetitivi în aplicațiile tale, iar tu aprobi doar ce contează."
-      }
-    ],
-    "audience": [
-      {
-        "title": "Pierzi timp cu aceleași sarcini",
-        "desc": "Echipa introduce date, răspunde la aceleași întrebări sau pregătește aceleași documente."
-      },
-      {
-        "title": "Ai deja o aplicație",
-        "desc": "Vrei să adaugi o funcție AI fără să reconstruiești întregul produs."
-      }
-    ],
-    "technologies": [],
-    "pricing": {
-      "from": "€2.000",
-      "duration": "Estimarea finală urmează definirea scopului",
-      "model": "Proiect cu scop agreat"
-    },
-    "timeline": "3–6 săptămâni, orientativ",
-    "faq": [
-      {
-        "q": "De ce nu folosesc direct ChatGPT?",
-        "a": "ChatGPT e util pentru un document sau o întrebare pusă de mână. Noi conectăm AI la aplicațiile și datele tale, ca să lucreze automat și la volum, fără copiere manuală, să răspundă clienților tăi cu informații reale și să respecte cine are acces la ce."
-      },
-      {
-        "q": "Se poate integra în aplicația existentă?",
-        "a": "Da. Mai întâi verificăm cum funcționează aplicația și ce acces avem la cod sau la interfețele ei, apoi stabilim integrarea potrivită."
-      },
-      {
-        "q": "Prețul include costurile modelelor AI?",
-        "a": "Prețul de pornire este pentru implementare. Costurile recurente ale modelelor și găzduirii se estimează separat, în funcție de utilizare."
-      },
-      {
-        "q": "Unde ajung datele mele?",
-        "a": "Stabilim înainte de implementare ce date pot fi procesate, cine are acces și ce furnizori pot fi folosiți. Alegerea depinde de cerințele proiectului."
-      },
-      {
-        "q": "Agentul poate face acțiuni fără aprobare?",
-        "a": "Doar acțiunile agreate explicit. Pentru acțiuni cu impact stabilim confirmări și limite înainte de implementare."
-      }
-    ]
-  },
-  {
-    "slug": "infrastructura",
-    "title": "Integrări API și automatizări",
-    "short": "Integrăm prin API aplicațiile pe care le folosești (CRM, plăți, facturare) și automatizăm pașii pe care îi repeți zilnic. Soluții de integrare software la comandă.",
-    "tags": [
-      "Integrări API",
-      "Procese repetitive",
-      "Aplicații conectate"
-    ],
-    "tagline": "Mai puține mutări de date. Un flux de lucru mai simplu.",
-    "longDesc": "Alegem un proces clar, identificăm aplicațiile și datele implicate și stabilim regulile. Pentru pași cu reguli clare nu e nevoie de AI: o integrare sau o automatizare obișnuită e mai simplă, mai ieftină și mai previzibilă. Definim ce se întâmplă la erori și ce acțiuni trebuie confirmate de un om.",
+    "tagline": "Aplicatii conectate. Cereri preluate. Mai putina munca repetitiva.",
+    "longDesc": "Pornim de la un rezultat concret: o plata ajunsa in facturare, o programare salvata sau un client ajutat sa aleaga produsul potrivit. Verificam ce pot face instrumentele existente, configuram solutia potrivita si dezvoltam doar integrarile care lipsesc. Testam fluxul complet inainte de predare.",
     "packages": [
       {
         "id": "integration",
-        "name": "Conectarea a două aplicații",
-        "from": "€1.500",
-        "duration": "1–3 săptămâni",
-        "model": "O integrare agreată",
+        "name": "Conectarea site-ului sau aplicatiei la servicii externe",
+        "from": "La oferta",
+        "duration": "Estimare dupa verificarea aplicatiilor",
+        "model": "Integrari API si automatizari",
         "includes": [
-          "Verificarea interfețelor și accesului disponibil",
-          "Transferul datelor necesare între aplicații",
-          "Tratarea erorilor și evitarea transferurilor duplicate",
-          "Teste pe fluxul principal și documentație"
+          "Stabilirea datelor si actiunilor care trebuie sa circule intre aplicatii",
+          "Configurarea conectorilor existenti sau dezvoltarea integrarii necesare",
+          "Automatizarea pasilor stabiliti: plati, facturare, CRM, curieri sau furnizori",
+          "Testarea fluxului, tratarea erorilor si instructiuni de utilizare"
         ],
-        "deliverable": "O integrare funcțională între două aplicații, pentru datele și acțiunile stabilite.",
-        "priceNote": "De la €1.500 pentru un flux de date între două aplicații cu interfețe disponibile. Accesul și costurile furnizorilor se verifică înainte."
+        "deliverable": "Un flux functional intre aplicatiile stabilite. De exemplu: plata confirmata in site genereaza factura in programul de facturare.",
+        "priceNote": "Oferta depinde de aplicatiile implicate, accesul disponibil si regulile fluxului. Abonamentele serviciilor externe se discuta separat."
       },
       {
-        "id": "workflow-automation",
-        "name": "Automatizarea unui flux de lucru",
-        "from": "La ofertă",
-        "duration": "Estimare după analiza procesului",
-        "model": "Pași și reguli agreate",
+        "id": "customer-assistant",
+        "name": "Asistent pentru cereri si programari",
+        "from": "La oferta",
+        "duration": "Estimare dupa definirea fluxului",
+        "model": "Asistenti AI",
         "includes": [
-          "Analiza pașilor care se repetă în activitatea ta",
-          "Declanșatoare și reguli fără AI, unde sunt suficiente",
-          "Notificări, reluarea pașilor și gestionarea erorilor",
-          "Teste și instrucțiuni pentru echipă"
+          "Configurarea asistentului pe site sau WhatsApp, pe canalul stabilit",
+          "Pregatirea informatiilor despre servicii si a intrebarilor necesare",
+          "Conectarea la calendar sau transmiterea cererii completate catre echipa",
+          "Testarea conversatiilor si predarea catre un om pentru situatiile stabilite"
         ],
-        "deliverable": "Un flux automatizat pentru sarcini repetitive, precum preluarea solicitărilor sau pregătirea documentelor.",
-        "priceNote": "La ofertă: numărul de pași, aplicațiile implicate și excepțiile procesului determină scopul și prețul."
+        "deliverable": "Un asistent care afla ce serviciu doreste clientul, colecteaza detaliile si salveaza programarea sau trimite cererea echipei, in functie de integrarea disponibila.",
+        "priceNote": "Oferta depinde de canal, sistemul de programari si actiunile necesare. Costurile platformei AI si ale canalului se estimeaza separat."
+      },
+      {
+        "id": "shop-assistant",
+        "name": "Asistent pentru magazinul online",
+        "from": "La oferta",
+        "duration": "Estimare dupa verificarea magazinului",
+        "model": "Asistenti AI",
+        "includes": [
+          "Configurarea unei solutii existente sau integrarea in magazinul tau",
+          "Conectarea la catalog, disponibilitate si informatiile comenzilor, dupa accesul oferit",
+          "Pregatirea conversatiilor pentru alegerea produselor si intrebari despre comenzi",
+          "Verificarea accesului la datele clientului si predarea exceptiilor catre echipa"
+        ],
+        "deliverable": "Un asistent conectat la magazin, care ajuta cumparatorul sa aleaga produse si sa afle statusul propriei comenzi.",
+        "priceNote": "Oferta depinde de platforma magazinului, sursele de date si actiunile stabilite. Abonamentele si consumul AI se discuta separat."
       }
     ],
     "whatWeBuild": [
       {
-        "title": "Date sincronizate între aplicații",
-        "desc": "Comenzile, clienții sau facturile ajung automat dintr-o aplicație în alta, fără introducere dublă."
+        "title": "De la plata la factura",
+        "desc": "O plata confirmata in site porneste emiterea facturii in aplicatia de facturare. Integrarea API muta datele, iar automatizarea executa pasii stabiliti."
       },
       {
-        "title": "Pași declanșați automat",
-        "desc": "Un eveniment, cum ar fi o comandă nouă sau un formular trimis, pornește singur notificările și pașii următori."
+        "title": "De la conversatie la programare",
+        "desc": "Clientul descrie ce doreste. AI-ul intelege solicitarea si cere detaliile necesare; integrarea verifica disponibilitatea si salveaza programarea."
       },
       {
-        "title": "Aplicații care schimbă date",
-        "desc": "Conectăm un site, un CRM, un sistem de plăți sau alte instrumente care oferă acces pentru integrare."
+        "title": "Ajutor direct in magazin",
+        "desc": "Cumparatorul explica ce cauta sau intreaba despre comanda sa. Asistentul foloseste catalogul si datele disponibile, iar echipa preia situatiile care cer interventie."
       }
     ],
     "audience": [
       {
-        "title": "Repeți aceiași pași",
-        "desc": "Copiați date între aplicații sau pregătiți aceleași documente în mod repetat."
+        "title": "Folosesti aplicatii care trebuie conectate",
+        "desc": "Site-ul, facturarea, CRM-ul sau furnizorii tai nu schimba informatiile necesare in fluxul de lucru."
       },
       {
-        "title": "Folosești mai multe aplicații",
-        "desc": "Informația trebuie introdusă manual în fiecare instrument."
+        "title": "Primesti cereri si programari",
+        "desc": "Vrei sa preiei detaliile clientului si sa le duci pana la programare sau pana la persoana care se ocupa de solicitare."
+      },
+      {
+        "title": "Ai un magazin online",
+        "desc": "Clientii au nevoie de ajutor la alegerea produselor si de informatii despre comenzile lor."
       }
     ],
     "technologies": [],
     "pricing": {
-      "from": "€1.500",
-      "duration": "O integrare: 1–3 săptămâni",
-      "model": "Proiect cu scop agreat"
+      "from": "La oferta",
+      "duration": "Dupa verificarea aplicatiilor si a fluxului",
+      "model": "Implementare cu scop stabilit"
     },
-    "timeline": "1–3 săptămâni, orientativ",
+    "timeline": "Stabilita dupa definirea fluxului",
     "faq": [
       {
-        "q": "Orice automatizare are nevoie de AI?",
-        "a": "Nu. Pentru pași cu reguli clare, o automatizare obișnuită e mai simplă și mai potrivită. Când procesul cere înțelegerea unor documente sau mesaje, soluția potrivită e un agent AI, de la AI pentru firma ta."
+        "q": "Ce primesc in plus fata de un abonament AI sau un MCP?",
+        "a": "Instrumentele pot acoperi deja o parte sau tot fluxul. Verificam intai aceasta varianta. Serviciul nostru acopera alegerea si configurarea solutiei, conectarea la aplicatiile tale, adaptarile necesare si testarea fluxului complet. Daca instrumentul existent iti rezolva cerinta fara implementare, iti spunem."
       },
       {
-        "q": "Puteți conecta orice aplicație?",
-        "a": "Depinde de accesul oferit de aplicație: API, exporturi, webhooks sau alte interfețe. Verificăm acest lucru înainte de ofertă."
+        "q": "Aveti nevoie de AI pentru orice integrare?",
+        "a": "Nu. Transferul datelor si pasii cu reguli stabilite pot functiona prin API si automatizari. Folosim AI pentru interpretarea solicitarilor si conversatiile cu clientii, unde este util."
       },
       {
-        "q": "Ce se întâmplă dacă un pas eșuează?",
-        "a": "Stabilim cum sunt semnalate erorile, ce poate fi reluat și când trebuie să intervină un om. Aceste reguli fac parte din scopul proiectului."
+        "q": "Construiti totul de la zero?",
+        "a": "Folosim platforme si conectori existenti cand acopera cerinta. Dezvoltarea personalizata este pentru legaturile sau comportamentul care lipsesc, dupa verificarea alternativelor."
+      },
+      {
+        "q": "Puteti conecta orice aplicatie?",
+        "a": "Depinde de accesul oferit de fiecare aplicatie si de actiunile disponibile. Verificam API-urile, conectorii si permisiunile inainte sa confirmam ce putem livra."
+      },
+      {
+        "q": "Ce costuri raman dupa implementare?",
+        "a": "Platforma asistentului, consumul AI, WhatsApp, gazduirea sau alte servicii pot avea costuri recurente. Le identificam in oferta. Eventualul suport ulterior se stabileste separat."
       }
     ]
   },
