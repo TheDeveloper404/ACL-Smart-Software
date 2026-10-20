@@ -31,6 +31,7 @@ export default function Footer() {
         <li><a href="mailto:office@acl-smartsoftware.ro">office@acl-smartsoftware.ro</a></li>
         <li><a href="tel:+40758154490">0758 154 490</a></li>
         <li>Petroșani, Hunedoara</li><li>CUI 51219715</li>
+        <li className="footer-socials"><a href="https://www.instagram.com/acl_smartsoftware/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/company/acl-smartsoftware/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
       </ul></div>
     </div>
     <div className="footer-bottom">

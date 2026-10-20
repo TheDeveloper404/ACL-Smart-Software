@@ -56,9 +56,19 @@ async function page(route) {
       reports.push({ route: prefix + (route || '/'), status: 200, locale });
     }
     const solutions = texts.get('/servicii');
-    assert.equal((solutions.match(/class="solutions-guide-option"/g) || []).length, 3);
-    const guide = solutions.match(/<section[^>]*solutions-guide-section[^>]*>([\s\S]*?)<\/section>/)[1];
-    assert.doesNotMatch(guide, /<a\b/);
+    // User: "PE LANGA faptul ca e greu de citit si sunt 100 de mii de carduri".
+    assert.equal((solutions.match(/class="services-index-card solution-overview"/g) || []).length, 3);
+    assert.doesNotMatch(solutions, /solutions-guide-section/);
+    // Every offer linked from the overview must have a real destination on its detail page.
+    const offerLinks = Array.from(solutions.matchAll(/href="([^"#]*\/servicii\/(ai|produse|consultanta)#([^"#]+))"/g));
+    assert.equal(offerLinks.length, 10);
+    for (const [, , slug, id] of offerLinks) {
+      assert.ok(texts.get('/servicii/' + slug).includes('id="' + id + '"'), 'Missing offer destination: ' + slug + '#' + id);
+    }
+    // User: "https://www.instagram.com/acl_smartsoftware/" and "https://www.linkedin.com/company/acl-smartsoftware/?viewAsMember=true".
+    for (const url of ['https://www.instagram.com/acl_smartsoftware/', 'https://www.linkedin.com/company/acl-smartsoftware/']) {
+      assert.ok(solutions.includes('href="' + url + '" target="_blank" rel="noopener noreferrer"'));
+    }
     assert.doesNotMatch(solutions, /solutions-context|Nu știi încă|Not sure/);
     const home = texts.get('');
     assert.match(home, /hero-connected/);
@@ -171,8 +181,8 @@ async function page(route) {
     assert.match(about, locale === 'en' ? /the same client, two projects/ : /același client, două proiecte/);
     assert.doesNotMatch(about, /studio|independent|În proiectele noastre|In our projects/i);
     assert.match(about, locale === 'en' ? /IT Custom and FlotaPro/ : /IT Custom și FlotaPro/);
-    assert.equal((texts.get('/servicii').match(/class="solution-offer"/g) || []).length, 14);
-    assert.match(texts.get('/servicii'), locale === 'en' ? /On request/ : /La ofertă/);
+    assert.equal(['ai', 'produse', 'consultanta'].reduce((count, slug) => count + (texts.get('/servicii/' + slug).match(/class="pkg-card rise"/g) || []).length, 0), 10);
+    assert.match(texts.get('/servicii/ai'), locale === 'en' ? /On request/ : /La oferta/);
     assert.match(about, locale === 'en' ? /Who we work with/ : /Cu cine lucrăm/);
     assert.match(about, /industry-map/);
     assert.doesNotMatch(about, /industry-orbit/);
@@ -202,6 +212,8 @@ async function page(route) {
     assert.doesNotMatch(solutions, /role="tabpanel"|solution-tab-|servicii\/infrastructura/);
     const combined = texts.get('/servicii/ai');
     assert.match(combined, /id="integration-explainer-title"/);
+    assert.ok(combined.indexOf('id="integration"') < combined.indexOf('id="integration-explainer-title"'), 'Show the actual offer before the explanation');
+    assert.doesNotMatch(combined, /class="wtb-layout"|class="audience-list"/);
     assert.match(combined, /class="integration-roles"/);
     assert.match(combined, /class="integration-flow"/);
     assert.match(combined, locale === 'en' ? /API integrations and automation/ : /Integrari API si automatizari/);

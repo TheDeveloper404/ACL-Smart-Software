@@ -75,7 +75,6 @@ export default async function ServiceDetailPage({ params }: Props) {
     { title: en ? 'AI assistants' : 'Asistenti AI', packages: svc.packages.slice(1) },
   ] : [{ title: '', packages: svc.packages }];
 
-  const allTechItems = svc.tags;
   const url = `${BASE}${localePath(locale, `/servicii/${slug}`)}`;
 
   const jsonLd = {
@@ -128,7 +127,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   };
 
   return (
-    <>
+    <div className="service-detail-page">
       <JsonLd data={jsonLd} />
       <header className={`svc-detail-hero${slug === 'consultanta' ? ' audit-hero' : ''}`}>
         <div className="grid-bg" aria-hidden="true" />
@@ -139,19 +138,13 @@ export default async function ServiceDetailPage({ params }: Props) {
               <h1 className="svc-hero-title">
                 {titleDisplay[svc.slug] ?? svc.title}
               </h1>
-              <div className="svc-tech-pills">
-                {allTechItems.map(tech => (
-                  <span className="svc-tech-pill" key={tech}>{tech}</span>
-                ))}
-              </div>
               <p className="svc-hero-tagline">{svc.tagline}</p>
               <p className="svc-hero-desc">{svc.longDesc}</p>
-              <p className="svc-hero-desc svc-hero-desc-extra">{svc.short}</p>
             </div>
             <div className="svc-pricing-card">
               <div className="from">{slug === 'ai' ? (en ? 'Implementation' : 'Implementare') : slug === 'consultanta' ? (en ? 'Security audit from' : 'Audit de securitate de la') : copy.startingPrice}</div>
               <div className="price">{slug === 'consultanta' ? svc.packages[0].from : svc.pricing.from}</div>
-              <div className="meta">
+              {slug !== 'ai' && <div className="meta">
                 <div className="meta-row">
                   <span className="k">{copy.timeline}</span>
                   <span className="v">{slug === 'consultanta' ? svc.packages[0].duration : svc.timeline}</span>
@@ -164,7 +157,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   <span className="k">{copy.term}</span>
                   <span className="v">{slug === 'consultanta' ? (locale === 'en' ? 'Agreed scope' : 'Perimetru agreat') : svc.pricing.duration}</span>
                 </div>
-              </div>
+              </div>}
               <Link href="/#contact" className="cta">
                 {copy.cta}
               </Link>
@@ -175,6 +168,39 @@ export default async function ServiceDetailPage({ params }: Props) {
       </header>
 
       {slug === 'consultanta' && <AuditCoverage locale={locale} />}
+
+
+
+      <section className="svc-section">
+        <div className="wrap">
+          <div className="svc-section-head">
+            <div className="idx">01</div>
+            <h2>{slug === 'ai' ? (en ? 'Three services.' : 'Trei servicii.') : copy.packages} <em>{slug === 'ai' ? (en ? 'Clear deliverables.' : 'Livrabile clare.') : copy.packagesEm}</em></h2>
+          </div>
+          {packageGroups.map(group => <div className="svc-offer-group" key={group.title}>
+          {group.title && <h3 className="svc-offer-group-title">{group.title}</h3>}
+          <div className="pkg-grid">
+            {group.packages.map((pkg) => (
+              <article className="pkg-card rise" id={pkg.id} key={pkg.id}>
+                <div className="pkg-summary">
+                  <div className="pkg-card-head">{group.title ? <h4>{pkg.name}</h4> : <h3>{pkg.name}</h3>}</div>
+                  <p className="pkg-deliverable">{pkg.deliverable}</p>
+                  <div className="pkg-price">{offerPrice(pkg.from) && <span className="pkg-from">{copy.from}</span>} {pkg.from}</div>
+                  <p className="pkg-duration">{pkg.duration}</p>
+                  <Link href="/#contact" className="pkg-cta">{copy.pkgCta} <span aria-hidden="true">→</span></Link>
+                </div>
+                <div className="pkg-includes">
+                  <p className="pkg-label">{copy.includes}</p>
+                  <ul>{pkg.includes.map((it) => <li key={it}>{it}</li>)}</ul>
+                  <p className="pkg-model">{pkg.model}</p>
+                  <p className="pkg-price-scope">{pkg.priceNote}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          </div>)}
+        </div>
+      </section>
 
       {slug === 'ai' && <section className="svc-section integration-explainer" aria-labelledby="integration-explainer-title"><div className="wrap">
         <div className="section-heading"><div><p className="eyebrow">{en ? 'Two different roles' : 'Doua roluri diferite'}</p>
@@ -193,44 +219,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         </div>
       </div></section>}
 
-      <section className="svc-section">
-        <div className="wrap">
-          <div className="svc-section-head">
-            <div className="idx">01</div>
-            <h2>{slug === 'ai' ? (en ? 'Three services.' : 'Trei servicii.') : copy.packages} <em>{slug === 'ai' ? (en ? 'Clear deliverables.' : 'Livrabile clare.') : copy.packagesEm}</em></h2>
-          </div>
-          {packageGroups.map(group => <div className="svc-offer-group" key={group.title}>
-          {group.title && <h3 className="svc-offer-group-title">{group.title}</h3>}
-          <div className="pkg-grid">
-            {group.packages.map((pkg) => (
-              <article className="pkg-card rise" id={pkg.id} key={pkg.id}>
-                <div className="pkg-card-head">
-                  {group.title ? <h4>{pkg.name}</h4> : <h3>{pkg.name}</h3>}
-                  <div className="pkg-price">{offerPrice(pkg.from) && <span className="pkg-from">{copy.from}</span>} {pkg.from}</div>
-                </div>
-                <div className="pkg-meta">
-                  <span className="pkg-chip">{pkg.duration}</span>
-                  <span className="pkg-chip">{pkg.model}</span>
-                </div>
-                <div className="pkg-includes">
-                  <div className="pkg-label">{copy.includes}</div>
-                  <ul>
-                    {pkg.includes.map((it) => <li key={it}>{it}</li>)}
-                  </ul>
-                </div>
-                <p className="pkg-price-scope">{pkg.priceNote}</p>
-                <p className="pkg-deliverable">
-                  <span className="pkg-label">{copy.deliverable}</span> {pkg.deliverable}
-                </p>
-                <Link href="/#contact" className="pkg-cta">{copy.pkgCta} <span aria-hidden="true">→</span></Link>
-              </article>
-            ))}
-          </div>
-          </div>)}
-        </div>
-      </section>
-
-      <section className="svc-section">
+      {slug !== 'ai' && <section className="svc-section">
         <div className="wrap">
           <div className="svc-section-head">
             <div className="idx">02</div>
@@ -238,9 +227,9 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
           <WhatWeBuild items={svc.whatWeBuild} />
         </div>
-      </section>
+      </section>}
 
-      <section className="svc-section">
+      {slug !== 'ai' && <section className="svc-section">
         <div className="wrap">
           <div className="svc-section-head">
             <div className="idx">03</div>
@@ -256,10 +245,10 @@ export default async function ServiceDetailPage({ params }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       {slug === 'ai' && <section className="svc-section" aria-labelledby="integration-projects-title"><div className="wrap">
-        <div className="svc-section-head"><div className="idx">04</div><h2 id="integration-projects-title">{en ? 'Integrations from' : 'Integrari din'} <em>{en ? 'our portfolio' : 'portofoliul nostru'}</em></h2></div>
+        <div className="svc-section-head"><div className="idx">03</div><h2 id="integration-projects-title">{en ? 'Integrations from' : 'Integrari din'} <em>{en ? 'our portfolio' : 'portofoliul nostru'}</em></h2></div>
         <div className="integration-projects">{getCases(locale).filter(project => ['flotapro', 'itcustom'].includes(project.slug)).map(project => <article key={project.slug}>
           <p className="eyebrow">{project.label}</p><h3>{project.title}</h3><p>{project.desc}</p>
           <Link href={`/portofoliu#proiect-${project.slug}`} className="text-link">{en ? 'View the project' : 'Vezi proiectul'} →</Link>
@@ -269,7 +258,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       <section className="svc-section">
         <div className="wrap">
           <div className="svc-section-head">
-            <div className="idx">{slug === 'ai' ? '05' : '04'}</div>
+            <div className="idx">04</div>
             <h2>{copy.faq} <em>{copy.faqEm}</em></h2>
           </div>
           <FaqAccordion items={svc.faq} />
@@ -277,6 +266,6 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       <ContactStrip />
-    </>
+    </div>
   );
 }

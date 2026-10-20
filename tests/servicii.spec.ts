@@ -36,7 +36,7 @@ test.describe('Pagini detaliu servicii', () => {
       await expect(page.locator('.svc-pricing-card')).toBeVisible();
     });
 
-    test(`/servicii/${slug} — WhatWeBuild este interactiv`, async ({ page }) => {
+    if (slug !== 'ai') test(`/servicii/${slug} — WhatWeBuild este interactiv`, async ({ page }) => {
       await page.goto(`/servicii/${slug}`);
       const tabs = page.locator('.wtb-tab');
       await expect(tabs.first()).toBeVisible();
@@ -96,5 +96,18 @@ for (const prefix of ['', '/en']) {
     const response = await request.get(prefix + '/servicii/infrastructura', { maxRedirects: 0 });
     expect(response.status()).toBe(308);
     expect(response.headers().location).toBe(prefix + '/servicii/ai');
+  });
+}
+
+for (const prefix of ['', '/en']) {
+  // User: "serviciile nu sunt clare"; "https://diffco.us/services/".
+  test('lista de servicii duce direct la oferta selectata ' + (prefix || 'ro'), async ({ page }) => {
+    await page.goto(prefix + '/servicii');
+    await page.locator('#solution-produse a[href$="#website"]').click();
+    await expect(page).toHaveURL(prefix + '/servicii/produse#website');
+    await expect(page.locator('#website')).toBeVisible();
+    await expect(page.locator('#website .pkg-price')).toContainText(prefix ? '€1,200' : '€1.200');
+    await expect(page.locator('footer a', { hasText: 'Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/acl_smartsoftware/');
+    await expect(page.locator('footer a', { hasText: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/company/acl-smartsoftware/');
   });
 }
