@@ -8,6 +8,7 @@ import FaqAccordion from './FaqAccordion';
 import AuditCoverage from '@/components/sections/AuditCoverage';
 import { FlowStrip, IntegrationCatalog, StackCatalog, type FlowStep } from '@/components/sections/Integrations';
 import MotionSurface from '@/components/ui/MotionSurface';
+import { CheckIcon } from '@phosphor-icons/react/dist/ssr/Check';
 import JsonLd from '@/components/seo/JsonLd';
 import { BASE, ORG_ID, ORGANIZATION_NODE, breadcrumbJsonLd, localeAlternates, localePath, socialMetadata } from '@/lib/seo';
 import { setRequestLocale } from 'next-intl/server';
@@ -31,16 +32,41 @@ const COPY = {
     back: '← Soluții', startingPrice: 'Preț de pornire', timeline: 'Durată estimată', model: 'Colaborare', term: 'Estimare',
     cta: 'Discutăm proiectul →', pkgCta: 'Cere ofertă', build: 'Cu ce', buildEm: 'construim', flows: 'Cum arată', flowsEm: 'în practică',
     faq: 'Întrebări', faqEm: 'frecvente', area: 'România',
-    packages: 'Pachete', packagesEm: 'și livrabile', includes: 'Include', deliverable: 'Primești', from: 'de la',
+    packages: 'Pachete', packagesEm: 'și livrabile', from: 'de la',
     quoteNote: 'Prețul se stabilește în funcție de complexitate, după ce clarificăm câteva detalii.',
+    quoteCta: 'Discutăm detaliile', compareCaption: 'Comparația pachetelor', included: 'Inclus', notIncluded: 'Nu este inclus',
   },
   en: {
     back: '← Solutions', startingPrice: 'Starting price', timeline: 'Timeline', model: 'Model', term: 'Term',
     cta: 'Let’s talk about your project →', pkgCta: 'Request a quote', build: 'What we', buildEm: 'build with', flows: 'How it works', flowsEm: 'in practice',
     faq: 'Frequently asked', faqEm: 'questions', area: 'Romania',
-    packages: 'Packages', packagesEm: '& deliverables', includes: 'Includes', deliverable: 'You get', from: 'from',
+    packages: 'Packages', packagesEm: '& deliverables', from: 'from',
     quoteNote: 'The price depends on complexity and is set once we clarify a few details.',
+    quoteCta: 'Let’s discuss the details', compareCaption: 'Package comparison', included: 'Included', notIncluded: 'Not included',
   },
+};
+
+// Comparația pachetelor de produse, derivată din ce include fiecare (aprobată de proprietar).
+const COMPARE_IDS = ['website', 'app-web', 'mvp-saas', 'product-mvp'];
+const COMPARE_ROWS: Record<string, { label: string; values: boolean[] }[]> = {
+  ro: [
+    { label: 'Design pe identitatea ta, pentru mobil', values: [true, true, true, true] },
+    { label: 'Formular de contact și SEO tehnic', values: [true, false, false, false] },
+    { label: 'Conturi și roluri pentru utilizatori', values: [false, true, true, true] },
+    { label: 'Fluxuri și integrări din ofertă', values: [false, true, true, false] },
+    { label: 'Abonamente și plăți online', values: [false, false, true, false] },
+    { label: 'Panou de administrare', values: [false, true, true, false] },
+    { label: 'Lansare pe domeniul tău, cu acces la cod', values: [true, true, true, true] },
+  ],
+  en: [
+    { label: 'Design built on your identity, for mobile', values: [true, true, true, true] },
+    { label: 'Contact form and technical SEO', values: [true, false, false, false] },
+    { label: 'User accounts and roles', values: [false, true, true, true] },
+    { label: 'Workflows and integrations from the quote', values: [false, true, true, false] },
+    { label: 'Subscriptions and online payments', values: [false, false, true, false] },
+    { label: 'Admin panel', values: [false, true, true, false] },
+    { label: 'Launch on your domain, with code access', values: [true, true, true, true] },
+  ],
 };
 
 // Câte trei exemple concrete per categorie, în locul descrierilor generale.
@@ -112,10 +138,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const titleDisplay = TITLE_DISPLAY[locale] ?? TITLE_DISPLAY.ro;
   const en = locale === 'en';
   const flows = (en ? DETAIL_FLOWS.en : DETAIL_FLOWS.ro)[slug] ?? [];
-  const packageGroups = slug === 'ai' ? [
-    { title: en ? 'API integrations and automation' : 'Integrări API și automatizări', packages: svc.packages.slice(0, 1) },
-    { title: en ? 'AI assistants' : 'Asistenți AI', packages: svc.packages.slice(1) },
-  ] : [{ title: '', packages: svc.packages }];
+  const compareRows = slug === 'produse' ? (en ? COMPARE_ROWS.en : COMPARE_ROWS.ro) : null;
 
   const url = `${BASE}${localePath(locale, `/servicii/${slug}`)}`;
 
@@ -219,33 +242,43 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div className="idx">01</div>
             <h2>{slug === 'ai' ? (en ? 'Three services.' : 'Trei servicii.') : copy.packages} <em>{slug === 'ai' ? (en ? 'Clear deliverables.' : 'Livrabile clare.') : copy.packagesEm}</em></h2>
           </div>
-          {packageGroups.map(group => <div className="svc-offer-group" key={group.title}>
-          {group.title && <h3 className="svc-offer-group-title">{group.title}</h3>}
-          <div className="pkg-grid">
-            {group.packages.map((pkg) => (
-              <article className="pkg-card rise" id={pkg.id} key={pkg.id}>
-                <div className="pkg-summary">
-                  <div className="pkg-card-head">{group.title ? <h4>{pkg.name}</h4> : <h3>{pkg.name}</h3>}</div>
-                  <p className="pkg-deliverable">{pkg.deliverable}</p>
-                  {offerPrice(pkg.from) ? <>
-                    <div className="pkg-price"><span className="pkg-from">{copy.from}</span> {pkg.from}</div>
-                    <p className="pkg-duration">{pkg.duration}</p>
-                    <Link href="/#contact" className="pkg-cta">{copy.pkgCta} <span aria-hidden="true">→</span></Link>
-                  </> : <>
-                    <Link href="/#contact" className="pkg-price pkg-quote">{pkg.from} <span aria-hidden="true">→</span></Link>
-                    <p className="pkg-duration">{copy.quoteNote}</p>
-                  </>}
-                </div>
-                <div className="pkg-includes">
-                  <p className="pkg-label">{copy.includes}</p>
-                  <ul>{pkg.includes.map((it) => <li key={it}>{it}</li>)}</ul>
-                  <p className="pkg-model">{pkg.model}</p>
-                  <p className="pkg-price-scope">{pkg.priceNote}</p>
-                </div>
-              </article>
-            ))}
+          <div className="pkg-grid" data-count={svc.packages.length}>
+            {svc.packages.map((pkg) => {
+              const column = compareRows ? COMPARE_IDS.indexOf(pkg.id) : -1;
+              return <article className="pkg-card rise" id={pkg.id} key={pkg.id}>
+                <p className="pkg-model">{pkg.model}</p>
+                <h3>{pkg.name}</h3>
+                <p className="pkg-deliverable">{pkg.deliverable}</p>
+                <div className="pkg-price">{offerPrice(pkg.from) && <span className="pkg-from">{copy.from}</span>} {pkg.from}</div>
+                <p className="pkg-duration">{offerPrice(pkg.from) ? pkg.duration : copy.quoteNote}</p>
+                {compareRows
+                  ? <ul className="pkg-includes pkg-compare-list">{compareRows.filter(row => row.values[column]).map(row => <li key={row.label}>{row.label}</li>)}</ul>
+                  : <ul className="pkg-includes">{pkg.includes.map((it) => <li key={it}>{it}</li>)}</ul>}
+                {!compareRows && <p className="pkg-price-scope">{pkg.priceNote}</p>}
+                <Link href="/#contact" className="pkg-cta">{offerPrice(pkg.from) ? copy.pkgCta : copy.quoteCta} <span aria-hidden="true">→</span></Link>
+              </article>;
+            })}
           </div>
-          </div>)}
+          {compareRows && <div className="pkg-compare-wrap">
+            <table className="pkg-compare">
+              <caption className="visually-hidden">{copy.compareCaption}</caption>
+              <thead><tr>
+                <td />
+                {COMPARE_IDS.map(id => svc.packages.find(pkg => pkg.id === id)).map(pkg => pkg && <th scope="col" key={pkg.id}>
+                  <a href={'#' + pkg.id}>{pkg.name}</a>
+                  <span>{offerPrice(pkg.from) ? `${copy.from} ${pkg.from}` : pkg.from}</span>
+                </th>)}
+              </tr></thead>
+              <tbody>{compareRows.map(row => <tr key={row.label}>
+                <th scope="row">{row.label}</th>
+                {row.values.map((included, i) => <td key={COMPARE_IDS[i]}>
+                  {included ? <CheckIcon size={20} weight="bold" aria-hidden="true" /> : <span aria-hidden="true">—</span>}
+                  <span className="visually-hidden">{included ? copy.included : copy.notIncluded}</span>
+                </td>)}
+              </tr>)}</tbody>
+            </table>
+            <p className="pkg-compare-note">{svc.packages.map(pkg => pkg.priceNote).join(' ')}</p>
+          </div>}
         </div>
       </section>
 

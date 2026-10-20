@@ -79,8 +79,9 @@ for (const prefix of ['', '/en']) {
     await expect(page.locator('h1')).toContainText(prefix ? 'API integrations' : 'Integrări API');
     await expect(page.locator('.integration-group')).toHaveCount(6);
     await expect(page.locator('.integration-example .flow-strip')).toHaveCount(3);
-    await expect(page.locator('.svc-offer-group').first().locator('.pkg-card')).toHaveCount(1);
-    await expect(page.locator('.svc-offer-group').nth(1).locator('.pkg-card')).toHaveCount(2);
+    // User: "Carduri de pret + tabel comparativ" -> grupurile AI devin etichete pe card.
+    await expect(page.locator('.pkg-card')).toHaveCount(3);
+    await expect(page.locator('#integration .pkg-model')).toHaveText(prefix ? 'API integrations and automation' : 'Integrări API și automatizări');
     for (const id of ['integration', 'customer-assistant', 'shop-assistant']) {
       await expect(page.locator('#' + id)).toBeVisible();
     }
@@ -105,6 +106,10 @@ for (const prefix of ['', '/en']) {
     await expect(page).toHaveURL(prefix + '/servicii/produse#website');
     await expect(page.locator('#website')).toBeVisible();
     await expect(page.locator('#website .pkg-price')).toContainText(prefix ? '€1,200' : '€1.200');
+    // User: "Carduri de pret + tabel comparativ" -> tabel doar pe produse, cu 4 pachete.
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await expect(page.locator('.pkg-compare thead th')).toHaveCount(4);
+    await expect(page.locator('.pkg-compare tbody tr')).toHaveCount(7);
     // User: "in footer trebuie iconitele de la cele doua pagini linkedin si instagram".
     await expect(page.locator('footer').getByRole('link', { name: 'Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/acl_smartsoftware/');
     await expect(page.locator('footer').getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/company/acl-smartsoftware/');

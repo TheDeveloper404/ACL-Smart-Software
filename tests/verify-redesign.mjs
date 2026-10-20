@@ -229,6 +229,9 @@ async function page(route) {
     assert.match(combined, locale === 'en' ? /AI assistants/ : /Asistenți AI/);
     for (const id of ['integration', 'customer-assistant', 'shop-assistant']) assert.ok(combined.includes('id="' + id + '"'));
     assert.equal((combined.match(/class="pkg-card rise"/g) || []).length, 3);
+    // User: "Carduri de pret + tabel comparativ": tabelul apare doar pe produse.
+    assert.match(texts.get('/servicii/produse'), /class="pkg-compare"/);
+    assert.doesNotMatch(combined + texts.get('/servicii/consultanta'), /class="pkg-compare"/);
     assert.doesNotMatch(combined, /id="(?:document-processing|automation-agent|ai-assessment|ai-feature)"/);
     for (const project of ['flotapro', 'itcustom']) {
       assert.ok(combined.includes('href="' + prefix + '/portofoliu#proiect-' + project + '"'));

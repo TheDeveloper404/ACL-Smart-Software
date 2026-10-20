@@ -1383,18 +1383,7 @@ section { position: relative; }
   gap: 18px;
   scroll-margin-top: 100px;
 }
-.pkg-card-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.pkg-card-head h3 {
-  font-size: 21px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
+
 .pkg-price {
   font-family: var(--font-display);
   font-size: 20px;
@@ -1411,30 +1400,7 @@ section { position: relative; }
   color: var(--fg-muted);
   font-weight: 400;
 }
-.pkg-meta { display: flex; gap: 8px; flex-wrap: wrap; }
-.pkg-chip {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  padding: 4px 10px;
-  border: 1px solid var(--hairline);
-  border-radius: 999px;
-  color: var(--fg-muted);
-}
-.pkg-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-faint);
-  display: block;
-  margin-bottom: 8px;
-}
-.pkg-includes ul {
-  list-style: none;
-  display: grid;
-  gap: 7px;
-}
+
 .pkg-includes li {
   font-size: 14px;
   color: var(--fg-muted);
@@ -1452,7 +1418,7 @@ section { position: relative; }
   color: var(--fg);
   margin-top: auto;
 }
-.pkg-deliverable .pkg-label { display: inline; margin-right: 4px; }
+
 .pkg-cta {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -1598,7 +1564,6 @@ section { position: relative; }
 .review-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
 .review-role { font-size: 12px; color: var(--fg-faint); margin-top: 2px; }
 
-
 /* Hero title */
 .svc-hero-title {
   font-size: clamp(44px, 7vw, 96px);
@@ -1617,7 +1582,6 @@ section { position: relative; }
   padding-top: 16px;
   border-top: 1px solid var(--hairline);
 }
-
 
 .faq-list { display: grid; gap: 0; border-top: 1px solid var(--hairline); }
 .faq-item { padding: 24px 0; border-bottom: 1px solid var(--hairline); cursor: pointer; }
