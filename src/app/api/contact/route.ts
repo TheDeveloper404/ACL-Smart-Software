@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { ContactInputError, readContactJson, validateContactInput } from '@/lib/contact-validation';
+import { notifySlack } from '@/lib/slack-alert';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -184,6 +185,7 @@ export async function POST(request: Request) {
     // un mesaj respins (ex. destinatar pe suppression list) trecea drept trimis.
     if (error) {
       console.error('Resend send failed:', error);
+      await notifySlack('contact-failed', `formularul de contact nu a putut trimite emailul (Resend: ${error.name})`);
       return NextResponse.json({ error: 'Mesajul nu a putut fi trimis.' }, { status: 502 });
     }
 
@@ -195,6 +197,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: err.status === 413 ? 'Mesaj prea mare.' : 'Date invalide.' }, { status: err.status });
     }
     console.error('Resend error:', err);
+    await notifySlack('contact-error', `formularul de contact a dat eroare de server (${err instanceof Error ? err.name : 'UNKNOWN'})`);
     return NextResponse.json({ error: 'Eroare server.' }, { status: 500 });
   }
 }
