@@ -8,6 +8,11 @@ on:
     # Luni 09:00 ora României (EEST, UTC+3) — 08:00 local iarna (EET), cron nu ține cont de DST.
     - cron: "0 6 * * 1"
   workflow_dispatch:
+    inputs:
+      test:
+        description: "Trimite doar un mesaj de test pe Slack (verifica webhook-ul)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -24,13 +29,25 @@ jobs:
       # integration, confirmat empiric 2026-08-19) — API-ul cere strict un PAT cu scope
       # "Dependabot alerts". DEPENDABOT_PAT e un fine-grained PAT (owner al repo-ului, read-only
       # pe acest repo, expiră în 90 zile).
+      - name: Slack test message
+        if: ${{ inputs.test }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          REPO: ${{ github.repository }}
+        run: |
+          curl -sf -X POST -H 'Content-type: application/json' \
+            --data "$(jq -n --arg repo "$REPO" '{text: (":white_check_mark: Test alerta Dependabot: " + $repo)}')" \
+            "$SLACK_WEBHOOK_URL"
+
       - name: Fetch open Dependabot alerts
+        if: ${{ !inputs.test }}
         env:
           GH_TOKEN: ${{ secrets.DEPENDABOT_PAT }}
         run: |
           gh api "repos/${{ github.repository }}/dependabot/alerts?state=open&per_page=100" > /tmp/alerts.json
 
       - name: Notify Slack for new alerts and update state
+        if: ${{ !inputs.test }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           REPO: ${{ github.repository }}
