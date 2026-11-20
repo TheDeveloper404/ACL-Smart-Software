@@ -1077,7 +1077,7 @@ section { position: relative; }
 }
 .footer-brand .brand-mark { width: 36px; height: 36px; font-size: 16px; }
 .footer-brand p { margin-top: 20px; color: var(--fg-muted); font-size: 14px; max-width: 36ch; }
-.footer-col h5 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 14px 0; font-weight: 500; }
+.footer-col h2 { line-height: inherit; text-wrap: inherit; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 14px 0; font-weight: 500; }
 .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .footer-col li a { font-size: 14px; color: var(--fg); transition: color .15s ease; }
 .footer-col li a:hover { color: var(--accent); }

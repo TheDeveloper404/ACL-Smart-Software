@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter_Tight } from 'next/font/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
@@ -29,15 +29,19 @@ const interTight = Inter_Tight({
 
 const LAYOUT_METADATA: Record<AppLocale, Metadata> = {
   ro: {
-    title: { default: 'ACL Smart Software — Dezvoltare software la comandă | Petroșani', template: '%s | ACL Smart Software' },
+    title: { default: 'ACL Smart Software — Software la comandă | Petroșani', template: '%s | ACL Smart Software' },
     description: 'Dezvoltare software la comandă din Petroșani: site-uri, portaluri, aplicații SaaS, integrări API, AI și automatizări pentru companii din toată România.',
     ...socialMetadata('ro', 'ACL Smart Software — AI, automatizări și produse digitale', 'Construim site-uri, portaluri și SaaS. Integrăm AI și automatizăm procesele companiei tale.'),
   },
   en: {
-    title: { default: 'ACL Smart Software — AI, Automation and Digital Products | Romania', template: '%s | ACL Smart Software' },
+    title: { default: 'ACL Smart Software — AI and Digital Products | Romania', template: '%s | ACL Smart Software' },
     description: 'ACL Smart Software is a software development company in Romania. Websites, portals, SaaS products, AI integration and business automation.',
     ...socialMetadata('en', 'ACL Smart Software — AI, Automation and Digital Products', 'We build websites, portals and SaaS products. We integrate AI and automate your business workflows.'),
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#0b0c0c',
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

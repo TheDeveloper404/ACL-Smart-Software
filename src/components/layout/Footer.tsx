@@ -27,14 +27,14 @@ export default function Footer() {
         </Link>
         <p>{en ? 'AI, automation and custom software.' : 'AI, automatizări și software la comandă.'}</p>
       </div>
-      <div className="footer-col"><h5>{en ? 'Solutions' : 'Soluții'}</h5><ul>{solutions.map(link => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}</ul></div>
-      <div className="footer-col"><h5>{en ? 'Company' : 'Companie'}</h5><ul>{company.map(link => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}</ul></div>
-      <div className="footer-col footer-contact"><h5>Contact</h5><ul>
+      <div className="footer-col"><h2>{en ? 'Solutions' : 'Soluții'}</h2><ul>{solutions.map(link => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}</ul></div>
+      <div className="footer-col"><h2>{en ? 'Company' : 'Companie'}</h2><ul>{company.map(link => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}</ul></div>
+      <div className="footer-col footer-contact"><h2>Contact</h2><ul>
         <li><a href="mailto:office@acl-smartsoftware.ro">office@acl-smartsoftware.ro</a></li>
         <li><a href="tel:+40758154490">0758 154 490</a></li>
         <li>Petroșani, Hunedoara</li><li>CUI 51219715</li>
       </ul></div>
-      <div className="footer-col footer-social"><h5>{en ? 'Follow us' : 'Urmărește-ne'}</h5><ul className="footer-socials">
+      <div className="footer-col footer-social"><h2>{en ? 'Follow us' : 'Urmărește-ne'}</h2><ul className="footer-socials">
         <li><a href="https://www.linkedin.com/company/acl-smartsoftware/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedinLogoIcon size={22} aria-hidden="true" /></a></li>
         <li><a href="https://www.instagram.com/acl_smartsoftware/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramLogoIcon size={22} aria-hidden="true" /></a></li>
       </ul></div>
